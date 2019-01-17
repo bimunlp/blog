@@ -1,0 +1,1012 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn,en,ja,default">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Deep Learning">
+    <title>chapter 6 Hidden Variables - Deep Learning</title>
+    <meta name="author" content="Scott Liu">
+    
+        <meta name="keywords" content="deep learning,neural network,mechine learning,ANN,AI,深度学习,机器学习,深度学习,机器学习,自然语言处理">
+    
+    
+        <link rel="icon" href="http://yoursite.com/assets/images/favicon.ico">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Scott Liu","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","mailto"],"image":"profile.png"},"articleBody":"There are situations where parts of the outputs are not available in training data. In such case, we need to consider models that contain hidden variables.\n\n\n\nchapter 6\nHidden Variables\n6.1\nExpectation Maximization\nEM algorithm for K-means clustering\n6.1.1 Hard EM\nHard EM\nK-means v.s. Hard EM\n6.1.2 Soft EM\n6.1.3 Relationships between supervised MLE and EM\n6.2\nEM Derivation and KL-Divergence\n6.2.2 EM deriviation using Numerical Optimization\n6.3\nApplication of EM\nEM Algorithm Summary\n6.3.1 Unsupervised Naive Bayes model\n6.3.2 IBM Model 1\nWord alignment\nEM training\nIBM model 1\n6.3.3 Probabilistic Latent Semantic Analysis\nPLSA Applications\nSummary\n\n\n\n\nchapter 6Hidden Variables\nExpextation maximization (EM)\n\nunsupervised Naive Bayes model\nIBM model 1\nprobabilistic latent semantic analysis (PLSA) model\n\n\n6.1Expectation Maximization\nObservation on K-means clusteringEM processes:\n\nexpectation step: \nrandom point-cluster assignment\n\n\nmaximization step:\nminimizes vector distances to the centroids\n\n\n\n\nEM algorithm for K-means clustering#\n\nObserved points : $O = \\left. \\left\\{ o _ { i } \\right\\} \\right| _ { i = 1 } ^ { N }$\nLearning objective : minimising $L ( O ) = \\sum _ { i = 1 } ^ { N } \\sum _ { k = 1 } ^ { K } \\mathbf { h } _ { i k } \\left| o _ { i } - c _ { k } \\right| ^ { 2 }$ ,where $c_{k}$ is  the centroid of cluster $k$, and $h_{ik}$ is an indicator variable.\nNotations :\nHidden variable $H = \\left. \\left\\{ \\mathbf { h } _ { i k } \\right\\} \\right| _ { i = 1 , k = 1 } ^ { N , K }$ ,\nParameter  $\\Theta = \\left. \\left\\{ c _ { k } \\right\\} \\right| _ { k = 1 } ^ { K }$ \n\n\n\n\n\nTraining process :\nIteration over $H$: $H ^ { t } \\leftarrow { \\arg \\min } \\sum _ { i = 1 } ^ { N } \\sum _ { k = 1 } ^ { K } \\mathbf { h } _ { i k } \\left| o _ { i } - c _ { k } ^ { t } \\right| ^ { 2 }$\nIteration over $\\Theta$: $\\Theta ^ { t + 1 } \\leftarrow { \\arg \\min } \\sum _ { i = 1 } ^ { N } \\sum _ { k = 1 } ^ { K } \\mathbf { h } _ { i k } ^ { t } \\left| o _ { i } - c _ { k } \\right| ^ { 2 }$\n\n\nThe optimal value : $c _ { k } ^ { t + 1 } = \\frac { \\sum _ { i = 1 } ^ { N } \\mathbf { h } _ { i k } ^ { t } O _ { i } } { \\sum _ { i = 1 } ^ { N } \\mathbf { h } _ { i k } ^ { t } }$ , which is the average of all points in cluster $k$.\n\n\n6.1.1 Hard EMGeneral form of EM algorithm#Notations:\n\nObserved data $O$\nHidden data $H$\nModel parameter $\\Theta$\nModel $P(O,H|\\Theta)$\n\nTrainging objective with hidden variables:\n\nMaximising $L(\\Theta)=logP(O|\\Theta)=log\\sum_{H}P(O,H|\\Theta)$\n\n\nHard EMUsing a single optimal configuration of $H$, hard EM optimizes$L ( \\Theta ) = \\log \\max _ { H } P ( O , H | \\Theta )$The optimum $\\Theta^{}$ given by hard EM is$\\Theta^\\leftarrow argmax_{\\Theta}max_{H}logP(O|\\Theta)$\n\nK-means v.s. Hard EMK-means is a type of hard EM algorithm.\n\n6.1.2 Soft EMSoft EM considers all possible values of hidden variables.$P(h|o_{i},\\Theta^{t}),h \\in H$ is the assignment distribution of $H$.$Q(\\Theta,\\Theta^t)$ is called the Q-function.\nHard EM is a special case of soft EM.\n\n6.1.3 Relationships between supervised MLE and EMWe can turn EM algorithm to MLE in supervised settings.\n\nsuppose each $o_{i}$ has a supervised label $y_{i}$\ndefining$P ( h | o _ { i } , \\Theta ^ { t } ) = \\left\\{ \\begin{array} { l } { 1 \\text { if } h = y _ { i } } \\ { 0 \\text { otherwise } } \\end{array} \\right.$\n$\\begin{aligned} Q \\left( \\Theta , \\Theta ^ { t } \\right) &amp; = \\sum _ { i = 1 } ^ { N } \\sum _ { \\mathbf { h } \\in H } P ( \\mathbf { h } | o _ { i } , \\Theta ^ { t } ) \\log P \\left( o _ { i } , \\mathbf { h } | \\Theta \\right) \\ &amp; = \\sum _ { i = 1 } ^ { N } \\log P \\left( o _ { i } , y _ { i } | \\Theta \\right) \\end{aligned}$\nwhich is exactly the maximum log-likelihood training objective.\n\n\n\n6.2EM Derivation and KL-Divergence\n Jensen inequality  for convex functions, $E(g(\\mu))\\ge g(E(\\mu))$, for concave functions, $E(g(\\mu))\\le g(E(\\mu)).$\n\n Using Jensen inequality $L(\\Theta)=log\\sum_{h}P(O,h|\\Theta)\\ge$ $\\sum _ { h } P _ { C } ( h ) \\log \\frac { P ( O , h | \\Theta ) } { P _ { C } ( h ) }=F(\\Theta,Pc)$, $F(\\Theta,Pc)$ is a lower bound of $L(\\Theta)$\nAlso, $F(\\Theta,Pc)= L ( \\Theta ) - K L \\left( P _ { C } ( h ) , P ( h | O , \\Theta ) \\right)$\n\nKL-divergence is always non-negative\n\n$KL(P,Q)$ is zero if and only if $P=Q$\nTo make the bound as tight as possible,$Pc(h)=P(h|O,\\Theta)$In this scenario, $F(\\Theta,Pc)=L(\\Theta)$\n\n\n\n6.2.2 EM deriviation using Numerical Optimization Another way to maximizes $F(\\Theta,Pc)$ Coordinate ascent\n\nExpectation step.finds a optimum distributioon $Pc(H)$ that maximizes $F(\\Theta^t,Pc)$\nMaximization step.finds the optimum $\\Theta^{t+1}$ for $F(\\Theta,P^{t+1}_{c})$\nConvergence.after every iteration of E-step and M-step, $L(\\Theta^{t+1})-L(\\Theta)\\ge0$, $L(\\Theta)$ is a monotonically increasing function, EM is guaranteed to converge to local optimums.\n\n\n6.3Application of EM\nEM Algorithm Summary To apply EM to a certain task, we need three particular steps:\n\nobtain the complete data likelihood $P(O,H|\\Theta)$\ncompute $P(H|O,\\Theta)$$P(H|O,\\Theta)=\\frac{P(O,H|\\Theta)}{P(O|\\Theta)}$\nmaximize $Q(\\Theta,\\Theta^{t})$$Q \\left( \\Theta , \\Theta ^ { t } \\right) = \\sum _ { h } P ( h | O , \\Theta ^ { t } ) \\log P ( O , h | \\Theta )$\n\n\n6.3.1 Unsupervised Naive Bayes model Hidden variables h: output document class, for document $d_{i}$, the complete data likelihood is \n$P \\left( d _ { i } , \\mathbf { h } | \\Theta ^ { t } \\right) = P ( \\mathbf { h } | \\Theta ^ { t } ) P \\left( d _ { i } | \\mathbf { h } , \\Theta ^ { t } \\right) = P ( \\mathbf { h } | \\Theta ^ { t } ) \\prod _ { i = 1 } ^ { \\left| d _ { i } \\right| } P \\left( w _ { i } | \\mathbf { h } , \\Theta ^ { t } \\right)$\nThen we can calculate \n$P ( \\mathbf { h } | d _ { i } , \\Theta ^ { t } ) = \\frac { P \\left( d _ { i } , \\mathbf { h } | \\Theta ^ { t } \\right) } { \\sum _ { \\mathbf { h } } P \\left( d _ { i } , \\mathbf { h } | \\Theta ^ { t } \\right) } = \\frac { P ( \\mathbf { h } | \\Theta ^ { t } ) \\prod _ { i = 1 } ^ { \\left| d _ { i } \\right| } P \\left( w _ { i } | \\mathbf { h } , \\Theta ^ { t } \\right) } { \\sum _ { \\mathbf { h } } P ( \\mathbf { h } | \\Theta ^ { t } ) \\prod _ { i = 1 } ^ { \\left| d _ { i } \\right| } P \\left( w _ { i } | \\mathbf { h } , \\Theta ^ { t } \\right) }$\nMaximize the expectation,\n$Q \\left( \\Theta , \\Theta ^ { t } \\right) = \\sum _ { i = 1 } ^ { N } \\sum _ { \\mathbf { h } } P ( \\mathbf { h } | d _ { i } , \\Theta ^ { t } ) \\log P \\left( d _ { i } , \\mathbf { h } | \\Theta \\right)$\n\nFinding $\\arg \\max _ { \\Theta } Q \\left( \\Theta , \\Theta ^ { t } \\right)$ s.t. $\\sum _ { \\mathbf { h } } P ( \\mathbf { h } | \\Theta ) = 1$ and $\\sum _ { \\mathbf { w } \\in V } P ( \\mathbf { w } | \\mathbf { h } , \\Theta ) = 1$\nUsing Lagrangian multiplier,\nWe derive that,\n$P ( \\mathbf { h } | \\Theta ) = \\frac { \\sum _ { i = 1 } ^ { N } P ( \\mathbf { h } | d _ { i } , \\Theta ^ { t } ) } { N }$\n$P ( \\mathbf { w } | \\mathbf { h } , \\Theta ) =$ $\\frac { \\sum _ { i = 1 } ^ { N } P ( \\mathbf { h } | d _ { i } , \\Theta ^ { t } ) \\sum _ { j = 1 } ^ { \\left| d _ { i } \\right| } \\delta \\left( w _ { j } , w \\right) } { \\sum _ { i = 1 } ^ { N } P ( \\mathbf { h } | d _ { i } , \\Theta ^ { t } ) \\left| d _ { i } \\right| }$\nsoft EM can be executed now.\n\n6.3.2 IBM Model 1A probabilistic model for Machine Translation (MT) \n\nsource sentence X\ntarget language translation Y\nsource word $X = x _ { 1 } x _ { 2 } \\ldots x _ { | X | }$\nTarget word $Y = y _ { 1 } y _ { 2 } \\dots y _ { | Y | }$\n\nBayes rule: $P ( Y | X ) = \\frac { P ( X | Y ) P ( Y ) } { P ( X ) } \\propto P ( X | Y ) P ( Y )$\n\nLanguage model : $P(Y)$  ensure fluency\nTranslation model : $P(X|Y)$  ensure adequacy\n\nUsing probability chain rule and assuming each source word $x_{i}$ is conditionally dependent to only one target word $y_{a_{i}}$, we have\n$P(X|Y)$ $= P \\left( x _ { 1 } | y _ { a _ { 1 } } \\right) P \\left( x _ { 2 } | y _ { a _ { 2 } } \\right) \\ldots P \\left( x _ { | X | } | y _ { a _ { | X | } } \\right)$\n\nWord alignmentWord alignment $A = \\left. \\left\\{ a _ { i } \\right\\} \\right| _ { i = 1 } ^ { | X | }$ , $a_{i}$ denotes the index of the target word that the $i$-th source word translates to.types of word alignment between sentence translation pairs:\nMonotonic , Non-monotonic , Many-to-one , Null \n\nEM training\nObservation variable: $O=(X,Y)$ ,i.e. sentence translation pairs $D = \\left. \\left\\{ \\left( X _ { i } , Y _ { i } \\right) \\right\\} \\right| _ { i = 1 } ^ { N }$\nHidden variable: $H=A$ , i.e. word alignment $A_{i}$\n\n$\\begin{aligned} P ( A , X | Y ) &amp; = P ( A | Y ) P ( X | A , Y ) \\ &amp; = \\frac { \\prod _ { i = 1 } ^ { | X | } P \\left( x _ { i } | y _ { a _ { i } } \\right) } { # ( A \\text { between } X \\text { and } Y ) } \\ &amp; = \\frac { \\prod _ { i = 1 } ^ { | X | } P \\left( x _ { i } | y _ { a _ { i } } \\right) } { ( | Y | + 1 ) ^ { | X | } } \\end{aligned}$\n$\\begin{aligned} P ( A | X , Y ) &amp; = \\frac { P ( A , X | Y ) } { P ( X | Y ) } \\ &amp; = \\frac { \\prod _ { i = 1 } ^ { | X | } P \\left( x _ { i } | y _ { a _ { i } } \\right) } { \\prod _ { i = 1 } ^ { | X | } \\sum _ { j = 0 } ^ { | Y | } P \\left( x _ { i } | y _ { j } \\right) } \\ &amp; = \\prod _ { i = 1 } ^ { | X | } \\frac { P \\left( x _ { i } | y _ { a _ { i } } \\right) } { \\sum _ { j = 0 } ^ { | Y | } P \\left( x _ { i } | y _ { j } \\right) } \\end{aligned}$\n\nAfter knowing $P ( A | X , Y )$ and $P ( A , X | Y )$ , we can define the Q-function for sentence translation pair $(X,Y)$:\n$\\begin{aligned} Q \\left( \\Theta , \\Theta ^ { t } \\right) &amp; = \\sum _ { A } P ( A | X , Y , \\Theta ^ { t } ) \\log P ( A , X | Y , \\Theta ) \\ &amp; = \\sum _ { A } P ( A | X , Y , \\Theta ^ { t } ) \\log \\frac { \\prod _ { i = 1 } ^ { | X | } P \\left( x _ { i } | y _ { a _ { i } } , \\Theta \\right) } { ( | Y | + 1 ) ^ { | X | } } \\end{aligned}$\nApplying Lagrangian function, \nThe expected alignment between a word translation pair \nEXPECTEDALIGN$( \\mathbf { x } , \\mathbf { y } , X , Y )$ $= \\sum _ { A } P ( A | X , Y ) \\cdot \\sum _ { k = 1 } ^ { | X | } \\delta \\left( \\mathbf { x } , x _ { k } \\right) \\delta \\left( \\mathbf { y } , y _ { a _ { k } } \\right)$\n$= \\frac { P ( \\mathbf { x } | \\mathbf { y } ) } { \\sum _ { j = 0 } ^ { | Y | } P ( \\mathbf { x } | y _ { j } ) } \\sum _ { i = 1 } ^ { | X | } \\delta \\left( \\mathbf { x } , x _ { i } \\right) \\sum _ { j = 0 } ^ { | Y | } \\delta \\left( \\mathbf { y } , y _ { j } \\right)$\nEXPECTEDALIGN $( \\mathbf { x } , \\mathbf { y } , X , Y )$ represents a soft count.\n\nIBM model 1Word alignmentIBM models are word-based machine translation models\n\n6.3.3 Probabilistic Latent Semantic AnalysisPLSA is a generative model for document semantic analysis. Topics are hidden variables .\n\nDocument-topic distribution $P(h|d_{i})$\nTopic-word distribution $P(w|h)$\n\n\n  For every document $d$, for every position $l$:\n\nselect a document $d_{i}$ from $P(d_{i})$\ngenerate a topic $h_{l}$ from $P(h|d)$\ngenerate a word $w_{l}$ from $P(w|h_{l})$\n\nThe complete data likelihood of word-document pair  under d:$P(w,h|d)=P(h|d)P(w|h,d)$$P ( \\mathbf { h } | d _ { i } , \\mathbf { w } , \\Theta ^ { t } ) = \\frac { P \\left( \\mathbf { h } , d _ { i } , \\mathbf { w } | \\Theta ^ { t } \\right) } { P \\left( d _ { i } , \\mathbf { w } | \\Theta ^ { t } \\right) }$\n$= \\frac { P ( \\mathbf { h } | d _ { i } , \\Theta ^ { t } ) P ( \\mathbf { w } | \\mathbf { h } , \\Theta ^ { t } ) } { \\sum _ { \\mathbf { h } ^ { \\prime } } P \\left( \\mathbf { h } ^ { \\prime } | d _ { i } , \\Theta ^ { t } \\right) P ( \\mathbf { w } | \\mathbf { h } ^ { \\prime } , \\Theta ^ { t } ) }$\nThe Q-function:\n$Q \\left( \\Theta , \\Theta ^ { t } \\right) = \\sum _ { i = 1 } ^ { N } \\sum _ { \\mathbf { w } \\in d _ { i } } \\sum _ { \\mathbf { h } } P ( \\mathbf { h } | d _ { i } , \\mathbf { w } , \\Theta ^ { t } ) \\log P \\left( \\mathbf { h } , d _ { i } , \\mathbf { w } | \\Theta \\right)$\n$= \\sum _ { i = 1 } ^ { N } \\sum _ { \\mathbf { w } \\in V } C \\left( \\mathbf { w } , d _ { i } \\right) \\sum _ { \\mathbf { h } } P ( \\mathbf { h } | d _ { i } , \\mathbf { w } , \\Theta ^ { t } ) [ \\log P ( \\mathbf { h } | d _ { i } , \\Theta ) + \\log P ( \\mathbf { w } | \\mathbf { h } , \\Theta ) ]$\n\nDefine a Lagrangian function\n$\\Lambda ( \\Theta , \\lambda ) = Q \\left( \\Theta , \\Theta ^ { t } \\right) - \\sum _ { i } \\lambda _ { d _ { i } } \\left( \\sum _ { \\mathbf { h } } P ( \\mathbf { h } | d _ { i } , \\Theta ) - 1 \\right)$ $- \\sum _ { \\mathbf { h } } \\lambda _ { \\mathbf { h } } \\left( \\sum _ { \\mathbf { w } } P ( \\mathbf { w } | \\mathbf { h } , \\Theta ) - 1 \\right)$\nconsider $\\frac { \\partial \\Lambda ( \\Theta , \\lambda ) } { \\partial P ( \\mathbf { h } | d _ { i } , \\Theta ) }=0$ and $\\sum _ { \\mathbf { h } } P ( \\mathbf { h } | d _ { i } , \\Theta ) - 1 = 0$\n$P ( \\mathbf { h } | d _ { i } , \\Theta )=$$\\frac { \\sum _ { \\mathbf { w } \\in V } C \\left( \\mathbf { w } , d _ { i } \\right) P ( \\mathbf { h } | d _ { i } , \\mathbf { w } , \\Theta ^ { t } ) } { \\sum _ { \\mathbf { w } \\in V } C \\left( \\mathbf { w } , d _ { i } \\right) }$\n$P ( \\mathbf { w } | \\mathbf { h } , \\Theta ) = \\frac { \\sum _ { i = 1 } ^ { N } C \\left( \\mathbf { w } , d _ { i } \\right) P ( \\mathbf { h } | d _ { i } , \\mathbf { w } , \\Theta ^ { t } ) } { \\sum _ { i = 1 } ^ { N } \\sum _ { \\mathbf { w } \\in V } C \\left( \\mathbf { w } , d _ { i } \\right) P ( \\mathbf { h } | d _ { i } , \\mathbf { w } , \\Theta ^ { t } ) }$\n\nPLSA Applications\nKeyword extraction\nInformation retrieval\nRecommendation systems\n\n\nSummary\nThe concept of hidden variables\nHard and soft variations of the Expectation Maximization (EM) algorithm\nTHe correlation between EM and MLE for training probabilistic models\nEM for unsupervised text classification\nIBM model 1 for statistical machine translation\nProbabilistic latent semantic allocation\n\n","dateCreated":"2019-01-17T19:53:43+08:00","dateModified":"2019-01-17T20:05:26+08:00","datePublished":"2019-01-17T19:53:43+08:00","description":"There are situations where parts of the outputs are not available in training data. In such case, we need to consider models that contain hidden variables.","headline":"chapter 6 Hidden Variables","image":["image_３.png","cover.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2019/01/17/chapter-6-Hidden-Variables/"},"publisher":{"@type":"Organization","name":"Scott Liu","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","mailto"],"image":"profile.png","logo":{"@type":"ImageObject","url":"profile.png"}},"url":"http://yoursite.com/2019/01/17/chapter-6-Hidden-Variables/","keywords":"NLP, 自然语言处理, 隐变量, hidden variables","thumbnailUrl":"image_３.png"}</script>
+    <meta name="description" content="There are situations where parts of the outputs are not available in training data. In such case, we need to consider models that contain hidden variables.">
+<meta name="keywords" content="深度学习,机器学习,自然语言处理">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="chapter 6 Hidden Variables">
+<meta property="og:url" content="http://yoursite.com/2019/01/17/chapter-6-Hidden-Variables/index.html">
+<meta property="og:site_name" content="Deep Learning">
+<meta property="og:description" content="There are situations where parts of the outputs are not available in training data. In such case, we need to consider models that contain hidden variables.">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:image" content="http://yoursite.com/home/scott/Downloads/hidden.png">
+<meta property="og:image" content="http://yoursite.com/home/scott/Downloads/kmean.png">
+<meta property="og:image" content="http://yoursite.com/home/scott/Desktop/hardem.png">
+<meta property="og:image" content="http://yoursite.com/home/scott/Downloads/vs.png">
+<meta property="og:image" content="http://yoursite.com/home/scott/Desktop/softem.png">
+<meta property="og:image" content="http://yoursite.com/home/scott/Downloads/Convex_b.png">
+<meta property="og:image" content="http://yoursite.com/home/scott/Desktop/alignment.png">
+<meta property="og:image" content="http://yoursite.com/home/scott/Desktop/algorithms.png">
+<meta property="og:image" content="http://yoursite.com/home/scott/Downloads/topic.png">
+<meta property="og:image" content="http://yoursite.com/home/scott/Desktop/plsa.png">
+<meta property="og:updated_time" content="2019-01-17T12:05:26.867Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="chapter 6 Hidden Variables">
+<meta name="twitter:description" content="There are situations where parts of the outputs are not available in training data. In such case, we need to consider models that contain hidden variables.">
+<meta name="twitter:image" content="http://yoursite.com/home/scott/Downloads/hidden.png">
+<meta name="twitter:creator" content="@hanhaishiyi">
+    
+        <link rel="publisher" href="https://plus.google.com/108244569432480563366"/>
+    
+    
+        
+    
+    
+        <meta property="og:image" content="http://yoursite.com/assets/images/profile.png"/>
+    
+    
+        <meta property="og:image" content="http://yoursite.com/2019/01/17/chapter-6-Hidden-Variables/image_３.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://yoursite.com/2019/01/17/chapter-6-Hidden-Variables/image_３.png" />
+    
+    
+        <meta property="og:image" content="http://yoursite.com/2019/01/17/chapter-6-Hidden-Variables/cover.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://yoursite.com/2019/01/17/chapter-6-Hidden-Variables/cover.jpg" />
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style-c4ozcsklz4kht2pebhp44xorvyverh23toayhn7i6ubrpyedak24hv1v0hyd.min.css">
+    <!--STYLES END-->
+    
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/ ">Deep Learning</a>
+    </div>
+    
+        
+            <a class="header-right-picture " href="#about">
+        
+        
+            <img class="header-picture" src="/assets/images/profile.png" alt="作者的图片">
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about">
+                    <img class="sidebar-profile-picture" src="/assets/images/profile.png" alt="作者的图片">
+                </a>
+                <h4 class="sidebar-profile-name">Scott Liu</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>浙江大学在读</p>
+</h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/ " title="首页">
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">首页</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-categories" title="分类">
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">分类</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-tags" title="标签">
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">标签</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-archives" title="归档">
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">归档</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link open-algolia-search" href="#search" title="搜索">
+                    
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">搜索</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="#about" title="关于">
+                    
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">关于</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://github.com/yiyouls" target="_blank" rel="noopener" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="http://stackoverflow.com/users/10926004/yiyouls" target="_blank" rel="noopener" title="Stack Overflow">
+                    
+                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Stack Overflow</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://twitter.com/hanhaishiyi" target="_blank" rel="noopener" title="Twitter">
+                    
+                        <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Twitter</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://facebook.com/yiyouls" target="_blank" rel="noopener" title="Facebook">
+                    
+                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Facebook</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://plus.google.com/u/0/108244569432480563366" target="_blank" rel="noopener" title="Google Plus">
+                    
+                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Google Plus</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://www.linkedin.com/in/yiyouls" target="_blank" rel="noopener" title="LinkedIn">
+                    
+                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">LinkedIn</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/mailto" title="邮箱">
+                    
+                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">邮箱</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/atom.xml" title="RSS">
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+        <div class="post-header-cover
+                    text-center
+                    post-header-cover--partial" style="background-image:url('/2019/01/17/chapter-6-Hidden-Variables/cover.jpg');" data-behavior="4">
+            
+        </div>
+
+            <div id="main" data-behavior="4"
+                 class="hasCover
+                        hasCoverMetaOut
+                        hasCoverCaption">
+                
+<article class="post">
+    
+        <span class="post-header-cover-caption caption">机器学习是人工智能的核心，是使计算机具有智能的根本途径，其应用遍及人工智能的各个领域．</span>
+    
+    
+        <div class="post-header main-content-wrap text-center">
+    
+        <h1 class="post-title">
+            chapter 6 Hidden Variables
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2019-01-17T19:53:43+08:00">
+	
+		    1月 17, 2019
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/categories/自然语言处理/">自然语言处理</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <p>There are situations where parts of the outputs are not available in training data. In such case, we need to consider models that contain hidden variables.</p>
+<a id="more"></a>
+<h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-text">chapter 6</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-text">Hidden Variables</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">6.1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">Expectation Maximization</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">EM algorithm for K-means clustering</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">6.1.1 Hard EM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">Hard EM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">K-means v.s. Hard EM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">6.1.2 Soft EM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">6.1.3 Relationships between supervised MLE and EM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">6.2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">EM Derivation and KL-Divergence</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">6.2.2 EM deriviation using Numerical Optimization</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">6.3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">Application of EM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">EM Algorithm Summary</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">6.3.1 Unsupervised Naive Bayes model</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">6.3.2 IBM Model 1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">Word alignment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">EM training</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">IBM model 1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">6.3.3 Probabilistic Latent Semantic Analysis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">PLSA Applications</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">Summary</span></a></li></ol></li></ol>
+<ul>
+<li><a href="#chapter-6">chapter 6</a></li>
+<li><a href="#hidden-variables">Hidden Variables</a><ul>
+<li><a href="#61">6.1</a></li>
+<li><a href="#expectation-maximization">Expectation Maximization</a></li>
+<li><a href="#em-algorithm-for-k-means-clustering">EM algorithm for K-means clustering</a></li>
+<li><a href="#611-hard-em">6.1.1 Hard EM</a></li>
+<li><a href="#hard-em">Hard EM</a></li>
+<li><a href="#k-means-vs-hard-em">K-means v.s. Hard EM</a></li>
+<li><a href="#612-soft-em">6.1.2 Soft EM</a></li>
+<li><a href="#613-relationships-between-supervised-mle-and-em">6.1.3 Relationships between supervised MLE and EM</a></li>
+<li><a href="#62">6.2</a></li>
+<li><a href="#em-derivation-and-kl-divergence">EM Derivation and KL-Divergence</a></li>
+<li><a href="#622-em-deriviation-using-numerical-optimization">6.2.2 EM deriviation using Numerical Optimization</a></li>
+<li><a href="#63">6.3</a></li>
+<li><a href="#application-of-em">Application of EM</a></li>
+<li><a href="#em-algorithm-summary">EM Algorithm Summary</a></li>
+<li><a href="#631-unsupervised-naive-bayes-model">6.3.1 Unsupervised Naive Bayes model</a></li>
+<li><a href="#632-ibm-model-1">6.3.2 IBM Model 1</a></li>
+<li><a href="#word-alignment">Word alignment</a></li>
+<li><a href="#em-training">EM training</a></li>
+<li><a href="#ibm-model-1">IBM model 1</a></li>
+<li><a href="#633-probabilistic-latent-semantic-analysis">6.3.3 Probabilistic Latent Semantic Analysis</a></li>
+<li><a href="#plsa-applications">PLSA Applications</a></li>
+<li><a href="#summary">Summary</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<h1><span id="chapter-6">chapter 6</span></h1><h1><span id="hidden-variables">Hidden Variables</span></h1><hr>
+<p><img src="/home/scott/Downloads/hidden.png" alt=""><br><strong>Expextation maximization (EM)</strong></p>
+<ul>
+<li>unsupervised Naive Bayes model</li>
+<li>IBM model 1</li>
+<li>probabilistic latent semantic analysis (PLSA) model</li>
+</ul>
+<hr>
+<h2><span id="61">6.1</span></h2><h2><span id="expectation-maximization">Expectation Maximization</span></h2><hr>
+<p>Observation on K-means clustering<br><img src="/home/scott/Downloads/kmean.png" alt=""><br>EM processes:</p>
+<ul>
+<li>expectation step: <ul>
+<li>random point-cluster assignment</li>
+</ul>
+</li>
+<li>maximization step:<ul>
+<li>minimizes vector distances to the centroids</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2><span id="em-algorithm-for-k-means-clustering">EM algorithm for K-means clustering</span></h2><p>#</p>
+<ul>
+<li>Observed points : $O = \left. \left\{ o _ { i } \right\} \right| _ { i = 1 } ^ { N }$</li>
+<li>Learning objective : minimising $L ( O ) = \sum _ { i = 1 } ^ { N } \sum _ { k = 1 } ^ { K } \mathbf { h } _ { i k } \left| o _ { i } - c _ { k } \right| ^ { 2 }$ ,where $c_{k}$ is  the centroid of cluster $k$, and $h_{ik}$ is an indicator variable.</li>
+<li>Notations :<ul>
+<li>Hidden variable $H = \left. \left\{ \mathbf { h } _ { i k } \right\} \right| _ { i = 1 , k = 1 } ^ { N , K }$ ,</li>
+<li>Parameter  $\Theta = \left. \left\{ c _ { k } \right\} \right| _ { k = 1 } ^ { K }$ </li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>Training process :<ul>
+<li>Iteration over $H$: $H ^ { t } \leftarrow { \arg \min } \sum _ { i = 1 } ^ { N } \sum _ { k = 1 } ^ { K } \mathbf { h } _ { i k } \left| o _ { i } - c _ { k } ^ { t } \right| ^ { 2 }$</li>
+<li>Iteration over $\Theta$: $\Theta ^ { t + 1 } \leftarrow { \arg \min } \sum _ { i = 1 } ^ { N } \sum _ { k = 1 } ^ { K } \mathbf { h } _ { i k } ^ { t } \left| o _ { i } - c _ { k } \right| ^ { 2 }$</li>
+</ul>
+</li>
+<li>The optimal value : $c _ { k } ^ { t + 1 } = \frac { \sum _ { i = 1 } ^ { N } \mathbf { h } _ { i k } ^ { t } O _ { i } } { \sum _ { i = 1 } ^ { N } \mathbf { h } _ { i k } ^ { t } }$ , which is the average of all points in cluster $k$.</li>
+</ul>
+<hr>
+<h2><span id="611-hard-em">6.1.1 Hard EM</span></h2><p>General form of EM algorithm<br>#<br>Notations:</p>
+<ul>
+<li>Observed data $O$</li>
+<li>Hidden data $H$</li>
+<li>Model parameter $\Theta$</li>
+<li>Model $P(O,H|\Theta)$</li>
+</ul>
+<p>Trainging objective with hidden variables:</p>
+<ul>
+<li>Maximising $L(\Theta)=logP(O|\Theta)=log\sum_{H}P(O,H|\Theta)$</li>
+</ul>
+<hr>
+<h2><span id="hard-em">Hard EM</span></h2><p><img src="/home/scott/Desktop/hardem.png" alt=""><br>Using a single optimal configuration of $H$, hard EM optimizes<br>$L ( \Theta ) = \log \max _ { H } P ( O , H | \Theta )$<br>The optimum $\Theta^{<em>}$ given by hard EM is<br>$\Theta^</em>\leftarrow argmax_{\Theta}max_{H}logP(O|\Theta)$</p>
+<hr>
+<h2><span id="k-means-vs-hard-em">K-means v.s. Hard EM</span></h2><p><img src="/home/scott/Downloads/vs.png" alt=""><br>K-means is a type of hard EM algorithm.</p>
+<hr>
+<h2><span id="612-soft-em">6.1.2 Soft EM</span></h2><p>Soft EM considers all possible values of hidden variables.<br><img src="/home/scott/Desktop/softem.png" alt=""><br>$P(h|o_{i},\Theta^{t}),h \in H$ is the assignment distribution of $H$.<br>$Q(\Theta,\Theta^t)$ is called the <strong>Q-function</strong>.</p>
+<p>Hard EM is a special case of soft EM.</p>
+<hr>
+<h2><span id="613-relationships-between-supervised-mle-and-em">6.1.3 Relationships between supervised MLE and EM</span></h2><p>We can turn EM algorithm to MLE in supervised settings.</p>
+<ul>
+<li>suppose each $o_{i}$ has a supervised label $y_{i}$</li>
+<li><p>defining<br>$P ( h | o _ { i } , \Theta ^ { t } ) = \left\{ \begin{array} { l } { 1 \text { if } h = y _ { i } } \ { 0 \text { otherwise } } \end{array} \right.$</p>
+<p>$\begin{aligned} Q \left( \Theta , \Theta ^ { t } \right) &amp; = \sum _ { i = 1 } ^ { N } \sum _ { \mathbf { h } \in H } P ( \mathbf { h } | o _ { i } , \Theta ^ { t } ) \log P \left( o _ { i } , \mathbf { h } | \Theta \right) \ &amp; = \sum _ { i = 1 } ^ { N } \log P \left( o _ { i } , y _ { i } | \Theta \right) \end{aligned}$</p>
+<p>which is exactly the maximum log-likelihood training objective.</p>
+</li>
+</ul>
+<hr>
+<h2><span id="62">6.2</span></h2><h2><span id="em-derivation-and-kl-divergence">EM Derivation and KL-Divergence</span></h2><hr>
+<p> Jensen inequality<br> <img src="/home/scott/Downloads/Convex_b.png" alt=""><br> for convex functions, $E(g(\mu))\ge g(E(\mu))$,<br> for concave functions, $E(g(\mu))\le g(E(\mu)).$</p>
+<hr>
+<p> Using Jensen inequality<br> $L(\Theta)=log\sum_{h}P(O,h|\Theta)\ge$ $\sum _ { h } P _ { C } ( h ) \log \frac { P ( O , h | \Theta ) } { P _ { C } ( h ) }=F(\Theta,Pc)$,<br> $F(\Theta,Pc)$ is a lower bound of $L(\Theta)$</p>
+<p>Also,<br> $F(\Theta,Pc)= L ( \Theta ) - K L \left( P _ { C } ( h ) , P ( h | O , \Theta ) \right)$</p>
+<blockquote>
+<p>KL-divergence is always non-negative</p>
+<blockquote>
+<p>$KL(P,Q)$ is zero if and only if $P=Q$</p>
+<p>To make the bound as tight as possible,<br>$Pc(h)=P(h|O,\Theta)$<br>In this scenario, $F(\Theta,Pc)=L(\Theta)$</p>
+</blockquote>
+</blockquote>
+<hr>
+<h2><span id="622-em-deriviation-using-numerical-optimization">6.2.2 EM deriviation using Numerical Optimization</span></h2><p> Another way to maximizes $F(\Theta,Pc)$<br> <strong>Coordinate ascent</strong></p>
+<ul>
+<li>Expectation step.<br>finds a optimum distributioon $Pc(H)$ that maximizes $F(\Theta^t,Pc)$</li>
+<li>Maximization step.<br>finds the optimum $\Theta^{t+1}$ for $F(\Theta,P^{t+1}_{c})$</li>
+<li>Convergence.<br>after every iteration of E-step and M-step,<br> $L(\Theta^{t+1})-L(\Theta)\ge0$,<br> $L(\Theta)$ is a monotonically increasing function, EM is guaranteed to converge to local optimums.</li>
+</ul>
+<hr>
+<h2><span id="63">6.3</span></h2><h2><span id="application-of-em">Application of EM</span></h2><hr>
+<h2><span id="em-algorithm-summary">EM Algorithm Summary</span></h2><p> To apply EM to a certain task, we need three particular steps:</p>
+<ol>
+<li>obtain the complete data likelihood $P(O,H|\Theta)$</li>
+<li>compute $P(H|O,\Theta)$<br>$P(H|O,\Theta)=\frac{P(O,H|\Theta)}{P(O|\Theta)}$</li>
+<li>maximize $Q(\Theta,\Theta^{t})$<br>$Q \left( \Theta , \Theta ^ { t } \right) = \sum _ { h } P ( h | O , \Theta ^ { t } ) \log P ( O , h | \Theta )$</li>
+</ol>
+<hr>
+<h2><span id="631-unsupervised-naive-bayes-model">6.3.1 Unsupervised Naive Bayes model</span></h2><p> Hidden variables h: output document class,<br> for document $d_{i}$, the complete data likelihood is </p>
+<p>$P \left( d _ { i } , \mathbf { h } | \Theta ^ { t } \right) = P ( \mathbf { h } | \Theta ^ { t } ) P \left( d _ { i } | \mathbf { h } , \Theta ^ { t } \right) = P ( \mathbf { h } | \Theta ^ { t } ) \prod _ { i = 1 } ^ { \left| d _ { i } \right| } P \left( w _ { i } | \mathbf { h } , \Theta ^ { t } \right)$</p>
+<p>Then we can calculate </p>
+<p>$P ( \mathbf { h } | d _ { i } , \Theta ^ { t } ) = \frac { P \left( d _ { i } , \mathbf { h } | \Theta ^ { t } \right) } { \sum _ { \mathbf { h } } P \left( d _ { i } , \mathbf { h } | \Theta ^ { t } \right) } = \frac { P ( \mathbf { h } | \Theta ^ { t } ) \prod _ { i = 1 } ^ { \left| d _ { i } \right| } P \left( w _ { i } | \mathbf { h } , \Theta ^ { t } \right) } { \sum _ { \mathbf { h } } P ( \mathbf { h } | \Theta ^ { t } ) \prod _ { i = 1 } ^ { \left| d _ { i } \right| } P \left( w _ { i } | \mathbf { h } , \Theta ^ { t } \right) }$</p>
+<p>Maximize the expectation,</p>
+<p>$Q \left( \Theta , \Theta ^ { t } \right) = \sum _ { i = 1 } ^ { N } \sum _ { \mathbf { h } } P ( \mathbf { h } | d _ { i } , \Theta ^ { t } ) \log P \left( d _ { i } , \mathbf { h } | \Theta \right)$</p>
+<hr>
+<p>Finding $\arg \max _ { \Theta } Q \left( \Theta , \Theta ^ { t } \right)$ s.t. $\sum _ { \mathbf { h } } P ( \mathbf { h } | \Theta ) = 1$ and $\sum _ { \mathbf { w } \in V } P ( \mathbf { w } | \mathbf { h } , \Theta ) = 1$</p>
+<p>Using Lagrangian multiplier,</p>
+<p>We derive that,</p>
+<p>$P ( \mathbf { h } | \Theta ) = \frac { \sum _ { i = 1 } ^ { N } P ( \mathbf { h } | d _ { i } , \Theta ^ { t } ) } { N }$</p>
+<p>$P ( \mathbf { w } | \mathbf { h } , \Theta ) =$ $\frac { \sum _ { i = 1 } ^ { N } P ( \mathbf { h } | d _ { i } , \Theta ^ { t } ) \sum _ { j = 1 } ^ { \left| d _ { i } \right| } \delta \left( w _ { j } , w \right) } { \sum _ { i = 1 } ^ { N } P ( \mathbf { h } | d _ { i } , \Theta ^ { t } ) \left| d _ { i } \right| }$</p>
+<p>soft EM can be executed now.</p>
+<hr>
+<h2><span id="632-ibm-model-1">6.3.2 IBM Model 1</span></h2><p>A probabilistic model for Machine Translation (MT) </p>
+<ul>
+<li>source sentence X</li>
+<li>target language translation Y</li>
+<li>source word $X = x _ { 1 } x _ { 2 } \ldots x _ { | X | }$</li>
+<li>Target word $Y = y _ { 1 } y _ { 2 } \dots y _ { | Y | }$</li>
+</ul>
+<p>Bayes rule: $P ( Y | X ) = \frac { P ( X | Y ) P ( Y ) } { P ( X ) } \propto P ( X | Y ) P ( Y )$</p>
+<ul>
+<li>Language model : $P(Y)$  ensure fluency</li>
+<li>Translation model : $P(X|Y)$  ensure adequacy</li>
+</ul>
+<p>Using probability chain rule and assuming each source word $x_{i}$ is conditionally dependent to only one target word $y_{a_{i}}$, we have</p>
+<p>$P(X|Y)$ $= P \left( x _ { 1 } | y _ { a _ { 1 } } \right) P \left( x _ { 2 } | y _ { a _ { 2 } } \right) \ldots P \left( x _ { | X | } | y _ { a _ { | X | } } \right)$</p>
+<hr>
+<h2><span id="word-alignment">Word alignment</span></h2><p>Word alignment $A = \left. \left\{ a _ { i } \right\} \right| _ { i = 1 } ^ { | X | }$ , $a_{i}$ denotes the index of the target word that the $i$-th source word translates to.<br><img src="/home/scott/Desktop/alignment.png" alt=""><br>types of word alignment between sentence translation pairs:</p>
+<p>Monotonic , Non-monotonic , Many-to-one , Null </p>
+<hr>
+<h2><span id="em-training">EM training</span></h2><ul>
+<li>Observation variable: $O=(X,Y)$ ,i.e. sentence translation pairs $D = \left. \left\{ \left( X _ { i } , Y _ { i } \right) \right\} \right| _ { i = 1 } ^ { N }$</li>
+<li>Hidden variable: $H=A$ , i.e. word alignment $A_{i}$</li>
+</ul>
+<p>$\begin{aligned} P ( A , X | Y ) &amp; = P ( A | Y ) P ( X | A , Y ) \ &amp; = \frac { \prod _ { i = 1 } ^ { | X | } P \left( x _ { i } | y _ { a _ { i } } \right) } { # ( A \text { between } X \text { and } Y ) } \ &amp; = \frac { \prod _ { i = 1 } ^ { | X | } P \left( x _ { i } | y _ { a _ { i } } \right) } { ( | Y | + 1 ) ^ { | X | } } \end{aligned}$</p>
+<p>$\begin{aligned} P ( A | X , Y ) &amp; = \frac { P ( A , X | Y ) } { P ( X | Y ) } \ &amp; = \frac { \prod _ { i = 1 } ^ { | X | } P \left( x _ { i } | y _ { a _ { i } } \right) } { \prod _ { i = 1 } ^ { | X | } \sum _ { j = 0 } ^ { | Y | } P \left( x _ { i } | y _ { j } \right) } \ &amp; = \prod _ { i = 1 } ^ { | X | } \frac { P \left( x _ { i } | y _ { a _ { i } } \right) } { \sum _ { j = 0 } ^ { | Y | } P \left( x _ { i } | y _ { j } \right) } \end{aligned}$</p>
+<hr>
+<p>After knowing $P ( A | X , Y )$ and $P ( A , X | Y )$ , we can define the Q-function for sentence translation pair $(X,Y)$:</p>
+<p>$\begin{aligned} Q \left( \Theta , \Theta ^ { t } \right) &amp; = \sum _ { A } P ( A | X , Y , \Theta ^ { t } ) \log P ( A , X | Y , \Theta ) \ &amp; = \sum _ { A } P ( A | X , Y , \Theta ^ { t } ) \log \frac { \prod _ { i = 1 } ^ { | X | } P \left( x _ { i } | y _ { a _ { i } } , \Theta \right) } { ( | Y | + 1 ) ^ { | X | } } \end{aligned}$</p>
+<p>Applying Lagrangian function, </p>
+<p>The expected alignment between a word translation pair </p>
+<p>EXPECTEDALIGN$( \mathbf { x } , \mathbf { y } , X , Y )$ $= \sum _ { A } P ( A | X , Y ) \cdot \sum _ { k = 1 } ^ { | X | } \delta \left( \mathbf { x } , x _ { k } \right) \delta \left( \mathbf { y } , y _ { a _ { k } } \right)$</p>
+<p>$= \frac { P ( \mathbf { x } | \mathbf { y } ) } { \sum _ { j = 0 } ^ { | Y | } P ( \mathbf { x } | y _ { j } ) } \sum _ { i = 1 } ^ { | X | } \delta \left( \mathbf { x } , x _ { i } \right) \sum _ { j = 0 } ^ { | Y | } \delta \left( \mathbf { y } , y _ { j } \right)$</p>
+<p>EXPECTEDALIGN $( \mathbf { x } , \mathbf { y } , X , Y )$ represents a soft count.</p>
+<hr>
+<h2><span id="ibm-model-1">IBM model 1</span></h2><p>Word alignment<br><img src="/home/scott/Desktop/algorithms.png" alt=""><br>IBM models are word-based machine translation models</p>
+<hr>
+<h2><span id="633-probabilistic-latent-semantic-analysis">6.3.3 Probabilistic Latent Semantic Analysis</span></h2><p><img src="/home/scott/Downloads/topic.png" alt=""><br>PLSA is a generative model for document semantic analysis.<br> Topics are hidden variables .</p>
+<ul>
+<li>Document-topic distribution $P(h|d_{i})$</li>
+<li>Topic-word distribution $P(w|h)$</li>
+</ul>
+<hr>
+<p> <img src="/home/scott/Desktop/plsa.png" alt=""><br> For every document $d$, for every position $l$:</p>
+<ol>
+<li>select a document $d_{i}$ from $P(d_{i})$</li>
+<li>generate a topic $h_{l}$ from $P(h|d)$</li>
+<li>generate a word $w_{l}$ from $P(w|h_{l})$</li>
+</ol>
+<p>The complete data likelihood of word-document pair <w,h> under d:<br>$P(w,h|d)=P(h|d)P(w|h,d)$<br>$P ( \mathbf { h } | d _ { i } , \mathbf { w } , \Theta ^ { t } ) = \frac { P \left( \mathbf { h } , d _ { i } , \mathbf { w } | \Theta ^ { t } \right) } { P \left( d _ { i } , \mathbf { w } | \Theta ^ { t } \right) }$</w,h></p>
+<p>$= \frac { P ( \mathbf { h } | d _ { i } , \Theta ^ { t } ) P ( \mathbf { w } | \mathbf { h } , \Theta ^ { t } ) } { \sum _ { \mathbf { h } ^ { \prime } } P \left( \mathbf { h } ^ { \prime } | d _ { i } , \Theta ^ { t } \right) P ( \mathbf { w } | \mathbf { h } ^ { \prime } , \Theta ^ { t } ) }$</p>
+<p>The Q-function:</p>
+<p>$Q \left( \Theta , \Theta ^ { t } \right) = \sum _ { i = 1 } ^ { N } \sum _ { \mathbf { w } \in d _ { i } } \sum _ { \mathbf { h } } P ( \mathbf { h } | d _ { i } , \mathbf { w } , \Theta ^ { t } ) \log P \left( \mathbf { h } , d _ { i } , \mathbf { w } | \Theta \right)$</p>
+<p>$= \sum _ { i = 1 } ^ { N } \sum _ { \mathbf { w } \in V } C \left( \mathbf { w } , d _ { i } \right) \sum _ { \mathbf { h } } P ( \mathbf { h } | d _ { i } , \mathbf { w } , \Theta ^ { t } ) [ \log P ( \mathbf { h } | d _ { i } , \Theta ) + \log P ( \mathbf { w } | \mathbf { h } , \Theta ) ]$</p>
+<hr>
+<p>Define a Lagrangian function</p>
+<p>$\Lambda ( \Theta , \lambda ) = Q \left( \Theta , \Theta ^ { t } \right) - \sum _ { i } \lambda _ { d _ { i } } \left( \sum _ { \mathbf { h } } P ( \mathbf { h } | d _ { i } , \Theta ) - 1 \right)$ $- \sum _ { \mathbf { h } } \lambda _ { \mathbf { h } } \left( \sum _ { \mathbf { w } } P ( \mathbf { w } | \mathbf { h } , \Theta ) - 1 \right)$</p>
+<p>consider $\frac { \partial \Lambda ( \Theta , \lambda ) } { \partial P ( \mathbf { h } | d _ { i } , \Theta ) }=0$ and $\sum _ { \mathbf { h } } P ( \mathbf { h } | d _ { i } , \Theta ) - 1 = 0$</p>
+<p>$P ( \mathbf { h } | d _ { i } , \Theta )=$$\frac { \sum _ { \mathbf { w } \in V } C \left( \mathbf { w } , d _ { i } \right) P ( \mathbf { h } | d _ { i } , \mathbf { w } , \Theta ^ { t } ) } { \sum _ { \mathbf { w } \in V } C \left( \mathbf { w } , d _ { i } \right) }$</p>
+<p>$P ( \mathbf { w } | \mathbf { h } , \Theta ) = \frac { \sum _ { i = 1 } ^ { N } C \left( \mathbf { w } , d _ { i } \right) P ( \mathbf { h } | d _ { i } , \mathbf { w } , \Theta ^ { t } ) } { \sum _ { i = 1 } ^ { N } \sum _ { \mathbf { w } \in V } C \left( \mathbf { w } , d _ { i } \right) P ( \mathbf { h } | d _ { i } , \mathbf { w } , \Theta ^ { t } ) }$</p>
+<hr>
+<h2><span id="plsa-applications">PLSA Applications</span></h2><ul>
+<li>Keyword extraction</li>
+<li>Information retrieval</li>
+<li>Recommendation systems</li>
+</ul>
+<hr>
+<h2><span id="summary">Summary</span></h2><ul>
+<li>The concept of hidden variables</li>
+<li>Hard and soft variations of the Expectation Maximization (EM) algorithm</li>
+<li>THe correlation between EM and MLE for training probabilistic models</li>
+<li>EM for unsupervised text classification</li>
+<li>IBM model 1 for statistical machine translation</li>
+<li>Probabilistic latent semantic allocation</li>
+</ul>
+
+            
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">标签</span><br>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/NLP/">NLP</a> <a class="tag tag--primary tag--small t-link" href="/tags/hidden-variables/">hidden variables</a> <a class="tag tag--primary tag--small t-link" href="/tags/自然语言处理/">自然语言处理</a> <a class="tag tag--primary tag--small t-link" href="/tags/隐变量/">隐变量</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/01/16/No 2 什么是深度学习？/" data-tooltip="什么是深度学习？" aria-label="下一篇: 什么是深度学习？">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/01/17/chapter-6-Hidden-Variables/" title="分享到 Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2019/01/17/chapter-6-Hidden-Variables/" title="分享到 Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2019/01/17/chapter-6-Hidden-Variables/" title="分享到 Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2019/01/17/chapter-6-Hidden-Variables/" title="分享到 Weibo">
+                    <i class="fab fa-weibo" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/01/17/chapter-6-Hidden-Variables/&amp;title=chapter 6 Hidden Variables" title="分享到 QQ">
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2019/01/17/chapter-6-Hidden-Variables/" title="分享到 Qzone">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yoursite.com/2019/01/17/chapter-6-Hidden-Variables/" title="分享到 Renren">
+                    <i class="fab fa-renren" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#table-of-contents" aria-label="目录">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+                <div id="SOHUCS" sid="chapter 6 Hidden Variables"></div>
+
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2019 Scott Liu. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/01/16/No 2 什么是深度学习？/" data-tooltip="什么是深度学习？" aria-label="下一篇: 什么是深度学习？">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/01/17/chapter-6-Hidden-Variables/" title="分享到 Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2019/01/17/chapter-6-Hidden-Variables/" title="分享到 Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2019/01/17/chapter-6-Hidden-Variables/" title="分享到 Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2019/01/17/chapter-6-Hidden-Variables/" title="分享到 Weibo">
+                    <i class="fab fa-weibo" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/01/17/chapter-6-Hidden-Variables/&amp;title=chapter 6 Hidden Variables" title="分享到 QQ">
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2019/01/17/chapter-6-Hidden-Variables/" title="分享到 Qzone">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yoursite.com/2019/01/17/chapter-6-Hidden-Variables/" title="分享到 Renren">
+                    <i class="fab fa-renren" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#table-of-contents" aria-label="目录">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/01/17/chapter-6-Hidden-Variables/">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>分享到 Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2019/01/17/chapter-6-Hidden-Variables/">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2019/01/17/chapter-6-Hidden-Variables/">
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>分享到 Google+</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2019/01/17/chapter-6-Hidden-Variables/">
+                        <i class="fab fa-weibo" aria-hidden="true"></i><span>分享到 Weibo</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/01/17/chapter-6-Hidden-Variables/&amp;title=chapter 6 Hidden Variables">
+                        <i class="fab fa-qq" aria-hidden="true"></i><span>分享到 QQ</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2019/01/17/chapter-6-Hidden-Variables/">
+                        <i class="fa fa-star" aria-hidden="true"></i><span>分享到 Qzone</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yoursite.com/2019/01/17/chapter-6-Hidden-Variables/">
+                        <i class="fab fa-renren" aria-hidden="true"></i><span>分享到 Renren</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/profile.png" alt="作者的图片">
+        
+            <h4 id="about-card-name">Scott Liu</h4>
+        
+            <div id="about-card-bio"><p>浙江大学在读</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                <p>博士研究生</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br>
+                Hangzhou,Zhejiang
+            </div>
+        
+    </div>
+</div>
+
+        
+            <div id="algolia-search-modal" class="modal-container">
+    <div class="modal">
+        <div class="modal-header">
+            <span class="close-button"><i class="fa fa-times"></i></span>
+            <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+                <span class="searchby-algolia-text text-color-light text-small">by</span>
+                <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+            </a>
+            <i class="search-icon fa fa-search"></i>
+            <form id="algolia-search-form">
+                <input type="text" id="algolia-search-input" name="search" class="form-control input--large search-input" placeholder="Search ">
+            </form>
+        </div>
+        <div class="modal-body">
+            <div class="no-result text-color-light text-center">没有找到文章</div>
+            <div class="results">
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yoursite.com/2019/01/16/No 1 什么是机器学习/">
+                            <img class="media-image" src="http://yoursite.com/2019/01/16/No 1 什么是机器学习/image_2.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yoursite.com/2019/01/16/No 1 什么是机器学习/">
+                            <h3 class="media-heading">机器学习与深度学习基础教程</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月16日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>机器学习与深度学习基础教程－从零开始</p>
+<p><img src="http://plgrq7ioi.bkt.clouddn.com/cover_1.jpg" alt="cover_1"></p>
+<p>本系列教程是为初学者定制，涵盖并解释了深度学习和人工神经网络的基本概念</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yoursite.com/2019/01/16/No 2 什么是深度学习？/">
+                            <img class="media-image" src="http://yoursite.com/2019/01/16/No 2 什么是深度学习？/image_2.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yoursite.com/2019/01/16/No 2 什么是深度学习？/">
+                            <h3 class="media-heading">什么是深度学习？</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月16日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>机器学习与深度学习基础教程</p>
+<p><img src="http://plgrq7ioi.bkt.clouddn.com/cover_1.jpg" alt="cover_1"></p>
+<p>这篇文章将要回答什么是深度学习这个问题．</p>
+<p>整个系列课程会涵盖深度学习领域的众多主题，我们会用很多篇文章来充分解释这些课题，以及它们的应用领域和技术实现。</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yoursite.com/2019/01/17/chapter-6-Hidden-Variables/">
+                            <img class="media-image" src="http://yoursite.com/2019/01/17/chapter-6-Hidden-Variables/image_３.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yoursite.com/2019/01/17/chapter-6-Hidden-Variables/">
+                            <h3 class="media-heading">chapter 6 Hidden Variables</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月17日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>There are situations where parts of the outputs are not available in training data. In such case, we need to consider models that contain hidden variables.</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+            </div>
+        </div>
+        <div class="modal-footer">
+            <p class="results-count text-medium" data-message-zero="没有找到文章" data-message-one="找到 1 篇文章" data-message-other="找到 {n} 篇文章">
+                找到 3 篇文章
+            </p>
+        </div>
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+<script src="/assets/js/script-dbd16rvloemmuxdzniplmnxxvwoz24eya9wol0b7vvmlokgqsjivmb8dnscy.min.js"></script>
+<!--SCRIPTS END-->
+
+    
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cyu2tTq0X'; 
+var conf = 'prod_04b0d924b891393f35b9626442a6e448'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment-with-locales.min.js"></script>
+    <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+    <script>
+        var algoliaClient = algoliasearch('JRXR2OL9UV', '2f9d9502c1e5ad12ac19a2180d9ac94d');
+        var algoliaIndex = algoliaClient.initIndex('my-hexo-blog');
+    </script>
+
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
