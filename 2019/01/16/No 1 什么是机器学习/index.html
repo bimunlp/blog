@@ -17,7 +17,7 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Scott Liu","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","mailto"],"image":"profile.png"},"articleBody":"机器学习与深度学习基础教程－从零开始\n\n本系列教程是为初学者定制，涵盖并解释了深度学习和人工神经网络的基本概念\n\n\n\n什么是机器学习？\n初识深度学习与人工神经网络\n什么是机器学习？\n机器学习　v.s.　传统编程\n更进一步：深度学习\n\n\n\n\n\n什么是机器学习？初识深度学习与人工神经网络本系列教程是为初学者定制，涵盖并解释了深度学习和人工神经网络的基本概念。\n除了讲清基本概念，我们还展示了如何使用Keras（一种用Python编写的神经网络API）在代码中实现这些概念。 我们将学习人工神经网络中的层(layer)的概念，以及激活函数(activation function)，反向传播(backpropagation)，卷积神经网络（CNN），数据增强(data augmentation)，转移学习等概念。\n我们通过讨论不同的术语，认识并理解它们的含义，搞清楚它们是如何适应整个深度学习框架的。 在某些章节里，我们会教大家如何在代码中实现一些课题。\n我们会用Python编写的Keras神经网络API来进行演示，展示这些基本课题的技术实现。\n\n本网站有一个单独的系列专门介绍如何使用Keras，给大家作为重要参考。 Keras系列中的许多内容都假定你已经对本系列中将要讨论的深度学习知识有了基本的了解，请先浏览这个基础教程。\n如果你想研究我们在本系列中所做的代码实现，可以转到Keras系列教程中了解Keras的预备知识，掌握这些先决知识，以便更好地使用Keras。\n什么是机器学习？让我们从最基础的讲起。\n深度学习是我们课程的核心概念，我们需要从基础着手更深入地认识它的含义。 在了解深度学习之前，我们首先要了解什么是机器学习。\n\n机器学习是使用算法分析数据，从该数据中学习，然后对新数据进行确定或预测的实践。\n\n这个概念听起来好像跟我们平常用写的代码差不多，似乎也是下面的路数：\n\n设计一个算法\n机器在一个特定的数据集上执行这个算法\n然后机器就可以在从未见过的新数据上再次执行这个任务\n\n都是给计算机下指令，那机器学习和我们平常写的逻辑算法区别在哪里呢？\n根据我们刚刚给出的机器学习定义，重心是在＂从数据中学习＂这个部分．\n\nlearn from data\n\n通过机器学习，而不是手动编写具有特定指令集的代码来完成特定任务，机器使用数据和算法进行训练，使其能够自主执行任务而无需明确告知如何执行任务。\n现在这可能听起来像天方夜谭，但我们会在后面的文章中看到它是如何一步步实现的。 为了区别使用机器学习和传统编程来完成一项工作，我们看下面的示例。\n\n机器学习　v.s.　传统编程示例：分析一个大众社交平台的评论，把这些评论分类为正面或负面情绪。\n传统的编程方法该算法可以首先查找与负面或正面情绪相关联的特定单词。\n使用条件语句，算法会基于所查找到的正面或负面单词数目比例，将文章分类为正面或负面评价。\n12345678910111213//伪代码let positive = [    \"happy\",     \"thankful\",     \"amazing\"];let negative = [    \"can't\",     \"won't\",     \"sorry\",     \"unfortunately\"];\n这些词汇的选择是程序员任意指定的。 一旦我们得到正面和负面单词的列表，一个简单的算法就是简单地计算给定文章中每种类型单词的出现次数。 然后，基于正例或负例那种次数更多，可以将文章分类为正向或负向。\n机器学习方法该算法分析给定的媒体数据并学习能够将负面文章与正面文章分类的特征。\n通过学到的知识，算法可以将新文章分类为正面或负面。 在这种情况下，设计机器学习程序不需要明确指定需要算法识别的单词。 相反，该算法将通过检验每篇文章的标签来“学习”某些单词是正面还是负面。\n12345678910111213141516171819//伪代码let articles = [    &#123;        label: \"positive\",        data: \"The lizard movie was great! I really liked...\"    &#125;,    &#123;        label: \"positive\",        data: \"Awesome lizards! The color green is my fav...\"    &#125;,    &#123;        label: \"negative\",        data: \"Total disaster! I never liked...\"    &#125;,    &#123;        label: \"negative\",        data: \"Worst movie of all time!...\"    &#125;];\n更进一步：深度学习在我们大概了解机器学习之后，就能够在此基础上认识深度学习。 深度学习是一种可用于实现机器学习的工具或技术。 下一节我们将详细介绍深入学习，敬请期待。 希望我们的文章可以帮到你！\n\n公众微信：友邻学社\n\n关注获取更多内容\n\n\n","dateCreated":"2019-01-16T21:00:28+08:00","dateModified":"2019-01-17T19:28:46+08:00","datePublished":"2019-01-16T21:00:28+08:00","description":"机器学习与深度学习基础教程－从零开始\n\n本系列教程是为初学者定制，涵盖并解释了深度学习和人工神经网络的基本概念","headline":"机器学习与深度学习基础教程","image":["image_2.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2019/01/16/No 1 什么是机器学习/"},"publisher":{"@type":"Organization","name":"Scott Liu","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","mailto"],"image":"profile.png","logo":{"@type":"ImageObject","url":"profile.png"}},"url":"http://yoursite.com/2019/01/16/No 1 什么是机器学习/","keywords":"machine learning, 机器学习","thumbnailUrl":"image_2.png"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Scott Liu","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","mailto"],"image":"profile.png"},"articleBody":"机器学习与深度学习基础教程－从零开始\n\n本系列教程是为初学者定制，涵盖并解释了深度学习和人工神经网络的基本概念\n\n\n\n什么是机器学习？\n初识深度学习与人工神经网络\n什么是机器学习？\n机器学习　v.s.　传统编程\n更进一步：深度学习\n\n\n\n\n\n什么是机器学习？初识深度学习与人工神经网络本系列教程是为初学者定制，涵盖并解释了深度学习和人工神经网络的基本概念。\n除了讲清基本概念，我们还展示了如何使用Keras（一种用Python编写的神经网络API）在代码中实现这些概念。 我们将学习人工神经网络中的层(layer)的概念，以及激活函数(activation function)，反向传播(backpropagation)，卷积神经网络（CNN），数据增强(data augmentation)，转移学习等概念。\n我们通过讨论不同的术语，认识并理解它们的含义，搞清楚它们是如何适应整个深度学习框架的。 在某些章节里，我们会教大家如何在代码中实现一些课题。\n我们会用Python编写的Keras神经网络API来进行演示，展示这些基本课题的技术实现。\n\n本网站有一个单独的系列专门介绍如何使用Keras，给大家作为重要参考。 Keras系列中的许多内容都假定你已经对本系列中将要讨论的深度学习知识有了基本的了解，请先浏览这个基础教程。\n如果你想研究我们在本系列中所做的代码实现，可以转到Keras系列教程中了解Keras的预备知识，掌握这些先决知识，以便更好地使用Keras。\n什么是机器学习？让我们从最基础的讲起。\n深度学习是我们课程的核心概念，我们需要从基础着手更深入地认识它的含义。 在了解深度学习之前，我们首先要了解什么是机器学习。\n\n机器学习是使用算法分析数据，从该数据中学习，然后对新数据进行确定或预测的实践。\n\n这个概念听起来好像跟我们平常用写的代码差不多，似乎也是下面的路数：\n\n设计一个算法\n机器在一个特定的数据集上执行这个算法\n然后机器就可以在从未见过的新数据上再次执行这个任务\n\n都是给计算机下指令，那机器学习和我们平常写的逻辑算法区别在哪里呢？\n根据我们刚刚给出的机器学习定义，重心是在＂从数据中学习＂这个部分．\n\nlearn from data\n\n通过机器学习，而不是手动编写具有特定指令集的代码来完成特定任务，机器使用数据和算法进行训练，使其能够自主执行任务而无需明确告知如何执行任务。\n现在这可能听起来像天方夜谭，但我们会在后面的文章中看到它是如何一步步实现的。 为了区别使用机器学习和传统编程来完成一项工作，我们看下面的示例。\n\n机器学习　v.s.　传统编程示例：分析一个大众社交平台的评论，把这些评论分类为正面或负面情绪。\n传统的编程方法该算法可以首先查找与负面或正面情绪相关联的特定单词。\n使用条件语句，算法会基于所查找到的正面或负面单词数目比例，将文章分类为正面或负面评价。\n12345678910111213//伪代码let positive = [    \"happy\",     \"thankful\",     \"amazing\"];let negative = [    \"can't\",     \"won't\",     \"sorry\",     \"unfortunately\"];\n这些词汇的选择是程序员任意指定的。 一旦我们得到正面和负面单词的列表，一个简单的算法就是简单地计算给定文章中每种类型单词的出现次数。 然后，基于正例或负例那种次数更多，可以将文章分类为正向或负向。\n机器学习方法该算法分析给定的媒体数据并学习能够将负面文章与正面文章分类的特征。\n通过学到的知识，算法可以将新文章分类为正面或负面。 在这种情况下，设计机器学习程序不需要明确指定需要算法识别的单词。 相反，该算法将通过检验每篇文章的标签来“学习”某些单词是正面还是负面。\n12345678910111213141516171819//伪代码let articles = [    &#123;        label: \"positive\",        data: \"The lizard movie was great! I really liked...\"    &#125;,    &#123;        label: \"positive\",        data: \"Awesome lizards! The color green is my fav...\"    &#125;,    &#123;        label: \"negative\",        data: \"Total disaster! I never liked...\"    &#125;,    &#123;        label: \"negative\",        data: \"Worst movie of all time!...\"    &#125;];\n更进一步：深度学习在我们大概了解机器学习之后，就能够在此基础上认识深度学习。 深度学习是一种可用于实现机器学习的工具或技术。 下一节我们将详细介绍深入学习，敬请期待。 希望我们的文章可以帮到你！\n\n公众微信：友邻学社\n\n关注获取更多内容\n\n\n","dateCreated":"2019-01-16T21:00:28+08:00","dateModified":"2019-01-17T20:31:50+08:00","datePublished":"2019-01-16T21:00:28+08:00","description":"机器学习与深度学习基础教程－从零开始\n\n本系列教程是为初学者定制，涵盖并解释了深度学习和人工神经网络的基本概念","headline":"机器学习与深度学习基础教程","image":["image1.jpg","cover2.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2019/01/16/No 1 什么是机器学习/"},"publisher":{"@type":"Organization","name":"Scott Liu","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","mailto"],"image":"profile.png","logo":{"@type":"ImageObject","url":"profile.png"}},"url":"http://yoursite.com/2019/01/16/No 1 什么是机器学习/","keywords":"machine learning, 机器学习","thumbnailUrl":"image1.jpg"}</script>
     <meta name="description" content="机器学习与深度学习基础教程－从零开始  本系列教程是为初学者定制，涵盖并解释了深度学习和人工神经网络的基本概念">
 <meta name="keywords" content="深度学习,机器学习">
 <meta property="og:type" content="blog">
@@ -31,7 +31,7 @@
 <meta property="og:image" content="http://yoursite.com/home/scott/Documents/blog/source/_posts/keras%20logo%20with%20text.png">
 <meta property="og:image" content="http://plgrq7ioi.bkt.clouddn.com/robot.jpg">
 <meta property="og:image" content="http://plgrq7ioi.bkt.clouddn.com/qrcode.jpg">
-<meta property="og:updated_time" content="2019-01-17T11:28:46.293Z">
+<meta property="og:updated_time" content="2019-01-17T12:31:50.887Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习与深度学习基础教程">
 <meta name="twitter:description" content="机器学习与深度学习基础教程－从零开始  本系列教程是为初学者定制，涵盖并解释了深度学习和人工神经网络的基本概念">
@@ -47,9 +47,12 @@
         <meta property="og:image" content="http://yoursite.com/assets/images/profile.png"/>
     
     
-        <meta property="og:image" content="http://yoursite.com/2019/01/16/No 1 什么是机器学习/image_2.png"/>
-        <meta class="swiftype" name="image" data-type="enum" content="http://yoursite.com/2019/01/16/No 1 什么是机器学习/image_2.png" />
+        <meta property="og:image" content="http://yoursite.com/2019/01/16/No 1 什么是机器学习/image1.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://yoursite.com/2019/01/16/No 1 什么是机器学习/image1.jpg" />
     
+    
+        <meta property="og:image" content="http://yoursite.com/2019/01/16/No 1 什么是机器学习/cover2.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://yoursite.com/2019/01/16/No 1 什么是机器学习/cover2.jpg" />
     
     
     <!--STYLES-->
@@ -251,8 +254,14 @@
 </nav>
 
             
+        <div class="post-header-cover
+                    text-center
+                    post-header-cover--partial" style="background-image:url('/2019/01/16/No 1 什么是机器学习/cover2.jpg');" data-behavior="4">
+            
+        </div>
+
             <div id="main" data-behavior="4"
-                 class="
+                 class="hasCover
                         hasCoverMetaOut
                         hasCoverCaption">
                 
@@ -708,7 +717,7 @@
                     
                     <div class="media-left">
                         <a class="link-unstyled" href="http://yoursite.com/2019/01/16/No 1 什么是机器学习/">
-                            <img class="media-image" src="http://yoursite.com/2019/01/16/No 1 什么是机器学习/image_2.png" width="90" height="90">
+                            <img class="media-image" src="http://yoursite.com/2019/01/16/No 1 什么是机器学习/image1.jpg" width="90" height="90">
                         </a>
                     </div>
                     
@@ -735,7 +744,7 @@
                     
                     <div class="media-left">
                         <a class="link-unstyled" href="http://yoursite.com/2019/01/16/No 2 什么是深度学习？/">
-                            <img class="media-image" src="http://yoursite.com/2019/01/16/No 2 什么是深度学习？/image_2.png" width="90" height="90">
+                            <img class="media-image" src="http://yoursite.com/2019/01/16/No 2 什么是深度学习？/image2.jpg" width="90" height="90">
                         </a>
                     </div>
                     
@@ -763,7 +772,7 @@
                     
                     <div class="media-left">
                         <a class="link-unstyled" href="http://yoursite.com/2019/01/17/chapter-6-Hidden-Variables/">
-                            <img class="media-image" src="http://yoursite.com/2019/01/17/chapter-6-Hidden-Variables/image_３.png" width="90" height="90">
+                            <img class="media-image" src="http://yoursite.com/2019/01/17/chapter-6-Hidden-Variables/image3.jpg" width="90" height="90">
                         </a>
                     </div>
                     
