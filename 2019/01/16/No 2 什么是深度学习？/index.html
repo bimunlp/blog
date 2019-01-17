@@ -435,12 +435,6 @@
         
         
             
-                <li class="post-action">
-                    <a class="post-action-btn btn btn--default" href="#gitment">
-                         <i class="fa fa-comment"></i>
-                    </a>
-                </li>
-            
         
         <li class="post-action">
             
@@ -456,7 +450,8 @@
         
         
             
-                <div id="gitment"></div>
+                <div id="SOHUCS" sid="什么是深度学习？"></div>
+
             
         
     </div>
@@ -559,12 +554,6 @@
             </li>
         
         
-            
-                <li class="post-action">
-                    <a class="post-action-btn btn btn--default" href="#gitment">
-                         <i class="fa fa-comment"></i>
-                    </a>
-                </li>
             
         
         <li class="post-action">
@@ -775,34 +764,13 @@
 <!--SCRIPTS END-->
 
     
-        <script type="text/javascript">
-            (function() {
-                function render() {
-                    new Gitment({
-                        id: 'http://yoursite.com/2019/01/16/No 2 什么是深度学习？/',
-                        owner: 'yiyouls',
-                        repo: 'comments.github.io',
-                        oauth: {
-                            client_id: 'afb99d1897c94a0ce5e3',
-                            client_secret: '771f4bff77189e8290d03c22c7cbaacb3476dc7b',
-                        }
-                    }).render('gitment');
-                }
-                var gc = document.createElement('script');
-                gc.type = 'text/javascript';
-                gc.src = '//imsun.github.io/gitment/dist/gitment.browser.js';
-                gc.charset = 'UTF-8';
-                gc.onload = render;
-                gc.async = true;
-                document.querySelector('body').appendChild(gc);
-                var gcs = document.createElement('link');
-                gcs.href = '//imsun.github.io/gitment/style/default.css';
-                gcs.type = 'text/css';
-                gcs.rel = 'stylesheet';
-                gcs.media = 'screen,print';
-                document.querySelector('head').appendChild(gcs);
-            })();
-	    </script>
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cyu2tTq0X'; 
+var conf = 'prod_04b0d924b891393f35b9626442a6e448'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
     
 
 
