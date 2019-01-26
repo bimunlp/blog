@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Deep Learning">
-    <title>什么是深度学习？ - Deep Learning</title>
+    <title>如何理解神经网络中的激活函数(ativation functions)? - Deep Learning</title>
     <meta name="author" content="友邻君">
     
         <meta name="keywords" content="deep learning,neural network,mechine learning,ANN,AI,深度学习,机器学习,">
@@ -17,25 +17,21 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"articleBody":"机器学习与深度学习基础教程\n这篇文章将要回答什么是深度学习这个问题．\n整个系列课程会涵盖深度学习领域的众多主题，我们会用很多篇文章来充分解释这些课题，以及它们的应用领域和技术实现。\n\n\n\n\n深度学习概念解析\n什么是深度学习？\n深度学习中的＂深度＂指的是什么？\n\n\n\n\n\n深度学习概念解析什么是深度学习？这篇文章将要回答什么是深度学习这个问题．\n整个系列课程会涵盖深度学习领域的众多主题，我们会用很多篇文章来充分解释这些课题，以及它们的应用领域和技术实现。\n在这个深度学习系列中所有的文章按特定顺序发表，一些文章中某些概念是基于之前讨论过的概念之上，因此如果你还不熟悉我们正在使用的某些术语或示例，请务必查看先前的文章。\n让我们给出深度学习的定义。\n\n深度学习是机器学习的一个子领域，它所使用的算法是由人类大脑神经网络结构和功能所启发。\n\n我们现在所讲的深度学习，同样采用从数据中学习的算法，就像我们在上一篇关于机器学习的文章中所讨论的那样。 然而，这里的学习算法或模型是基于大脑神经网络的结构和功能。\n我们在深度学习中使用的神经网络不是真正的生物神经网络。 他们只是与生物神经网络共享一些特征，因此，我们称之为人工神经网络（ANNs）。\n我们也经常使用其他术语来指代人工神经网络。 在深度学习领域，人工神经网络（ANN）这个术语有时候也用下面的一些表达：\n\n网络(net)\n神经网络(neural net)\n模型(model)\n\n\n深度学习中的＂深度＂指的是什么？要理解深度学习中的＂深度＂指的是什么，我们首先需要了解人工神经网络的结构。 我们会发现，深度学习使用了一种我们称之为深网(deep net)或深层人工神经网络(deep artificial neural network)的特殊人工神经网络。\n在下一篇关于人工神经网络的文章中，我们将学习如何构建人工神经网络，这将为我们提供理解人工神经网络如何成为深度人工神经网络所需的知识。\n现在，你需要了解以下内容：\n\nANN是使用我们称之为神经元的方法构建的\n人工神经网络中的神经元通过层(layer)的方法构建。\nANN中除了输入层(input layer)和输出层(output layer)之外的所有层都称为隐藏层(hidden layers)。\n如果ANN具有多个隐藏层，则称该ANN为深度ANN\n\n\n总结一下，深度学习使用具有多个隐藏层的ANN结构。 在学习过程中请牢记这一点，随着我们对深度学习理解的加深，我们会越来越明白这一点。 期待下个文章跟你相遇！\n\n公众微信：友邻学社\n\n关注获取更多内容\n\n\nYou made it! keep up the good work ^_^\n\n","dateCreated":"2019-01-16T21:32:50+08:00","dateModified":"2019-01-18T21:51:00+08:00","datePublished":"2019-01-16T21:32:50+08:00","description":"机器学习与深度学习基础教程\n这篇文章将要回答什么是深度学习这个问题．\n整个系列课程会涵盖深度学习领域的众多主题，我们会用很多篇文章来充分解释这些课题，以及它们的应用领域和技术实现。","headline":"什么是深度学习？","image":["http://cdn.yiyouls.com/image_2.png","http://cdn.yiyouls.com/ai.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2019/01/16/No 2 什么是深度学习？/"},"publisher":{"@type":"Organization","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png","logo":{"@type":"ImageObject","url":"http://cdn.yiyouls.com/profile.png"}},"url":"http://yoursite.com/2019/01/16/No 2 什么是深度学习？/","keywords":"deep learning, 深度学习","thumbnailUrl":"http://cdn.yiyouls.com/image_2.png"}</script>
-    <meta name="description" content="机器学习与深度学习基础教程 这篇文章将要回答什么是深度学习这个问题． 整个系列课程会涵盖深度学习领域的众多主题，我们会用很多篇文章来充分解释这些课题，以及它们的应用领域和技术实现。">
-<meta name="keywords" content="deep learning,深度学习">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"articleBody":"神经网络中的激活函数\n这篇文章向大家解释激活函数到底是什么，以及如何在神经网络中使用激活函数．我会向大家介绍几种常见的激活函数，向大家展示这些激活函数如何在Keras中以代码的形式呈现．\n\n上篇文章在介绍神经网络中层的概念的时候，已经提到过激活函数，它们经常出现在层之后，我们这节就更加深入地认识这个概念．\n\n\n什么是激活函数？\n激活函数有什么作用？\nSigmoid激活函数\n激活函数的由来\nRelu激活函数\n为什么要使用激活函数？\n关于Relu函数是非线性的证明\n在Keras中用代码表示激活函数\n\n\n\n\n什么是激活函数？让我们给出一个激活函数的定义：\n\n在人工神经网络中，激活函数是将节点的输入映射到其对应输出的函数。\n\n在上篇文章的图示中我们已经看到，层中的每个节点会得到每个传入连接的加权和，之后将这个加权和传递给激活函数．\n1node output = activation(weighted sum of inputs)\n激活函数执行某种类型的操作以将总和转换为通常在某个下限和某个上限之间的数字。这种转变通常是非线性转换。我们在以后会再次提到这种非线性变换．\n激活函数有什么作用？激活函数的这种变换意义在哪里？激活函数是受什么启发？为了更好地理解激活函数，首先带大家看几个激活函数的例子．\nSigmoid激活函数Sigmoid函数接受输入并执行以下操作：\n\n对于负输入，sigmoid会将输入转换为接近零的数字。\n对于正输入，sigmoid会将输入转换为接近1的数字。\n对于接近零的输入，sigmoid会将输入转换为0到1之间的某个数字。\n\n\n\n可以看出，对于sigmoid函数，０是它的下界，１是它的上界．\n我们现在理解了这样一个激活函数的数学功能，那激活函数到底是受到什么的启发？\n激活函数的由来激活函数同样是受到大脑活动的生物学特征的启发，我们知道不同类型的刺激会使不同区域的神经元被激活．\n例如当你问道一些令人愉悦的东西，像刚出炉的点心，你大脑中某些特定的神经元就会被激活．但是当你闻到一些难闻的东西，像发酸的牛奶，这样就会激活你大脑中另外一些区域的神经元．\n在我们大脑的褶皱深处，某些神经元要么正在被激活，要么没有。这种情形可以用数学符号表示，我们用０表示未被激活，用１表示被激活。\n1234// 伪代码if (smell.isPleasant()) &#123;    neuron.fire();&#125;\n利用人工神经网络中的Sigmoid激活函数，我们把神经元转换到在0和1之间的数字，如果越接近1，神经元被激活得越多，而越接近０，神经元被激活得越少。\nRelu激活函数激活函数并不总是将输入转换为0到1之间的数字。我们现在看一下ReLU激活函数．\nReLU作为目前最广泛使用的激活函数之一，它将输入转换为输入值本身与０之间更大的那个．\n1ReLU(x) = max(0, x)\n因此，如果输入小于或等于零，则relu将输出零。如果输入大于零，则relu将输出输入值本身。\n12345678// 伪代码function relu(x) &#123;    if (x &lt;= 0) &#123;        return 0;    &#125; else &#123;        return x;    &#125;&#125;\n这个函数背后的想法是，神经元越积极，被激活的就越多．\n目前我们已经讨论了Sigmoid和relu函数，当然还有其他的一些类型的函数，它们会对输入做其他类型的变换．\n为什么要使用激活函数？要理解我们使用激活函数的原因，我们首先需要了解线性函数。\n假设$f$是集合$X$上的函数 。  \n假设$a$和$b$在$X$中。  \n假设$x$是实数。 \n 当且仅当以下情况时 ，函数 f被称为线性函数：\n $f(a+b)=f(a)+f(b)$  并且　$f(xa)=xf(a)$\n线性函数的一个重要特征是两个线性函数的组合也是线性函数。这意味着，即使在非常深的神经网络中，如果我们在前向传递过程中只对数据值进行线性变换，深度学习网络中从输入到输出的映射也将是线性的。\n我们在深度学习神经网络中想要得到的映射往往要比线性映射复杂得多．\n这个时候就需要用到激活函数了．大多数激活函数都是非线性的，这是我们有意为之的选择．具有非线性变换的激活函数允许神经网络计算任意复杂的函数。\n关于Relu函数是非线性的证明如何证明Relu函数是非线性的．我们下面试着来证明Relu不是线性变换．\n对于每个实数$x$，我们将函数$f$定义为：\n$f(x)=relu(x)$\n假设$a$是实数并且$a&lt;0$.\n因为$a&lt;0$, 我们有，\n$f(-1a)=max(0,-1a)&gt;0$  并且  $(-1)f(a)=(-1)max(0,a)=0$\n由此可得，\n$f(-1a)\\ne (-1)f(a)$\n由此证明函数$f$是非线性的．\n在Keras中用代码表示激活函数现在我们学习如何在Keras顺序模型中指定一个激活函数\n定义激活函数有两种基本的方式，首先需要导入类\n12from keras.models import Sequentialfrom keras.layers import Dense, Activation\n之后我们可以在层构造函数中指定激活函数，像这样，\n123model = Sequential([    Dense(5, input_shape=(3,), activation=&apos;relu&apos;)])\n这样我们就有了一个dense类型的层，并且指定本层的激活函数为activation=&#39;relu&#39;\n第二种方法是在模型实例化之后将层和激活函数添加到我们的模型中，如下所示：\n123model = Sequential()model.add(Dense(5, input_shape=(3,)))model.add(Activation(&apos;relu&apos;))\n请记住\n1node output = activation(weighted sum of inputs)\n在上面的例子中，dense层每个节点的输出等于输入加权和的relu值，即\n1node output = relu(weighted sum of inputs)\n希望你现在可以对激活函数如何适用于神经网络结构有个大概的认识，能够了解它们的功能和作用，并且学会在Keras中调用它们．我们下篇文章再见！\n","dateCreated":"2019-01-26T11:18:07+08:00","dateModified":"2019-01-26T16:06:20+08:00","datePublished":"2019-01-26T11:18:07+08:00","description":"神经网络中的激活函数\n这篇文章向大家解释激活函数到底是什么，以及如何在神经网络中使用激活函数．我会向大家介绍几种常见的激活函数，向大家展示这些激活函数如何在Keras中以代码的形式呈现．","headline":"如何理解神经网络中的激活函数(ativation functions)?","image":["http://cdn.yiyouls.com/activation.png","http://cdn.yiyouls.com/ai.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2019/01/26/如何理解神经网络中的激活函数-ativation-functions/"},"publisher":{"@type":"Organization","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png","logo":{"@type":"ImageObject","url":"http://cdn.yiyouls.com/profile.png"}},"url":"http://yoursite.com/2019/01/26/如何理解神经网络中的激活函数-ativation-functions/","keywords":"深度学习, ANNs, 人工神经网络, 激活函数","thumbnailUrl":"http://cdn.yiyouls.com/activation.png"}</script>
+    <meta name="description" content="神经网络中的激活函数 这篇文章向大家解释激活函数到底是什么，以及如何在神经网络中使用激活函数．我会向大家介绍几种常见的激活函数，向大家展示这些激活函数如何在Keras中以代码的形式呈现．">
+<meta name="keywords" content="深度学习,ANNs,人工神经网络,激活函数">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="什么是深度学习？">
-<meta property="og:url" content="http://yoursite.com/2019/01/16/No 2 什么是深度学习？/index.html">
+<meta property="og:title" content="如何理解神经网络中的激活函数(ativation functions)?">
+<meta property="og:url" content="http://yoursite.com/2019/01/26/如何理解神经网络中的激活函数-ativation-functions/index.html">
 <meta property="og:site_name" content="Deep Learning">
-<meta property="og:description" content="机器学习与深度学习基础教程 这篇文章将要回答什么是深度学习这个问题． 整个系列课程会涵盖深度学习领域的众多主题，我们会用很多篇文章来充分解释这些课题，以及它们的应用领域和技术实现。">
+<meta property="og:description" content="神经网络中的激活函数 这篇文章向大家解释激活函数到底是什么，以及如何在神经网络中使用激活函数．我会向大家介绍几种常见的激活函数，向大家展示这些激活函数如何在Keras中以代码的形式呈现．">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:image" content="http://cdn.yiyouls.com/cover_1.jpg">
-<meta property="og:image" content="http://cdn.yiyouls.com/image_2.png">
-<meta property="og:image" content="http://cdn.yiyouls.com/layers.png">
-<meta property="og:image" content="http://cdn.yiyouls.com/layers4.png">
-<meta property="og:image" content="http://cdn.yiyouls.com/qrcode.jpg">
-<meta property="og:updated_time" content="2019-01-18T13:51:00.079Z">
+<meta property="og:image" content="http://cdn.yiyouls.com/sigmoid.svg">
+<meta property="og:updated_time" content="2019-01-26T08:06:20.983Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="什么是深度学习？">
-<meta name="twitter:description" content="机器学习与深度学习基础教程 这篇文章将要回答什么是深度学习这个问题． 整个系列课程会涵盖深度学习领域的众多主题，我们会用很多篇文章来充分解释这些课题，以及它们的应用领域和技术实现。">
-<meta name="twitter:image" content="http://cdn.yiyouls.com/cover_1.jpg">
+<meta name="twitter:title" content="如何理解神经网络中的激活函数(ativation functions)?">
+<meta name="twitter:description" content="神经网络中的激活函数 这篇文章向大家解释激活函数到底是什么，以及如何在神经网络中使用激活函数．我会向大家介绍几种常见的激活函数，向大家展示这些激活函数如何在Keras中以代码的形式呈现．">
+<meta name="twitter:image" content="http://cdn.yiyouls.com/sigmoid.svg">
 <meta name="twitter:creator" content="@hanhaishiyi">
     
         <link rel="publisher" href="https://plus.google.com/108244569432480563366"/>
@@ -47,8 +43,8 @@
         <meta property="og:image" content="http://cdn.yiyouls.com/profile.png"/>
     
     
-        <meta property="og:image" content="http://cdn.yiyouls.com/image_2.png"/>
-        <meta class="swiftype" name="image" data-type="enum" content="http://cdn.yiyouls.com/image_2.png" />
+        <meta property="og:image" content="http://cdn.yiyouls.com/activation.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://cdn.yiyouls.com/activation.png" />
     
     
         <meta property="og:image" content="http://cdn.yiyouls.com/ai.jpg"/>
@@ -283,7 +279,7 @@
             
         <div class="post-header-cover
                     text-center
-                    post-header-cover--full" style="background-image:url('http://cdn.yiyouls.com/ai.jpg');" data-behavior="4">
+                    " style="background-image:url('http://cdn.yiyouls.com/ai.jpg');" data-behavior="4">
             
         </div>
 
@@ -294,20 +290,20 @@
                 
 <article class="post">
     
-        <span class="post-header-cover-caption caption">机器学习是人工智能的核心，是使计算机具有智能的根本途径，其应用遍及人工智能的各个领域．</span>
+        <span class="post-header-cover-caption caption">激活函数是一种非线性变换</span>
     
     
         <div class="post-header main-content-wrap text-center">
     
         <h1 class="post-title">
-            什么是深度学习？
+            如何理解神经网络中的激活函数(ativation functions)?
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2019-01-16T21:32:50+08:00">
+    <time datetime="2019-01-26T11:18:07+08:00">
 	
-		    1月 16, 2019
+		    1月 26, 2019
     	
     </time>
     
@@ -325,56 +321,85 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <p>机器学习与深度学习基础教程</p>
-<p>这篇文章将要回答什么是深度学习这个问题．</p>
-<p>整个系列课程会涵盖深度学习领域的众多主题，我们会用很多篇文章来充分解释这些课题，以及它们的应用领域和技术实现。</p>
+            <p>神经网络中的激活函数</p>
+<p>这篇文章向大家解释激活函数到底是什么，以及如何在神经网络中使用激活函数．我会向大家介绍几种常见的激活函数，向大家展示这些激活函数如何在Keras中以代码的形式呈现．</p>
 <a id="more"></a>
-<p><img src="http://cdn.yiyouls.com/cover_1.jpg" alt="cover_1"></p>
-<h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">深度学习概念解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">什么是深度学习？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">深度学习中的＂深度＂指的是什么？</span></a></li></ol></li></ol>
+<p>上篇文章在介绍神经网络中层的概念的时候，已经提到过激活函数，它们经常出现在层之后，我们这节就更加深入地认识这个概念．</p>
+<h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">什么是激活函数？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">激活函数有什么作用？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">Sigmoid激活函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">激活函数的由来</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">Relu激活函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">为什么要使用激活函数？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">关于Relu函数是非线性的证明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">在Keras中用代码表示激活函数</span></a></li></ol></li></ol>
 <ul>
-<li><a href="#深度学习概念解析">深度学习概念解析</a><ul>
-<li><a href="#什么是深度学习">什么是深度学习？</a></li>
-<li><a href="#深度学习中的深度指的是什么">深度学习中的＂深度＂指的是什么？</a></li>
+<li><a href="#什么是激活函数">什么是激活函数？</a></li>
+<li><a href="#激活函数有什么作用">激活函数有什么作用？</a><ul>
+<li><a href="#sigmoid激活函数">Sigmoid激活函数</a></li>
+<li><a href="#激活函数的由来">激活函数的由来</a></li>
+<li><a href="#relu激活函数">Relu激活函数</a></li>
+<li><a href="#为什么要使用激活函数">为什么要使用激活函数？</a></li>
+<li><a href="#关于relu函数是非线性的证明">关于Relu函数是非线性的证明</a></li>
+<li><a href="#在keras中用代码表示激活函数">在Keras中用代码表示激活函数</a></li>
 </ul>
 </li>
 </ul>
 <!-- tocstop -->
-<p><img src="http://cdn.yiyouls.com/image_2.png" alt="image_2"></p>
-<h2><span id="深度学习概念解析">深度学习概念解析</span></h2><h3><span id="什么是深度学习">什么是深度学习？</span></h3><p>这篇文章将要回答什么是深度学习这个问题．</p>
-<p>整个系列课程会涵盖深度学习领域的众多主题，我们会用很多篇文章来充分解释这些课题，以及它们的应用领域和技术实现。</p>
-<p>在这个深度学习系列中所有的文章按特定顺序发表，一些文章中某些概念是基于之前讨论过的概念之上，因此如果你还不熟悉我们正在使用的某些术语或示例，请务必查看先前的文章。</p>
-<p>让我们给出深度学习的定义。</p>
+<h3><span id="什么是激活函数">什么是激活函数？</span></h3><p>让我们给出一个激活函数的定义：</p>
 <blockquote>
-<p>深度学习是机器学习的一个子领域，它所使用的算法是由人类大脑神经网络结构和功能所启发。</p>
+<p>在人工神经网络中，激活函数是将节点的输入映射到其对应输出的函数。</p>
 </blockquote>
-<p>我们现在所讲的深度学习，同样采用从数据中学习的算法，就像我们在上一篇关于机器学习的文章中所讨论的那样。 然而，这里的学习算法或模型是基于大脑神经网络的结构和功能。</p>
-<p>我们在深度学习中使用的神经网络不是真正的生物神经网络。 他们只是与生物神经网络共享一些特征，因此，我们称之为人工神经网络（ANNs）。</p>
-<p>我们也经常使用其他术语来指代人工神经网络。 在深度学习领域，人工神经网络（ANN）这个术语有时候也用下面的一些表达：</p>
+<p>在上篇文章的图示中我们已经看到，层中的每个节点会得到每个传入连接的加权和，之后将这个加权和传递给激活函数．</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node output = activation(weighted sum of inputs)</span><br></pre></td></tr></table></figure>
+<p>激活函数执行某种类型的操作以将总和转换为通常在某个下限和某个上限之间的数字。这种转变通常是非线性转换。我们在以后会再次提到这种非线性变换．</p>
+<h3><span id="激活函数有什么作用">激活函数有什么作用？</span></h3><p>激活函数的这种变换意义在哪里？激活函数是受什么启发？为了更好地理解激活函数，首先带大家看几个激活函数的例子．</p>
+<h4><span id="sigmoid激活函数">Sigmoid激活函数</span></h4><p>Sigmoid函数接受输入并执行以下操作：</p>
 <ul>
-<li>网络(net)</li>
-<li>神经网络(neural net)</li>
-<li>模型(model)</li>
+<li>对于负输入，sigmoid会将输入转换为接近零的数字。</li>
+<li>对于正输入，sigmoid会将输入转换为接近1的数字。</li>
+<li><p>对于接近零的输入，sigmoid会将输入转换为0到1之间的某个数字。</p>
+<p><img src="http://cdn.yiyouls.com/sigmoid.svg" alt=""></p>
+</li>
 </ul>
-<p><img src="http://cdn.yiyouls.com/layers.png" alt="a simple artificial neural network or ANN"></p>
-<h3><span id="深度学习中的深度指的是什么">深度学习中的＂深度＂指的是什么？</span></h3><p>要理解深度学习中的＂深度＂指的是什么，我们首先需要了解人工神经网络的结构。 我们会发现，深度学习使用了一种我们称之为深网(deep net)或深层人工神经网络(deep artificial neural network)的特殊人工神经网络。</p>
-<p>在下一篇关于人工神经网络的文章中，我们将学习如何构建人工神经网络，这将为我们提供理解人工神经网络如何成为深度人工神经网络所需的知识。</p>
-<p>现在，你需要了解以下内容：</p>
-<ol>
-<li>ANN是使用我们称之为神经元的方法构建的</li>
-<li>人工神经网络中的神经元通过层(layer)的方法构建。</li>
-<li>ANN中除了输入层(input layer)和输出层(output layer)之外的所有层都称为隐藏层(hidden layers)。</li>
-<li>如果ANN具有多个隐藏层，则称该ANN为深度ANN</li>
-</ol>
-<p><img src="http://cdn.yiyouls.com/layers4.png" alt="deep neural network with 4 layers"></p>
-<p>总结一下，深度学习使用具有多个隐藏层的ANN结构。 在学习过程中请牢记这一点，随着我们对深度学习理解的加深，我们会越来越明白这一点。 期待下个文章跟你相遇！</p>
-<span class="highlight-text purple">
-公众微信：友邻学社
-
-关注获取更多内容
-</span>
-<p><img src="http://cdn.yiyouls.com/qrcode.jpg" alt=""></p>
-<div class="alert success"><p>You made it! keep up the good work ^_^</p>
-</div>
+<p>可以看出，对于sigmoid函数，０是它的下界，１是它的上界．</p>
+<p>我们现在理解了这样一个激活函数的数学功能，那激活函数到底是受到什么的启发？</p>
+<h4><span id="激活函数的由来">激活函数的由来</span></h4><p>激活函数同样是受到大脑活动的生物学特征的启发，我们知道不同类型的刺激会使不同区域的神经元被激活．</p>
+<p>例如当你问道一些令人愉悦的东西，像刚出炉的点心，你大脑中某些特定的神经元就会被激活．但是当你闻到一些难闻的东西，像发酸的牛奶，这样就会激活你大脑中另外一些区域的神经元．</p>
+<p>在我们大脑的褶皱深处，某些神经元要么正在被激活，要么没有。这种情形可以用数学符号表示，我们用０表示未被激活，用１表示被激活。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 伪代码</span><br><span class="line">if (smell.isPleasant()) &#123;</span><br><span class="line">    neuron.fire();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>利用人工神经网络中的Sigmoid激活函数，我们把神经元转换到在0和1之间的数字，如果越接近1，神经元被激活得越多，而越接近０，神经元被激活得越少。</p>
+<h4><span id="relu激活函数">Relu激活函数</span></h4><p>激活函数并不总是将输入转换为0到1之间的数字。我们现在看一下ReLU激活函数．</p>
+<p>ReLU作为目前最广泛使用的激活函数之一，它将输入转换为输入值本身与０之间更大的那个．</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ReLU(x) = max(0, x)</span><br></pre></td></tr></table></figure>
+<p>因此，如果输入小于或等于零，则relu将输出零。如果输入大于零，则relu将输出输入值本身。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 伪代码</span><br><span class="line">function relu(x) &#123;</span><br><span class="line">    if (x &lt;= 0) &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个函数背后的想法是，神经元越积极，被激活的就越多．</p>
+<p>目前我们已经讨论了Sigmoid和relu函数，当然还有其他的一些类型的函数，它们会对输入做其他类型的变换．</p>
+<h4><span id="为什么要使用激活函数">为什么要使用激活函数？</span></h4><p>要理解我们使用激活函数的原因，我们首先需要了解线性函数。</p>
+<p>假设$f$是集合$X$上的函数 。  </p>
+<p>假设$a$和$b$在$X$中。  </p>
+<p>假设$x$是实数。 </p>
+<p> 当且仅当以下情况时 ，函数 f被称为线性函数：</p>
+<p> $f(a+b)=f(a)+f(b)$  并且　$f(xa)=xf(a)$</p>
+<p>线性函数的一个重要特征是两个线性函数的组合也是线性函数。这意味着，即使在非常深的神经网络中，如果我们在前向传递过程中只对数据值进行线性变换，深度学习网络中从输入到输出的映射也将是线性的。</p>
+<p>我们在深度学习神经网络中想要得到的映射往往要比线性映射复杂得多．</p>
+<p>这个时候就需要用到激活函数了．大多数激活函数都是非线性的，这是我们有意为之的选择．具有非线性变换的激活函数允许神经网络计算任意复杂的函数。</p>
+<h4><span id="关于relu函数是非线性的证明">关于Relu函数是非线性的证明</span></h4><p>如何证明Relu函数是非线性的．我们下面试着来证明Relu不是线性变换．</p>
+<p>对于每个实数$x$，我们将函数$f$定义为：</p>
+<p>$f(x)=relu(x)$</p>
+<p>假设$a$是实数并且$a&lt;0$.</p>
+<p>因为$a&lt;0$, 我们有，</p>
+<p>$f(-1a)=max(0,-1a)&gt;0$  并且  $(-1)f(a)=(-1)max(0,a)=0$</p>
+<p>由此可得，</p>
+<p>$f(-1a)\ne (-1)f(a)$</p>
+<p>由此证明函数$f$是非线性的．</p>
+<h4><span id="在keras中用代码表示激活函数">在Keras中用代码表示激活函数</span></h4><p>现在我们学习如何在Keras顺序模型中指定一个激活函数</p>
+<p>定义激活函数有两种基本的方式，首先需要导入类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from keras.models import Sequential</span><br><span class="line">from keras.layers import Dense, Activation</span><br></pre></td></tr></table></figure>
+<p>之后我们可以在层构造函数中指定激活函数，像这样，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">model = Sequential([</span><br><span class="line">    Dense(5, input_shape=(3,), activation=&apos;relu&apos;)</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+<p>这样我们就有了一个<code>dense</code>类型的层，并且指定本层的激活函数为<code>activation=&#39;relu&#39;</code></p>
+<p>第二种方法是在模型实例化之后将层和激活函数添加到我们的模型中，如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">model = Sequential()</span><br><span class="line">model.add(Dense(5, input_shape=(3,)))</span><br><span class="line">model.add(Activation(&apos;relu&apos;))</span><br></pre></td></tr></table></figure>
+<p>请记住</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node output = activation(weighted sum of inputs)</span><br></pre></td></tr></table></figure>
+<p>在上面的例子中，<code>dense</code>层每个节点的输出等于输入加权和的relu值，即</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node output = relu(weighted sum of inputs)</span><br></pre></td></tr></table></figure>
+<p>希望你现在可以对激活函数如何适用于神经网络结构有个大概的认识，能够了解它们的功能和作用，并且学会在Keras中调用它们．我们下篇文章再见！</p>
 
             
 
@@ -385,7 +410,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">标签</span><br>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/deep-learning/">deep learning</a> <a class="tag tag--primary tag--small t-link" href="/tags/深度学习/">深度学习</a>
+    <a class="tag tag--primary tag--small t-link" href="/tags/ANNs/">ANNs</a> <a class="tag tag--primary tag--small t-link" href="/tags/人工神经网络/">人工神经网络</a> <a class="tag tag--primary tag--small t-link" href="/tags/深度学习/">深度学习</a> <a class="tag tag--primary tag--small t-link" href="/tags/激活函数/">激活函数</a>
 
             </div>
         
@@ -396,7 +421,7 @@
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/01/18/使用hexo在Github上免费搭建功能丰富的个人博客网站/" data-tooltip="使用hexo在Github上免费搭建功能丰富的个人博客网站" aria-label="上一篇: 使用hexo在Github上免费搭建功能丰富的个人博客网站">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/01/26/如何训练人工神经网络？/" data-tooltip="如何训练人工神经网络？" aria-label="上一篇: 如何训练人工神经网络？">
                 
                     <i class="fa fa-angle-left" aria-hidden="true"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -405,7 +430,7 @@
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/01/16/No 1 什么是机器学习/" data-tooltip="什么是机器学习？" aria-label="下一篇: 什么是机器学习？">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/01/25/如何理解神经网络中层-layer-的概念？/" data-tooltip="如何理解神经网络中层(layer)的概念？" aria-label="下一篇: 如何理解神经网络中层(layer)的概念？">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -423,7 +448,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/01/16/No 2 什么是深度学习？/" title="分享到 Facebook">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/01/26/如何理解神经网络中的激活函数-ativation-functions/" title="分享到 Facebook">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -431,7 +456,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2019/01/16/No 2 什么是深度学习？/" title="分享到 Twitter">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2019/01/26/如何理解神经网络中的激活函数-ativation-functions/" title="分享到 Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -439,7 +464,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2019/01/16/No 2 什么是深度学习？/" title="分享到 Google+">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2019/01/26/如何理解神经网络中的激活函数-ativation-functions/" title="分享到 Google+">
                     <i class="fab fa-google-plus" aria-hidden="true"></i>
                 </a>
             </li>
@@ -447,7 +472,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2019/01/16/No 2 什么是深度学习？/" title="分享到 Weibo">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2019/01/26/如何理解神经网络中的激活函数-ativation-functions/" title="分享到 Weibo">
                     <i class="fab fa-weibo" aria-hidden="true"></i>
                 </a>
             </li>
@@ -455,7 +480,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/01/16/No 2 什么是深度学习？/&amp;title=什么是深度学习？" title="分享到 QQ">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/01/26/如何理解神经网络中的激活函数-ativation-functions/&amp;title=如何理解神经网络中的激活函数(ativation functions)?" title="分享到 QQ">
                     <i class="fab fa-qq" aria-hidden="true"></i>
                 </a>
             </li>
@@ -463,7 +488,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2019/01/16/No 2 什么是深度学习？/" title="分享到 Qzone">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2019/01/26/如何理解神经网络中的激活函数-ativation-functions/" title="分享到 Qzone">
                     <i class="fa fa-star" aria-hidden="true"></i>
                 </a>
             </li>
@@ -471,7 +496,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yoursite.com/2019/01/16/No 2 什么是深度学习？/" title="分享到 Renren">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yoursite.com/2019/01/26/如何理解神经网络中的激活函数-ativation-functions/" title="分享到 Renren">
                     <i class="fab fa-renren" aria-hidden="true"></i>
                 </a>
             </li>
@@ -500,7 +525,7 @@
 <div id="cyHotusers" role="cylabs" data-use="hotusers"></div>
 <div id="cyReping" role="cylabs" data-use="reping"></div>
 <div id="cyBarrage" role="cylabs" data-use="barrage"></div>
-<div id="SOHUCS" sid="什么是深度学习？"></div>
+<div id="SOHUCS" sid="如何理解神经网络中的激活函数(ativation functions)?"></div>
 
 
             
@@ -524,7 +549,7 @@
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/01/18/使用hexo在Github上免费搭建功能丰富的个人博客网站/" data-tooltip="使用hexo在Github上免费搭建功能丰富的个人博客网站" aria-label="上一篇: 使用hexo在Github上免费搭建功能丰富的个人博客网站">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/01/26/如何训练人工神经网络？/" data-tooltip="如何训练人工神经网络？" aria-label="上一篇: 如何训练人工神经网络？">
                 
                     <i class="fa fa-angle-left" aria-hidden="true"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -533,7 +558,7 @@
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/01/16/No 1 什么是机器学习/" data-tooltip="什么是机器学习？" aria-label="下一篇: 什么是机器学习？">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/01/25/如何理解神经网络中层-layer-的概念？/" data-tooltip="如何理解神经网络中层(layer)的概念？" aria-label="下一篇: 如何理解神经网络中层(layer)的概念？">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -551,7 +576,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/01/16/No 2 什么是深度学习？/" title="分享到 Facebook">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/01/26/如何理解神经网络中的激活函数-ativation-functions/" title="分享到 Facebook">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -559,7 +584,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2019/01/16/No 2 什么是深度学习？/" title="分享到 Twitter">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2019/01/26/如何理解神经网络中的激活函数-ativation-functions/" title="分享到 Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -567,7 +592,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2019/01/16/No 2 什么是深度学习？/" title="分享到 Google+">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2019/01/26/如何理解神经网络中的激活函数-ativation-functions/" title="分享到 Google+">
                     <i class="fab fa-google-plus" aria-hidden="true"></i>
                 </a>
             </li>
@@ -575,7 +600,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2019/01/16/No 2 什么是深度学习？/" title="分享到 Weibo">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2019/01/26/如何理解神经网络中的激活函数-ativation-functions/" title="分享到 Weibo">
                     <i class="fab fa-weibo" aria-hidden="true"></i>
                 </a>
             </li>
@@ -583,7 +608,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/01/16/No 2 什么是深度学习？/&amp;title=什么是深度学习？" title="分享到 QQ">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/01/26/如何理解神经网络中的激活函数-ativation-functions/&amp;title=如何理解神经网络中的激活函数(ativation functions)?" title="分享到 QQ">
                     <i class="fab fa-qq" aria-hidden="true"></i>
                 </a>
             </li>
@@ -591,7 +616,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2019/01/16/No 2 什么是深度学习？/" title="分享到 Qzone">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2019/01/26/如何理解神经网络中的激活函数-ativation-functions/" title="分享到 Qzone">
                     <i class="fa fa-star" aria-hidden="true"></i>
                 </a>
             </li>
@@ -599,7 +624,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yoursite.com/2019/01/16/No 2 什么是深度学习？/" title="分享到 Renren">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yoursite.com/2019/01/26/如何理解神经网络中的激活函数-ativation-functions/" title="分享到 Renren">
                     <i class="fab fa-renren" aria-hidden="true"></i>
                 </a>
             </li>
@@ -627,7 +652,7 @@
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/01/16/No 2 什么是深度学习？/">
+                    <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/01/26/如何理解神经网络中的激活函数-ativation-functions/">
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>分享到 Facebook</span>
                     </a>
                 </li>
@@ -635,7 +660,7 @@
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2019/01/16/No 2 什么是深度学习？/">
+                    <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2019/01/26/如何理解神经网络中的激活函数-ativation-functions/">
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
                     </a>
                 </li>
@@ -643,7 +668,7 @@
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2019/01/16/No 2 什么是深度学习？/">
+                    <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2019/01/26/如何理解神经网络中的激活函数-ativation-functions/">
                         <i class="fab fa-google-plus" aria-hidden="true"></i><span>分享到 Google+</span>
                     </a>
                 </li>
@@ -651,7 +676,7 @@
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2019/01/16/No 2 什么是深度学习？/">
+                    <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2019/01/26/如何理解神经网络中的激活函数-ativation-functions/">
                         <i class="fab fa-weibo" aria-hidden="true"></i><span>分享到 Weibo</span>
                     </a>
                 </li>
@@ -659,7 +684,7 @@
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/01/16/No 2 什么是深度学习？/&amp;title=什么是深度学习？">
+                    <a class="share-option-btn" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/01/26/如何理解神经网络中的激活函数-ativation-functions/&amp;title=如何理解神经网络中的激活函数(ativation functions)?">
                         <i class="fab fa-qq" aria-hidden="true"></i><span>分享到 QQ</span>
                     </a>
                 </li>
@@ -667,7 +692,7 @@
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2019/01/16/No 2 什么是深度学习？/">
+                    <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2019/01/26/如何理解神经网络中的激活函数-ativation-functions/">
                         <i class="fa fa-star" aria-hidden="true"></i><span>分享到 Qzone</span>
                     </a>
                 </li>
@@ -675,7 +700,7 @@
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yoursite.com/2019/01/16/No 2 什么是深度学习？/">
+                    <a class="share-option-btn" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yoursite.com/2019/01/26/如何理解神经网络中的激活函数-ativation-functions/">
                         <i class="fab fa-renren" aria-hidden="true"></i><span>分享到 Renren</span>
                     </a>
                 </li>

@@ -4,6 +4,68 @@
   
     
     <entry>
+      <title>如何训练人工神经网络？</title>
+      <link href="/2019/01/26/%E5%A6%82%E4%BD%95%E8%AE%AD%E7%BB%83%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%9F/"/>
+      <url>/2019/01/26/%E5%A6%82%E4%BD%95%E8%AE%AD%E7%BB%83%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%9F/</url>
+      
+        <content type="html"><![CDATA[<h4><span id="神经网络的训练">神经网络的训练</span></h4><p>这篇文章带大家学习如何训练一个人工神经网络．之前的文章中我们学习了如何构建一个简单的人工神经网络，当我们把一个神经网络配置好之后，下一步就是来训练它了．</p><a id="more"></a><!-- toc --><ul><li><a href="#什么是训练">什么是训练？</a><ul><li><a href="#优化算法">优化算法</a></li><li><a href="#损失函数">损失函数</a></li></ul></li><li><a href="#结论">结论</a></li></ul><!-- tocstop --><h3><span id="什么是训练">什么是训练？</span></h3><p>模型的训练过程，基本来说就是一个解决优化问题的过程，优化模型中的权重．我们的任务是找到最准确地将输入数据映射到正确输出类的权重。这种映射是网络<em>学习</em>而来的。</p><p>在关于层的介绍的那篇文章中我们提到了这个概念．我们在构建模型的时候，可以给这些节点的连接分配任意的权重，在训练中对这些权重进行迭代更新使其向最优值移动．</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// pseudocode</span><br><span class="line">def train(model):</span><br><span class="line">    model.weights.update()</span><br></pre></td></tr></table></figure><h4><span id="优化算法">优化算法</span></h4><p>使用我们称之为优化算法(optimization algorithm)的方法来优化权重。不同的优化算法有不同的优化流程。我们用<em>优化器(optimizer)</em>一词来指代所选择的优化算法。最广为人知的优化器称为<em>随机梯度下降(stochastic gradient descent)</em>，或更简单地称为 SGD。</p><p>当处理优化问题时，必须先有一个优化目标，现在让我们考虑一下SGD在优化模型权重时的优化目标。</p><p> SGD的目标是优化一些给定的函数，这些函数被称为<em>损失函数</em>．SGD更新模型的权重，使得此损失函数尽可能接近其最小值。</p><h4><span id="损失函数">损失函数</span></h4><p>我们在模型优化中可以用的损失函数有很多，一个常见的损失函数是<em>均方误差</em>（MSE）。具体使用哪种损失函数是由我们在实践中决定的。现在，让我们先从一般层面认识一下损失函数，之后再更加详细地研究具体的损失函数。</p><p>我们所说的损失指的是什么？在训练过程中，我们给模型提供数据和数据相应的标签．</p><p>例如，假设我们想要训练一个用来分类图像中是猫的还是狗的模型。我们给这个模型提供猫和狗的图像，以及说明每个图是猫是狗的标签。</p><p>我们现在把一只猫的图像传递给模型，当猫的图像数据从网络中传递，前向传播结束后，模型会产生一个输出．这个输出包含了模型认为这个图像是猫是狗的信息．</p><p>具体来讲，这个输出反映的是图像是猫或是狗的概率．比如，模型给图像是猫分配７５％的概率，给图像是狗分配２５％的概率．在这种情况下，模型为图像是猫赋予更大的可能性．</p><ul><li>有75％的可能性是猫</li><li>25％的几率它是一只狗</li></ul><p>这其实跟人类的思维方式很类似，我们所有的判断都是基于猜想和预测．</p><p>所谓损失是神经网络对图像的猜测跟图像的标签之间的差距，SGD尝试最小化这种误差，使得模型猜测尽可能地精确．</p><p>在我们把所有的数据都传递给模型之后，我们会重复这一过程，让数据在模型中一次次传递．这种重复的数据传递就是训练．模型在训练的过程中能够＂学到＂很多信息，我们在下一篇文章会详细介绍．SGD通过反复的迭代，最终能够从数据中学习．</p><h3><span id="结论">结论</span></h3><p>我们现在已经了解到数据在网络中前向传播的过程中大致发生了什么．在下一篇文章中我们会介绍模型是怎样通过多次前向传播学习的，以及SGD最小化损失函数的具体方法．</p><p>这篇文章提到了很多新的概念，例如优化器，损失，我们会在以后的文章中分开来讲这些内容．记得去查看我们最新的博文．</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 深度学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 深度学习 </tag>
+            
+            <tag> ANNs </tag>
+            
+            <tag> 人工神经网络 </tag>
+            
+            <tag> 训练 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>如何理解神经网络中的激活函数(ativation functions)?</title>
+      <link href="/2019/01/26/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0-ativation-functions/"/>
+      <url>/2019/01/26/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0-ativation-functions/</url>
+      
+        <content type="html"><![CDATA[<p>神经网络中的激活函数</p><p>这篇文章向大家解释激活函数到底是什么，以及如何在神经网络中使用激活函数．我会向大家介绍几种常见的激活函数，向大家展示这些激活函数如何在Keras中以代码的形式呈现．</p><a id="more"></a><p>上篇文章在介绍神经网络中层的概念的时候，已经提到过激活函数，它们经常出现在层之后，我们这节就更加深入地认识这个概念．</p><!-- toc --><ul><li><a href="#什么是激活函数">什么是激活函数？</a></li><li><a href="#激活函数有什么作用">激活函数有什么作用？</a><ul><li><a href="#sigmoid激活函数">Sigmoid激活函数</a></li><li><a href="#激活函数的由来">激活函数的由来</a></li><li><a href="#relu激活函数">Relu激活函数</a></li><li><a href="#为什么要使用激活函数">为什么要使用激活函数？</a></li><li><a href="#关于relu函数是非线性的证明">关于Relu函数是非线性的证明</a></li><li><a href="#在keras中用代码表示激活函数">在Keras中用代码表示激活函数</a></li></ul></li></ul><!-- tocstop --><h3><span id="什么是激活函数">什么是激活函数？</span></h3><p>让我们给出一个激活函数的定义：</p><blockquote><p>在人工神经网络中，激活函数是将节点的输入映射到其对应输出的函数。</p></blockquote><p>在上篇文章的图示中我们已经看到，层中的每个节点会得到每个传入连接的加权和，之后将这个加权和传递给激活函数．</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node output = activation(weighted sum of inputs)</span><br></pre></td></tr></table></figure><p>激活函数执行某种类型的操作以将总和转换为通常在某个下限和某个上限之间的数字。这种转变通常是非线性转换。我们在以后会再次提到这种非线性变换．</p><h3><span id="激活函数有什么作用">激活函数有什么作用？</span></h3><p>激活函数的这种变换意义在哪里？激活函数是受什么启发？为了更好地理解激活函数，首先带大家看几个激活函数的例子．</p><h4><span id="sigmoid激活函数">Sigmoid激活函数</span></h4><p>Sigmoid函数接受输入并执行以下操作：</p><ul><li>对于负输入，sigmoid会将输入转换为接近零的数字。</li><li>对于正输入，sigmoid会将输入转换为接近1的数字。</li><li><p>对于接近零的输入，sigmoid会将输入转换为0到1之间的某个数字。</p><p><img src="http://cdn.yiyouls.com/sigmoid.svg" alt=""></p></li></ul><p>可以看出，对于sigmoid函数，０是它的下界，１是它的上界．</p><p>我们现在理解了这样一个激活函数的数学功能，那激活函数到底是受到什么的启发？</p><h4><span id="激活函数的由来">激活函数的由来</span></h4><p>激活函数同样是受到大脑活动的生物学特征的启发，我们知道不同类型的刺激会使不同区域的神经元被激活．</p><p>例如当你问道一些令人愉悦的东西，像刚出炉的点心，你大脑中某些特定的神经元就会被激活．但是当你闻到一些难闻的东西，像发酸的牛奶，这样就会激活你大脑中另外一些区域的神经元．</p><p>在我们大脑的褶皱深处，某些神经元要么正在被激活，要么没有。这种情形可以用数学符号表示，我们用０表示未被激活，用１表示被激活。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 伪代码</span><br><span class="line">if (smell.isPleasant()) &#123;</span><br><span class="line">    neuron.fire();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>利用人工神经网络中的Sigmoid激活函数，我们把神经元转换到在0和1之间的数字，如果越接近1，神经元被激活得越多，而越接近０，神经元被激活得越少。</p><h4><span id="relu激活函数">Relu激活函数</span></h4><p>激活函数并不总是将输入转换为0到1之间的数字。我们现在看一下ReLU激活函数．</p><p>ReLU作为目前最广泛使用的激活函数之一，它将输入转换为输入值本身与０之间更大的那个．</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ReLU(x) = max(0, x)</span><br></pre></td></tr></table></figure><p>因此，如果输入小于或等于零，则relu将输出零。如果输入大于零，则relu将输出输入值本身。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 伪代码</span><br><span class="line">function relu(x) &#123;</span><br><span class="line">    if (x &lt;= 0) &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>这个函数背后的想法是，神经元越积极，被激活的就越多．</p><p>目前我们已经讨论了Sigmoid和relu函数，当然还有其他的一些类型的函数，它们会对输入做其他类型的变换．</p><h4><span id="为什么要使用激活函数">为什么要使用激活函数？</span></h4><p>要理解我们使用激活函数的原因，我们首先需要了解线性函数。</p><p>假设$f$是集合$X$上的函数 。  </p><p>假设$a$和$b$在$X$中。  </p><p>假设$x$是实数。 </p><p> 当且仅当以下情况时 ，函数 f被称为线性函数：</p><p> $f(a+b)=f(a)+f(b)$  并且　$f(xa)=xf(a)$</p><p>线性函数的一个重要特征是两个线性函数的组合也是线性函数。这意味着，即使在非常深的神经网络中，如果我们在前向传递过程中只对数据值进行线性变换，深度学习网络中从输入到输出的映射也将是线性的。</p><p>我们在深度学习神经网络中想要得到的映射往往要比线性映射复杂得多．</p><p>这个时候就需要用到激活函数了．大多数激活函数都是非线性的，这是我们有意为之的选择．具有非线性变换的激活函数允许神经网络计算任意复杂的函数。</p><h4><span id="关于relu函数是非线性的证明">关于Relu函数是非线性的证明</span></h4><p>如何证明Relu函数是非线性的．我们下面试着来证明Relu不是线性变换．</p><p>对于每个实数$x$，我们将函数$f$定义为：</p><p>$f(x)=relu(x)$</p><p>假设$a$是实数并且$a&lt;0$.</p><p>因为$a&lt;0$, 我们有，</p><p>$f(-1a)=max(0,-1a)&gt;0$  并且  $(-1)f(a)=(-1)max(0,a)=0$</p><p>由此可得，</p><p>$f(-1a)\ne (-1)f(a)$</p><p>由此证明函数$f$是非线性的．</p><h4><span id="在keras中用代码表示激活函数">在Keras中用代码表示激活函数</span></h4><p>现在我们学习如何在Keras顺序模型中指定一个激活函数</p><p>定义激活函数有两种基本的方式，首先需要导入类</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from keras.models import Sequential</span><br><span class="line">from keras.layers import Dense, Activation</span><br></pre></td></tr></table></figure><p>之后我们可以在层构造函数中指定激活函数，像这样，</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">model = Sequential([</span><br><span class="line">    Dense(5, input_shape=(3,), activation=&apos;relu&apos;)</span><br><span class="line">])</span><br></pre></td></tr></table></figure><p>这样我们就有了一个<code>dense</code>类型的层，并且指定本层的激活函数为<code>activation=&#39;relu&#39;</code></p><p>第二种方法是在模型实例化之后将层和激活函数添加到我们的模型中，如下所示：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">model = Sequential()</span><br><span class="line">model.add(Dense(5, input_shape=(3,)))</span><br><span class="line">model.add(Activation(&apos;relu&apos;))</span><br></pre></td></tr></table></figure><p>请记住</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node output = activation(weighted sum of inputs)</span><br></pre></td></tr></table></figure><p>在上面的例子中，<code>dense</code>层每个节点的输出等于输入加权和的relu值，即</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node output = relu(weighted sum of inputs)</span><br></pre></td></tr></table></figure><p>希望你现在可以对激活函数如何适用于神经网络结构有个大概的认识，能够了解它们的功能和作用，并且学会在Keras中调用它们．我们下篇文章再见！</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 深度学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 深度学习 </tag>
+            
+            <tag> ANNs </tag>
+            
+            <tag> 人工神经网络 </tag>
+            
+            <tag> 激活函数 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>如何理解神经网络中层(layer)的概念？</title>
       <link href="/2019/01/25/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%AD%E5%B1%82-layer-%E7%9A%84%E6%A6%82%E5%BF%B5%EF%BC%9F/"/>
       <url>/2019/01/25/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%AD%E5%B1%82-layer-%E7%9A%84%E6%A6%82%E5%BF%B5%EF%BC%9F/</url>
@@ -25,6 +87,8 @@
             <tag> ANNs </tag>
             
             <tag> 人工神经网络 </tag>
+            
+            <tag> layer </tag>
             
         </tags>
       
