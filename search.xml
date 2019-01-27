@@ -4,6 +4,136 @@
   
     
     <entry>
+      <title>什么是神经网络模型欠拟合(underfitting)?</title>
+      <link href="/2019/01/27/%E4%BB%80%E4%B9%88%E6%98%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E6%AC%A0%E6%8B%9F%E5%90%88-underfitting/"/>
+      <url>/2019/01/27/%E4%BB%80%E4%B9%88%E6%98%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E6%AC%A0%E6%8B%9F%E5%90%88-underfitting/</url>
+      
+        <content type="html"><![CDATA[<h3><span id="神经网络中的欠拟合underfitting">神经网络中的欠拟合(underfitting)</span></h3><p>在这篇文章中，我们将讨论当模型被认为欠拟合意味着什么，并且介绍一些可以用来减少欠拟合的技术。</p><p>在之前的文章中，我们将过度拟合定义为我们的模型能够对训练数据进行有效预测，但是准确预测以前从未见过的数据。</p><p>欠拟合与之恰恰相反。欠拟合的模型甚至无法对它所训练的数据进行正确分类，更不用说它以前没见过的数据了。</p><a id="more"></a><blockquote><p>当一个模型无法对其训练的数据进行正确分类时，该模型被认为是欠拟合(underfitting)的。</p></blockquote><p>我们可以通过模型的度量参数来判断，如果模型的训练的准确度低或训练的损失很高，模型就是欠拟合的。</p><p>如果模型无法对其经过训练的数据进行分类，则可能无法很好地预测之前未曾见过的数据。</p><h3><span id="减少欠拟合">减少欠拟合</span></h3><p>现在我们知道什么样的模型是欠拟合的，我们怎样才能减少这种欠拟合呢？</p><h4><span id="增加模型的复杂度">增加模型的复杂度</span></h4><p>我们可以做的第一件事是增加模型的复杂度。这与我们为减少过度拟合所采用的技术完全相反。如果我们的数据太复杂，但我们有一个相对简单的模型，那么该模型的复杂度可能就不够高，无法准确地对复杂数据进行分类或预测。</p><p>我们可以通过以下方式增加模型的复杂度：</p><ul><li>增加模型的层数。</li><li>增加每层神经元的数量。</li><li>更改层的类型和位置。</li></ul><h4><span id="为输入样本添加更多特征features">为输入样本添加更多特征(features)</span></h4><p>减少欠拟合的另一种技术是在我们的训练集中为输入样本添加更多特征。这些添加的特征可以帮助模型更好地对数据进行分类。</p><p>例如，假设我们有一个模型试图根据某股票的最后三个收盘价来预测股票的价格。这个时候输入一共有三个特征：</p><ul><li>第1天收盘</li><li>第2天收盘</li><li>第3天收盘</li></ul><p>如果我们为这些数据添加了额外的特征 ，例如，这些天的开盘价或当天的库存量，那么这可能有助于我们的模型更多地了解数据并提高其准确性。</p><h4><span id="减少dropout">减少dropout</span></h4><p>我们这里讨论的最后一个方法是减少dropout。同样，这与我们在前一篇文章中减少过度拟合的技术完全相反 。</p><p>使用dropout时，我们可以指定要删除的节点的百分比。因此，如果我们使用<code>50%</code>的dropout率，发现模型欠拟合，那么我们可以通过将比率降低到低于<code>50</code>的值来减少dropout，再次训练并观察相关度量指标。</p><p>这些节点仅在训练时dropout，而不是在验证期间。因此，如果我们观察到模型更适合我们的验证数据而不是训练数据，这是说明dropout数量的减少会提高模型拟合程度的一个重要指标．</p><p>希望你现在能够理解欠拟合的概念，它为什么会发生，如何减少欠拟合。在接下来的文章中，我们将着眼于正则化的神经网络。下次见！</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 深度学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 深度学习 </tag>
+            
+            <tag> ANNs </tag>
+            
+            <tag> 人工神经网络 </tag>
+            
+            <tag> 欠拟合 </tag>
+            
+            <tag> underfitting </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>什么是神经网络模型过度拟合(overfitting)?</title>
+      <link href="/2019/01/27/%E4%BB%80%E4%B9%88%E6%98%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E8%BF%87%E5%BA%A6%E6%8B%9F%E5%90%88-overfitting/"/>
+      <url>/2019/01/27/%E4%BB%80%E4%B9%88%E6%98%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E8%BF%87%E5%BA%A6%E6%8B%9F%E5%90%88-overfitting/</url>
+      
+        <content type="html"><![CDATA[<p>神经网络中的过度拟合(overfitting)</p><p>这篇文章我们介绍过度拟合的含义，以及一些减少过度拟合的技术．</p><p>上篇文章中我们在讨论验证集的时候提到了过度拟合的概念，我们现在具体讨论一下它．</p><p>当模型能够对训练集中包含的数据进行正确分类或预测，但是在对未经过训练的数据进行分类时效果不佳，就会发生过度拟合。这个时候该模型过度学习了训练集中的数据。</p><a id="more"></a><h3><span id="如何检查模型是否过度拟合">如何检查模型是否过度拟合</span></h3><p>我们根据模型训练过程中训练数据和验证数据的相关指标来判断模型是否过度拟合．当我们在训练中指定验证集的时候，我们同时得到模型验证的准确度和损失，以及模型训练的准确度和损失．</p><p>如果验证指标比训练指标差得多，则表明我们的模型过度拟合。</p><p>如果在训练期间，模型的指标是好的，但是当我们使用模型来预测测试数据时，它不能准确地对测试集中的数据进行分类，我们也可以得知我们的模型过度拟合。</p><p>过度拟合的概念可以归结为模型无法很好地进行泛化。它已经非常好地学习了训练集的特征，但是如果我们给模型任何稍微偏离训练期间所使用数据的新数据，它就无法对特征进行推广，不能准确预测输出。</p><h3><span id="减少过度拟合">减少过度拟合</span></h3><p>过度拟合是一个非常常见的问题。我们怎样才能减少过度拟合呢？我们来看看一些技巧。</p><h4><span id="向训练集添加更多数据">向训练集添加更多数据</span></h4><p>最简单的方法就是添加更多数据。我们可以训练模型的数据越多，从训练集中学到的知识就越多。此外，随着数据的增加，我们希望增加数据集的多样性。</p><p>例如，如果我们训练模型来分类图像是狗或猫的图像，但只给模型一些大型犬的图像，如拉布拉多，金毛猎犬等，那么在实践中如果它看到一只博美犬，它可能不太能认出这是一条狗。</p><p>如果我们向该模型添加更多以包含更多品种狗的数据，那么我们的训练数据将变得更加多样化，这样模型就不太可能过度拟合了。</p><h4><span id="数据增强">数据增强</span></h4><p>减少模型过度拟合的另一个技巧是使用数据增强(data augmentation)，这是通过合理修改训练集中的数据来产生更多数据的过程。例如，对于图像数据，我们可以通过以下方式对数据进行修改：</p><ul><li>裁剪</li><li>旋转</li><li>翻转</li><li>缩放</li></ul><p>我们将在后面的文章中详细介绍数据增强的概念 。</p><p>数据增强的理念是允许我们向训练集添加更多数据，这些数据与我们已有的数据类似，它们并不完全相同，是某种程度上进行的合理的修改。</p><p>例如，如果我们的大多数狗图像都是面向左侧的狗，那么添加翻转图像的增强数据将是一个合理的修改，这样我们的训练集也会有面向右侧的狗了。</p><h4><span id="降低模型的复杂度">降低模型的复杂度</span></h4><p>我们可以采取的其他措施来减少过度拟合，比如降低模型的复杂度。我们可以通过简单的更改来降低复杂性，例如从模型中删除一些层，或减少层中神经元的数量。这可能有助于提高模型对以前从未见过的数据的泛化能力。</p><h4><span id="dropout">Dropout</span></h4><p>我们这里最后再讲一个减少过度拟合的方法－dropout 。这个方法背后的理念是，如果我们给模型添加dropout，它将在训练期间随机忽略给定层中的某些节点子集，即，它从层中<em>删除</em>一些节点。这些被dropout的节点将不参与数据的预测．</p><p>这个技术同样可以提高模型的泛化能力。dropout是一种正则化技术(regularization technique)，我们会在以后的文章中完整介绍这个概念， 你也将理解为什么dropout能够满足我们的需要。</p><p>希望你现在能够理解过度拟合的概念，明白它为什么会发生，以及如何去减少它。在接下来的文章中，我们将探讨欠拟合的概念。下次再见！</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 深度学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 深度学习 </tag>
+            
+            <tag> ANNs </tag>
+            
+            <tag> 人工神经网络 </tag>
+            
+            <tag> 过度拟合 </tag>
+            
+            <tag> overfitting </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>如何理解数据集中的训练集(training set)，验证集(validation set)以及测试集(test set)?</title>
+      <link href="/2019/01/27/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%AD%E7%9A%84%E8%AE%AD%E7%BB%83%E9%9B%86-training-set-%EF%BC%8C%E9%AA%8C%E8%AF%81%E9%9B%86-validation-set-%E4%BB%A5%E5%8F%8A%E6%B5%8B%E8%AF%95%E9%9B%86-test-set/"/>
+      <url>/2019/01/27/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%AD%E7%9A%84%E8%AE%AD%E7%BB%83%E9%9B%86-training-set-%EF%BC%8C%E9%AA%8C%E8%AF%81%E9%9B%86-validation-set-%E4%BB%A5%E5%8F%8A%E6%B5%8B%E8%AF%95%E9%9B%86-test-set/</url>
+      
+        <content type="html"><![CDATA[<p>这篇文章带大家了解神经网络训练和测试中用到的不同种类的数据集．</p><p>为了训练和测试神经网络，我们需要将数据集划分为三个独立的数据集，这些数据集将包含以下内容：</p><ul><li>训练集 training set</li><li>验证集 validation set</li><li>测试集 test set</li></ul><a id="more"></a><p> 首先说说训练集.</p><h4><span id="训练集">训练集</span></h4><p>顾名思义，训练集是用来训练模型的数据集合，通过每一次epoch，模型对训练集中的数据一遍又一遍反复训练，不断学习数据的特征．</p><p>这么做的目的是，当模型遇到从没有见到过的新数据时，能够对它做出准确的预测．那么什么是验证集呢？</p><h4><span id="验证集">验证集</span></h4><p>验证集是一组与训练集分开的数据，用于在训练期间验证我们的模型。此验证过程有助于提供可帮助我们调整超参数的信息。</p><p>在每个epoch中，模型不只是在训练集中的数据上进行训练，同时也在验证集中的数据上进行验证。</p><p>我们之前在关于模型训练的文章中讲过，在训练过程中，模型将对培训集中每个输入的输出进行分类。在进行该分类之后，计算出损失，并且调整模型中的权重。然后，在下个epoch期间，模型再次对相同的输入进行分类。</p><p>而现在我们需要知道，在训练期间，模型也会对验证集中的每个输入进行分类。这种分类仅基于模型在训练集中训练得到的关于数据的知识。通过验证数据计算的损失，但模型中的权重不会因此更新。</p><p>请记住，验证集中的数据与训练集中的数据是分开的。因此，当模型验证时的数据并不在之前的训练中出现．</p><p>验证集存在的一个主要原因是确保我们的模型不会过度拟合(overfitting)训练集中的数据。我们会在之后详细讨论过度拟合和欠拟合(underfitting)。现在大家只需要知道过度拟合是指模型非常善于对训练集中的数据进行分类，但却无法对未经过训练的数据进行概括和精确分类。</p><p>如果我们在训练过程中同时使用验证集来验证模型，并且发现模型对验证集的预测结果跟对训练集的预测结果一样好，我们就能自信说模型没有过度拟合．</p><blockquote><p>验证集帮助我们在训练期间了解模型的泛化能力．</p></blockquote><p>相反地，如果模型在训练数据上的结果很好，在验证数据上的结果却不尽人意，这就说明模型已经过拟合了．</p><p>现在我们再来说一说测试集．</p><h4><span id="测试集">测试集</span></h4><p>测试集是一组数据，用于模型训练结束之后对模型的测试。测试集与训练集以及验证集相互独立。</p><p>在我们用训练集训练数据同时用验证集验证过数据之后，我们用模型预测测试集中未标记的数据的输出．</p><p>测试集和另外两个数据集之间的一个主要区别是测试集是不被标记的数据。训练集和验证集是需要进行标记的，我们需要这些标签计算一些训练指标，例如每个epoch的损失和准确度。</p><p>当模型在我们的测试集中预测未标记的数据时，就相当于模型在实际应用中所面临的情形．</p><blockquote><p> 测试集是模型在产品化之前的最后一关，用来测试模型的泛化能力．</p></blockquote><p>我们不给模型提供测试集中数据的标签，目的是模拟在真实情况下，我们并不知道那些需要预测的数据的标签，对这些数据的分类并无先验知识．</p><p>使模型能够完成分类任务，最终的目标是在数据标签未知的情况下能够对数据正确分类．</p><blockquote><p>机器学习和深度学习的最终目标是打造具有泛化能力的模型</p></blockquote><h4><span id="深度学习所用到的数据集总结">深度学习所用到的数据集总结</span></h4><p>下表总结了深度学习中所用的数据集：</p><div class="table-container"><table><thead><tr><th>数据集</th><th>更新权重</th><th>描述</th></tr></thead><tbody><tr><td>训练集</td><td>是</td><td>用于训练模型。训练的目标是使模型适应训练集，同时保证对新数据的泛化能力。</td></tr><tr><td>验证集</td><td>否</td><td>在训练期间使用，以检查模型的繁华能力。</td></tr><tr><td>测试集</td><td>否</td><td>在模型产品化之前，评估模型最终的泛化能力。</td></tr></tbody></table></div><p>希望大家能够了解不同数据集是如何分配数据的，以及如何使用不同类型的数据集。</p><p>划分出三个相互独立的数据集的主要原因是确保模型能够准确预测未见数据，保持良好的泛化能力。当模型不能很好地泛化时，通常是由于过度拟合或欠拟合。我们将[在下一篇文章中介绍这些内容 。下次见！</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 深度学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 深度学习 </tag>
+            
+            <tag> ANNs </tag>
+            
+            <tag> 人工神经网络 </tag>
+            
+            <tag> 数据集 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>深入认识神经网络中的损失函数(loss function)</title>
+      <link href="/2019/01/27/%E6%B7%B1%E5%85%A5%E8%AE%A4%E8%AF%86%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-loss-function/"/>
+      <url>/2019/01/27/%E6%B7%B1%E5%85%A5%E8%AE%A4%E8%AF%86%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-loss-function/</url>
+      
+        <content type="html"><![CDATA[<p>神经网络损失函数详解</p><p>这篇文章带大家细致探讨什么是损失函数，以及它在人工神经网络中的应用．</p><p>我们在讲神经网络的训练的那篇文章已经见过损失函数的概念，随机梯度下降(SGD)通过迭代更新网络中的权重来最小化损失函数．</p><a id="more"></a><p>训练中在每个epoch结束的时候，在训练过程中的每个时期结束时，将使用网络的输出预测和相应输入的真实标签来计算损失。</p><p> 假设我们的模型需要对猫和狗的图像进行分类，并假定猫的标签为0而狗的标签为1。</p><ul><li>猫：0</li><li>狗：1</li></ul><p>现在假设我们将猫的图像传递给模型，并且提供的输出为0.25。在这种情况下，模型的预测和真实标签之间的差异是 0.25 - 0.00 = 0.25。这种差异也称为<em>误差(error)</em>。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">误差= 0.25 - 0.00 = 0.25</span><br></pre></td></tr></table></figure><p>对每个输出执行该过程。对于每个epoch，误差在所有输出个体上累积。</p><p>现在让我们考察一个在实践中常用的损失函数－<em>均方误差</em>（MSE）。</p><h3><span id="均方误差mse">均方误差（MSE）</span></h3><p>对于单个样本，均方误差首先计算输出预测值与标签值之间的差异（误差），然后对误差进行平方，这就是MSE对单个输入的操作，就这么简单．</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MSE（输入）=（输出 - 标签）*（输出 - 标签）</span><br></pre></td></tr></table></figure><p>如果一次将多个样本传递给模型（一批样本），需要对所有这些样本的平方误差取均值。</p><p>这里只是对误差函数中的一种－均方误差MSE背后的数学方程做了介绍，我们能够使用的损失函数还有很多．</p><p>我们刚才用于计算单个样本误差的一般方法同样适用于所有不同类型的损失函数。不同的函数有不同的算法，它们对误差的计算过程也不尽相同．我们通过给平方误差取均值来计算MSE，但是其他的损失函数使用不同的算法来决定取什么值．</p><p>如果我们将整个训练集一次性传递给模型（<code>batch_size=1</code>），那么我们需要在每次epoch结束的时候计算损失．</p><p>如果将训练集分成批次(batches)，并且一次一批地传递给模型，这样要在每批次上计算损失。无论采用哪种方法，由于损失的大小取决于权重值，我们希望每次更新权重时都能看到损失的下降。鉴于SGD的目标是最小化损失，我们需要很多次epoch来使损失降到最低。 </p><p><img src="http://cdn.yiyouls.com/losshead.jpg" alt=""></p><h3><span id="用keras代码表示损失函数">用Keras代码表示损失函数</span></h3><p>我们还使用上篇文章定义的模型：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">model = Sequential([</span><br><span class="line">    Dense(16, input_shape=(1,), activation=&apos;relu&apos;),</span><br><span class="line">    Dense(32, activation=&apos;relu&apos;),</span><br><span class="line">    Dense(2, activation=&apos;sigmoid&apos;)</span><br><span class="line">])</span><br></pre></td></tr></table></figure><p>有了模型之后，我们这样编译它：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">model.compile(</span><br><span class="line">    Adam(lr=.0001), </span><br><span class="line">    loss=&apos;sparse_categorical_crossentropy&apos;, </span><br><span class="line">    metrics=[&apos;accuracy&apos;]</span><br><span class="line">)</span><br></pre></td></tr></table></figure><p>通过观察<code>compile</code>函数的第二个参数，我们可以看到指定的损失函为<code>loss=&#39;sparse_categorical_crossentropy&#39;</code>。</p><p>在这个例子中，我们使用了称为<em>稀疏分类交叉熵</em>（<em>sparse categorical crossentropy</em>）的损失函数 ，当然我们可以选择别的损失函数，例如MSE。</p><p>目前Keras中可用的损失函数如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mean_squared_error</span><br><span class="line">mean_absolute_error</span><br><span class="line">mean_absolute_percentage_error</span><br><span class="line">mean_squared_logarithmic_error</span><br><span class="line">squared_hinge</span><br><span class="line">hinge</span><br><span class="line">categorical_hinge</span><br><span class="line">logcosh</span><br><span class="line">categorical_crossentropy</span><br><span class="line">sparse_categorical_crossentropy</span><br><span class="line">binary_crossentropy</span><br><span class="line">kullback_leibler_divergence</span><br><span class="line">poisson</span><br><span class="line">cosine_proximity</span><br></pre></td></tr></table></figure><p>希望你现在能对损失函数有一个大致的了解，明白它在神经网络中的工作原理，并且能够在Keras中指定一个损失函数．我们下篇文章再见！</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 深度学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 深度学习 </tag>
+            
+            <tag> ANNs </tag>
+            
+            <tag> 人工神经网络 </tag>
+            
+            <tag> 损失函数 </tag>
+            
+            <tag> loss function </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>人工神经网络是如何学习(learn)的?</title>
       <link href="/2019/01/27/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%A6%E4%B9%A0-learn-%E7%9A%84/"/>
       <url>/2019/01/27/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%A6%E4%B9%A0-learn-%E7%9A%84/</url>
@@ -70,7 +200,7 @@
       <link href="/2019/01/26/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0-ativation-functions/"/>
       <url>/2019/01/26/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0-ativation-functions/</url>
       
-        <content type="html"><![CDATA[<p>神经网络中的激活函数</p><p>这篇文章向大家解释激活函数到底是什么，以及如何在神经网络中使用激活函数．我会向大家介绍几种常见的激活函数，向大家展示这些激活函数如何在Keras中以代码的形式呈现．</p><a id="more"></a><p>上篇文章在介绍神经网络中层的概念的时候，已经提到过激活函数，它们经常出现在层之后，我们这节就更加深入地认识这个概念．</p><!-- toc --><ul><li><a href="#什么是激活函数">什么是激活函数？</a></li><li><a href="#激活函数有什么作用">激活函数有什么作用？</a><ul><li><a href="#sigmoid激活函数">Sigmoid激活函数</a></li><li><a href="#激活函数的由来">激活函数的由来</a></li><li><a href="#relu激活函数">Relu激活函数</a></li><li><a href="#为什么要使用激活函数">为什么要使用激活函数？</a></li><li><a href="#关于relu函数是非线性的证明">关于Relu函数是非线性的证明</a></li><li><a href="#在keras中用代码表示激活函数">在Keras中用代码表示激活函数</a></li></ul></li></ul><!-- tocstop --><h3><span id="什么是激活函数">什么是激活函数？</span></h3><p>让我们给出一个激活函数的定义：</p><blockquote><p>在人工神经网络中，激活函数是将节点的输入映射到其对应输出的函数。</p></blockquote><p>在上篇文章的图示中我们已经看到，层中的每个节点会得到每个传入连接的加权和，之后将这个加权和传递给激活函数．</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node output = activation(weighted sum of inputs)</span><br></pre></td></tr></table></figure><p>激活函数执行某种类型的操作以将总和转换为通常在某个下限和某个上限之间的数字。这种转变通常是非线性转换。我们在以后会再次提到这种非线性变换．</p><h3><span id="激活函数有什么作用">激活函数有什么作用？</span></h3><p>激活函数的这种变换意义在哪里？激活函数是受什么启发？为了更好地理解激活函数，首先带大家看几个激活函数的例子．</p><h4><span id="sigmoid激活函数">Sigmoid激活函数</span></h4><p>Sigmoid函数接受输入并执行以下操作：</p><ul><li>对于负输入，sigmoid会将输入转换为接近零的数字。</li><li>对于正输入，sigmoid会将输入转换为接近1的数字。</li><li><p>对于接近零的输入，sigmoid会将输入转换为0到1之间的某个数字。</p><p><img src="http://cdn.yiyouls.com/sigmoid.svg" alt=""></p></li></ul><p>可以看出，对于sigmoid函数，０是它的下界，１是它的上界．</p><p>我们现在理解了这样一个激活函数的数学功能，那激活函数到底是受到什么的启发？</p><h4><span id="激活函数的由来">激活函数的由来</span></h4><p>激活函数同样是受到大脑活动的生物学特征的启发，我们知道不同类型的刺激会使不同区域的神经元被激活．</p><p>例如当你问道一些令人愉悦的东西，像刚出炉的点心，你大脑中某些特定的神经元就会被激活．但是当你闻到一些难闻的东西，像发酸的牛奶，这样就会激活你大脑中另外一些区域的神经元．</p><p>在我们大脑的褶皱深处，某些神经元要么正在被激活，要么没有。这种情形可以用数学符号表示，我们用０表示未被激活，用１表示被激活。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 伪代码</span><br><span class="line">if (smell.isPleasant()) &#123;</span><br><span class="line">    neuron.fire();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>利用人工神经网络中的Sigmoid激活函数，我们把神经元转换到在0和1之间的数字，如果越接近1，神经元被激活得越多，而越接近０，神经元被激活得越少。</p><h4><span id="relu激活函数">Relu激活函数</span></h4><p>激活函数并不总是将输入转换为0到1之间的数字。我们现在看一下ReLU激活函数．</p><p>ReLU作为目前最广泛使用的激活函数之一，它将输入转换为输入值本身与０之间更大的那个．</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ReLU(x) = max(0, x)</span><br></pre></td></tr></table></figure><p>因此，如果输入小于或等于零，则relu将输出零。如果输入大于零，则relu将输出输入值本身。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 伪代码</span><br><span class="line">function relu(x) &#123;</span><br><span class="line">    if (x &lt;= 0) &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>这个函数背后的想法是，神经元越积极，被激活的就越多．</p><p>目前我们已经讨论了Sigmoid和relu函数，当然还有其他的一些类型的函数，它们会对输入做其他类型的变换．</p><h4><span id="为什么要使用激活函数">为什么要使用激活函数？</span></h4><p>要理解我们使用激活函数的原因，我们首先需要了解线性函数。</p><p>假设$f$是集合$X$上的函数 。  </p><p>假设$a$和$b$在$X$中。  </p><p>假设$x$是实数。 </p><p> 当且仅当以下情况时 ，函数 f被称为线性函数：</p><p> $f(a+b)=f(a)+f(b)$  并且　$f(xa)=xf(a)$</p><p>线性函数的一个重要特征是两个线性函数的组合也是线性函数。这意味着，即使在非常深的神经网络中，如果我们在前向传递过程中只对数据值进行线性变换，深度学习网络中从输入到输出的映射也将是线性的。</p><p>我们在深度学习神经网络中想要得到的映射往往要比线性映射复杂得多．</p><p>这个时候就需要用到激活函数了．大多数激活函数都是非线性的，这是我们有意为之的选择．具有非线性变换的激活函数允许神经网络计算任意复杂的函数。</p><h4><span id="关于relu函数是非线性的证明">关于Relu函数是非线性的证明</span></h4><p>如何证明Relu函数是非线性的．我们下面试着来证明Relu不是线性变换．</p><p>对于每个实数$x$，我们将函数$f$定义为：</p><p>$f(x)=relu(x)$</p><p>假设$a$是实数并且$a&lt;0$.</p><p>因为$a&lt;0$, 我们有，</p><p>$f(-1a)=max(0,-1a)&gt;0$  并且  $(-1)f(a)=(-1)max(0,a)=0$</p><p>由此可得，</p><p>$f(-1a)\ne (-1)f(a)$</p><p>由此证明函数$f$是非线性的．</p><h4><span id="在keras中用代码表示激活函数">在Keras中用代码表示激活函数</span></h4><p>现在我们学习如何在Keras顺序模型中指定一个激活函数</p><p>定义激活函数有两种基本的方式，首先需要导入类</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from keras.models import Sequential</span><br><span class="line">from keras.layers import Dense, Activation</span><br></pre></td></tr></table></figure><p>之后我们可以在层构造函数中指定激活函数，像这样，</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">model = Sequential([</span><br><span class="line">    Dense(5, input_shape=(3,), activation=&apos;relu&apos;)</span><br><span class="line">])</span><br></pre></td></tr></table></figure><p>这样我们就有了一个<code>dense</code>类型的层，并且指定本层的激活函数为<code>activation=&#39;relu&#39;</code></p><p>第二种方法是在模型实例化之后将层和激活函数添加到我们的模型中，如下所示：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">model = Sequential()</span><br><span class="line">model.add(Dense(5, input_shape=(3,)))</span><br><span class="line">model.add(Activation(&apos;relu&apos;))</span><br></pre></td></tr></table></figure><p>请记住</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node output = activation(weighted sum of inputs)</span><br></pre></td></tr></table></figure><p>在上面的例子中，<code>dense</code>层每个节点的输出等于输入加权和的relu值，即</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node output = relu(weighted sum of inputs)</span><br></pre></td></tr></table></figure><p>希望你现在可以对激活函数如何适用于神经网络结构有个大概的认识，能够了解它们的功能和作用，并且学会在Keras中调用它们．我们下篇文章再见！</p>]]></content>
+        <content type="html"><![CDATA[<p>神经网络中的激活函数</p><p>这篇文章向大家解释激活函数到底是什么，以及如何在神经网络中使用激活函数．我会向大家介绍几种常见的激活函数，向大家展示这些激活函数如何在Keras中以代码的形式呈现．</p><a id="more"></a><p>上篇文章在介绍神经网络中层的概念的时候，已经提到过激活函数，它们经常出现在层之后，我们这节就更加深入地认识这个概念．</p><!-- toc --><ul><li><a href="#什么是激活函数">什么是激活函数？</a></li><li><a href="#激活函数有什么作用">激活函数有什么作用？</a><ul><li><a href="#sigmoid激活函数">Sigmoid激活函数</a></li><li><a href="#激活函数的由来">激活函数的由来</a></li><li><a href="#relu激活函数">Relu激活函数</a></li><li><a href="#为什么要使用激活函数">为什么要使用激活函数？</a></li><li><a href="#关于relu函数是非线性的证明">关于Relu函数是非线性的证明</a></li><li><a href="#在keras中用代码表示激活函数">在Keras中用代码表示激活函数</a></li></ul></li></ul><!-- tocstop --><h3><span id="什么是激活函数">什么是激活函数？</span></h3><p>让我们给出一个激活函数的定义：</p><blockquote><p>在人工神经网络中，激活函数是将节点的输入映射到其对应输出的函数。</p></blockquote><p>在上篇文章的图示中我们已经看到，层中的每个节点会得到每个传入连接的加权和，之后将这个加权和传递给激活函数．</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node output = activation(weighted sum of inputs)</span><br></pre></td></tr></table></figure><p>激活函数执行某种类型的操作以将总和转换为通常在某个下限和某个上限之间的数字。这种转变通常是非线性转换。我们在以后会再次提到这种非线性变换．</p><h3><span id="激活函数有什么作用">激活函数有什么作用？</span></h3><p>激活函数的这种变换意义在哪里？激活函数是受什么启发？为了更好地理解激活函数，首先带大家看几个激活函数的例子．</p><h4><span id="sigmoid激活函数">Sigmoid激活函数</span></h4><p>Sigmoid函数接受输入并执行以下操作：</p><ul><li>对于负输入，sigmoid会将输入转换为接近零的数字。</li><li>对于正输入，sigmoid会将输入转换为接近1的数字。</li><li><p>对于接近零的输入，sigmoid会将输入转换为0到1之间的某个数字。</p><p><img src="http://cdn.yiyouls.com/sigmoid.svg" alt=""></p></li></ul><p>可以看出，对于sigmoid函数，０是它的下界，１是它的上界．</p><p>我们现在理解了这样一个激活函数的数学功能，那激活函数到底是受到什么的启发？</p><h4><span id="激活函数的由来">激活函数的由来</span></h4><p>激活函数同样是受到大脑活动的生物学特征的启发，我们知道不同类型的刺激会使不同区域的神经元被激活．</p><p>例如当你问道一些令人愉悦的东西，像刚出炉的点心，你大脑中某些特定的神经元就会被激活．但是当你闻到一些难闻的东西，像发酸的牛奶，这样就会激活你大脑中另外一些区域的神经元．</p><p><img src="http://cdn.yiyouls.com/cookie.jpg" alt=""></p><p>在我们大脑的褶皱深处，某些神经元要么正在被激活，要么没有。这种情形可以用数学符号表示，我们用０表示未被激活，用１表示被激活。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 伪代码</span><br><span class="line">if (smell.isPleasant()) &#123;</span><br><span class="line">    neuron.fire();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>利用人工神经网络中的Sigmoid激活函数，我们把神经元转换到在0和1之间的数字，如果越接近1，神经元被激活得越多，而越接近０，神经元被激活得越少。</p><h4><span id="relu激活函数">Relu激活函数</span></h4><p>激活函数并不总是将输入转换为0到1之间的数字。我们现在看一下ReLU激活函数．</p><p>ReLU作为目前最广泛使用的激活函数之一，它将输入转换为输入值本身与０之间更大的那个．</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ReLU(x) = max(0, x)</span><br></pre></td></tr></table></figure><p>因此，如果输入小于或等于零，则relu将输出零。如果输入大于零，则relu将输出输入值本身。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 伪代码</span><br><span class="line">function relu(x) &#123;</span><br><span class="line">    if (x &lt;= 0) &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>这个函数背后的想法是，神经元越积极，被激活的就越多．</p><p>目前我们已经讨论了Sigmoid和relu函数，当然还有其他的一些类型的函数，它们会对输入做其他类型的变换．</p><h4><span id="为什么要使用激活函数">为什么要使用激活函数？</span></h4><p>要理解我们使用激活函数的原因，我们首先需要了解线性函数。</p><p>假设$f$是集合$X$上的函数 。  </p><p>假设$a$和$b$在$X$中。  </p><p>假设$x$是实数。 </p><p> 当且仅当以下情况时 ，函数 f被称为线性函数：</p><p> $f(a+b)=f(a)+f(b)$  并且　$f(xa)=xf(a)$</p><p>线性函数的一个重要特征是两个线性函数的组合也是线性函数。这意味着，即使在非常深的神经网络中，如果我们在前向传递过程中只对数据值进行线性变换，深度学习网络中从输入到输出的映射也将是线性的。</p><p>我们在深度学习神经网络中想要得到的映射往往要比线性映射复杂得多．</p><p>这个时候就需要用到激活函数了．大多数激活函数都是非线性的，这是我们有意为之的选择．具有非线性变换的激活函数允许神经网络计算任意复杂的函数。</p><h4><span id="关于relu函数是非线性的证明">关于Relu函数是非线性的证明</span></h4><p>如何证明Relu函数是非线性的．我们下面试着来证明Relu不是线性变换．</p><p>对于每个实数$x$，我们将函数$f$定义为：</p><p>$f(x)=relu(x)$</p><p>假设$a$是实数并且$a&lt;0$.</p><p>因为$a&lt;0$, 我们有，</p><p>$f(-1a)=max(0,-1a)&gt;0$  并且  $(-1)f(a)=(-1)max(0,a)=0$</p><p>由此可得，</p><p>$f(-1a)\ne (-1)f(a)$</p><p>由此证明函数$f$是非线性的．</p><h4><span id="在keras中用代码表示激活函数">在Keras中用代码表示激活函数</span></h4><p>现在我们学习如何在Keras顺序模型中指定一个激活函数</p><p>定义激活函数有两种基本的方式，首先需要导入类</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from keras.models import Sequential</span><br><span class="line">from keras.layers import Dense, Activation</span><br></pre></td></tr></table></figure><p>之后我们可以在层构造函数中指定激活函数，像这样，</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">model = Sequential([</span><br><span class="line">    Dense(5, input_shape=(3,), activation=&apos;relu&apos;)</span><br><span class="line">])</span><br></pre></td></tr></table></figure><p>这样我们就有了一个<code>dense</code>类型的层，并且指定本层的激活函数为<code>activation=&#39;relu&#39;</code></p><p>第二种方法是在模型实例化之后将层和激活函数添加到我们的模型中，如下所示：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">model = Sequential()</span><br><span class="line">model.add(Dense(5, input_shape=(3,)))</span><br><span class="line">model.add(Activation(&apos;relu&apos;))</span><br></pre></td></tr></table></figure><p>请记住</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node output = activation(weighted sum of inputs)</span><br></pre></td></tr></table></figure><p>在上面的例子中，<code>dense</code>层每个节点的输出等于输入加权和的relu值，即</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node output = relu(weighted sum of inputs)</span><br></pre></td></tr></table></figure><p>希望你现在可以对激活函数如何适用于神经网络结构有个大概的认识，能够了解它们的功能和作用，并且学会在Keras中调用它们．我们下篇文章再见！</p>]]></content>
       
       
       <categories>
