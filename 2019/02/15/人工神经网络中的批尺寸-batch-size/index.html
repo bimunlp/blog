@@ -1,0 +1,1024 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn,en,ja,default">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Deep Learning">
+    <title>人工神经网络中的批尺寸(batch size)详解 - Deep Learning</title>
+    <meta name="author" content="友邻君">
+    
+        <meta name="keywords" content="deep learning,neural network,mechine learning,ANN,AI,深度学习,机器学习,">
+    
+    
+        <link rel="icon" href="http://cdn.yiyouls.com/favicon.ico">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"articleBody":"人工神经网络中的批尺寸这篇文章向大家介绍在训练人工神经网络的过程中指定批尺寸的意思是什么，以及如何在Keras中为模型定义一个批尺寸．\n\n在之前关于神经网络如何学习的文章中，我们已经了解了在我们训练模型的时候，我们需要指定一个批尺寸，我们这篇文章将要详细介绍这一点．\n什么是批尺寸简单来说，批尺寸的意思是每次训练我们给模型传递多少数据，一个批(batch)也被称作一个mini-batch.\n\n批尺寸指的是一次性向网络传递多少样本\n\n我们知道一个epoch指的是把训练集所有数据在网络中传递一遍，因此批尺寸和epoch不是一个东西．我们通过一个例子来比较它们之间的关系．\n一个epoch中可以有很多批假设我们有1000张犬类照片，希望通过一个神经网络区分出它们的不同种类，如果我们把批尺寸定义为10，那么一组10张的图片会被一起传递给网络，每十张作为一个批次．\n1一个epoch中的批数＝训练集大小／批尺寸\n我们现在明白了批尺寸的概念，但是分批的意义是什么？为什么不把数据中的所有元素一个接一个地传递给网络呢？为什么要把数据分成不同的批次？\n为什么要分批在目前的计算能力下，计算机能够一次处理很多个数据．一般来讲，批尺寸越大，模型训练中就能够更快地完成一次epoch.\n但是这种方式也有确定，因为即使机器能够处理一些尺寸很大的批，当我们把批尺寸设的过大的时候，会降低模型的质量，这会导致模型的泛化能力降低．\n所以，批尺寸是另外一个我们需要考虑的超参数，这个超参的调整不仅仅与我们的模型要求有关，也与我们所能够利用的计算资源有关．\n举例来说，如果我们给批尺寸指定了一个相对较大的数值，例如100，这时机器可能没有能力通过并行的方式一次性处理这１００张图片，这个时候我们就需要把批尺寸降低一些．\n到目前为止相信大家对批尺寸已经有了大致的了解，我们来看一看如何在Keras框架中指定这个参数．\n在Keras中用代码指定批尺寸依然使用我们在之前文章中使用过的顺序模型\n12345model = Sequential([    Dense(16, input_shape=(1,), activation=&apos;relu&apos;),    Dense(32, activation=&apos;relu&apos;, kernel_regularizer=regularizers.l2(0.01)),    Dense(2, activation=&apos;sigmoid&apos;)])\n 我们这里重点关注在哪里调用model.fit()方法，这是我们在训练模型时候用到的函数，我们在之前介绍神经网络如何学习的文章中使用过它．\n123456789model.fit(    scaled_train_samples,     train_labels,     validation_data=valid_set,     batch_size=10,    epochs=20,     shuffle=True,     verbose=2)\n在这里fit()函数接受一个batch_size的参数，我们就是在这里指定训练的批尺寸的．在这个例子里我们给他随意指定了一个值10．\n这样我们在训练中每次向模型传递１０个样本，在一个epoch结束时把所有的样本都传递一遍，在下一关epoch中再次循环一遍．\n希望你现在对批尺寸这个概念有了一个清晰的认识，并且学会在Keras中指定批尺寸．我们下篇文章见．\n","dateCreated":"2019-02-15T16:47:02+08:00","dateModified":"2019-02-15T16:52:33+08:00","datePublished":"2019-02-15T16:47:02+08:00","description":"人工神经网络中的批尺寸这篇文章向大家介绍在训练人工神经网络的过程中指定批尺寸的意思是什么，以及如何在Keras中为模型定义一个批尺寸．","headline":"人工神经网络中的批尺寸(batch size)详解","image":["http://cdn.yiyouls.com/batch.png","http://cdn.yiyouls.com/ai.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2019/02/15/人工神经网络中的批尺寸-batch-size/"},"publisher":{"@type":"Organization","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png","logo":{"@type":"ImageObject","url":"http://cdn.yiyouls.com/profile.png"}},"url":"http://yoursite.com/2019/02/15/人工神经网络中的批尺寸-batch-size/","keywords":"深度学习, ANNs, 人工神经网络, 批尺寸, batch size","thumbnailUrl":"http://cdn.yiyouls.com/batch.png"}</script>
+    <meta name="description" content="人工神经网络中的批尺寸这篇文章向大家介绍在训练人工神经网络的过程中指定批尺寸的意思是什么，以及如何在Keras中为模型定义一个批尺寸．">
+<meta name="keywords" content="深度学习,ANNs,人工神经网络,批尺寸,batch size">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="人工神经网络中的批尺寸(batch size)详解">
+<meta property="og:url" content="http://yoursite.com/2019/02/15/人工神经网络中的批尺寸-batch-size/index.html">
+<meta property="og:site_name" content="Deep Learning">
+<meta property="og:description" content="人工神经网络中的批尺寸这篇文章向大家介绍在训练人工神经网络的过程中指定批尺寸的意思是什么，以及如何在Keras中为模型定义一个批尺寸．">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2019-02-15T08:52:33.234Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="人工神经网络中的批尺寸(batch size)详解">
+<meta name="twitter:description" content="人工神经网络中的批尺寸这篇文章向大家介绍在训练人工神经网络的过程中指定批尺寸的意思是什么，以及如何在Keras中为模型定义一个批尺寸．">
+<meta name="twitter:creator" content="@hanhaishiyi">
+    
+        <link rel="publisher" href="https://plus.google.com/108244569432480563366"/>
+    
+    
+        
+    
+    
+        <meta property="og:image" content="http://cdn.yiyouls.com/profile.png"/>
+    
+    
+        <meta property="og:image" content="http://cdn.yiyouls.com/batch.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://cdn.yiyouls.com/batch.png" />
+    
+    
+        <meta property="og:image" content="http://cdn.yiyouls.com/ai.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://cdn.yiyouls.com/ai.jpg" />
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style-c4ozcsklz4kht2pebhp44xorvyverh23toayhn7i6ubrpyedak24hv1v0hyd.min.css">
+    <!--STYLES END-->
+    
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/ ">Deep Learning</a>
+    </div>
+    
+        
+            <a class="header-right-picture " href="#about">
+        
+        
+            <img class="header-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about">
+                    <img class="sidebar-profile-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
+                </a>
+                <h4 class="sidebar-profile-name">友邻君</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>浙江大学在读</p>
+</h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/ " title="首页">
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">首页</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-categories" title="分类">
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">分类</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-tags" title="标签">
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">标签</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-archives" title="归档">
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">归档</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link open-algolia-search" href="#search" title="搜索">
+                    
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">搜索</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="#about" title="关于">
+                    
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">关于</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://github.com/yiyouls" target="_blank" rel="noopener" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="http://stackoverflow.com/users/10926004/yiyouls" target="_blank" rel="noopener" title="Stack Overflow">
+                    
+                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Stack Overflow</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://twitter.com/hanhaishiyi" target="_blank" rel="noopener" title="Twitter">
+                    
+                        <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Twitter</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://facebook.com/yiyouls" target="_blank" rel="noopener" title="Facebook">
+                    
+                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Facebook</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://plus.google.com/u/0/108244569432480563366" target="_blank" rel="noopener" title="Google Plus">
+                    
+                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Google Plus</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://www.linkedin.com/in/yiyouls" target="_blank" rel="noopener" title="LinkedIn">
+                    
+                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">LinkedIn</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://www.zhihu.com/people/yiyouls-66/activities" target="_blank" rel="noopener" title="知乎">
+                    
+                        <i class="sidebar-button-icon fa fa-book" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">知乎</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008" target="_blank" rel="noopener" title="网易云课堂">
+                    
+                        <i class="sidebar-button-icon fa fa-school" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">网易云课堂</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="http://space.bilibili.com/275230151?" target="_blank" rel="noopener" title="bilibili">
+                    
+                        <i class="sidebar-button-icon fa fa-video" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">bilibili</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/hanhaishiyi@gmail.com" title="邮箱">
+                    
+                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">邮箱</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/atom.xml" title="RSS">
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+        <div class="post-header-cover
+                    text-center
+                    " style="background-image:url('http://cdn.yiyouls.com/ai.jpg');" data-behavior="4">
+            
+        </div>
+
+            <div id="main" data-behavior="4"
+                 class="hasCover
+                        hasCoverMetaOut
+                        hasCoverCaption">
+                
+<article class="post">
+    
+        <span class="post-header-cover-caption caption">训练集中的数据一般是分批处理的</span>
+    
+    
+        <div class="post-header main-content-wrap text-center">
+    
+        <h1 class="post-title">
+            人工神经网络中的批尺寸(batch size)详解
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2019-02-15T16:47:02+08:00">
+	
+		    2月 15, 2019
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/categories/深度学习/">深度学习</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <h4><span id="人工神经网络中的批尺寸">人工神经网络中的批尺寸</span></h4><p>这篇文章向大家介绍在训练人工神经网络的过程中指定批尺寸的意思是什么，以及如何在Keras中为模型定义一个批尺寸．</p>
+<a id="more"></a>
+<p>在<a href="https://blog.yiyouls.com/2019/01/27/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%A6%E4%B9%A0-learn-%E7%9A%84/" target="_blank" rel="noopener">之前关于神经网络如何学习的文章</a>中，我们已经了解了在我们训练模型的时候，我们需要指定一个批尺寸，我们这篇文章将要详细介绍这一点．</p>
+<h4><span id="什么是批尺寸">什么是批尺寸</span></h4><p>简单来说，批尺寸的意思是每次训练我们给模型传递多少数据，一个批(batch)也被称作一个mini-batch.</p>
+<blockquote>
+<p>批尺寸指的是一次性向网络传递多少样本</p>
+</blockquote>
+<p>我们知道一个epoch指的是把训练集所有数据在网络中传递一遍，因此批尺寸和epoch不是一个东西．我们通过一个例子来比较它们之间的关系．</p>
+<h5><span id="一个epoch中可以有很多批">一个epoch中可以有很多批</span></h5><p>假设我们有1000张犬类照片，希望通过一个神经网络区分出它们的不同种类，如果我们把批尺寸定义为<code>10</code>，那么一组10张的图片会被一起传递给网络，每十张作为一个批次．</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">一个epoch中的批数＝训练集大小／批尺寸</span><br></pre></td></tr></table></figure>
+<p>我们现在明白了批尺寸的概念，但是分批的意义是什么？为什么不把数据中的所有元素一个接一个地传递给网络呢？为什么要把数据分成不同的批次？</p>
+<h5><span id="为什么要分批">为什么要分批</span></h5><p>在目前的计算能力下，计算机能够一次处理很多个数据．一般来讲，批尺寸越大，模型训练中就能够更快地完成一次epoch.</p>
+<p>但是这种方式也有确定，因为即使机器能够处理一些尺寸很大的批，当我们把批尺寸设的过大的时候，会降低模型的质量，这会导致模型的泛化能力降低．</p>
+<p>所以，批尺寸是另外一个我们需要考虑的超参数，这个超参的调整不仅仅与我们的模型要求有关，也与我们所能够利用的计算资源有关．</p>
+<p>举例来说，如果我们给批尺寸指定了一个相对较大的数值，例如<code>100</code>，这时机器可能没有能力通过并行的方式一次性处理这１００张图片，这个时候我们就需要把批尺寸降低一些．</p>
+<p>到目前为止相信大家对批尺寸已经有了大致的了解，我们来看一看如何在Keras框架中指定这个参数．</p>
+<h4><span id="在keras中用代码指定批尺寸">在Keras中用代码指定批尺寸</span></h4><p>依然使用我们在之前文章中使用过的顺序模型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">model = Sequential([</span><br><span class="line">    Dense(16, input_shape=(1,), activation=&apos;relu&apos;),</span><br><span class="line">    Dense(32, activation=&apos;relu&apos;, kernel_regularizer=regularizers.l2(0.01)),</span><br><span class="line">    Dense(2, activation=&apos;sigmoid&apos;)</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+<p> 我们这里重点关注在哪里调用<code>model.fit()</code>方法，这是我们在训练模型时候用到的函数，我们在<a href="https://blog.yiyouls.com/2019/01/27/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%A6%E4%B9%A0-learn-%E7%9A%84/" target="_blank" rel="noopener">之前介绍神经网络如何学习的文章</a>中使用过它．</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">model.fit(</span><br><span class="line">    scaled_train_samples, </span><br><span class="line">    train_labels, </span><br><span class="line">    validation_data=valid_set, </span><br><span class="line">    batch_size=10,</span><br><span class="line">    epochs=20, </span><br><span class="line">    shuffle=True, </span><br><span class="line">    verbose=2</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>在这里<code>fit()</code>函数接受一个<code>batch_size</code>的参数，我们就是在这里指定训练的批尺寸的．在这个例子里我们给他随意指定了一个值<code>10</code>．</p>
+<p>这样我们在训练中每次向模型传递１０个样本，在一个epoch结束时把所有的样本都传递一遍，在下一关epoch中再次循环一遍．</p>
+<p>希望你现在对批尺寸这个概念有了一个清晰的认识，并且学会在Keras中指定批尺寸．我们下篇文章见．</p>
+
+            
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">标签</span><br>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/ANNs/">ANNs</a> <a class="tag tag--primary tag--small t-link" href="/tags/batch-size/">batch size</a> <a class="tag tag--primary tag--small t-link" href="/tags/人工神经网络/">人工神经网络</a> <a class="tag tag--primary tag--small t-link" href="/tags/批尺寸/">批尺寸</a> <a class="tag tag--primary tag--small t-link" href="/tags/深度学习/">深度学习</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/02/15/人工神经网络中的学习率-learning-rate/" data-tooltip="人工神经网络中的学习率(learning rate)问题" aria-label="下一篇: 人工神经网络中的学习率(learning rate)问题">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/02/15/人工神经网络中的批尺寸-batch-size/" title="分享到 Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2019/02/15/人工神经网络中的批尺寸-batch-size/" title="分享到 Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2019/02/15/人工神经网络中的批尺寸-batch-size/" title="分享到 Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2019/02/15/人工神经网络中的批尺寸-batch-size/" title="分享到 Weibo">
+                    <i class="fab fa-weibo" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/02/15/人工神经网络中的批尺寸-batch-size/&amp;title=人工神经网络中的批尺寸(batch size)详解" title="分享到 QQ">
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2019/02/15/人工神经网络中的批尺寸-batch-size/" title="分享到 Qzone">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yoursite.com/2019/02/15/人工神经网络中的批尺寸-batch-size/" title="分享到 Renren">
+                    <i class="fab fa-renren" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+                <div id="cyReward" role="cylabs" data-use="reward"></div>
+<div id="cyPoll" role="cylabs" data-use="poll"></div>
+<div id="cyEmoji" role="cylabs" data-use="emoji"></div>
+<div id="cyQing" role="cylabs" data-use="qing"></div>
+<div id="cyHotusers" role="cylabs" data-use="hotusers"></div>
+<div id="cyReping" role="cylabs" data-use="reping"></div>
+<div id="cyBarrage" role="cylabs" data-use="barrage"></div>
+<div id="SOHUCS" sid="人工神经网络中的批尺寸(batch size)详解"></div>
+
+
+            
+        
+    </div>
+</article>
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2019 友邻君. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/02/15/人工神经网络中的学习率-learning-rate/" data-tooltip="人工神经网络中的学习率(learning rate)问题" aria-label="下一篇: 人工神经网络中的学习率(learning rate)问题">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/02/15/人工神经网络中的批尺寸-batch-size/" title="分享到 Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2019/02/15/人工神经网络中的批尺寸-batch-size/" title="分享到 Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2019/02/15/人工神经网络中的批尺寸-batch-size/" title="分享到 Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2019/02/15/人工神经网络中的批尺寸-batch-size/" title="分享到 Weibo">
+                    <i class="fab fa-weibo" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/02/15/人工神经网络中的批尺寸-batch-size/&amp;title=人工神经网络中的批尺寸(batch size)详解" title="分享到 QQ">
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2019/02/15/人工神经网络中的批尺寸-batch-size/" title="分享到 Qzone">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yoursite.com/2019/02/15/人工神经网络中的批尺寸-batch-size/" title="分享到 Renren">
+                    <i class="fab fa-renren" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/02/15/人工神经网络中的批尺寸-batch-size/">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>分享到 Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2019/02/15/人工神经网络中的批尺寸-batch-size/">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2019/02/15/人工神经网络中的批尺寸-batch-size/">
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>分享到 Google+</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2019/02/15/人工神经网络中的批尺寸-batch-size/">
+                        <i class="fab fa-weibo" aria-hidden="true"></i><span>分享到 Weibo</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/02/15/人工神经网络中的批尺寸-batch-size/&amp;title=人工神经网络中的批尺寸(batch size)详解">
+                        <i class="fab fa-qq" aria-hidden="true"></i><span>分享到 QQ</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2019/02/15/人工神经网络中的批尺寸-batch-size/">
+                        <i class="fa fa-star" aria-hidden="true"></i><span>分享到 Qzone</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yoursite.com/2019/02/15/人工神经网络中的批尺寸-batch-size/">
+                        <i class="fab fa-renren" aria-hidden="true"></i><span>分享到 Renren</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
+        
+            <h4 id="about-card-name">友邻君</h4>
+        
+            <div id="about-card-bio"><p>浙江大学在读</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                <p>博士研究生</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br>
+                Hangzhou,Zhejiang
+            </div>
+        
+    </div>
+</div>
+
+        
+            <div id="algolia-search-modal" class="modal-container">
+    <div class="modal">
+        <div class="modal-header">
+            <span class="close-button"><i class="fa fa-times"></i></span>
+            <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+                <span class="searchby-algolia-text text-color-light text-small">by</span>
+                <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+            </a>
+            <i class="search-icon fa fa-search"></i>
+            <form id="algolia-search-form">
+                <input type="text" id="algolia-search-input" name="search" class="form-control input--large search-input" placeholder="Search ">
+            </form>
+        </div>
+        <div class="modal-body">
+            <div class="no-result text-color-light text-center">没有找到文章</div>
+            <div class="results">
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yoursite.com/2019/01/16/No 1 什么是机器学习/">
+                            <img class="media-image" src="http://cdn.yiyouls.com/image_1.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yoursite.com/2019/01/16/No 1 什么是机器学习/">
+                            <h3 class="media-heading">什么是机器学习(Machine Learning)？</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月16日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>机器学习与深度学习基础教程－从零开始</p>
+<p>本系列教程是为初学者定制，涵盖并解释了深度学习和人工神经网络的基本概念</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yoursite.com/2019/01/16/No 2 什么是深度学习？/">
+                            <img class="media-image" src="http://cdn.yiyouls.com/image_2.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yoursite.com/2019/01/16/No 2 什么是深度学习？/">
+                            <h3 class="media-heading">什么是深度学习(Deep Learning)？</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月16日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>机器学习与深度学习基础教程</p>
+<p>这篇文章将要回答什么是深度学习这个问题．</p>
+<p>整个系列课程会涵盖深度学习领域的众多主题，我们会用很多篇文章来充分解释这些课题，以及它们的应用领域和技术实现。</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yoursite.com/2019/01/18/使用hexo在Github上免费搭建功能丰富的个人博客网站/">
+                            <img class="media-image" src="http://cdn.yiyouls.com/web.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yoursite.com/2019/01/18/使用hexo在Github上免费搭建功能丰富的个人博客网站/">
+                            <h3 class="media-heading">使用hexo在Github上免费搭建功能丰富的个人博客网站</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月18日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>这个系列博文将带你一步步搭建起自己的个人博客网站，包含tranquilpeak主题模板配置，站内搜索，live2d插件，mathjax数学公式插件，＂千牛云＂云加速，＂畅言＂评论区添加，打赏设置等等高阶功能．</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yoursite.com/2019/01/19/如何在Github上免费开通一个Github-Page作为个人主页/">
+                            <img class="media-image" src="http://cdn.yiyouls.com/Octocat.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yoursite.com/2019/01/19/如何在Github上免费开通一个Github-Page作为个人主页/">
+                            <h3 class="media-heading">如何在Github上免费开通一个Github Page作为个人主页</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月19日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>为什么要选择在Github上建站，原因很简单，它是免费的．</p>
+<p>只要你按照下面的六步走，就可以轻轻松松发布自己的网站，你不需要有任何关于编程或者网站建设的基础知识．所有的前提只是，你要有一个github账号．</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yoursite.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/">
+                            <img class="media-image" src="http://cdn.yiyouls.com/hexologo.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yoursite.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/">
+                            <h3 class="media-heading">11大最常用静态网站建站工具，你用过几个？</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月19日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>在进行下一步操作之前，你首先要明白，你通过我们上篇博文所介绍的方式建立的网站，是一种静态网站，这个是最近特别流行的静态网站搭建博客的技术，非常适合让站长专注于内容创作而非网站本身的维护．</p>
+<p>为什么不用动态网站例如大名鼎鼎的wordpress呢？</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yoursite.com/2019/01/25/什么是人工神经网络ANNs/">
+                            <img class="media-image" src="http://cdn.yiyouls.com/anns.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yoursite.com/2019/01/25/什么是人工神经网络ANNs/">
+                            <h3 class="media-heading">什么是人工神经网络ANNs?</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月25日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>什么是人工神经网络(artificial neural network)?</p>
+<p>在上一篇文章中我们把深度学习定义为机器学习的子领域，深度学习所用到的算法是受大脑神经网络的结构和功能的启发．因为这个浅显的的原因，深度学习中使用的模型被称为人工神经网络（ANN）。</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yoursite.com/2019/01/25/如何理解神经网络中层-layer-的概念？/">
+                            <img class="media-image" src="http://cdn.yiyouls.com/ceng.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yoursite.com/2019/01/25/如何理解神经网络中层-layer-的概念？/">
+                            <h3 class="media-heading">如何理解神经网络中层(layer)的概念？</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月25日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>如何理解神经网络中层(layer)的概念?</p>
+<p>我们在之前的文章中认识了只有三个层的神经网络，但在很多时候我们有多个隐藏层，这篇文章探讨如何深入理解神经网络中层的概念，并提供一个多层神经网络的构建方法．</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yoursite.com/2019/01/26/如何理解神经网络中的激活函数-ativation-functions/">
+                            <img class="media-image" src="http://cdn.yiyouls.com/function.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yoursite.com/2019/01/26/如何理解神经网络中的激活函数-ativation-functions/">
+                            <h3 class="media-heading">如何理解神经网络中的激活函数(ativation functions)?</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月26日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>神经网络中的激活函数</p>
+<p>这篇文章向大家解释激活函数到底是什么，以及如何在神经网络中使用激活函数．我会向大家介绍几种常见的激活函数，向大家展示这些激活函数如何在Keras中以代码的形式呈现．</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yoursite.com/2019/01/26/如何训练人工神经网络？/">
+                            <img class="media-image" src="http://cdn.yiyouls.com/sgd.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yoursite.com/2019/01/26/如何训练人工神经网络？/">
+                            <h3 class="media-heading">如何训练(train)人工神经网络？</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月26日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><h4 id="神经网络的训练"><a href="#神经网络的训练" class="headerlink" title="神经网络的训练"></a>神经网络的训练</h4><p>这篇文章带大家学习如何训练一个人工神经网络．之前的文章中我们学习了如何构建一个简单的人工神经网络，当我们把一个神经网络配置好之后，下一步就是来训练它了．</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yoursite.com/2019/01/27/人工神经网络是如何学习-learn-的/">
+                            <img class="media-image" src="http://cdn.yiyouls.com/learn.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yoursite.com/2019/01/27/人工神经网络是如何学习-learn-的/">
+                            <h3 class="media-heading">人工神经网络是如何学习(learn)的?</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月27日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>神经网络的学习过程</p>
+<p>这篇文章我们来探讨人工神经网络是怎样学习的．</p>
+<p>本篇内容涵盖损失loss，梯度gradient，学习率lerning rate，epoch，verbose，batch批处理等概念．</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+            </div>
+        </div>
+        <div class="modal-footer">
+            <p class="results-count text-medium" data-message-zero="没有找到文章" data-message-one="找到 1 篇文章" data-message-other="找到 {n} 篇文章">
+                找到 17 篇文章
+            </p>
+        </div>
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('http://cdn.yiyouls.com/cover.jpg');"></div>
+        <!--SCRIPTS-->
+<script src="/assets/js/script-dbd16rvloemmuxdzniplmnxxvwoz24eya9wol0b7vvmlokgqsjivmb8dnscy.min.js"></script>
+<!--SCRIPTS END-->
+
+    
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cyu2tTq0X'; 
+var conf = 'prod_04b0d924b891393f35b9626442a6e448'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script> 
+<script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyu2tTq0X"></script>
+    
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment-with-locales.min.js"></script>
+    <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+    <script>
+        var algoliaClient = algoliasearch('JRXR2OL9UV', '2f9d9502c1e5ad12ac19a2180d9ac94d');
+        var algoliaIndex = algoliaClient.initIndex('my-hexo-blog');
+    </script>
+
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>

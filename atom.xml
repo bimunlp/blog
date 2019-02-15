@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-02-14T12:57:44.305Z</updated>
+  <updated>2019-02-15T08:52:33.234Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,66 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>人工神经网络中的批尺寸(batch size)详解</title>
+    <link href="http://yoursite.com/2019/02/15/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E6%89%B9%E5%B0%BA%E5%AF%B8-batch-size/"/>
+    <id>http://yoursite.com/2019/02/15/人工神经网络中的批尺寸-batch-size/</id>
+    <published>2019-02-15T08:47:02.000Z</published>
+    <updated>2019-02-15T08:52:33.234Z</updated>
+    
+    <content type="html"><![CDATA[<h4><span id="人工神经网络中的批尺寸">人工神经网络中的批尺寸</span></h4><p>这篇文章向大家介绍在训练人工神经网络的过程中指定批尺寸的意思是什么，以及如何在Keras中为模型定义一个批尺寸．</p><a id="more"></a><p>在<a href="https://blog.yiyouls.com/2019/01/27/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%A6%E4%B9%A0-learn-%E7%9A%84/" target="_blank" rel="noopener">之前关于神经网络如何学习的文章</a>中，我们已经了解了在我们训练模型的时候，我们需要指定一个批尺寸，我们这篇文章将要详细介绍这一点．</p><h4><span id="什么是批尺寸">什么是批尺寸</span></h4><p>简单来说，批尺寸的意思是每次训练我们给模型传递多少数据，一个批(batch)也被称作一个mini-batch.</p><blockquote><p>批尺寸指的是一次性向网络传递多少样本</p></blockquote><p>我们知道一个epoch指的是把训练集所有数据在网络中传递一遍，因此批尺寸和epoch不是一个东西．我们通过一个例子来比较它们之间的关系．</p><h5><span id="一个epoch中可以有很多批">一个epoch中可以有很多批</span></h5><p>假设我们有1000张犬类照片，希望通过一个神经网络区分出它们的不同种类，如果我们把批尺寸定义为<code>10</code>，那么一组10张的图片会被一起传递给网络，每十张作为一个批次．</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">一个epoch中的批数＝训练集大小／批尺寸</span><br></pre></td></tr></table></figure><p>我们现在明白了批尺寸的概念，但是分批的意义是什么？为什么不把数据中的所有元素一个接一个地传递给网络呢？为什么要把数据分成不同的批次？</p><h5><span id="为什么要分批">为什么要分批</span></h5><p>在目前的计算能力下，计算机能够一次处理很多个数据．一般来讲，批尺寸越大，模型训练中就能够更快地完成一次epoch.</p><p>但是这种方式也有确定，因为即使机器能够处理一些尺寸很大的批，当我们把批尺寸设的过大的时候，会降低模型的质量，这会导致模型的泛化能力降低．</p><p>所以，批尺寸是另外一个我们需要考虑的超参数，这个超参的调整不仅仅与我们的模型要求有关，也与我们所能够利用的计算资源有关．</p><p>举例来说，如果我们给批尺寸指定了一个相对较大的数值，例如<code>100</code>，这时机器可能没有能力通过并行的方式一次性处理这１００张图片，这个时候我们就需要把批尺寸降低一些．</p><p>到目前为止相信大家对批尺寸已经有了大致的了解，我们来看一看如何在Keras框架中指定这个参数．</p><h4><span id="在keras中用代码指定批尺寸">在Keras中用代码指定批尺寸</span></h4><p>依然使用我们在之前文章中使用过的顺序模型</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">model = Sequential([</span><br><span class="line">    Dense(16, input_shape=(1,), activation=&apos;relu&apos;),</span><br><span class="line">    Dense(32, activation=&apos;relu&apos;, kernel_regularizer=regularizers.l2(0.01)),</span><br><span class="line">    Dense(2, activation=&apos;sigmoid&apos;)</span><br><span class="line">])</span><br></pre></td></tr></table></figure><p> 我们这里重点关注在哪里调用<code>model.fit()</code>方法，这是我们在训练模型时候用到的函数，我们在<a href="https://blog.yiyouls.com/2019/01/27/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%A6%E4%B9%A0-learn-%E7%9A%84/" target="_blank" rel="noopener">之前介绍神经网络如何学习的文章</a>中使用过它．</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">model.fit(</span><br><span class="line">    scaled_train_samples, </span><br><span class="line">    train_labels, </span><br><span class="line">    validation_data=valid_set, </span><br><span class="line">    batch_size=10,</span><br><span class="line">    epochs=20, </span><br><span class="line">    shuffle=True, </span><br><span class="line">    verbose=2</span><br><span class="line">)</span><br></pre></td></tr></table></figure><p>在这里<code>fit()</code>函数接受一个<code>batch_size</code>的参数，我们就是在这里指定训练的批尺寸的．在这个例子里我们给他随意指定了一个值<code>10</code>．</p><p>这样我们在训练中每次向模型传递１０个样本，在一个epoch结束时把所有的样本都传递一遍，在下一关epoch中再次循环一遍．</p><p>希望你现在对批尺寸这个概念有了一个清晰的认识，并且学会在Keras中指定批尺寸．我们下篇文章见．</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;人工神经网络中的批尺寸&quot;&gt;&lt;a href=&quot;#人工神经网络中的批尺寸&quot; class=&quot;headerlink&quot; title=&quot;人工神经网络中的批尺寸&quot;&gt;&lt;/a&gt;人工神经网络中的批尺寸&lt;/h4&gt;&lt;p&gt;这篇文章向大家介绍在训练人工神经网络的过程中指定批尺寸的意思是什么，以及如何在Keras中为模型定义一个批尺寸．&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="ANNs" scheme="http://yoursite.com/tags/ANNs/"/>
+    
+      <category term="人工神经网络" scheme="http://yoursite.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+      <category term="批尺寸" scheme="http://yoursite.com/tags/%E6%89%B9%E5%B0%BA%E5%AF%B8/"/>
+    
+      <category term="batch size" scheme="http://yoursite.com/tags/batch-size/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>人工神经网络中的学习率(learning rate)问题</title>
+    <link href="http://yoursite.com/2019/02/15/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%8E%87-learning-rate/"/>
+    <id>http://yoursite.com/2019/02/15/人工神经网络中的学习率-learning-rate/</id>
+    <published>2019-02-15T08:46:23.000Z</published>
+    <updated>2019-02-15T08:51:45.074Z</updated>
+    
+    <content type="html"><![CDATA[<h4><span id="学习率与神经网络">学习率与神经网络</span></h4><p>这篇文章介绍学习率的问题，向大家解释学习率在模型训练中的作用．</p><a id="more"></a><p>在<a href="https://blog.yiyouls.com/2019/01/27/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%A6%E4%B9%A0-learn-%E7%9A%84/" target="_blank" rel="noopener">之前的文章</a>中我们向大家介绍过神经网络是怎样学习的，＂学习＂一词具体指的是什么．在那里我们第一次提到学习率的问题，在模型学习过程中我们要给梯度值乘以学习率，我们现在来具体了解一下这个问题．</p><h4><span id="什么是学习率">什么是学习率</span></h4><p>模型训练的目标是通过SGD的方法最小化训练数据预测输出与实际输出的损失．要完成这一目标需要几个步骤．</p><p>训练一开始我们先给模型随机赋予一些初始权重，之后在每轮训练中我们更新权重，一步步直至接近于最小化损失．</p><p>我们在这里所需要的步数是由我们指定的学习率决定的，从概念上，我们可以将模型的学习率理解为步长．</p><p>在进一步探讨之前，我们再一次回顾之前学过的内容．在模型训练过程中，通过损失函数计算输入数据的损失，之后计算模型每个权重下损失函数的梯度．</p><p>我们在获得这些梯度值之后，我们开始指定一个学习率，将梯度与学习率相乘．</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">梯度＊学习率</span><br></pre></td></tr></table></figure><p>学习率的值很小，通常介于0.01-0.0001之间．实际值的选择范围很宽，我们需要明白的是，当梯度值乘以这个学习率之后所得的值就会变得很小．</p><h4><span id="更新网络的权重">更新网络的权重</span></h4><p>我们将每个梯度值乘以学习率得到它们的乘积，将原来的权重减去这个乘积得到新权重，以此来更新权重．</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">新权重＝旧权重－（学习率＊梯度）</span><br></pre></td></tr></table></figure><p>我们通过分解网络在每个连接处的旧权重，赋予它们新值，来更新权重．</p><p>学习率的选择是需要进行验证的，它也是一个超参数(hyperparameters)，我们需要通过测试和调整来选择最为恰当的值，而不是从一开始就知道对于特定模型最合适的学习率．学习率的初始值最好是在0.01-0.0001之间．</p><p>如果我们把学习率定在这个范围内较大的位置，就可能会有超调(overshooting)的风险，由于向最小化损失函数反向移动的步长过大，导致跨过最小值的点，这样就无法真正最小化损失函数．</p><p>所以，到底是选择较大的学习率还是较小的学习率，这是一个人工智能研究员根据经验做出的取舍．</p><p>至此，我们已经了解了学习率这个概念，以及它是如何在神经网络训练中起作用的．我们接下来看一看如何在keras框架下指定学习率．</p><h4><span id="在keras中用代码表示学习率">在Keras中用代码表示学习率</span></h4><p>我们仍然使用之前讲过的模型．</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">model = Sequential([</span><br><span class="line">    Dense(16, input_shape=(1,), activation=&apos;relu&apos;),</span><br><span class="line">    Dense(32, activation=&apos;relu&apos;, kernel_regularizer=regularizers.l2(0.01)),</span><br><span class="line">    Dense(2, activation=&apos;sigmoid&apos;)</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">model.compile(</span><br><span class="line">    Adam(lr=0.0001), </span><br><span class="line">    loss=&apos;sparse_categorical_crossentropy&apos;, </span><br><span class="line">    metrics=[&apos;accuracy&apos;]</span><br><span class="line">)</span><br></pre></td></tr></table></figure><p>通过上面的代码我们编译了一个模型，并且指定了一个叫做<code>Adam</code>的优化器．</p><p>对于这个优化器，我们可以通过指定<code>lr</code>参数给他传递一个学习率，这里所指定的学习率是<code>0.0001</code>.</p><p>不过，<code>lr</code>参数是可以缺省的．如果不指定这个参数，keras会给它分配一个默认的值，对于不同的优化器，有不同的学习率默认参数，至于这个默认值具体是什么，请参照<a href="https://keras.io/optimizers/" target="_blank" rel="noopener">Keras官方文档</a>．</p><p>给优化器指定学习率还有另外一个方式，在模型编译之后，我们通过给<code>model.optimizer.lr</code>赋值的方式指定学习率．</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.optimizer.lr = 0.01</span><br></pre></td></tr></table></figure><p> 在这里将学习率设定为<code>0.01</code>．当我们在终端打印出学习率的值，可以看到它已经由默认值<code>.0001</code>更改为<code>.01</code></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; model.optimizer.lr</span><br><span class="line">0.01</span><br></pre></td></tr></table></figure><p>以上就是在模型中给优化器指定学习率的两种方式．</p><p>到目前我们已经对什么是学习率有了一个了解，明白它是怎么在模型训练中起作用的，以及为什么需要通过测验和调试来寻址模型的最佳学习率，并且，我们应该已经能够在keras中为优化器指定一个学习率了．我们下篇文章再见．</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;学习率与神经网络&quot;&gt;&lt;a href=&quot;#学习率与神经网络&quot; class=&quot;headerlink&quot; title=&quot;学习率与神经网络&quot;&gt;&lt;/a&gt;学习率与神经网络&lt;/h4&gt;&lt;p&gt;这篇文章介绍学习率的问题，向大家解释学习率在模型训练中的作用．&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="ANNs" scheme="http://yoursite.com/tags/ANNs/"/>
+    
+      <category term="人工神经网络" scheme="http://yoursite.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+      <category term="学习率" scheme="http://yoursite.com/tags/%E5%AD%A6%E4%B9%A0%E7%8E%87/"/>
+    
+      <category term="learning rate" scheme="http://yoursite.com/tags/learning-rate/"/>
+    
+  </entry>
   
   <entry>
     <title>人工神经网络中的正则化(regularization)</title>
@@ -35,11 +95,11 @@
       <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
+      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
       <category term="ANNs" scheme="http://yoursite.com/tags/ANNs/"/>
     
       <category term="人工神经网络" scheme="http://yoursite.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
-    
-      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="正则化" scheme="http://yoursite.com/tags/%E6%AD%A3%E5%88%99%E5%8C%96/"/>
     
@@ -69,11 +129,11 @@
       <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
+      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
       <category term="ANNs" scheme="http://yoursite.com/tags/ANNs/"/>
     
       <category term="人工神经网络" scheme="http://yoursite.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
-    
-      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="欠拟合" scheme="http://yoursite.com/tags/%E6%AC%A0%E6%8B%9F%E5%90%88/"/>
     
@@ -102,11 +162,11 @@
       <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
+      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
       <category term="ANNs" scheme="http://yoursite.com/tags/ANNs/"/>
     
       <category term="人工神经网络" scheme="http://yoursite.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
-    
-      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="过度拟合" scheme="http://yoursite.com/tags/%E8%BF%87%E5%BA%A6%E6%8B%9F%E5%90%88/"/>
     
@@ -138,11 +198,11 @@
       <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
+      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
       <category term="ANNs" scheme="http://yoursite.com/tags/ANNs/"/>
     
       <category term="人工神经网络" scheme="http://yoursite.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
-    
-      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="数据集" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/"/>
     
@@ -168,11 +228,11 @@
       <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
+      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
       <category term="ANNs" scheme="http://yoursite.com/tags/ANNs/"/>
     
       <category term="人工神经网络" scheme="http://yoursite.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
-    
-      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="损失函数" scheme="http://yoursite.com/tags/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/"/>
     
@@ -200,11 +260,11 @@
       <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
+      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
       <category term="ANNs" scheme="http://yoursite.com/tags/ANNs/"/>
     
       <category term="人工神经网络" scheme="http://yoursite.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
-    
-      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="learn" scheme="http://yoursite.com/tags/learn/"/>
     
@@ -228,11 +288,11 @@
       <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
+      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
       <category term="ANNs" scheme="http://yoursite.com/tags/ANNs/"/>
     
       <category term="人工神经网络" scheme="http://yoursite.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
-    
-      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="训练" scheme="http://yoursite.com/tags/%E8%AE%AD%E7%BB%83/"/>
     
@@ -257,11 +317,11 @@
       <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
+      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
       <category term="ANNs" scheme="http://yoursite.com/tags/ANNs/"/>
     
       <category term="人工神经网络" scheme="http://yoursite.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
-    
-      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="激活函数" scheme="http://yoursite.com/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/"/>
     
@@ -286,11 +346,11 @@
       <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
+      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
       <category term="ANNs" scheme="http://yoursite.com/tags/ANNs/"/>
     
       <category term="人工神经网络" scheme="http://yoursite.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
-    
-      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="layer" scheme="http://yoursite.com/tags/layer/"/>
     
@@ -315,11 +375,11 @@
       <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
+      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
       <category term="ANNs" scheme="http://yoursite.com/tags/ANNs/"/>
     
       <category term="人工神经网络" scheme="http://yoursite.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
-    
-      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
@@ -419,9 +479,9 @@
       <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
       <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
+    
+      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
