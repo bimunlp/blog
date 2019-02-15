@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-02-15T08:52:33.234Z</updated>
+  <updated>2019-02-15T14:06:20.001Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>人工神经网络如何进行微调(fine-tuning)</title>
+    <link href="http://yoursite.com/2019/02/15/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E5%BE%AE%E8%B0%83-fine-tuning/"/>
+    <id>http://yoursite.com/2019/02/15/人工神经网络如何进行微调-fine-tuning/</id>
+    <published>2019-02-15T14:00:46.000Z</published>
+    <updated>2019-02-15T14:06:20.001Z</updated>
+    
+    <content type="html"><![CDATA[<h4><span id="微调神经网络">微调神经网络</span></h4><p>这篇文章向大家解释什么是微调，以及在建立和训练模型的时候如何利用微调技术．</p><a id="more"></a><h4><span id="迁移学习transfer-learning与微调">迁移学习(transfer learning)与微调</span></h4><p>微调这个概念是和迁移学习联系在一起的．当我们使用从解决一个问题中获得的知识并将其应用于新的但相关的问题时，这就是所谓的迁移学习。</p><blockquote><p>迁移学习是我们利用从解决过的问题中获取的知识，将其应用于新的但相关的问题</p></blockquote><p>例如，我们从学习识别汽车的神经网络中获取的知识，可以应用于卡车的识别问题．</p><p>微调是迁移学习的一种手段，可以帮助我们利用已有的模型．具体来说，微调是一个过程，它利用已经训练好的模型，这个模型针对的是一个相关任务，然后调整模型使它适合新任务．</p><h5><span id="为什么要使用微调技术">为什么要使用微调技术</span></h5><p>假设原始任务类似于新任务，使用已经设计和训练的人工神经网络允许我们利用模型已经学习的内容而无需从头开始。从头开始构建模型时，我们通常必须通过反复试验尝试多种方法。</p><p>例如，我们必须选择合适的层数，层的类型，层的放置顺序，每层中包含的节点数，决定要使用多少正则化，将学习率设为多少等等。</p><ul><li>层数</li><li>层的类型</li><li>层的顺序</li><li>每层中的节点数</li><li>正则化</li><li>学习率</li></ul><p>根据训练数据设计和验证模型本身就是一项艰巨的任务。</p><p>这使得微调方法如此具有吸引力。如果我们能够找到已经能够出色完成相关任务的训练模型，这个任务至少在某种程度上与我们的任务类似，那么我们就可以对已经学到的所有内容加以利用并将其应用到我们的特定任务上。</p><p>当然，如果两个任务不同，那么模型已经学习的某些信息可能不适用于新任务，或者可能存在需要从新数据中学习的新信息。</p><p>例如，一个在小汽车数据上训练得到的模型，并没有见到过卡车的数据，模型在这种情况下必须要学习到一些新的特征。但是，卡车数据的某些特征也是存在于小汽车数据中的。</p><p>在小汽车数据上训练过的模型已经可以理解汽车的边，形状和纹理，认识前照灯，门把手，挡风玻璃，轮胎等部件。这些学到的特征是可以在新的模型中加以利用的。</p><p>这个方法听起来还是蛮有吸引力的，但我们如何在技术上实现这一点呢？</p><h3><span id="如何微调">如何微调</span></h3><p>回到我们刚刚提到的例子，如果我们有一个已经训练过的能够识别小汽车的模型，希望通过微调这个模型以识别卡车，我们可以先导入用于识别汽车的原始模型。</p><p>为简单起见，假设我们删除了此模型的最后一层。最后一层已经能够做到正确分类图像是否是汽车。之后用一个分类图像是否是卡车的模型来替换输出层。</p><p>在某些问题中，我们需要删除的可能不仅仅是最后一层，需要添加的也不仅仅是最后一层。这取决于模型任务的相似程度。</p><p>模型末端的层能够学习到特定任务所特有的一些特征，模型开始处的图层通常只能学习到更多一般的特征，如边，形状和纹理。</p><p>在我们修改了现有模型的结构之后，我们需要冻结新模型中这些来自原始模型的层。</p><h4><span id="冻结权重">冻结权重</span></h4><p>通过 <em>冻结(freezing)</em>，在新任务的新数据上训练模型，被冻结的这些层的权重就不会被更新。我们希望这些权重与原始任务训练后的权重保持不变。我们只需要更新或修改新层中的权重。</p><p>之后就是在新数据上训练模型。要记得在训练过程中，从原始模型中保留的所有层的权重将保持不变，只有新层中的权重才会更新。</p><p>到目前为止我们已经对迁移学习中的微调有了全面的认识，明白了微调方法能够节省我们很多工作．想要了解如何在Keras框架下设计一个微调模型，训练并使用这个模型，敬请期待我们的Keras系列教程．我们下篇文章再见！</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;微调神经网络&quot;&gt;&lt;a href=&quot;#微调神经网络&quot; class=&quot;headerlink&quot; title=&quot;微调神经网络&quot;&gt;&lt;/a&gt;微调神经网络&lt;/h4&gt;&lt;p&gt;这篇文章向大家解释什么是微调，以及在建立和训练模型的时候如何利用微调技术．&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="ANNs" scheme="http://yoursite.com/tags/ANNs/"/>
+    
+      <category term="人工神经网络" scheme="http://yoursite.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+      <category term="fine-tune" scheme="http://yoursite.com/tags/fine-tune/"/>
+    
+      <category term="微调" scheme="http://yoursite.com/tags/%E5%BE%AE%E8%B0%83/"/>
+    
+      <category term="transfer learning" scheme="http://yoursite.com/tags/transfer-learning/"/>
+    
+      <category term="迁移学习" scheme="http://yoursite.com/tags/%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>人工神经网络中的批尺寸(batch size)详解</title>

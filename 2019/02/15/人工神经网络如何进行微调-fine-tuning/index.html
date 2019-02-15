@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Deep Learning">
-    <title>标签: ANNs - Deep Learning</title>
+    <title>人工神经网络如何进行微调(fine-tuning) - Deep Learning</title>
     <meta name="author" content="友邻君">
     
         <meta name="keywords" content="deep learning,neural network,mechine learning,ANN,AI,深度学习,机器学习,">
@@ -17,18 +17,19 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{}</script>
-    <meta name="description" content="人工智能领域前沿">
-<meta name="keywords" content="deep learning,neural network,mechine learning,ANN,AI,深度学习,机器学习">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"articleBody":"微调神经网络这篇文章向大家解释什么是微调，以及在建立和训练模型的时候如何利用微调技术．\n\n迁移学习(transfer learning)与微调微调这个概念是和迁移学习联系在一起的．当我们使用从解决一个问题中获得的知识并将其应用于新的但相关的问题时，这就是所谓的迁移学习。\n\n迁移学习是我们利用从解决过的问题中获取的知识，将其应用于新的但相关的问题\n\n例如，我们从学习识别汽车的神经网络中获取的知识，可以应用于卡车的识别问题．\n微调是迁移学习的一种手段，可以帮助我们利用已有的模型．具体来说，微调是一个过程，它利用已经训练好的模型，这个模型针对的是一个相关任务，然后调整模型使它适合新任务．\n为什么要使用微调技术假设原始任务类似于新任务，使用已经设计和训练的人工神经网络允许我们利用模型已经学习的内容而无需从头开始。从头开始构建模型时，我们通常必须通过反复试验尝试多种方法。\n例如，我们必须选择合适的层数，层的类型，层的放置顺序，每层中包含的节点数，决定要使用多少正则化，将学习率设为多少等等。\n\n层数\n层的类型\n层的顺序\n每层中的节点数\n正则化\n学习率\n\n根据训练数据设计和验证模型本身就是一项艰巨的任务。\n这使得微调方法如此具有吸引力。如果我们能够找到已经能够出色完成相关任务的训练模型，这个任务至少在某种程度上与我们的任务类似，那么我们就可以对已经学到的所有内容加以利用并将其应用到我们的特定任务上。\n当然，如果两个任务不同，那么模型已经学习的某些信息可能不适用于新任务，或者可能存在需要从新数据中学习的新信息。\n例如，一个在小汽车数据上训练得到的模型，并没有见到过卡车的数据，模型在这种情况下必须要学习到一些新的特征。但是，卡车数据的某些特征也是存在于小汽车数据中的。\n在小汽车数据上训练过的模型已经可以理解汽车的边，形状和纹理，认识前照灯，门把手，挡风玻璃，轮胎等部件。这些学到的特征是可以在新的模型中加以利用的。\n这个方法听起来还是蛮有吸引力的，但我们如何在技术上实现这一点呢？\n如何微调回到我们刚刚提到的例子，如果我们有一个已经训练过的能够识别小汽车的模型，希望通过微调这个模型以识别卡车，我们可以先导入用于识别汽车的原始模型。\n为简单起见，假设我们删除了此模型的最后一层。最后一层已经能够做到正确分类图像是否是汽车。之后用一个分类图像是否是卡车的模型来替换输出层。\n在某些问题中，我们需要删除的可能不仅仅是最后一层，需要添加的也不仅仅是最后一层。这取决于模型任务的相似程度。\n模型末端的层能够学习到特定任务所特有的一些特征，模型开始处的图层通常只能学习到更多一般的特征，如边，形状和纹理。\n在我们修改了现有模型的结构之后，我们需要冻结新模型中这些来自原始模型的层。\n冻结权重通过 冻结(freezing)，在新任务的新数据上训练模型，被冻结的这些层的权重就不会被更新。我们希望这些权重与原始任务训练后的权重保持不变。我们只需要更新或修改新层中的权重。\n之后就是在新数据上训练模型。要记得在训练过程中，从原始模型中保留的所有层的权重将保持不变，只有新层中的权重才会更新。\n到目前为止我们已经对迁移学习中的微调有了全面的认识，明白了微调方法能够节省我们很多工作．想要了解如何在Keras框架下设计一个微调模型，训练并使用这个模型，敬请期待我们的Keras系列教程．我们下篇文章再见！\n","dateCreated":"2019-02-15T22:00:46+08:00","dateModified":"2019-02-15T22:06:20+08:00","datePublished":"2019-02-15T22:00:46+08:00","description":"微调神经网络这篇文章向大家解释什么是微调，以及在建立和训练模型的时候如何利用微调技术．","headline":"人工神经网络如何进行微调(fine-tuning)","image":["http://cdn.yiyouls.com/transfer.png","http://cdn.yiyouls.com/ai.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2019/02/15/人工神经网络如何进行微调-fine-tuning/"},"publisher":{"@type":"Organization","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png","logo":{"@type":"ImageObject","url":"http://cdn.yiyouls.com/profile.png"}},"url":"http://yoursite.com/2019/02/15/人工神经网络如何进行微调-fine-tuning/","keywords":"深度学习, ANNs, 人工神经网络, fine-tune, 微调, transfer learning, 迁移学习","thumbnailUrl":"http://cdn.yiyouls.com/transfer.png"}</script>
+    <meta name="description" content="微调神经网络这篇文章向大家解释什么是微调，以及在建立和训练模型的时候如何利用微调技术．">
+<meta name="keywords" content="深度学习,ANNs,人工神经网络,fine-tune,微调,transfer learning,迁移学习">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Deep Learning">
-<meta property="og:url" content="http://yoursite.com/tags/ANNs/index.html">
+<meta property="og:title" content="人工神经网络如何进行微调(fine-tuning)">
+<meta property="og:url" content="http://yoursite.com/2019/02/15/人工神经网络如何进行微调-fine-tuning/index.html">
 <meta property="og:site_name" content="Deep Learning">
-<meta property="og:description" content="人工智能领域前沿">
+<meta property="og:description" content="微调神经网络这篇文章向大家解释什么是微调，以及在建立和训练模型的时候如何利用微调技术．">
 <meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2019-02-15T14:06:20.001Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Deep Learning">
-<meta name="twitter:description" content="人工智能领域前沿">
+<meta name="twitter:title" content="人工神经网络如何进行微调(fine-tuning)">
+<meta name="twitter:description" content="微调神经网络这篇文章向大家解释什么是微调，以及在建立和训练模型的时候如何利用微调技术．">
 <meta name="twitter:creator" content="@hanhaishiyi">
     
         <link rel="publisher" href="https://plus.google.com/108244569432480563366"/>
@@ -40,6 +41,12 @@
         <meta property="og:image" content="http://cdn.yiyouls.com/profile.png"/>
     
     
+        <meta property="og:image" content="http://cdn.yiyouls.com/transfer.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://cdn.yiyouls.com/transfer.png" />
+    
+    
+        <meta property="og:image" content="http://cdn.yiyouls.com/ai.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://cdn.yiyouls.com/ai.jpg" />
     
     
     <!--STYLES-->
@@ -61,7 +68,7 @@
         
     
 
-<header id="header" data-behavior="1">
+<header id="header" data-behavior="4">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
         <a class="header-title-link" href="/ ">Deep Learning</a>
@@ -84,7 +91,7 @@
         
     
 
-<nav id="sidebar" data-behavior="1">
+<nav id="sidebar" data-behavior="4">
     <div class="sidebar-container">
         
             <div class="sidebar-profile">
@@ -268,26 +275,30 @@
 </nav>
 
             
-            <div id="main" data-behavior="1"
-                 class="
-                        hasCoverMetaIn
-                        ">
-                
-    <section class="postShorten-group main-content-wrap">
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-right">
-        <div class="postShorten-wrap">
+        <div class="post-header-cover
+                    text-center
+                    " style="background-image:url('http://cdn.yiyouls.com/ai.jpg');" data-behavior="4">
             
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a class="link-unstyled" href="/2019/02/15/人工神经网络如何进行微调-fine-tuning/">
-                            人工神经网络如何进行微调(fine-tuning)
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
+        </div>
+
+            <div id="main" data-behavior="4"
+                 class="hasCover
+                        hasCoverMetaOut
+                        hasCoverCaption">
+                
+<article class="post">
+    
+        <span class="post-header-cover-caption caption">迁移学习和微调技术可以帮我们省去许多基础工作</span>
+    
+    
+        <div class="post-header main-content-wrap text-center">
+    
+        <h1 class="post-title">
+            人工神经网络如何进行微调(fine-tuning)
+        </h1>
+    
+    
+        <div class="post-meta">
     <time datetime="2019-02-15T22:00:46+08:00">
 	
 		    2月 15, 2019
@@ -302,511 +313,175 @@
     
 </div>
 
-            </div>
-            
-                <div class="postShorten-excerpt">
-                    <h4 id="微调神经网络"><a href="#微调神经网络" class="headerlink" title="微调神经网络"></a>微调神经网络</h4><p>这篇文章向大家解释什么是微调，以及在建立和训练模型的时候如何利用微调技术．</p>
-                    
-                        <a href="/2019/02/15/人工神经网络如何进行微调-fine-tuning/" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a href="/2019/02/15/人工神经网络如何进行微调-fine-tuning/">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src="http://cdn.yiyouls.com/transfer.png">
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-right">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a class="link-unstyled" href="/2019/02/15/人工神经网络中的批尺寸-batch-size/">
-                            人工神经网络中的批尺寸(batch size)详解
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2019-02-15T16:47:02+08:00">
-	
-		    2月 15, 2019
-    	
-    </time>
-    
-        <span>发布在 </span>
-        
-    <a class="category-link" href="/categories/深度学习/">深度学习</a>
-
-
     
 </div>
 
-            </div>
-            
-                <div class="postShorten-excerpt">
-                    <h4 id="人工神经网络中的批尺寸"><a href="#人工神经网络中的批尺寸" class="headerlink" title="人工神经网络中的批尺寸"></a>人工神经网络中的批尺寸</h4><p>这篇文章向大家介绍在训练人工神经网络的过程中指定批尺寸的意思是什么，以及如何在Keras中为模型定义一个批尺寸．</p>
-                    
-                        <a href="/2019/02/15/人工神经网络中的批尺寸-batch-size/" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a href="/2019/02/15/人工神经网络中的批尺寸-batch-size/">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src="http://cdn.yiyouls.com/batch.png">
-                </div>
-            </a>
-            
-        
-    </article>
     
-    
-    <article class="postShorten postShorten--thumbnailimg-right">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a class="link-unstyled" href="/2019/02/15/人工神经网络中的学习率-learning-rate/">
-                            人工神经网络中的学习率(learning rate)问题
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2019-02-15T16:46:23+08:00">
-	
-		    2月 15, 2019
-    	
-    </time>
-    
-        <span>发布在 </span>
-        
-    <a class="category-link" href="/categories/深度学习/">深度学习</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt">
-                    <h4 id="学习率与神经网络"><a href="#学习率与神经网络" class="headerlink" title="学习率与神经网络"></a>学习率与神经网络</h4><p>这篇文章介绍学习率的问题，向大家解释学习率在模型训练中的作用．</p>
-                    
-                        <a href="/2019/02/15/人工神经网络中的学习率-learning-rate/" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a href="/2019/02/15/人工神经网络中的学习率-learning-rate/">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src="http://cdn.yiyouls.com/step.png">
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-right">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a class="link-unstyled" href="/2019/02/14/人工神经网络中的正则化-regularization/">
-                            人工神经网络中的正则化(regularization)
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2019-02-14T20:37:45+08:00">
-	
-		    2月 14, 2019
-    	
-    </time>
-    
-        <span>发布在 </span>
-        
-    <a class="category-link" href="/categories/深度学习/">深度学习</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt">
-                    <p>这篇文章探讨什么是正则化，以及在神经网络中加入正则化的原因．</p>
-<p>在<a href="https://blog.yiyouls.com/2019/01/27/%E4%BB%80%E4%B9%88%E6%98%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E8%BF%87%E5%BA%A6%E6%8B%9F%E5%90%88-overfitting/" target="_blank" rel="noopener">之前文章</a>中我们讲过过度拟合的问题，简单介绍过dropout的技术，它是正则化的一种．但是我们并没有详细说什么是正则化，这篇文章将会补充这一部分内容．</p>
-                    
-                        <a href="/2019/02/14/人工神经网络中的正则化-regularization/" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a href="/2019/02/14/人工神经网络中的正则化-regularization/">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src="http://cdn.yiyouls.com/regularization-nail.png">
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-right">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a class="link-unstyled" href="/2019/01/27/什么是神经网络模型欠拟合-underfitting/">
-                            什么是神经网络模型欠拟合(underfitting)?
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2019-01-27T21:13:42+08:00">
-	
-		    1月 27, 2019
-    	
-    </time>
-    
-        <span>发布在 </span>
-        
-    <a class="category-link" href="/categories/深度学习/">深度学习</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt">
-                    <h3 id="神经网络中的欠拟合-underfitting"><a href="#神经网络中的欠拟合-underfitting" class="headerlink" title="神经网络中的欠拟合(underfitting)"></a>神经网络中的欠拟合(underfitting)</h3><p>在这篇文章中，我们将讨论当模型被认为欠拟合意味着什么，并且介绍一些可以用来减少欠拟合的技术。</p>
-<p>在之前的文章中，我们将过度拟合定义为我们的模型能够对训练数据进行有效预测，但是准确预测以前从未见过的数据。</p>
-<p>欠拟合与之恰恰相反。欠拟合的模型甚至无法对它所训练的数据进行正确分类，更不用说它以前没见过的数据了。</p>
-                    
-                        <a href="/2019/01/27/什么是神经网络模型欠拟合-underfitting/" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a href="/2019/01/27/什么是神经网络模型欠拟合-underfitting/">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src="http://cdn.yiyouls.com/underfit.png">
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-right">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a class="link-unstyled" href="/2019/01/27/什么是神经网络模型过度拟合-overfitting/">
-                            什么是神经网络模型过度拟合(overfitting)?
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2019-01-27T20:30:11+08:00">
-	
-		    1月 27, 2019
-    	
-    </time>
-    
-        <span>发布在 </span>
-        
-    <a class="category-link" href="/categories/深度学习/">深度学习</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt">
-                    <p>神经网络中的过度拟合(overfitting)</p>
-<p>这篇文章我们介绍过度拟合的含义，以及一些减少过度拟合的技术．</p>
-<p>上篇文章中我们在讨论验证集的时候提到了过度拟合的概念，我们现在具体讨论一下它．</p>
-<p>当模型能够对训练集中包含的数据进行正确分类或预测，但是在对未经过训练的数据进行分类时效果不佳，就会发生过度拟合。这个时候该模型过度学习了训练集中的数据。</p>
-                    
-                        <a href="/2019/01/27/什么是神经网络模型过度拟合-overfitting/" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a href="/2019/01/27/什么是神经网络模型过度拟合-overfitting/">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src="http://cdn.yiyouls.com/overfit.png">
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-right">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a class="link-unstyled" href="/2019/01/27/如何理解数据集中的训练集-training-set-，验证集-validation-set-以及测试集-test-set/">
-                            如何理解数据集中的训练集(training set)，验证集(validation set)以及测试集(test set)?
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2019-01-27T19:27:23+08:00">
-	
-		    1月 27, 2019
-    	
-    </time>
-    
-        <span>发布在 </span>
-        
-    <a class="category-link" href="/categories/深度学习/">深度学习</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt">
-                    <p>这篇文章带大家了解神经网络训练和测试中用到的不同种类的数据集．</p>
-<p>为了训练和测试神经网络，我们需要将数据集划分为三个独立的数据集，这些数据集将包含以下内容：</p>
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <h4><span id="微调神经网络">微调神经网络</span></h4><p>这篇文章向大家解释什么是微调，以及在建立和训练模型的时候如何利用微调技术．</p>
+<a id="more"></a>
+<h4><span id="迁移学习transfer-learning与微调">迁移学习(transfer learning)与微调</span></h4><p>微调这个概念是和迁移学习联系在一起的．当我们使用从解决一个问题中获得的知识并将其应用于新的但相关的问题时，这就是所谓的迁移学习。</p>
+<blockquote>
+<p>迁移学习是我们利用从解决过的问题中获取的知识，将其应用于新的但相关的问题</p>
+</blockquote>
+<p>例如，我们从学习识别汽车的神经网络中获取的知识，可以应用于卡车的识别问题．</p>
+<p>微调是迁移学习的一种手段，可以帮助我们利用已有的模型．具体来说，微调是一个过程，它利用已经训练好的模型，这个模型针对的是一个相关任务，然后调整模型使它适合新任务．</p>
+<h5><span id="为什么要使用微调技术">为什么要使用微调技术</span></h5><p>假设原始任务类似于新任务，使用已经设计和训练的人工神经网络允许我们利用模型已经学习的内容而无需从头开始。从头开始构建模型时，我们通常必须通过反复试验尝试多种方法。</p>
+<p>例如，我们必须选择合适的层数，层的类型，层的放置顺序，每层中包含的节点数，决定要使用多少正则化，将学习率设为多少等等。</p>
 <ul>
-<li>训练集 training set</li>
-<li>验证集 validation set</li>
-<li>测试集 test set</li>
+<li>层数</li>
+<li>层的类型</li>
+<li>层的顺序</li>
+<li>每层中的节点数</li>
+<li>正则化</li>
+<li>学习率</li>
 </ul>
-                    
-                        <a href="/2019/01/27/如何理解数据集中的训练集-training-set-，验证集-validation-set-以及测试集-test-set/" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
+<p>根据训练数据设计和验证模型本身就是一项艰巨的任务。</p>
+<p>这使得微调方法如此具有吸引力。如果我们能够找到已经能够出色完成相关任务的训练模型，这个任务至少在某种程度上与我们的任务类似，那么我们就可以对已经学到的所有内容加以利用并将其应用到我们的特定任务上。</p>
+<p>当然，如果两个任务不同，那么模型已经学习的某些信息可能不适用于新任务，或者可能存在需要从新数据中学习的新信息。</p>
+<p>例如，一个在小汽车数据上训练得到的模型，并没有见到过卡车的数据，模型在这种情况下必须要学习到一些新的特征。但是，卡车数据的某些特征也是存在于小汽车数据中的。</p>
+<p>在小汽车数据上训练过的模型已经可以理解汽车的边，形状和纹理，认识前照灯，门把手，挡风玻璃，轮胎等部件。这些学到的特征是可以在新的模型中加以利用的。</p>
+<p>这个方法听起来还是蛮有吸引力的，但我们如何在技术上实现这一点呢？</p>
+<h3><span id="如何微调">如何微调</span></h3><p>回到我们刚刚提到的例子，如果我们有一个已经训练过的能够识别小汽车的模型，希望通过微调这个模型以识别卡车，我们可以先导入用于识别汽车的原始模型。</p>
+<p>为简单起见，假设我们删除了此模型的最后一层。最后一层已经能够做到正确分类图像是否是汽车。之后用一个分类图像是否是卡车的模型来替换输出层。</p>
+<p>在某些问题中，我们需要删除的可能不仅仅是最后一层，需要添加的也不仅仅是最后一层。这取决于模型任务的相似程度。</p>
+<p>模型末端的层能够学习到特定任务所特有的一些特征，模型开始处的图层通常只能学习到更多一般的特征，如边，形状和纹理。</p>
+<p>在我们修改了现有模型的结构之后，我们需要冻结新模型中这些来自原始模型的层。</p>
+<h4><span id="冻结权重">冻结权重</span></h4><p>通过 <em>冻结(freezing)</em>，在新任务的新数据上训练模型，被冻结的这些层的权重就不会被更新。我们希望这些权重与原始任务训练后的权重保持不变。我们只需要更新或修改新层中的权重。</p>
+<p>之后就是在新数据上训练模型。要记得在训练过程中，从原始模型中保留的所有层的权重将保持不变，只有新层中的权重才会更新。</p>
+<p>到目前为止我们已经对迁移学习中的微调有了全面的认识，明白了微调方法能够节省我们很多工作．想要了解如何在Keras框架下设计一个微调模型，训练并使用这个模型，敬请期待我们的Keras系列教程．我们下篇文章再见！</p>
+
             
+
         </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
         
-            <a href="/2019/01/27/如何理解数据集中的训练集-training-set-，验证集-validation-set-以及测试集-test-set/">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src="http://cdn.yiyouls.com/dataset.png">
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-right">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a class="link-unstyled" href="/2019/01/27/深入认识神经网络中的损失函数-loss-function/">
-                            深入认识神经网络中的损失函数(loss function)
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2019-01-27T18:05:23+08:00">
-	
-		    1月 27, 2019
-    	
-    </time>
-    
-        <span>发布在 </span>
-        
-    <a class="category-link" href="/categories/深度学习/">深度学习</a>
-
-
-    
-</div>
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">标签</span><br>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/ANNs/">ANNs</a> <a class="tag tag--primary tag--small t-link" href="/tags/fine-tune/">fine-tune</a> <a class="tag tag--primary tag--small t-link" href="/tags/transfer-learning/">transfer learning</a> <a class="tag tag--primary tag--small t-link" href="/tags/人工神经网络/">人工神经网络</a> <a class="tag tag--primary tag--small t-link" href="/tags/微调/">微调</a> <a class="tag tag--primary tag--small t-link" href="/tags/深度学习/">深度学习</a> <a class="tag tag--primary tag--small t-link" href="/tags/迁移学习/">迁移学习</a>
 
             </div>
-            
-                <div class="postShorten-excerpt">
-                    <p>神经网络损失函数详解</p>
-<p>这篇文章带大家细致探讨什么是损失函数，以及它在人工神经网络中的应用．</p>
-<p>我们在讲神经网络的训练的那篇文章已经见过损失函数的概念，随机梯度下降(SGD)通过迭代更新网络中的权重来最小化损失函数．</p>
-                    
-                        <a href="/2019/01/27/深入认识神经网络中的损失函数-loss-function/" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
         
-            <a href="/2019/01/27/深入认识神经网络中的损失函数-loss-function/">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src="http://cdn.yiyouls.com/lossf.png">
-                </div>
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/02/15/人工神经网络中的批尺寸-batch-size/" data-tooltip="人工神经网络中的批尺寸(batch size)详解" aria-label="下一篇: 人工神经网络中的批尺寸(batch size)详解">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/02/15/人工神经网络如何进行微调-fine-tuning/" title="分享到 Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2019/02/15/人工神经网络如何进行微调-fine-tuning/" title="分享到 Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2019/02/15/人工神经网络如何进行微调-fine-tuning/" title="分享到 Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2019/02/15/人工神经网络如何进行微调-fine-tuning/" title="分享到 Weibo">
+                    <i class="fab fa-weibo" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/02/15/人工神经网络如何进行微调-fine-tuning/&amp;title=人工神经网络如何进行微调(fine-tuning)" title="分享到 QQ">
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2019/02/15/人工神经网络如何进行微调-fine-tuning/" title="分享到 Qzone">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yoursite.com/2019/02/15/人工神经网络如何进行微调-fine-tuning/" title="分享到 Renren">
+                    <i class="fab fa-renren" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
             
         
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-right">
-        <div class="postShorten-wrap">
+        <li class="post-action">
             
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a class="link-unstyled" href="/2019/01/27/人工神经网络是如何学习-learn-的/">
-                            人工神经网络是如何学习(learn)的?
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2019-01-27T10:31:06+08:00">
-	
-		    1月 27, 2019
-    	
-    </time>
-    
-        <span>发布在 </span>
-        
-    <a class="category-link" href="/categories/深度学习/">深度学习</a>
-
-
-    
-</div>
-
-            </div>
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
             
-                <div class="postShorten-excerpt">
-                    <p>神经网络的学习过程</p>
-<p>这篇文章我们来探讨人工神经网络是怎样学习的．</p>
-<p>本篇内容涵盖损失loss，梯度gradient，学习率lerning rate，epoch，verbose，batch批处理等概念．</p>
-                    
-                        <a href="/2019/01/27/人工神经网络是如何学习-learn-的/" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a href="/2019/01/27/人工神经网络是如何学习-learn-的/">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src="http://cdn.yiyouls.com/learn.png">
-                </div>
+                <i class="fa fa-list" aria-hidden="true"></i>
             </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-right">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a class="link-unstyled" href="/2019/01/26/如何训练人工神经网络？/">
-                            如何训练(train)人工神经网络？
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2019-01-26T15:56:23+08:00">
-	
-		    1月 26, 2019
-    	
-    </time>
-    
-        <span>发布在 </span>
-        
-    <a class="category-link" href="/categories/深度学习/">深度学习</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt">
-                    <h4 id="神经网络的训练"><a href="#神经网络的训练" class="headerlink" title="神经网络的训练"></a>神经网络的训练</h4><p>这篇文章带大家学习如何训练一个人工神经网络．之前的文章中我们学习了如何构建一个简单的人工神经网络，当我们把一个神经网络配置好之后，下一步就是来训练它了．</p>
-                    
-                        <a href="/2019/01/26/如何训练人工神经网络？/" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a href="/2019/01/26/如何训练人工神经网络？/">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src="http://cdn.yiyouls.com/sgd.png">
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    <div class="pagination-bar">
-    <ul class="pagination">
-        
-        
-          <li class="pagination-next">
-            <a class="btn btn--default btn--small" href="/tags/ANNs/page/2/">
-              <span>下一页</span>
-              <i class="fa fa-angle-right text-base icon-ml"></i>
-            </a>
-          </li>
-        
-        <li class="pagination-number">第 1 页 共 2 页</li>
+        </li>
     </ul>
 </div>
 
-</section>
+
+        
+        
+            
+                <div id="cyReward" role="cylabs" data-use="reward"></div>
+<div id="cyPoll" role="cylabs" data-use="poll"></div>
+<div id="cyEmoji" role="cylabs" data-use="emoji"></div>
+<div id="cyQing" role="cylabs" data-use="qing"></div>
+<div id="cyHotusers" role="cylabs" data-use="hotusers"></div>
+<div id="cyReping" role="cylabs" data-use="reping"></div>
+<div id="cyBarrage" role="cylabs" data-use="barrage"></div>
+<div id="SOHUCS" sid="人工神经网络如何进行微调(fine-tuning)"></div>
+
+
+            
+        
+    </div>
+</article>
 
 
                 <footer id="footer" class="main-content-wrap">
@@ -816,6 +491,173 @@
 </footer>
 
             </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/02/15/人工神经网络中的批尺寸-batch-size/" data-tooltip="人工神经网络中的批尺寸(batch size)详解" aria-label="下一篇: 人工神经网络中的批尺寸(batch size)详解">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/02/15/人工神经网络如何进行微调-fine-tuning/" title="分享到 Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2019/02/15/人工神经网络如何进行微调-fine-tuning/" title="分享到 Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2019/02/15/人工神经网络如何进行微调-fine-tuning/" title="分享到 Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2019/02/15/人工神经网络如何进行微调-fine-tuning/" title="分享到 Weibo">
+                    <i class="fab fa-weibo" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/02/15/人工神经网络如何进行微调-fine-tuning/&amp;title=人工神经网络如何进行微调(fine-tuning)" title="分享到 QQ">
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2019/02/15/人工神经网络如何进行微调-fine-tuning/" title="分享到 Qzone">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yoursite.com/2019/02/15/人工神经网络如何进行微调-fine-tuning/" title="分享到 Renren">
+                    <i class="fab fa-renren" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/02/15/人工神经网络如何进行微调-fine-tuning/">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>分享到 Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2019/02/15/人工神经网络如何进行微调-fine-tuning/">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2019/02/15/人工神经网络如何进行微调-fine-tuning/">
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>分享到 Google+</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2019/02/15/人工神经网络如何进行微调-fine-tuning/">
+                        <i class="fab fa-weibo" aria-hidden="true"></i><span>分享到 Weibo</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/02/15/人工神经网络如何进行微调-fine-tuning/&amp;title=人工神经网络如何进行微调(fine-tuning)">
+                        <i class="fab fa-qq" aria-hidden="true"></i><span>分享到 QQ</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2019/02/15/人工神经网络如何进行微调-fine-tuning/">
+                        <i class="fa fa-star" aria-hidden="true"></i><span>分享到 Qzone</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yoursite.com/2019/02/15/人工神经网络如何进行微调-fine-tuning/">
+                        <i class="fab fa-renren" aria-hidden="true"></i><span>分享到 Renren</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
             
         </div>
         
@@ -1150,6 +992,18 @@
         <!--SCRIPTS-->
 <script src="/assets/js/script-dbd16rvloemmuxdzniplmnxxvwoz24eya9wol0b7vvmlokgqsjivmb8dnscy.min.js"></script>
 <!--SCRIPTS END-->
+
+    
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cyu2tTq0X'; 
+var conf = 'prod_04b0d924b891393f35b9626442a6e448'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script> 
+<script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyu2tTq0X"></script>
+    
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment-with-locales.min.js"></script>
