@@ -4,6 +4,113 @@
   
     
     <entry>
+      <title>监督学习(supervised learning)</title>
+      <link href="/2019/02/22/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0-supervised-learning/"/>
+      <url>/2019/02/22/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0-supervised-learning/</url>
+      
+        <content type="html"><![CDATA[<h3><span id="有监督的机器学习">有监督的机器学习</span></h3><p>这篇文章中讨论有监督学习。到目前为止，在本系列中，每当我们提到模型训练过程或模型经历的学习过程时，我们实际上所指的都是有监督的学习。</p><a id="more"></a><h4><span id="标记数据labeled-data">标记数据(labeled data)</span></h4><p>当我们给训练集中的数据加标签(label)时，我们所做的就是有监督的学习。</p><blockquote><p>标签(label)用于监督或指导学习过程。</p></blockquote><p>我们在训练集，验证集和测试集的文章中解释过，在向模型传递数据的时候，不管是训练数据还是验证数据都是标记过的。这是发生在监督学习中的情况。</p><p>在监督学习中，在训练期间传递给模型的每条数据都是由输入对象（样本）以及相应的标签（输出值）组成的对。</p><p>通过监督学习，模型根据从标记的训练数据中学习知识，建立给定输入到特定输出创建映射。</p><p>例如，假设我们正在训练一个根据爬行动物的图像对不同类型的爬行动物进行分类的模型。训练中我们向模型传递<em>蜥蜴</em>的图像 。</p><p>由于我们进行的是有监督的学习，我们需要为模型提供此图像的标签，也就是说<em>蜥蜴</em>。</p><p>根据<a href="https://blog.yiyouls.com/2019/01/26/%E5%A6%82%E4%BD%95%E8%AE%AD%E7%BB%83%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%9F/" target="_blank" rel="noopener">如何训练人工神经网络</a>一文中的介绍，该模型会对图像进行分类输出，然后通过查看该图像的预测值与图像的实际标签之间的差异来确定分类误差．</p><h4><span id="标签以数字形式表示">标签以数字形式表示</span></h4><p>我们需要将标签编码为数字。例如，<em>蜥蜴</em>的标签可以编码为<code>0</code>，而<em>乌龟</em>的标签可以编码为<code>1</code>。</p><p>然后我们将训练集经历完所有epoch，确定它们的损失和误差 。在训练中模型的目标是最大限度地减少损失，因此当我们部署模型并使用它来预测未经训练的数据时，它基于的是训练期间标记过的数据．</p><p>但是，如果我们没有为模型提供相应的标签，那么替代方案是什么？嗯，与监督学习相反，我们可以使用一种称为无监督学习的方法 ，以及另一种称为半监督学习的技术。我们将在以后的文章中介绍这些方面。</p><p>现在，我们通过一些Keras代码，向大家展示怎样向模型传递标记样本。</p><h3><span id="在keras框架下处理标记数据">在Keras框架下处理标记数据</span></h3><p>首先导入相应的库：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import keras</span><br><span class="line">from keras import backend as K</span><br><span class="line">from keras.models import Sequential</span><br><span class="line">from keras.layers import Activation</span><br><span class="line">from keras.layers.core import Dense</span><br><span class="line">from keras.optimizers import Adam</span><br></pre></td></tr></table></figure><p>假设我们使用的是一个简单的<code>Sequential模型</code>，它有两个隐藏的<code>dense</code>层和一个具有两个输出类别的输出层。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">model = Sequential([</span><br><span class="line">    Dense(16, input_shape=(2,), activation=&apos;relu&apos;),</span><br><span class="line">    Dense(32, activation=&apos;relu&apos;),</span><br><span class="line">    Dense(2, activation=&apos;sigmoid&apos;)</span><br><span class="line">])</span><br></pre></td></tr></table></figure><p>在本系列早期文章中已经介绍了这些所导入的库，模型的体系结构以及我们如何编译模型等内容 。</p><p>我们假设这个模型的任务是根据<em>身高</em>和<em>体重</em>两个特征来为<em>男性</em>和<em>女性</em>分类。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">model.compile(</span><br><span class="line">    Adam(lr=0.0001), </span><br><span class="line">    loss=&apos;sparse_categorical_crossentropy&apos;, </span><br><span class="line">    metrics=[&apos;accuracy&apos;]</span><br><span class="line">)</span><br></pre></td></tr></table></figure><p>在模型编译之后，我们先给大家一些训练数据的示例。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 体重, 身高</span><br><span class="line">train_samples = [</span><br><span class="line">    [150, 67], </span><br><span class="line">    [130, 60], </span><br><span class="line">    [200, 65], </span><br><span class="line">    [125, 52], </span><br><span class="line">    [230, 72], </span><br><span class="line">    [181, 70]</span><br><span class="line">]</span><br></pre></td></tr></table></figure><p>实际训练数据存储在<code>train_samples</code>变量中。我们用列表来储存这些体重－身高对，每对是一个单独的样本．</p><p>每对中的一个元素是以英镑为单位的体重，第二个元素是以<em>英寸</em>为单位的高度 。</p><p>接下来，我们将标签存储在此<code>train_labels</code>变量中，<code>0</code>代表男性，<code>1</code>代表女性。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">＃0：男性</span><br><span class="line">＃1：女性</span><br><span class="line">train_labels = [ 1 ，1 ，0 ，1 ，0 ，0 ]</span><br></pre></td></tr></table></figure><p>每个标签的位置对应于<code>train_samples</code>变量中每个样本的位置。例如，这里的第一个<code>1</code>代表一个女性，是<code>train_samples</code>数组中第一个元素的标签。第二个<code>train_labels</code>元素对应于第二个<code>train_samples</code>元素，以此类推。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">model.fit(</span><br><span class="line">    x=train_samples, </span><br><span class="line">    y=train_labels,</span><br><span class="line">    batch_size=3,</span><br><span class="line">    epochs=10,</span><br><span class="line">    shuffle=True,</span><br><span class="line">    verbose=2</span><br><span class="line">)</span><br></pre></td></tr></table></figure><p>我们通过调用<code>model.fit()</code>来训练模型，这在之前的文章中讲过，这里指定的第一个参数<code>x</code>是<code>train_samples</code> 变量，而第二个参数<code>y</code>是相应的<code>train_labels</code>。</p><p>希望您现在能够理解监督学习是什么以及如何做监督学习。在后面的文章中，我们将这个方法与其他学习方法进行对比。下篇文章见！</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 深度学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 深度学习 </tag>
+            
+            <tag> ANNs </tag>
+            
+            <tag> 人工神经网络 </tag>
+            
+            <tag> fine-tune </tag>
+            
+            <tag> 微调 </tag>
+            
+            <tag> transfer learning </tag>
+            
+            <tag> 迁移学习 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>人工神经网络是如何进行预测(prediction)的?</title>
+      <link href="/2019/02/22/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%98%AF%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E9%A2%84%E6%B5%8B-prediction-%E7%9A%84/"/>
+      <url>/2019/02/22/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%98%AF%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E9%A2%84%E6%B5%8B-prediction-%E7%9A%84/</url>
+      
+        <content type="html"><![CDATA[<h4><span id="用神经网络做预测">用神经网络做预测</span></h4><p>在这篇文章中，我们将讨论使用人工神经网络进行预测的含义，以及如何使用Keras框架写出模型预测的代码。</p><a id="more"></a><p>在 <a href="https://blog.yiyouls.com/2019/01/26/%E5%A6%82%E4%BD%95%E8%AE%AD%E7%BB%83%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%9F/" target="_blank" rel="noopener">之前的文章中</a>，我们讨论了如何训练神经网络。在此训练完成后，如果我们对模型在训练数据和验证数据中的指标感到满意，那么下一步就是让模型预测测试集中的数据</p><p>回想一下<a href="http://deeplizard.com/learn/video/Zi-0rlM4RDs" target="_blank" rel="noopener">关于训练集，测试集和验证集的文章</a>，不同于训练集和验证集，当我们将测试数据传递给模型时，相应的标签<em>不会</em>被传递。因此，模型根本不知道测试集的标签。</p><h4><span id="传递没有标签的样本">传递没有标签的样本</span></h4><p>关于使用模型作预测，大概来讲是将未标记的测试数据传递给模型，并让模型对测试数据的样本标签做预测。这些预测基于模型在训练过程中学到的知识。</p><blockquote><p>预测是基于模型在训练期间学到的知识。</p></blockquote><p>例如，假设我们训练了一个模型，这个模型根据狗的图像对不同品种的狗进行分类。对于每个样本图像，模型能够输出最有可能的分类结果。</p><p>现在假设测试集包含模型以前没有见过的狗的图像。我们将这些样本传递给模型，并要求它预测每个图像的输出。要记得，模型是没有办法访问这些图像的标签的。</p><p>这个过程会提供给我们模型对它之前没有见过的数据的执行情况，我们需要分析它的预测与数据的真实标签的匹配程度。</p><p>这个过程也有助于我们了解模型到底有没有学到知识。例如，假设我们仅在大型犬的图像上训练模型，但我们的测试集中有一些小型犬的图像。当我们将一只小狗传给我们的模型时，它可能不会很好地预测狗是什么品种，因为这样的模型通常不适合小型犬的预测。</p><p>这意味着我们需要确保培训集和验证集能够代表我们希望模型预测的实际数据。</p><h4><span id="在现实中部署模型工业化">在现实中部署模型（工业化）</span></h4><p>除了对测试数据进行运行预测之外，我们还可以让模型在部署后进行实用来预测现实世界中的数据。</p><p>例如，如果我们将这种神经网络应用于互联网世界，每个人都可以上传并访问他的的狗的照片，得到关于他们的狗的品种的信息．</p><p>这些图像不是我们的训练集，验证或测试集中包含的图像，它们是在显示世界中需要我们进行预测的图像。</p><p>现在让我们看看如何使用Keras框架进行这些预测。</p><h3><span id="使用keras框架进行模型预测">使用Keras框架进行模型预测</span></h3><p>假设有以下代码：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">predictions = model.predict(</span><br><span class="line">    scaled_test_samples, </span><br><span class="line">    batch_size=10, </span><br><span class="line">    verbose=0</span><br><span class="line">)</span><br></pre></td></tr></table></figure><p>这里的第一项是我们称之为<code>predictions</code>的变量。假设我们已经设计并训练好了我们的模型。我们在这个例子中的模型是<code>model</code>这个对象。我们将<code>predictions</code>用<code>model.predict()</code>赋值。</p><p>这个<code>predict()</code>函数是实际上要做预测的函数。对于<code>predict()</code>函数，我们传递了名为<code>scaled_test_samples</code>的变量，用来保存测试数据。</p><p><code>batch_size</code>在这任意设置为<code>10</code>。然后设置<code>verbose=0</code>，这是我们在运行这些预测时打印到屏幕上的数量，<code>0</code>表示不显示任何内容。</p><p>我们在这里使用的模型样本在我们以前的文章中使用过。因此在这里不详细介绍实际模型，但如果您有兴趣构建一个同样的模型并运行相同的预测，请参考Keras系列中关于预处理数据和创建混淆矩阵(confusion matrix)的文章</p><p>目前，我们只是展示了如何在Keras框架下进行预测的概念。</p><p>我们运行预测程序，会得到这样的输出。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">for p in predictions:</span><br><span class="line">    print(p)</span><br><span class="line"></span><br><span class="line">[ 0.7410683  0.2589317]</span><br><span class="line">[ 0.14958295  0.85041702]</span><br><span class="line">...</span><br><span class="line">[ 0.87152088  0.12847912]</span><br><span class="line">[ 0.04943148  0.95056852]</span><br></pre></td></tr></table></figure><p>在这个例子中，这个模型有两个输出类别，我们打印测试集中每个样本的每个预测，它存储在<code>predictions</code>变量中。</p><p>观察这个输出列表，一共有两列，代表两个输出类别，显示每个类别的概率。它们都是实际的预测结果。这两个类别我们不妨简称为类别<code>0</code>和类别<code>1</code>.</p><p>我们再仔细看一下，对于测试集中的第一个样本，模型分配<code>74%</code>的可能性给类别<code>0</code>,只有<code>26%</code>的概率分配给类别<code>1</code>。</p><p>第二个样本向我们展示了模型分配<code>85%</code>的概率给类别<code>1</code>和<code>15%</code>概率给类别<code>0</code>，每个测试样本的输出都可以这样解读。</p><p>这就是关于神经网络在Keras框架下做预测的方法，希望你能够对神经网络如何做预测有了一定了解。下篇文章再见！</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 深度学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 深度学习 </tag>
+            
+            <tag> ANNs </tag>
+            
+            <tag> 人工神经网络 </tag>
+            
+            <tag> fine-tune </tag>
+            
+            <tag> 微调 </tag>
+            
+            <tag> transfer learning </tag>
+            
+            <tag> 迁移学习 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>机器学习中的数据增强(data augmentation)技术</title>
+      <link href="/2019/02/22/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA-data-augmentation-%E6%8A%80%E6%9C%AF/"/>
+      <url>/2019/02/22/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA-data-augmentation-%E6%8A%80%E6%9C%AF/</url>
+      
+        <content type="html"><![CDATA[<p>在这篇文章中，我们会<em>数据增强</em>技术以及它的实现方式。</p><p>当我们通过修改现有数据的方式创建新数据时，我们称之为数据增强。我们实际上是通过对训练集中的数据进行合理修改来创建新的增强数据。</p><a id="more"></a><blockquote><p>数据增强是通过修改现有数据的方式创建新数据。</p></blockquote><p>例如，我们可以通过水平或垂直翻转图像来增强图像数据。这包括图像的旋转，放大或缩小，裁剪，甚至改变图像的颜色。所有这些都是常见的数据增强技术。</p><ul><li>水平翻转</li><li>垂直翻转</li><li>轴心旋转</li><li>放大</li><li>缩小</li><li>裁剪</li><li>颜色变化</li></ul><p>我们为什么要这样做呢？使用数据增强技术的意义在哪里？</p><h3><span id="为什么要使用数据增强">为什么要使用数据增强？</span></h3><p>原因或许很简单，我们可能只是想要或者试验需要我们在训练集中添加更多数据。例如，在一些情况下我们的训练集中样本数量偏少，并且很难获得更多新样本。这种情况下，我们可以使用数据增强从现有数据集创建新数据，以创建更多样本。</p><h4><span id="减少过度拟合">减少过度拟合</span></h4><p>此外，我们也可以使用数据增强来减少过度拟合。大家可以回顾一下我们在之前文章中提到了<a href="https://blog.yiyouls.com/2019/01/27/%E4%BB%80%E4%B9%88%E6%98%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E8%BF%87%E5%BA%A6%E6%8B%9F%E5%90%88-overfitting/" target="_blank" rel="noopener">过度拟合的概念</a> 。</p><p>如果我们的模型过度拟合，可以通过向训练集添加更多数据这种技术来减少过度拟合。就像我们前面提到的原因，如果我们无法搜集更多的数据，我们可以使用数据增强轻松创建更多数据。</p><p>此外，关于过度拟合的另外一点，假设我们有一个全是狗的图像的数据集，但这个数据集的特点是大多数狗面向右边。</p><p>如果对这些图像进行模型训练，那么认为模型会认为只有这些面向右面的狗的图像才是合理的。当我们在真实世界中运用这个模型或者用它来预测测试图像时，那些面向左边的狗很可能不会被正确分类。</p><p>在这个背景下，可以通过合理修改面向右侧的狗的图像来增加面向左侧的狗的图像，我们可以通过水平翻转原始图像来生成新图像。</p><p>但是，一些特定的数据增强技术可能不适合在给定的数据集上使用。依然是狗的例子，如果说水平翻转狗的图像是有道理的，然而，通过垂直翻转来修改狗的图像不一定是合理的。因为在真实世界中，我们不太可能看到这样将头部倒置的狗的图像。</p><p>希望你现在能够了解数据增强是什么以及使用它的意义在哪里。如果想要知道如何使用Keras在代码中实现数据增强，精确关注我们的Keras系列教程。在该系列中，我们将展示如何通过旋转图像，改变宽度和高度，缩放，改变颜色以及水平翻转图像，从单个狗的原始图像制作出１０个增强图像。</p><p>我们下篇文章再见！</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 深度学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 深度学习 </tag>
+            
+            <tag> ANNs </tag>
+            
+            <tag> 人工神经网络 </tag>
+            
+            <tag> data augmentation </tag>
+            
+            <tag> 数据增强 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>人工神经网络如何进行微调(fine-tuning)</title>
       <link href="/2019/02/15/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E5%BE%AE%E8%B0%83-fine-tuning/"/>
       <url>/2019/02/15/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E5%BE%AE%E8%B0%83-fine-tuning/</url>

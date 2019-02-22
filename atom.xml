@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-02-15T14:06:20.001Z</updated>
+  <updated>2019-02-22T13:29:38.498Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,105 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>监督学习(supervised learning)</title>
+    <link href="http://yoursite.com/2019/02/22/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0-supervised-learning/"/>
+    <id>http://yoursite.com/2019/02/22/监督学习-supervised-learning/</id>
+    <published>2019-02-22T13:26:39.000Z</published>
+    <updated>2019-02-22T13:29:38.498Z</updated>
+    
+    <content type="html"><![CDATA[<h3><span id="有监督的机器学习">有监督的机器学习</span></h3><p>这篇文章中讨论有监督学习。到目前为止，在本系列中，每当我们提到模型训练过程或模型经历的学习过程时，我们实际上所指的都是有监督的学习。</p><a id="more"></a><h4><span id="标记数据labeled-data">标记数据(labeled data)</span></h4><p>当我们给训练集中的数据加标签(label)时，我们所做的就是有监督的学习。</p><blockquote><p>标签(label)用于监督或指导学习过程。</p></blockquote><p>我们在训练集，验证集和测试集的文章中解释过，在向模型传递数据的时候，不管是训练数据还是验证数据都是标记过的。这是发生在监督学习中的情况。</p><p>在监督学习中，在训练期间传递给模型的每条数据都是由输入对象（样本）以及相应的标签（输出值）组成的对。</p><p>通过监督学习，模型根据从标记的训练数据中学习知识，建立给定输入到特定输出创建映射。</p><p>例如，假设我们正在训练一个根据爬行动物的图像对不同类型的爬行动物进行分类的模型。训练中我们向模型传递<em>蜥蜴</em>的图像 。</p><p>由于我们进行的是有监督的学习，我们需要为模型提供此图像的标签，也就是说<em>蜥蜴</em>。</p><p>根据<a href="https://blog.yiyouls.com/2019/01/26/%E5%A6%82%E4%BD%95%E8%AE%AD%E7%BB%83%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%9F/" target="_blank" rel="noopener">如何训练人工神经网络</a>一文中的介绍，该模型会对图像进行分类输出，然后通过查看该图像的预测值与图像的实际标签之间的差异来确定分类误差．</p><h4><span id="标签以数字形式表示">标签以数字形式表示</span></h4><p>我们需要将标签编码为数字。例如，<em>蜥蜴</em>的标签可以编码为<code>0</code>，而<em>乌龟</em>的标签可以编码为<code>1</code>。</p><p>然后我们将训练集经历完所有epoch，确定它们的损失和误差 。在训练中模型的目标是最大限度地减少损失，因此当我们部署模型并使用它来预测未经训练的数据时，它基于的是训练期间标记过的数据．</p><p>但是，如果我们没有为模型提供相应的标签，那么替代方案是什么？嗯，与监督学习相反，我们可以使用一种称为无监督学习的方法 ，以及另一种称为半监督学习的技术。我们将在以后的文章中介绍这些方面。</p><p>现在，我们通过一些Keras代码，向大家展示怎样向模型传递标记样本。</p><h3><span id="在keras框架下处理标记数据">在Keras框架下处理标记数据</span></h3><p>首先导入相应的库：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import keras</span><br><span class="line">from keras import backend as K</span><br><span class="line">from keras.models import Sequential</span><br><span class="line">from keras.layers import Activation</span><br><span class="line">from keras.layers.core import Dense</span><br><span class="line">from keras.optimizers import Adam</span><br></pre></td></tr></table></figure><p>假设我们使用的是一个简单的<code>Sequential模型</code>，它有两个隐藏的<code>dense</code>层和一个具有两个输出类别的输出层。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">model = Sequential([</span><br><span class="line">    Dense(16, input_shape=(2,), activation=&apos;relu&apos;),</span><br><span class="line">    Dense(32, activation=&apos;relu&apos;),</span><br><span class="line">    Dense(2, activation=&apos;sigmoid&apos;)</span><br><span class="line">])</span><br></pre></td></tr></table></figure><p>在本系列早期文章中已经介绍了这些所导入的库，模型的体系结构以及我们如何编译模型等内容 。</p><p>我们假设这个模型的任务是根据<em>身高</em>和<em>体重</em>两个特征来为<em>男性</em>和<em>女性</em>分类。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">model.compile(</span><br><span class="line">    Adam(lr=0.0001), </span><br><span class="line">    loss=&apos;sparse_categorical_crossentropy&apos;, </span><br><span class="line">    metrics=[&apos;accuracy&apos;]</span><br><span class="line">)</span><br></pre></td></tr></table></figure><p>在模型编译之后，我们先给大家一些训练数据的示例。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 体重, 身高</span><br><span class="line">train_samples = [</span><br><span class="line">    [150, 67], </span><br><span class="line">    [130, 60], </span><br><span class="line">    [200, 65], </span><br><span class="line">    [125, 52], </span><br><span class="line">    [230, 72], </span><br><span class="line">    [181, 70]</span><br><span class="line">]</span><br></pre></td></tr></table></figure><p>实际训练数据存储在<code>train_samples</code>变量中。我们用列表来储存这些体重－身高对，每对是一个单独的样本．</p><p>每对中的一个元素是以英镑为单位的体重，第二个元素是以<em>英寸</em>为单位的高度 。</p><p>接下来，我们将标签存储在此<code>train_labels</code>变量中，<code>0</code>代表男性，<code>1</code>代表女性。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">＃0：男性</span><br><span class="line">＃1：女性</span><br><span class="line">train_labels = [ 1 ，1 ，0 ，1 ，0 ，0 ]</span><br></pre></td></tr></table></figure><p>每个标签的位置对应于<code>train_samples</code>变量中每个样本的位置。例如，这里的第一个<code>1</code>代表一个女性，是<code>train_samples</code>数组中第一个元素的标签。第二个<code>train_labels</code>元素对应于第二个<code>train_samples</code>元素，以此类推。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">model.fit(</span><br><span class="line">    x=train_samples, </span><br><span class="line">    y=train_labels,</span><br><span class="line">    batch_size=3,</span><br><span class="line">    epochs=10,</span><br><span class="line">    shuffle=True,</span><br><span class="line">    verbose=2</span><br><span class="line">)</span><br></pre></td></tr></table></figure><p>我们通过调用<code>model.fit()</code>来训练模型，这在之前的文章中讲过，这里指定的第一个参数<code>x</code>是<code>train_samples</code> 变量，而第二个参数<code>y</code>是相应的<code>train_labels</code>。</p><p>希望您现在能够理解监督学习是什么以及如何做监督学习。在后面的文章中，我们将这个方法与其他学习方法进行对比。下篇文章见！</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;有监督的机器学习&quot;&gt;&lt;a href=&quot;#有监督的机器学习&quot; class=&quot;headerlink&quot; title=&quot;有监督的机器学习&quot;&gt;&lt;/a&gt;有监督的机器学习&lt;/h3&gt;&lt;p&gt;这篇文章中讨论有监督学习。到目前为止，在本系列中，每当我们提到模型训练过程或模型经历的学习过程时，我们实际上所指的都是有监督的学习。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="ANNs" scheme="http://yoursite.com/tags/ANNs/"/>
+    
+      <category term="人工神经网络" scheme="http://yoursite.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+      <category term="fine-tune" scheme="http://yoursite.com/tags/fine-tune/"/>
+    
+      <category term="微调" scheme="http://yoursite.com/tags/%E5%BE%AE%E8%B0%83/"/>
+    
+      <category term="transfer learning" scheme="http://yoursite.com/tags/transfer-learning/"/>
+    
+      <category term="迁移学习" scheme="http://yoursite.com/tags/%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>人工神经网络是如何进行预测(prediction)的?</title>
+    <link href="http://yoursite.com/2019/02/22/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%98%AF%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E9%A2%84%E6%B5%8B-prediction-%E7%9A%84/"/>
+    <id>http://yoursite.com/2019/02/22/人工神经网络是如何进行预测-prediction-的/</id>
+    <published>2019-02-22T13:23:30.000Z</published>
+    <updated>2019-02-22T13:25:49.774Z</updated>
+    
+    <content type="html"><![CDATA[<h4><span id="用神经网络做预测">用神经网络做预测</span></h4><p>在这篇文章中，我们将讨论使用人工神经网络进行预测的含义，以及如何使用Keras框架写出模型预测的代码。</p><a id="more"></a><p>在 <a href="https://blog.yiyouls.com/2019/01/26/%E5%A6%82%E4%BD%95%E8%AE%AD%E7%BB%83%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%9F/" target="_blank" rel="noopener">之前的文章中</a>，我们讨论了如何训练神经网络。在此训练完成后，如果我们对模型在训练数据和验证数据中的指标感到满意，那么下一步就是让模型预测测试集中的数据</p><p>回想一下<a href="http://deeplizard.com/learn/video/Zi-0rlM4RDs" target="_blank" rel="noopener">关于训练集，测试集和验证集的文章</a>，不同于训练集和验证集，当我们将测试数据传递给模型时，相应的标签<em>不会</em>被传递。因此，模型根本不知道测试集的标签。</p><h4><span id="传递没有标签的样本">传递没有标签的样本</span></h4><p>关于使用模型作预测，大概来讲是将未标记的测试数据传递给模型，并让模型对测试数据的样本标签做预测。这些预测基于模型在训练过程中学到的知识。</p><blockquote><p>预测是基于模型在训练期间学到的知识。</p></blockquote><p>例如，假设我们训练了一个模型，这个模型根据狗的图像对不同品种的狗进行分类。对于每个样本图像，模型能够输出最有可能的分类结果。</p><p>现在假设测试集包含模型以前没有见过的狗的图像。我们将这些样本传递给模型，并要求它预测每个图像的输出。要记得，模型是没有办法访问这些图像的标签的。</p><p>这个过程会提供给我们模型对它之前没有见过的数据的执行情况，我们需要分析它的预测与数据的真实标签的匹配程度。</p><p>这个过程也有助于我们了解模型到底有没有学到知识。例如，假设我们仅在大型犬的图像上训练模型，但我们的测试集中有一些小型犬的图像。当我们将一只小狗传给我们的模型时，它可能不会很好地预测狗是什么品种，因为这样的模型通常不适合小型犬的预测。</p><p>这意味着我们需要确保培训集和验证集能够代表我们希望模型预测的实际数据。</p><h4><span id="在现实中部署模型工业化">在现实中部署模型（工业化）</span></h4><p>除了对测试数据进行运行预测之外，我们还可以让模型在部署后进行实用来预测现实世界中的数据。</p><p>例如，如果我们将这种神经网络应用于互联网世界，每个人都可以上传并访问他的的狗的照片，得到关于他们的狗的品种的信息．</p><p>这些图像不是我们的训练集，验证或测试集中包含的图像，它们是在显示世界中需要我们进行预测的图像。</p><p>现在让我们看看如何使用Keras框架进行这些预测。</p><h3><span id="使用keras框架进行模型预测">使用Keras框架进行模型预测</span></h3><p>假设有以下代码：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">predictions = model.predict(</span><br><span class="line">    scaled_test_samples, </span><br><span class="line">    batch_size=10, </span><br><span class="line">    verbose=0</span><br><span class="line">)</span><br></pre></td></tr></table></figure><p>这里的第一项是我们称之为<code>predictions</code>的变量。假设我们已经设计并训练好了我们的模型。我们在这个例子中的模型是<code>model</code>这个对象。我们将<code>predictions</code>用<code>model.predict()</code>赋值。</p><p>这个<code>predict()</code>函数是实际上要做预测的函数。对于<code>predict()</code>函数，我们传递了名为<code>scaled_test_samples</code>的变量，用来保存测试数据。</p><p><code>batch_size</code>在这任意设置为<code>10</code>。然后设置<code>verbose=0</code>，这是我们在运行这些预测时打印到屏幕上的数量，<code>0</code>表示不显示任何内容。</p><p>我们在这里使用的模型样本在我们以前的文章中使用过。因此在这里不详细介绍实际模型，但如果您有兴趣构建一个同样的模型并运行相同的预测，请参考Keras系列中关于预处理数据和创建混淆矩阵(confusion matrix)的文章</p><p>目前，我们只是展示了如何在Keras框架下进行预测的概念。</p><p>我们运行预测程序，会得到这样的输出。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">for p in predictions:</span><br><span class="line">    print(p)</span><br><span class="line"></span><br><span class="line">[ 0.7410683  0.2589317]</span><br><span class="line">[ 0.14958295  0.85041702]</span><br><span class="line">...</span><br><span class="line">[ 0.87152088  0.12847912]</span><br><span class="line">[ 0.04943148  0.95056852]</span><br></pre></td></tr></table></figure><p>在这个例子中，这个模型有两个输出类别，我们打印测试集中每个样本的每个预测，它存储在<code>predictions</code>变量中。</p><p>观察这个输出列表，一共有两列，代表两个输出类别，显示每个类别的概率。它们都是实际的预测结果。这两个类别我们不妨简称为类别<code>0</code>和类别<code>1</code>.</p><p>我们再仔细看一下，对于测试集中的第一个样本，模型分配<code>74%</code>的可能性给类别<code>0</code>,只有<code>26%</code>的概率分配给类别<code>1</code>。</p><p>第二个样本向我们展示了模型分配<code>85%</code>的概率给类别<code>1</code>和<code>15%</code>概率给类别<code>0</code>，每个测试样本的输出都可以这样解读。</p><p>这就是关于神经网络在Keras框架下做预测的方法，希望你能够对神经网络如何做预测有了一定了解。下篇文章再见！</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;用神经网络做预测&quot;&gt;&lt;a href=&quot;#用神经网络做预测&quot; class=&quot;headerlink&quot; title=&quot;用神经网络做预测&quot;&gt;&lt;/a&gt;用神经网络做预测&lt;/h4&gt;&lt;p&gt;在这篇文章中，我们将讨论使用人工神经网络进行预测的含义，以及如何使用Keras框架写出模型预测的代码。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="ANNs" scheme="http://yoursite.com/tags/ANNs/"/>
+    
+      <category term="人工神经网络" scheme="http://yoursite.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+      <category term="fine-tune" scheme="http://yoursite.com/tags/fine-tune/"/>
+    
+      <category term="微调" scheme="http://yoursite.com/tags/%E5%BE%AE%E8%B0%83/"/>
+    
+      <category term="transfer learning" scheme="http://yoursite.com/tags/transfer-learning/"/>
+    
+      <category term="迁移学习" scheme="http://yoursite.com/tags/%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>机器学习中的数据增强(data augmentation)技术</title>
+    <link href="http://yoursite.com/2019/02/22/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA-data-augmentation-%E6%8A%80%E6%9C%AF/"/>
+    <id>http://yoursite.com/2019/02/22/机器学习中的数据增强-data-augmentation-技术/</id>
+    <published>2019-02-22T13:09:08.000Z</published>
+    <updated>2019-02-22T13:21:29.477Z</updated>
+    
+    <content type="html"><![CDATA[<p>在这篇文章中，我们会<em>数据增强</em>技术以及它的实现方式。</p><p>当我们通过修改现有数据的方式创建新数据时，我们称之为数据增强。我们实际上是通过对训练集中的数据进行合理修改来创建新的增强数据。</p><a id="more"></a><blockquote><p>数据增强是通过修改现有数据的方式创建新数据。</p></blockquote><p>例如，我们可以通过水平或垂直翻转图像来增强图像数据。这包括图像的旋转，放大或缩小，裁剪，甚至改变图像的颜色。所有这些都是常见的数据增强技术。</p><ul><li>水平翻转</li><li>垂直翻转</li><li>轴心旋转</li><li>放大</li><li>缩小</li><li>裁剪</li><li>颜色变化</li></ul><p>我们为什么要这样做呢？使用数据增强技术的意义在哪里？</p><h3><span id="为什么要使用数据增强">为什么要使用数据增强？</span></h3><p>原因或许很简单，我们可能只是想要或者试验需要我们在训练集中添加更多数据。例如，在一些情况下我们的训练集中样本数量偏少，并且很难获得更多新样本。这种情况下，我们可以使用数据增强从现有数据集创建新数据，以创建更多样本。</p><h4><span id="减少过度拟合">减少过度拟合</span></h4><p>此外，我们也可以使用数据增强来减少过度拟合。大家可以回顾一下我们在之前文章中提到了<a href="https://blog.yiyouls.com/2019/01/27/%E4%BB%80%E4%B9%88%E6%98%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E8%BF%87%E5%BA%A6%E6%8B%9F%E5%90%88-overfitting/" target="_blank" rel="noopener">过度拟合的概念</a> 。</p><p>如果我们的模型过度拟合，可以通过向训练集添加更多数据这种技术来减少过度拟合。就像我们前面提到的原因，如果我们无法搜集更多的数据，我们可以使用数据增强轻松创建更多数据。</p><p>此外，关于过度拟合的另外一点，假设我们有一个全是狗的图像的数据集，但这个数据集的特点是大多数狗面向右边。</p><p>如果对这些图像进行模型训练，那么认为模型会认为只有这些面向右面的狗的图像才是合理的。当我们在真实世界中运用这个模型或者用它来预测测试图像时，那些面向左边的狗很可能不会被正确分类。</p><p>在这个背景下，可以通过合理修改面向右侧的狗的图像来增加面向左侧的狗的图像，我们可以通过水平翻转原始图像来生成新图像。</p><p>但是，一些特定的数据增强技术可能不适合在给定的数据集上使用。依然是狗的例子，如果说水平翻转狗的图像是有道理的，然而，通过垂直翻转来修改狗的图像不一定是合理的。因为在真实世界中，我们不太可能看到这样将头部倒置的狗的图像。</p><p>希望你现在能够了解数据增强是什么以及使用它的意义在哪里。如果想要知道如何使用Keras在代码中实现数据增强，精确关注我们的Keras系列教程。在该系列中，我们将展示如何通过旋转图像，改变宽度和高度，缩放，改变颜色以及水平翻转图像，从单个狗的原始图像制作出１０个增强图像。</p><p>我们下篇文章再见！</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在这篇文章中，我们会&lt;em&gt;数据增强&lt;/em&gt;技术以及它的实现方式。&lt;/p&gt;
+&lt;p&gt;当我们通过修改现有数据的方式创建新数据时，我们称之为数据增强。我们实际上是通过对训练集中的数据进行合理修改来创建新的增强数据。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="ANNs" scheme="http://yoursite.com/tags/ANNs/"/>
+    
+      <category term="人工神经网络" scheme="http://yoursite.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+      <category term="data augmentation" scheme="http://yoursite.com/tags/data-augmentation/"/>
+    
+      <category term="数据增强" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA/"/>
+    
+  </entry>
   
   <entry>
     <title>人工神经网络如何进行微调(fine-tuning)</title>
@@ -516,31 +615,6 @@
       <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
     
       <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>什么是机器学习(Machine Learning)？</title>
-    <link href="http://yoursite.com/2019/01/16/No%201%20%E4%BB%80%E4%B9%88%E6%98%AF%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    <id>http://yoursite.com/2019/01/16/No 1 什么是机器学习/</id>
-    <published>2019-01-16T13:00:28.000Z</published>
-    <updated>2019-01-27T03:49:35.933Z</updated>
-    
-    <content type="html"><![CDATA[<p>机器学习与深度学习基础教程－从零开始</p><p>本系列教程是为初学者定制，涵盖并解释了深度学习和人工神经网络的基本概念</p><a id="more"></a><p><img src="http://cdn.yiyouls.com/cover_1.jpg" alt="cover_1"></p><!-- toc --><ul><li><a href="#什么是机器学习">什么是机器学习？</a><ul><li><a href="#初识深度学习与人工神经网络">初识深度学习与人工神经网络</a></li><li><a href="#什么是机器学习-1">什么是机器学习？</a></li><li><a href="#机器学习-vs-传统编程">机器学习　v.s.　传统编程</a></li><li><a href="#更进一步深度学习">更进一步：深度学习</a></li></ul></li></ul><!-- tocstop --><p><img src="http://cdn.yiyouls.com/image_1.png" alt="image_1"></p><h2><span id="什么是机器学习">什么是机器学习？</span></h2><h3><span id="初识深度学习与人工神经网络">初识深度学习与人工神经网络</span></h3><p>本系列教程是为初学者定制，涵盖并解释了深度学习和人工神经网络的基本概念。</p><p>除了讲清基本概念，我们还展示了如何使用Keras（一种用Python编写的神经网络API）在代码中实现这些概念。 我们将学习人工神经网络中的层(layer)的概念，以及激活函数(activation function)，反向传播(backpropagation)，卷积神经网络（CNN），数据增强(data augmentation)，转移学习等概念。</p><p>我们通过讨论不同的术语，认识并理解它们的含义，搞清楚它们是如何适应整个深度学习框架的。 在某些章节里，我们会教大家如何在代码中实现一些课题。</p><p>我们会用Python编写的Keras神经网络API来进行演示，展示这些基本课题的技术实现。</p><p><img src="http://cdn.yiyouls.com/keras.png" alt="keras logo"></p><p>本网站有一个单独的系列专门介绍如何使用Keras，给大家作为重要参考。 Keras系列中的许多内容都假定你已经对本系列中将要讨论的深度学习知识有了基本的了解，请先浏览这个基础教程。</p><p>如果你想研究我们在本系列中所做的代码实现，可以转到Keras系列教程中了解Keras的预备知识，掌握这些先决知识，以便更好地使用Keras。</p><h3><span id="什么是机器学习">什么是机器学习？</span></h3><p>让我们从最基础的讲起。</p><p>深度学习是我们课程的核心概念，我们需要从基础着手更深入地认识它的含义。 在了解深度学习之前，我们首先要了解什么是机器学习。</p><blockquote><p>机器学习是使用算法分析数据，从该数据中学习，然后对新数据进行确定或预测的实践。</p></blockquote><p>这个概念听起来好像跟我们平常用写的代码差不多，似乎也是下面的路数：</p><ol><li>设计一个算法</li><li>机器在一个特定的数据集上执行这个算法</li><li>然后机器就可以在从未见过的新数据上再次执行这个任务</li></ol><p>都是给计算机下指令，那机器学习和我们平常写的逻辑算法区别在哪里呢？</p><p>根据我们刚刚给出的机器学习定义，重心是在＂从数据中学习＂这个部分．</p><blockquote><p>learn from data</p></blockquote><p>通过机器学习，而不是手动编写具有特定指令集的代码来完成特定任务，机器使用数据和算法进行训练，使其能够自主执行任务而无需明确告知如何执行任务。</p><p>现在这可能听起来像天方夜谭，但我们会在后面的文章中看到它是如何一步步实现的。 为了区别使用机器学习和传统编程来完成一项工作，我们看下面的示例。</p><p><img src="http://cdn.yiyouls.com/robot.jpg" alt="toy robot with a winder on its head and gears for ears (/home/scott/Documents/blog/source/_posts/robot%20machine.jpg)"></p><h3><span id="机器学习-vs-传统编程">机器学习　v.s.　传统编程</span></h3><p>示例：分析一个大众社交平台的评论，把这些评论分类为正面或负面情绪。</p><p><strong>传统的编程方法</strong><br>该算法可以首先查找与负面或正面情绪相关联的特定单词。</p><p>使用条件语句，算法会基于所查找到的正面或负面单词数目比例，将文章分类为正面或负面评价。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//伪代码</span></span><br><span class="line">let positive = [</span><br><span class="line">    <span class="string">"happy"</span>, </span><br><span class="line">    <span class="string">"thankful"</span>, </span><br><span class="line">    <span class="string">"amazing"</span></span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">let negative = [</span><br><span class="line">    <span class="string">"can't"</span>, </span><br><span class="line">    <span class="string">"won't"</span>, </span><br><span class="line">    <span class="string">"sorry"</span>, </span><br><span class="line">    <span class="string">"unfortunately"</span></span><br><span class="line">];</span><br></pre></td></tr></table></figure><p>这些词汇的选择是程序员任意指定的。 一旦我们得到正面和负面单词的列表，一个简单的算法就是简单地计算给定文章中每种类型单词的出现次数。 然后，基于正例或负例那种次数更多，可以将文章分类为正向或负向。</p><p><strong>机器学习方法</strong><br>该算法分析给定的媒体数据并学习能够将负面文章与正面文章分类的特征。</p><p>通过学到的知识，算法可以将新文章分类为正面或负面。 在这种情况下，设计机器学习程序不需要明确指定需要算法识别的单词。 相反，该算法将通过检验每篇文章的标签来“学习”某些单词是正面还是负面。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//伪代码</span></span><br><span class="line">let articles = [</span><br><span class="line">    &#123;</span><br><span class="line">        label: <span class="string">"positive"</span>,</span><br><span class="line">        data: <span class="string">"The lizard movie was great! I really liked..."</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        label: <span class="string">"positive"</span>,</span><br><span class="line">        data: <span class="string">"Awesome lizards! The color green is my fav..."</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        label: <span class="string">"negative"</span>,</span><br><span class="line">        data: <span class="string">"Total disaster! I never liked..."</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        label: <span class="string">"negative"</span>,</span><br><span class="line">        data: <span class="string">"Worst movie of all time!..."</span></span><br><span class="line">    &#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure><h3><span id="更进一步深度学习">更进一步：深度学习</span></h3><p>在我们大概了解机器学习之后，就能够在此基础上认识深度学习。 深度学习是一种可用于实现机器学习的工具或技术。 下一节我们将详细介绍深入学习，敬请期待。 希望我们的文章可以帮到你！</p><span class="highlight-text purple">公众微信：友邻学社关注获取更多内容</span><p><img src="http://cdn.yiyouls.com/qrcode.jpg" alt=""></p><div class="alert success"><p>You made it! keep up the good work ^_^</p></div>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;机器学习与深度学习基础教程－从零开始&lt;/p&gt;
-&lt;p&gt;本系列教程是为初学者定制，涵盖并解释了深度学习和人工神经网络的基本概念&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
-    
-      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
