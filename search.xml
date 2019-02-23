@@ -4,6 +4,39 @@
   
     
     <entry>
+      <title>机器学习中的半监督学习(semi-supervised learning)</title>
+      <link href="/2019/02/23/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0-semi-supervised-learning/"/>
+      <url>/2019/02/23/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0-semi-supervised-learning/</url>
+      
+        <content type="html"><![CDATA[<p>这篇文章我们了解<em>半监督学习</em>的概念 。</p><p>半监督学习在监督学习和无监督学习之间占据中间地位。</p><p>回顾以前学过的内容， <a href="http://yiyouls.com/2019/02/22/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0-supervised-learning/" target="_blank" rel="noopener">监督学习</a>是在训练中模型从被标记的数据集中学习。 <a href="https://yiyouls.com/2019/02/23/%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0-unsupervised-learning/" target="_blank" rel="noopener">无监督学习</a>是从未被标记的数据中学习。那半监督学习又是怎样的呢？</p><p><em>半监督学习</em>将有监督和无监督学习技术结合起来，在我们使用半监督学习的情况下，我们会同时使用<em>标记</em>和<em>未标记的</em> 数据。</p><a id="more"></a><p>让我们通过一个例子来深入理解这个概念。</p><h4><span id="大规模未标记数据集">大规模未标记数据集</span></h4><p>假设我们有大量用来训练模型的未标记数据集，手动标记所有这些数据是不现实的。</p><p>但是我们可以手动标记这个大型数据集的某些部分，并使用该部分来训练模型。</p><p><img src="http://cdn.yiyouls.com/cluster-3-groups.png" alt=""></p><p>实际上，这是大部分情况下神经网络标记大规模数据方式。不过，既然我们已经搜集到了大量数据，但只标记了这些数据的一小部分，那么将所有其他未标记数据扔掉就会很浪费。</p><p>毕竟，训练模型的数据越多，模型就会变得越好，越强大。我们可以想办法利用数据集中剩余的未标记数据．</p><p>我们可以使用一种属于半监督学习的技术，称为<em>伪标签(pseudo-labeling)</em>。</p><h4><span id="伪标记">伪标记</span></h4><p>下面是伪标签标记的原理。首先我们已经标记了数据集的某些部分，使用这些标记数据作为模型的训练集训练模型，这个环节跟之前所讲过的监督学习方法一样。</p><p>通过正常的训练过程使模型的性能表现良好，我们到目前为止所做的一切都是监督学习的一般方法。</p><p>然后无监督学习开始发挥作用。在数据集的标记部分训练结束之后，使用训练好的模型来预测剩余的未标记部分的数据，然后我们采纳这些预测并给这些无标签的数据做标记。</p><p>用我们的神经网络预测的输出标记未标记数据的过程就是伪标记技术的本质。</p><p>在通过伪标记方法标记未标记数据之后，我们在完整数据集上训练模型，包括真实标记的数据以及伪标记的数据。</p><blockquote><p>伪标记允许我们在更大的数据集上进行训练。</p></blockquote><p>否则这些数据可能会花费很多繁琐的人工时间来手动标记。</p><p>我们可以想象，有时获取或生成完全标记数据集的成本太高，或者为所有数据打标签本身的是不可行的。</p><p>通过这个过程，我们可以了解到半监督学习方法是如何利用监督学习下的标记数据以及无监督学习下的未标记数据的，这些数据共同组成了半监督学习的数据来源。</p><p>希望大家现在能够了解半监督学习的内涵，以及如何通过伪标签的技术实施半监督学习。我们下篇文章再见！</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 深度学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 深度学习 </tag>
+            
+            <tag> ANNs </tag>
+            
+            <tag> 人工神经网络 </tag>
+            
+            <tag> semi-supervised learning </tag>
+            
+            <tag> 半监督学习 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>无监督学习(unsupervised learning)</title>
       <link href="/2019/02/23/%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0-unsupervised-learning/"/>
       <url>/2019/02/23/%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0-unsupervised-learning/</url>
