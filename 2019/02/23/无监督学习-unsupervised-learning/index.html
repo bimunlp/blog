@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Deep Learning">
-    <title>分类: 深度学习 - Deep Learning</title>
+    <title>无监督学习(unsupervised learning) - Deep Learning</title>
     <meta name="author" content="友邻君">
     
         <meta name="keywords" content="deep learning,neural network,mechine learning,ANN,AI,深度学习,机器学习,">
@@ -17,18 +17,24 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{}</script>
-    <meta name="description" content="人工智能领域前沿">
-<meta name="keywords" content="deep learning,neural network,mechine learning,ANN,AI,深度学习,机器学习">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"articleBody":"机器学习中的无监督学习这篇文章讨论无监督学习的概念 。在上篇关于监督学习的文章中，我们说监督学习使用的是有标记的数据，这是监督学习和无监督学习的显著差别．\n\n未标记的数据(unlabeled data)与监督学习相对，当训练集中的数据未被标记时，这时候所进行的就是无监督学习 。\n\n使用未标记的数据进行无监督学习。\n\n在无监督学习的情况下，在训练期间传递给模型的每个数据都只是一个未标记的输入对象(样本)。没有与样本配对的相应标签。\n\n嗯…但如果数据没有标注，那么模型是如何学习的？如何评估模型的表现？\n嗯，首先，我们必须面对这样一个事实，即在无监督学习的情况下，由于模型不知道训练数据的真实标签，因此无法对预测准确性做度量。准确性通常不是我们用于分析无监督学习过程的度量标准。\n一般情况下，在无监督学习中模型被赋予一个未标记的数据集，并尝试从数据中学习某种结构(structure)的类型，并从该数据中提取有用的信息或特征。\n它被用来学习如何在没有任何标签的情况下了解这些数据的结构来创建从给定输入到特定输出的映射。\n无监督学习的例子让我们通过一些例子来说明这一点。\n聚类算法无监督学习的最流行应用之一是聚类算法。继续使用我们之前在监督学习的文章中使用过的例子 ，假设我们有特定年龄组男性和女性的身高和体重数据。\n与上次情况不同的是，这次我们没有这些数据的标签，数据集的每个样本只是一个由身高和体重组成的数据对。没有相应的标签能够告诉我们这个人是男性还是女性。\n现在， 聚类算法可以分析这些数据，学习它的结构，即便是在没有标记的情况下。通过对结构的学习，模型能够将数据分组。\n我们可以试着对这些数据作一个直观的图示，用ｘ轴表示体重，ｙ轴表示高度，可以得到类似下面的图表．\n\n虽然我们不知道这些数据的标签，但是我们可以从图表中看出这里有两个非常明显的聚类，我们推断出这种聚类可能是由男性和女性的个体差别引起的。\n我们还可以推测其中一个聚类的主要成员是女性，另一个聚类的主要成员是男性，因此聚类是无监督学习发挥作用的一个重要领域。让我们再看看另一个例子。\n自动编码器(autoencoder)自动编码器使用的也是无监督学习 。\n在一般的话语体系中自动编码器被当作一种人工神经网络，它接收输入，重构该输入并输出结果。\n根据我们所学过的关于神经网络的知识，这个应用听起来很陌生，让我们用一个例子进一步解释。\n\n我们这里用的示例是由Keras的作者FrançoisChollet在他的博客中写过的，Keras是我们在以往文章中用过很多次的神经网络API。\n假设有一组手写数字的图像，将它们传递给自动编码器。听起来很高大上，但是你要知道自动编码器不过是一个神经网络。\n该神经网络接收该数字的图像，然后对图像进行编码(encode)。最后在网络的末端解码(decode)图像并输出原始图像解码后的重建版。\n这个神经网络的目标是使重建图像尽可能接近原始图像。\n\n你可能会问一个重建过程中的技术问题：我们怎样才能测量这个自动编码器在重建原始图像时的表现，除了简单的肉眼观察？\n我们可以将自动编码器的损失函数想象为测量图像的重建版本与原始版本的相似程度。重建图像与原始图像越相似，损失越低。\n由于这毕竟是一个人工神经网络，我们仍然会在训练期间使用SGD技术的一些变体，仍然会有最小化损失函数的目标。在训练中对模型进行激励，使重建的图像越来越接近原件。\n自动编码器的应用我们现在对自动编码器的基本概念有了一定了解，那这种人工神经网络能够应用到哪里？对输入进行重建的意义是什么？\n自动编码器的用处之一就是图像去噪。当模型被训练好之后，可以向模型传递噪音过大的相似图像，它将能够提取潜在的有意义的特征并重建一个去除噪音的图像。\n我们现在应该已经能够理解无监督学习的概念，并且了解一些相关应用例如聚类算法和自动编码器。我们下篇文章再见！\n","dateCreated":"2019-02-23T19:36:23+08:00","dateModified":"2019-02-23T19:43:08+08:00","datePublished":"2019-02-23T19:36:23+08:00","description":"机器学习中的无监督学习这篇文章讨论无监督学习的概念 。在上篇关于监督学习的文章中，我们说监督学习使用的是有标记的数据，这是监督学习和无监督学习的显著差别．","headline":"无监督学习(unsupervised learning)","image":["http://cdn.yiyouls.com/unsupervised-learning.png","http://cdn.yiyouls.com/ai.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2019/02/23/无监督学习-unsupervised-learning/"},"publisher":{"@type":"Organization","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png","logo":{"@type":"ImageObject","url":"http://cdn.yiyouls.com/profile.png"}},"url":"http://yoursite.com/2019/02/23/无监督学习-unsupervised-learning/","keywords":"深度学习, ANNs, 人工神经网络, 无监督学习, unsupervised learning","thumbnailUrl":"http://cdn.yiyouls.com/unsupervised-learning.png"}</script>
+    <meta name="description" content="机器学习中的无监督学习这篇文章讨论无监督学习的概念 。在上篇关于监督学习的文章中，我们说监督学习使用的是有标记的数据，这是监督学习和无监督学习的显著差别．">
+<meta name="keywords" content="深度学习,ANNs,人工神经网络,无监督学习,unsupervised learning">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Deep Learning">
-<meta property="og:url" content="http://yoursite.com/categories/深度学习/index.html">
+<meta property="og:title" content="无监督学习(unsupervised learning)">
+<meta property="og:url" content="http://yoursite.com/2019/02/23/无监督学习-unsupervised-learning/index.html">
 <meta property="og:site_name" content="Deep Learning">
-<meta property="og:description" content="人工智能领域前沿">
+<meta property="og:description" content="机器学习中的无监督学习这篇文章讨论无监督学习的概念 。在上篇关于监督学习的文章中，我们说监督学习使用的是有标记的数据，这是监督学习和无监督学习的显著差别．">
 <meta property="og:locale" content="zh-cn">
+<meta property="og:image" content="http://cdn.yiyouls.com/thinking2.gif">
+<meta property="og:image" content="http://cdn.yiyouls.com/cluster-2-groups.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/autoencoder.jpg">
+<meta property="og:image" content="http://cdn.yiyouls.com/mnist-dataset.png">
+<meta property="og:updated_time" content="2019-02-23T11:43:08.522Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Deep Learning">
-<meta name="twitter:description" content="人工智能领域前沿">
+<meta name="twitter:title" content="无监督学习(unsupervised learning)">
+<meta name="twitter:description" content="机器学习中的无监督学习这篇文章讨论无监督学习的概念 。在上篇关于监督学习的文章中，我们说监督学习使用的是有标记的数据，这是监督学习和无监督学习的显著差别．">
+<meta name="twitter:image" content="http://cdn.yiyouls.com/thinking2.gif">
 <meta name="twitter:creator" content="@hanhaishiyi">
     
         <link rel="publisher" href="https://plus.google.com/108244569432480563366"/>
@@ -40,6 +46,12 @@
         <meta property="og:image" content="http://cdn.yiyouls.com/profile.png"/>
     
     
+        <meta property="og:image" content="http://cdn.yiyouls.com/unsupervised-learning.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://cdn.yiyouls.com/unsupervised-learning.png" />
+    
+    
+        <meta property="og:image" content="http://cdn.yiyouls.com/ai.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://cdn.yiyouls.com/ai.jpg" />
     
     
     <!--STYLES-->
@@ -61,7 +73,7 @@
         
     
 
-<header id="header" data-behavior="1">
+<header id="header" data-behavior="4">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
         <a class="header-title-link" href="/ ">Deep Learning</a>
@@ -84,7 +96,7 @@
         
     
 
-<nav id="sidebar" data-behavior="1">
+<nav id="sidebar" data-behavior="4">
     <div class="sidebar-container">
         
             <div class="sidebar-profile">
@@ -268,26 +280,30 @@
 </nav>
 
             
-            <div id="main" data-behavior="1"
-                 class="
-                        hasCoverMetaIn
-                        ">
-                
-    <section class="postShorten-group main-content-wrap">
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-right">
-        <div class="postShorten-wrap">
+        <div class="post-header-cover
+                    text-center
+                    " style="background-image:url('http://cdn.yiyouls.com/ai.jpg');" data-behavior="4">
             
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a class="link-unstyled" href="/2019/02/23/无监督学习-unsupervised-learning/">
-                            无监督学习(unsupervised learning)
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
+        </div>
+
+            <div id="main" data-behavior="4"
+                 class="hasCover
+                        hasCoverMetaOut
+                        hasCoverCaption">
+                
+<article class="post">
+    
+        <span class="post-header-cover-caption caption">无监督学习更能体现人工智能之意</span>
+    
+    
+        <div class="post-header main-content-wrap text-center">
+    
+        <h1 class="post-title">
+            无监督学习(unsupervised learning)
+        </h1>
+    
+    
+        <div class="post-meta">
     <time datetime="2019-02-23T19:36:23+08:00">
 	
 		    2月 23, 2019
@@ -302,503 +318,178 @@
     
 </div>
 
-            </div>
-            
-                <div class="postShorten-excerpt">
-                    <h3 id="机器学习中的无监督学习"><a href="#机器学习中的无监督学习" class="headerlink" title="机器学习中的无监督学习"></a>机器学习中的无监督学习</h3><p>这篇文章讨论<em>无监督学习</em>的概念 。在上篇关于<a href="http://yiyouls.com/2019/02/22/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0-supervised-learning/" target="_blank" rel="noopener">监督学习</a>的文章中，我们说监督学习使用的是有标记的数据，这是监督学习和无监督学习的显著差别．</p>
-                    
-                        <a href="/2019/02/23/无监督学习-unsupervised-learning/" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a href="/2019/02/23/无监督学习-unsupervised-learning/">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src="http://cdn.yiyouls.com/unsupervised-learning.png">
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-right">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a class="link-unstyled" href="/2019/02/22/监督学习-supervised-learning/">
-                            监督学习(supervised learning)
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2019-02-22T21:26:39+08:00">
-	
-		    2月 22, 2019
-    	
-    </time>
-    
-        <span>发布在 </span>
-        
-    <a class="category-link" href="/categories/深度学习/">深度学习</a>
-
-
     
 </div>
 
-            </div>
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <h3><span id="机器学习中的无监督学习">机器学习中的无监督学习</span></h3><p>这篇文章讨论<em>无监督学习</em>的概念 。在上篇关于<a href="http://yiyouls.com/2019/02/22/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0-supervised-learning/" target="_blank" rel="noopener">监督学习</a>的文章中，我们说监督学习使用的是有标记的数据，这是监督学习和无监督学习的显著差别．</p>
+<a id="more"></a>
+<h4><span id="未标记的数据unlabeled-data">未标记的数据(unlabeled data)</span></h4><p>与监督学习相对，当训练集中的数据<em>未被标记</em>时，这时候所进行的就是无监督学习 。</p>
+<blockquote>
+<p>使用未标记的数据进行无监督学习。</p>
+</blockquote>
+<p>在无监督学习的情况下，在训练期间传递给模型的每个数据都只是一个未标记的输入对象(样本)。没有与样本配对的相应标签。</p>
+<p><img src="http://cdn.yiyouls.com/thinking2.gif" alt=""></p>
+<p>嗯…但如果数据没有标注，那么模型是如何学习的？如何评估模型的表现？</p>
+<p>嗯，首先，我们必须面对这样一个事实，即在无监督学习的情况下，由于模型不知道训练数据的真实标签，因此无法对预测准确性做度量。准确性通常不是我们用于分析无监督学习过程的度量标准。</p>
+<p>一般情况下，在无监督学习中模型被赋予一个未标记的数据集，并尝试从数据中学习某种<em>结构(structure)</em>的类型，并从该数据中提取有用的信息或特征。</p>
+<p>它被用来学习如何在没有任何标签的情况下了解这些数据的结构来创建从给定输入到特定输出的映射。</p>
+<h3><span id="无监督学习的例子">无监督学习的例子</span></h3><p>让我们通过一些例子来说明这一点。</p>
+<h4><span id="聚类算法">聚类算法</span></h4><p>无监督学习的最流行应用之一是<em>聚类算法</em>。继续使用我们之前在监督学习的文章中使用过的例子 ，假设我们有特定年龄组<em>男性</em>和<em>女性</em>的<em>身高</em>和<em>体重</em>数据。</p>
+<p>与上次情况不同的是，这次我们没有这些数据的标签，数据集的每个样本只是一个由身高和体重组成的数据对。没有相应的标签能够告诉我们这个人是男性还是女性。</p>
+<p>现在， <a href="https://en.wikipedia.org/wiki/Cluster_analysis" target="_blank" rel="noopener">聚类算法</a>可以分析这些数据，学习它的结构，即便是在没有标记的情况下。通过对结构的学习，模型能够将数据分组。</p>
+<p>我们可以试着对这些数据作一个直观的图示，用ｘ轴表示体重，ｙ轴表示高度，可以得到类似下面的图表．</p>
+<p><img src="http://cdn.yiyouls.com/cluster-2-groups.png" alt=""></p>
+<p>虽然我们不知道这些数据的标签，但是我们可以从图表中看出这里有两个非常明显的聚类，我们推断出这种聚类可能是由男性和女性的个体差别引起的。</p>
+<p>我们还可以推测其中一个聚类的主要成员是女性，另一个聚类的主要成员是男性，因此聚类是无监督学习发挥作用的一个重要领域。让我们再看看另一个例子。</p>
+<h4><span id="自动编码器autoencoder">自动编码器(autoencoder)</span></h4><p>自动编码器使用的也是无监督学习 。</p>
+<p>在一般的话语体系中自动编码器被当作一种人工神经网络，它接收输入，重构该输入并输出结果。</p>
+<p>根据我们所学过的关于神经网络的知识，这个应用听起来很陌生，让我们用一个例子进一步解释。</p>
+<p><img src="http://cdn.yiyouls.com/autoencoder.jpg" alt=""></p>
+<p>我们这里用的示例是由<a href="https://twitter.com/fchollet" target="_blank" rel="noopener">Keras</a>的作者<a href="https://twitter.com/fchollet" target="_blank" rel="noopener">FrançoisChollet</a>在他的<a href="https://blog.keras.io/building-autoencoders-in-keras.html" target="_blank" rel="noopener">博客</a>中写过的，Keras是我们在以往文章中用过很多次的神经网络API。</p>
+<p>假设有一组手写数字的图像，将它们传递给自动编码器。听起来很高大上，但是你要知道自动编码器不过是一个神经网络。</p>
+<p>该神经网络接收该数字的图像，然后对图像<em>进行编码(encode)</em>。最后在网络的末端<em>解码(decode)</em>图像并输出原始图像解码后的重建版。</p>
+<p>这个神经网络的目标是使重建图像尽可能接近原始图像。</p>
+<p><img src="http://cdn.yiyouls.com/mnist-dataset.png" alt=""></p>
+<p>你可能会问一个重建过程中的技术问题：我们怎样才能测量这个自动编码器在重建原始图像时的表现，除了简单的肉眼观察？</p>
+<p>我们可以将自动编码器的损失函数想象为测量图像的重建版本与原始版本的相似程度。重建图像与原始图像越相似，损失越低。</p>
+<p>由于这毕竟是一个人工神经网络，我们仍然会在训练期间使用SGD技术的一些变体，仍然会有最小化损失函数的目标。在训练中对模型进行激励，使重建的图像越来越接近原件。</p>
+<h4><span id="自动编码器的应用">自动编码器的应用</span></h4><p>我们现在对自动编码器的基本概念有了一定了解，那这种人工神经网络能够应用到哪里？对输入进行重建的意义是什么？</p>
+<p>自动编码器的用处之一就是图像去噪。当模型被训练好之后，可以向模型传递噪音过大的相似图像，它将能够提取潜在的有意义的特征并重建一个去除噪音的图像。</p>
+<p>我们现在应该已经能够理解无监督学习的概念，并且了解一些相关应用例如聚类算法和自动编码器。我们下篇文章再见！</p>
+
             
-                <div class="postShorten-excerpt">
-                    <h3 id="有监督的机器学习"><a href="#有监督的机器学习" class="headerlink" title="有监督的机器学习"></a>有监督的机器学习</h3><p>这篇文章中讨论有监督学习。到目前为止，在本系列中，每当我们提到模型训练过程或模型经历的学习过程时，我们实际上所指的都是有监督的学习。</p>
-                    
-                        <a href="/2019/02/22/监督学习-supervised-learning/" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
+
         </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
         
-            <a href="/2019/02/22/监督学习-supervised-learning/">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src="http://cdn.yiyouls.com/supervise.png">
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-right">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a class="link-unstyled" href="/2019/02/22/人工神经网络是如何进行预测-prediction-的/">
-                            人工神经网络是如何进行预测(prediction)的?
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2019-02-22T21:23:30+08:00">
-	
-		    2月 22, 2019
-    	
-    </time>
-    
-        <span>发布在 </span>
-        
-    <a class="category-link" href="/categories/深度学习/">深度学习</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt">
-                    <h4 id="用神经网络做预测"><a href="#用神经网络做预测" class="headerlink" title="用神经网络做预测"></a>用神经网络做预测</h4><p>在这篇文章中，我们将讨论使用人工神经网络进行预测的含义，以及如何使用Keras框架写出模型预测的代码。</p>
-                    
-                        <a href="/2019/02/22/人工神经网络是如何进行预测-prediction-的/" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a href="/2019/02/22/人工神经网络是如何进行预测-prediction-的/">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src="http://cdn.yiyouls.com/prediction.png">
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-right">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a class="link-unstyled" href="/2019/02/22/机器学习中的数据增强-data-augmentation-技术/">
-                            机器学习中的数据增强(data augmentation)技术
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2019-02-22T21:09:08+08:00">
-	
-		    2月 22, 2019
-    	
-    </time>
-    
-        <span>发布在 </span>
-        
-    <a class="category-link" href="/categories/深度学习/">深度学习</a>
-
-
-    
-</div>
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">标签</span><br>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/ANNs/">ANNs</a> <a class="tag tag--primary tag--small t-link" href="/tags/unsupervised-learning/">unsupervised learning</a> <a class="tag tag--primary tag--small t-link" href="/tags/人工神经网络/">人工神经网络</a> <a class="tag tag--primary tag--small t-link" href="/tags/无监督学习/">无监督学习</a> <a class="tag tag--primary tag--small t-link" href="/tags/深度学习/">深度学习</a>
 
             </div>
-            
-                <div class="postShorten-excerpt">
-                    <p>在这篇文章中，我们会<em>数据增强</em>技术以及它的实现方式。</p>
-<p>当我们通过修改现有数据的方式创建新数据时，我们称之为数据增强。我们实际上是通过对训练集中的数据进行合理修改来创建新的增强数据。</p>
-                    
-                        <a href="/2019/02/22/机器学习中的数据增强-data-augmentation-技术/" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
         
-            <a href="/2019/02/22/机器学习中的数据增强-data-augmentation-技术/">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src="http://cdn.yiyouls.com/augment.png">
-                </div>
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/02/22/监督学习-supervised-learning/" data-tooltip="监督学习(supervised learning)" aria-label="下一篇: 监督学习(supervised learning)">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/02/23/无监督学习-unsupervised-learning/" title="分享到 Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2019/02/23/无监督学习-unsupervised-learning/" title="分享到 Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2019/02/23/无监督学习-unsupervised-learning/" title="分享到 Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2019/02/23/无监督学习-unsupervised-learning/" title="分享到 Weibo">
+                    <i class="fab fa-weibo" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/02/23/无监督学习-unsupervised-learning/&amp;title=无监督学习(unsupervised learning)" title="分享到 QQ">
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2019/02/23/无监督学习-unsupervised-learning/" title="分享到 Qzone">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yoursite.com/2019/02/23/无监督学习-unsupervised-learning/" title="分享到 Renren">
+                    <i class="fab fa-renren" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
             
         
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-right">
-        <div class="postShorten-wrap">
+        <li class="post-action">
             
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a class="link-unstyled" href="/2019/02/15/人工神经网络如何进行微调-fine-tuning/">
-                            人工神经网络如何进行微调(fine-tuning)
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2019-02-15T22:00:46+08:00">
-	
-		    2月 15, 2019
-    	
-    </time>
-    
-        <span>发布在 </span>
-        
-    <a class="category-link" href="/categories/深度学习/">深度学习</a>
-
-
-    
-</div>
-
-            </div>
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
             
-                <div class="postShorten-excerpt">
-                    <h4 id="微调神经网络"><a href="#微调神经网络" class="headerlink" title="微调神经网络"></a>微调神经网络</h4><p>这篇文章向大家解释什么是微调，以及在建立和训练模型的时候如何利用微调技术．</p>
-                    
-                        <a href="/2019/02/15/人工神经网络如何进行微调-fine-tuning/" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a href="/2019/02/15/人工神经网络如何进行微调-fine-tuning/">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src="http://cdn.yiyouls.com/transfer.png">
-                </div>
+                <i class="fa fa-list" aria-hidden="true"></i>
             </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-right">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a class="link-unstyled" href="/2019/02/15/人工神经网络中的批尺寸-batch-size/">
-                            人工神经网络中的批尺寸(batch size)详解
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2019-02-15T16:47:02+08:00">
-	
-		    2月 15, 2019
-    	
-    </time>
-    
-        <span>发布在 </span>
-        
-    <a class="category-link" href="/categories/深度学习/">深度学习</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt">
-                    <h4 id="人工神经网络中的批尺寸"><a href="#人工神经网络中的批尺寸" class="headerlink" title="人工神经网络中的批尺寸"></a>人工神经网络中的批尺寸</h4><p>这篇文章向大家介绍在训练人工神经网络的过程中指定批尺寸的意思是什么，以及如何在Keras中为模型定义一个批尺寸．</p>
-                    
-                        <a href="/2019/02/15/人工神经网络中的批尺寸-batch-size/" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a href="/2019/02/15/人工神经网络中的批尺寸-batch-size/">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src="http://cdn.yiyouls.com/batch.png">
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-right">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a class="link-unstyled" href="/2019/02/15/人工神经网络中的学习率-learning-rate/">
-                            人工神经网络中的学习率(learning rate)问题
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2019-02-15T16:46:23+08:00">
-	
-		    2月 15, 2019
-    	
-    </time>
-    
-        <span>发布在 </span>
-        
-    <a class="category-link" href="/categories/深度学习/">深度学习</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt">
-                    <h4 id="学习率与神经网络"><a href="#学习率与神经网络" class="headerlink" title="学习率与神经网络"></a>学习率与神经网络</h4><p>这篇文章介绍学习率的问题，向大家解释学习率在模型训练中的作用．</p>
-                    
-                        <a href="/2019/02/15/人工神经网络中的学习率-learning-rate/" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a href="/2019/02/15/人工神经网络中的学习率-learning-rate/">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src="http://cdn.yiyouls.com/step.png">
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-right">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a class="link-unstyled" href="/2019/02/14/人工神经网络中的正则化-regularization/">
-                            人工神经网络中的正则化(regularization)
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2019-02-14T20:37:45+08:00">
-	
-		    2月 14, 2019
-    	
-    </time>
-    
-        <span>发布在 </span>
-        
-    <a class="category-link" href="/categories/深度学习/">深度学习</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt">
-                    <p>这篇文章探讨什么是正则化，以及在神经网络中加入正则化的原因．</p>
-<p>在<a href="https://yiyouls.com/2019/01/27/%E4%BB%80%E4%B9%88%E6%98%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E8%BF%87%E5%BA%A6%E6%8B%9F%E5%90%88-overfitting/" target="_blank" rel="noopener">之前文章</a>中我们讲过过度拟合的问题，简单介绍过dropout的技术，它是正则化的一种．但是我们并没有详细说什么是正则化，这篇文章将会补充这一部分内容．</p>
-                    
-                        <a href="/2019/02/14/人工神经网络中的正则化-regularization/" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a href="/2019/02/14/人工神经网络中的正则化-regularization/">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src="http://cdn.yiyouls.com/regularization-nail.png">
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-right">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a class="link-unstyled" href="/2019/01/27/什么是神经网络模型欠拟合-underfitting/">
-                            什么是神经网络模型欠拟合(underfitting)?
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2019-01-27T21:13:42+08:00">
-	
-		    1月 27, 2019
-    	
-    </time>
-    
-        <span>发布在 </span>
-        
-    <a class="category-link" href="/categories/深度学习/">深度学习</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt">
-                    <h3 id="神经网络中的欠拟合-underfitting"><a href="#神经网络中的欠拟合-underfitting" class="headerlink" title="神经网络中的欠拟合(underfitting)"></a>神经网络中的欠拟合(underfitting)</h3><p>在这篇文章中，我们将讨论当模型被认为欠拟合意味着什么，并且介绍一些可以用来减少欠拟合的技术。</p>
-<p>在之前的文章中，我们将过度拟合定义为我们的模型能够对训练数据进行有效预测，但是准确预测以前从未见过的数据。</p>
-<p>欠拟合与之恰恰相反。欠拟合的模型甚至无法对它所训练的数据进行正确分类，更不用说它以前没见过的数据了。</p>
-                    
-                        <a href="/2019/01/27/什么是神经网络模型欠拟合-underfitting/" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a href="/2019/01/27/什么是神经网络模型欠拟合-underfitting/">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src="http://cdn.yiyouls.com/underfit.png">
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-right">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a class="link-unstyled" href="/2019/01/27/什么是神经网络模型过度拟合-overfitting/">
-                            什么是神经网络模型过度拟合(overfitting)?
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2019-01-27T20:30:11+08:00">
-	
-		    1月 27, 2019
-    	
-    </time>
-    
-        <span>发布在 </span>
-        
-    <a class="category-link" href="/categories/深度学习/">深度学习</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt">
-                    <p>神经网络中的过度拟合(overfitting)</p>
-<p>这篇文章我们介绍过度拟合的含义，以及一些减少过度拟合的技术．</p>
-<p>上篇文章中我们在讨论验证集的时候提到了过度拟合的概念，我们现在具体讨论一下它．</p>
-<p>当模型能够对训练集中包含的数据进行正确分类或预测，但是在对未经过训练的数据进行分类时效果不佳，就会发生过度拟合。这个时候该模型过度学习了训练集中的数据。</p>
-                    
-                        <a href="/2019/01/27/什么是神经网络模型过度拟合-overfitting/" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a href="/2019/01/27/什么是神经网络模型过度拟合-overfitting/">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src="http://cdn.yiyouls.com/overfit.png">
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    <div class="pagination-bar">
-    <ul class="pagination">
-        
-        
-          <li class="pagination-next">
-            <a class="btn btn--default btn--small" href="/categories/深度学习/page/2/">
-              <span>下一页</span>
-              <i class="fa fa-angle-right text-base icon-ml"></i>
-            </a>
-          </li>
-        
-        <li class="pagination-number">第 1 页 共 2 页</li>
+        </li>
     </ul>
 </div>
 
-</section>
 
+        
+        
+            
+                <div id="cyReward" role="cylabs" data-use="reward"></div>
+<div id="cyPoll" role="cylabs" data-use="poll"></div>
+<div id="cyEmoji" role="cylabs" data-use="emoji"></div>
+<div id="cyQing" role="cylabs" data-use="qing"></div>
+<div id="cyHotusers" role="cylabs" data-use="hotusers"></div>
+<div id="cyReping" role="cylabs" data-use="reping"></div>
+<div id="cyBarrage" role="cylabs" data-use="barrage"></div>
+<div id="SOHUCS" sid="无监督学习(unsupervised learning)"></div>
+
+
+            
+        
+    </div>
+</article>
 
 
                 <footer id="footer" class="main-content-wrap">
@@ -808,6 +499,173 @@
 </footer>
 
             </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/02/22/监督学习-supervised-learning/" data-tooltip="监督学习(supervised learning)" aria-label="下一篇: 监督学习(supervised learning)">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/02/23/无监督学习-unsupervised-learning/" title="分享到 Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2019/02/23/无监督学习-unsupervised-learning/" title="分享到 Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2019/02/23/无监督学习-unsupervised-learning/" title="分享到 Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2019/02/23/无监督学习-unsupervised-learning/" title="分享到 Weibo">
+                    <i class="fab fa-weibo" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/02/23/无监督学习-unsupervised-learning/&amp;title=无监督学习(unsupervised learning)" title="分享到 QQ">
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2019/02/23/无监督学习-unsupervised-learning/" title="分享到 Qzone">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yoursite.com/2019/02/23/无监督学习-unsupervised-learning/" title="分享到 Renren">
+                    <i class="fab fa-renren" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/02/23/无监督学习-unsupervised-learning/">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>分享到 Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2019/02/23/无监督学习-unsupervised-learning/">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2019/02/23/无监督学习-unsupervised-learning/">
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>分享到 Google+</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2019/02/23/无监督学习-unsupervised-learning/">
+                        <i class="fab fa-weibo" aria-hidden="true"></i><span>分享到 Weibo</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/02/23/无监督学习-unsupervised-learning/&amp;title=无监督学习(unsupervised learning)">
+                        <i class="fab fa-qq" aria-hidden="true"></i><span>分享到 QQ</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2019/02/23/无监督学习-unsupervised-learning/">
+                        <i class="fa fa-star" aria-hidden="true"></i><span>分享到 Qzone</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yoursite.com/2019/02/23/无监督学习-unsupervised-learning/">
+                        <i class="fab fa-renren" aria-hidden="true"></i><span>分享到 Renren</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
             
         </div>
         
@@ -1142,6 +1000,18 @@
         <!--SCRIPTS-->
 <script src="/assets/js/script-dbd16rvloemmuxdzniplmnxxvwoz24eya9wol0b7vvmlokgqsjivmb8dnscy.min.js"></script>
 <!--SCRIPTS END-->
+
+    
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cyu2tTq0X'; 
+var conf = 'prod_04b0d924b891393f35b9626442a6e448'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script> 
+<script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyu2tTq0X"></script>
+    
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment-with-locales.min.js"></script>
