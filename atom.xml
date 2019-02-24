@@ -18,8 +18,8 @@
   
   <entry>
     <title>机器学习中的半监督学习(semi-supervised learning)</title>
-    <link href="http://yiyouls.com/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0-semi-supervised-learning.html"/>
-    <id>http://yiyouls.com/机器学习中的半监督学习-semi-supervised-learning.html</id>
+    <link href="http://yiyouls.com/archives/5110.html"/>
+    <id>http://yiyouls.com/archives/5110.html</id>
     <published>2019-02-23T13:42:21.000Z</published>
     <updated>2019-02-23T13:54:33.671Z</updated>
     
@@ -51,8 +51,8 @@
   
   <entry>
     <title>无监督学习(unsupervised learning)</title>
-    <link href="http://yiyouls.com/%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0-unsupervised-learning.html"/>
-    <id>http://yiyouls.com/无监督学习-unsupervised-learning.html</id>
+    <link href="http://yiyouls.com/archives/81bb.html"/>
+    <id>http://yiyouls.com/archives/81bb.html</id>
     <published>2019-02-23T11:36:23.000Z</published>
     <updated>2019-02-23T11:43:08.522Z</updated>
     
@@ -81,8 +81,8 @@
   
   <entry>
     <title>监督学习(supervised learning)</title>
-    <link href="http://yiyouls.com/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0-supervised-learning.html"/>
-    <id>http://yiyouls.com/监督学习-supervised-learning.html</id>
+    <link href="http://yiyouls.com/archives/804.html"/>
+    <id>http://yiyouls.com/archives/804.html</id>
     <published>2019-02-22T13:26:39.000Z</published>
     <updated>2019-02-23T11:44:19.710Z</updated>
     
@@ -111,8 +111,8 @@
   
   <entry>
     <title>人工神经网络是如何进行预测(prediction)的?</title>
-    <link href="http://yiyouls.com/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%98%AF%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E9%A2%84%E6%B5%8B-prediction-%E7%9A%84.html"/>
-    <id>http://yiyouls.com/人工神经网络是如何进行预测-prediction-的.html</id>
+    <link href="http://yiyouls.com/archives/847f.html"/>
+    <id>http://yiyouls.com/archives/847f.html</id>
     <published>2019-02-22T13:23:30.000Z</published>
     <updated>2019-02-23T11:47:47.078Z</updated>
     
@@ -145,8 +145,8 @@
   
   <entry>
     <title>机器学习中的数据增强(data augmentation)技术</title>
-    <link href="http://yiyouls.com/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA-data-augmentation-%E6%8A%80%E6%9C%AF.html"/>
-    <id>http://yiyouls.com/机器学习中的数据增强-data-augmentation-技术.html</id>
+    <link href="http://yiyouls.com/archives/dcf4.html"/>
+    <id>http://yiyouls.com/archives/dcf4.html</id>
     <published>2019-02-22T13:09:08.000Z</published>
     <updated>2019-02-22T13:21:29.477Z</updated>
     
@@ -176,8 +176,8 @@
   
   <entry>
     <title>人工神经网络如何进行微调(fine-tuning)</title>
-    <link href="http://yiyouls.com/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E5%BE%AE%E8%B0%83-fine-tuning.html"/>
-    <id>http://yiyouls.com/人工神经网络如何进行微调-fine-tuning.html</id>
+    <link href="http://yiyouls.com/archives/b792.html"/>
+    <id>http://yiyouls.com/archives/b792.html</id>
     <published>2019-02-15T14:00:46.000Z</published>
     <updated>2019-02-15T14:06:20.001Z</updated>
     
@@ -210,8 +210,8 @@
   
   <entry>
     <title>人工神经网络中的批尺寸(batch size)详解</title>
-    <link href="http://yiyouls.com/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E6%89%B9%E5%B0%BA%E5%AF%B8-batch-size.html"/>
-    <id>http://yiyouls.com/人工神经网络中的批尺寸-batch-size.html</id>
+    <link href="http://yiyouls.com/archives/7814.html"/>
+    <id>http://yiyouls.com/archives/7814.html</id>
     <published>2019-02-15T08:47:02.000Z</published>
     <updated>2019-02-23T11:49:43.622Z</updated>
     
@@ -240,8 +240,8 @@
   
   <entry>
     <title>人工神经网络中的学习率(learning rate)问题</title>
-    <link href="http://yiyouls.com/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%8E%87-learning-rate.html"/>
-    <id>http://yiyouls.com/人工神经网络中的学习率-learning-rate.html</id>
+    <link href="http://yiyouls.com/archives/2d8a.html"/>
+    <id>http://yiyouls.com/archives/2d8a.html</id>
     <published>2019-02-15T08:46:23.000Z</published>
     <updated>2019-02-23T11:49:23.994Z</updated>
     
@@ -270,8 +270,8 @@
   
   <entry>
     <title>人工神经网络中的正则化(regularization)</title>
-    <link href="http://yiyouls.com/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E6%AD%A3%E5%88%99%E5%8C%96-regularization.html"/>
-    <id>http://yiyouls.com/人工神经网络中的正则化-regularization.html</id>
+    <link href="http://yiyouls.com/archives/6248.html"/>
+    <id>http://yiyouls.com/archives/6248.html</id>
     <published>2019-02-14T12:37:45.000Z</published>
     <updated>2019-02-23T11:50:13.082Z</updated>
     
@@ -303,8 +303,8 @@
   
   <entry>
     <title>什么是神经网络模型欠拟合(underfitting)?</title>
-    <link href="http://yiyouls.com/%E4%BB%80%E4%B9%88%E6%98%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E6%AC%A0%E6%8B%9F%E5%90%88-underfitting.html"/>
-    <id>http://yiyouls.com/什么是神经网络模型欠拟合-underfitting.html</id>
+    <link href="http://yiyouls.com/archives/ddcb.html"/>
+    <id>http://yiyouls.com/archives/ddcb.html</id>
     <published>2019-01-27T13:13:42.000Z</published>
     <updated>2019-01-27T13:15:56.845Z</updated>
     
@@ -335,8 +335,8 @@
   
   <entry>
     <title>什么是神经网络模型过度拟合(overfitting)?</title>
-    <link href="http://yiyouls.com/%E4%BB%80%E4%B9%88%E6%98%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E8%BF%87%E5%BA%A6%E6%8B%9F%E5%90%88-overfitting.html"/>
-    <id>http://yiyouls.com/什么是神经网络模型过度拟合-overfitting.html</id>
+    <link href="http://yiyouls.com/archives/53ec.html"/>
+    <id>http://yiyouls.com/archives/53ec.html</id>
     <published>2019-01-27T12:30:11.000Z</published>
     <updated>2019-01-27T12:39:08.280Z</updated>
     
@@ -368,8 +368,8 @@
   
   <entry>
     <title>如何理解数据集中的训练集(training set)，验证集(validation set)以及测试集(test set)?</title>
-    <link href="http://yiyouls.com/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%AD%E7%9A%84%E8%AE%AD%E7%BB%83%E9%9B%86-training-set-%EF%BC%8C%E9%AA%8C%E8%AF%81%E9%9B%86-validation-set-%E4%BB%A5%E5%8F%8A%E6%B5%8B%E8%AF%95%E9%9B%86-test-set.html"/>
-    <id>http://yiyouls.com/如何理解数据集中的训练集-training-set-，验证集-validation-set-以及测试集-test-set.html</id>
+    <link href="http://yiyouls.com/archives/f05f.html"/>
+    <id>http://yiyouls.com/archives/f05f.html</id>
     <published>2019-01-27T11:27:23.000Z</published>
     <updated>2019-01-27T11:31:35.419Z</updated>
     
@@ -402,8 +402,8 @@
   
   <entry>
     <title>深入认识神经网络中的损失函数(loss function)</title>
-    <link href="http://yiyouls.com/%E6%B7%B1%E5%85%A5%E8%AE%A4%E8%AF%86%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-loss-function.html"/>
-    <id>http://yiyouls.com/深入认识神经网络中的损失函数-loss-function.html</id>
+    <link href="http://yiyouls.com/archives/3b9f.html"/>
+    <id>http://yiyouls.com/archives/3b9f.html</id>
     <published>2019-01-27T10:05:23.000Z</published>
     <updated>2019-01-27T10:14:03.266Z</updated>
     
@@ -434,8 +434,8 @@
   
   <entry>
     <title>人工神经网络是如何学习(learn)的?</title>
-    <link href="http://yiyouls.com/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%A6%E4%B9%A0-learn-%E7%9A%84.html"/>
-    <id>http://yiyouls.com/人工神经网络是如何学习-learn-的.html</id>
+    <link href="http://yiyouls.com/archives/b5f9.html"/>
+    <id>http://yiyouls.com/archives/b5f9.html</id>
     <published>2019-01-27T02:31:06.000Z</published>
     <updated>2019-01-27T03:48:30.197Z</updated>
     
@@ -464,8 +464,8 @@
   
   <entry>
     <title>如何训练(train)人工神经网络？</title>
-    <link href="http://yiyouls.com/%E5%A6%82%E4%BD%95%E8%AE%AD%E7%BB%83%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%9F.html"/>
-    <id>http://yiyouls.com/如何训练人工神经网络？.html</id>
+    <link href="http://yiyouls.com/archives/4c0a.html"/>
+    <id>http://yiyouls.com/archives/4c0a.html</id>
     <published>2019-01-26T07:56:23.000Z</published>
     <updated>2019-01-27T03:45:01.112Z</updated>
     
@@ -492,8 +492,8 @@
   
   <entry>
     <title>如何理解神经网络中的激活函数(ativation functions)?</title>
-    <link href="http://yiyouls.com/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0-ativation-functions.html"/>
-    <id>http://yiyouls.com/如何理解神经网络中的激活函数-ativation-functions.html</id>
+    <link href="http://yiyouls.com/archives/10fe.html"/>
+    <id>http://yiyouls.com/archives/10fe.html</id>
     <published>2019-01-26T03:18:07.000Z</published>
     <updated>2019-01-27T03:58:21.994Z</updated>
     
@@ -521,8 +521,8 @@
   
   <entry>
     <title>如何理解神经网络中层(layer)的概念？</title>
-    <link href="http://yiyouls.com/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%AD%E5%B1%82-layer-%E7%9A%84%E6%A6%82%E5%BF%B5%EF%BC%9F.html"/>
-    <id>http://yiyouls.com/如何理解神经网络中层-layer-的概念？.html</id>
+    <link href="http://yiyouls.com/archives/da21.html"/>
+    <id>http://yiyouls.com/archives/da21.html</id>
     <published>2019-01-25T12:59:25.000Z</published>
     <updated>2019-01-27T03:44:43.968Z</updated>
     
@@ -550,8 +550,8 @@
   
   <entry>
     <title>什么是人工神经网络ANNs?</title>
-    <link href="http://yiyouls.com/%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9CANNs.html"/>
-    <id>http://yiyouls.com/什么是人工神经网络ANNs.html</id>
+    <link href="http://yiyouls.com/archives/7770.html"/>
+    <id>http://yiyouls.com/archives/7770.html</id>
     <published>2019-01-25T07:21:58.000Z</published>
     <updated>2019-01-27T03:44:32.916Z</updated>
     
@@ -577,8 +577,8 @@
   
   <entry>
     <title>11大最常用静态网站建站工具，你用过几个？</title>
-    <link href="http://yiyouls.com/11%E5%A4%A7%E6%9C%80%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E5%BB%BA%E7%AB%99%E5%B7%A5%E5%85%B7%EF%BC%8C%E4%BD%A0%E7%94%A8%E8%BF%87%E5%87%A0%E4%B8%AA%EF%BC%9F.html"/>
-    <id>http://yiyouls.com/11大最常用静态网站建站工具，你用过几个？.html</id>
+    <link href="http://yiyouls.com/archives/b5e2.html"/>
+    <id>http://yiyouls.com/archives/b5e2.html</id>
     <published>2019-01-19T07:46:47.000Z</published>
     <updated>2019-01-19T07:59:01.170Z</updated>
     
@@ -602,8 +602,8 @@
   
   <entry>
     <title>如何在Github上免费开通一个Github Page作为个人主页</title>
-    <link href="http://yiyouls.com/%E5%A6%82%E4%BD%95%E5%9C%A8Github%E4%B8%8A%E5%85%8D%E8%B4%B9%E5%BC%80%E9%80%9A%E4%B8%80%E4%B8%AAGithub-Page%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E4%B8%BB%E9%A1%B5.html"/>
-    <id>http://yiyouls.com/如何在Github上免费开通一个Github-Page作为个人主页.html</id>
+    <link href="http://yiyouls.com/archives/7cef.html"/>
+    <id>http://yiyouls.com/archives/7cef.html</id>
     <published>2019-01-19T06:13:27.000Z</published>
     <updated>2019-01-20T07:31:22.445Z</updated>
     

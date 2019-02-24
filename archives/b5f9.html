@@ -1,0 +1,1077 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn,en,ja,default">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Deep Learning">
+    <title>人工神经网络是如何学习(learn)的? - Deep Learning</title>
+    <meta name="author" content="友邻君">
+    
+        <meta name="keywords" content="deep learning,neural network,mechine learning,ANN,AI,深度学习,机器学习,">
+    
+    
+        <link rel="icon" href="http://cdn.yiyouls.com/favicon.ico">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"articleBody":"神经网络的学习过程\n这篇文章我们来探讨人工神经网络是怎样学习的．\n本篇内容涵盖损失loss，梯度gradient，学习率lerning rate，epoch，verbose，batch批处理等概念．\n\n\n\n＂学习＂指的是什么？\n损失函数的梯度(gradiant)\n学习率\n更新权重\n模型学习的过程即权重更新的过程\n在Keras中进行模型训练\n\n\n\n我们上一篇文章已经了解了训练的过程，数据集中的每一个数据都是从前向后，从输入到输出，在整个神经网络中传递，这被称为前向传播．输出的结果依赖于网络中节点连接的权重分配．\n当数据集中的所有数据点都通过了神经网络，我们称完成了一个epoch．\n\n一个epoch是指整个数据集在神经网络中的一次完整遍历\n\n一般来讲，在模型学习的过程中需要多个epoch过程．\n＂学习＂指的是什么？模型训练中的＂学习＂到底指的是什么？\n还记得吗，在模型建立之初网络中所有的权重值都是任意选择的．同时，在网络的末端，所有给定的输入都会得到一个输出．\n一旦输出结果，我们就可以通过比较预测值与实际标签，计算本次输出的损失（或者说误差），损失的计算依赖于损失函数的选择，我们会在以后仔细讨论这个问题．\n损失函数的梯度(gradiant)在计算出损失之后，针对网络内的每个权重计算该损失函数的梯度。梯度这个概念并没有那么深奥，它只是用来表示几个变量函数的导数。\n根据上面的解释，我们先只关注模型的一个权重．\n目前为止，我们计算了单个输出的损失，并且计算了对于单个所选权重的损失梯度。这种计算是使用一种称为反向传播的技术完成的 ，反向传播会在以后重点介绍．\n一旦我们得到了损失函数的梯度值，我们就可以使用这个值来更新模型的权重。梯度的作用是告诉我们从哪个方向可以将损失移向最小值，我们的任务是朝着降低损失的方向移动并逐步接近该最小值。\n学习率我们将梯度值乘以称为学习率的东西 。学习率通常在0.01到0.0001之间，但实际值可能会有所不同。\n\n学习率告诉我们在最小化方向上应该采取多大步长。\n\n目前大家知道这一点就可以了，在以后的文章中会向大家详细介绍学习率这个概念．\n更新权重将梯度值乘以学习率，然后用权重值减去刚刚计算的乘积，得到的值就是更新后的权重值．\n1新权重值＝旧权重值－（学习率＊梯度值）\n在上面的讨论中，为了讲清概念，我们仅仅考虑单个权重．实际情况中，不同的权重会有不同的梯度值，我们是依据每个权重来计算梯度值的．\n在每个epoch之后所有的权重值都会进行迭代更新，SGD通过最小化损失函数使得权重越来越接近于最优值\n模型学习的过程即权重更新的过程当我们训练模型使其从数据中学习的时候，这种权重更新是必要的，只有只有我们才能说模型正在＂学习＂．它学习的是每个权重到底应该赋什么值，这些增量变化会对损失函数造成什么影响．权重的变化使得神经网络越来越＂聪明＂，越来越能够将输入映射到正确的输出．\n通过对＂学习＂的解释，以及上篇文章对模型训练的介绍，我们应该能够对模型的训练和学习有一个大致的了解，我们现在学习如何通过Keras完成这样的训练过程．\n在Keras中进行模型训练在训练模型之前我们首先需要建立模型．\n模型的建立是从导入所需的类(classes)开始的：\n1234567import kerasfrom keras import backend as Kfrom keras.models import Sequentialfrom keras.layers import Activationfrom keras.layers.core import Densefrom keras.optimizers import Adamfrom keras.metrics import categorical_crossentropy\n之后是定义模型(sequential model)：\n12345model = Sequential([    Dense(16, input_shape=(1,), activation=&apos;relu&apos;),    Dense(32, activation=&apos;relu&apos;),    Dense(2, activation=&apos;sigmoid&apos;)])\n在训练模型之前，需要对模型进行编译(compile），像这样：\n12345model.compile(    Adam(lr=.0001),     loss=&apos;sparse_categorical_crossentropy&apos;,     metrics=[&apos;accuracy&apos;])\n给compile()函数传递优化器(optimizer)，损失函数(loss)，以及所需的精准度度量(metrics)．我们在这里指定的优化器被称为Adam．Adam是SGD的一个变种．在Adam构造函数内指定学习率，这里写的是Adam(lr=.0001)，表示学习率为0.0001.\n最后，将模型与数据拟合(fit)，把模型拟合到数据是指在数据上训练模型，通过下面的代码进行此操作：\n12345678model.fit(    scaled_train_samples,     train_labels,     batch_size=10,     epochs=20,     shuffle=True,     verbose=2)\nscaled_train_samples 是一个由训练样本组成的numpy数组1．\ntrain_labels 也是一个numpy数组，由训练样本的相应标签组成．\nbatch_size=10 batch批处理，指定应该一次向模型发送多少训练样本。\nepochs=20 意味着完整的训练集（所有样本）将被传递给模型共20次。\nshuffle=True 表示在传递给模型之前应首先对数据进行混洗(shuffle)。\nverbose=2 表示在模型训练中显示多少日志2。\n运行此代码会得到以下输出：\n1234567891011121314151617181920Epoch 1/20 0s - loss: 0.6400 - acc: 0.5576Epoch 2/20 0s - loss: 0.6061 - acc: 0.6310Epoch 3/20 0s - loss: 0.5748 - acc: 0.7010Epoch 4/20 0s - loss: 0.5401 - acc: 0.7633Epoch 5/20 0s - loss: 0.5050 - acc: 0.7990Epoch 6/20 0s - loss: 0.4702 - acc: 0.8300Epoch 7/20 0s - loss: 0.4366 - acc: 0.8495Epoch 8/20 0s - loss: 0.4066 - acc: 0.8767Epoch 9/20 0s - loss: 0.3808 - acc: 0.8814Epoch 10/20 0s - loss: 0.3596 - acc: 0.8962Epoch 11/20 0s - loss: 0.3420 - acc: 0.9043Epoch 12/20 0s - loss: 0.3282 - acc: 0.9090Epoch 13/20 0s - loss: 0.3170 - acc: 0.9129Epoch 14/20 0s - loss: 0.3081 - acc: 0.9210Epoch 15/20 0s - loss: 0.3014 - acc: 0.9190Epoch 16/20 0s - loss: 0.2959 - acc: 0.9205Epoch 17/20 0s - loss: 0.2916 - acc: 0.9238Epoch 18/20 0s - loss: 0.2879 - acc: 0.9267Epoch 19/20 0s - loss: 0.2848 - acc: 0.9252Epoch 20/20 0s - loss: 0.2824 - acc: 0.9286\n上面的输出为每个epoch提供以下参考值：\n\nepoch编号\n持续时间（秒）\n损失\n精度\n\n从数据中可以看出，随着epoch的进行，loss损失的值不断下降，精度不断提高．\n这就是在Keras中训练模型的普遍方法，希望你可以对训练过程有一个大致的了解，明白模型到底是怎样＂学习＂的，也能够自己在Keras中训练一个模型．我们下篇文章再见！\n\n1. numpy数组是数据的储存形式，使用的是Python语言的NumPy扩展库，支持大量的维度数组与矩阵运算．pytorch框架把这种数据结构称为张量(tensor)． &#8617;\n\n\n2. verbose:显示日志．verbose = 0 为不在标准输出流输出日志信息， verbose = 1 为输出进度条记录， verbose = 2 为每个epoch输出一行记录． 注意： 默认为 1 &#8617;\n\n","dateCreated":"2019-01-27T10:31:06+08:00","dateModified":"2019-01-27T11:48:30+08:00","datePublished":"2019-01-27T10:31:06+08:00","description":"神经网络的学习过程\n这篇文章我们来探讨人工神经网络是怎样学习的．\n本篇内容涵盖损失loss，梯度gradient，学习率lerning rate，epoch，verbose，batch批处理等概念．","headline":"人工神经网络是如何学习(learn)的?","image":["http://cdn.yiyouls.com/learn.png","http://cdn.yiyouls.com/ai.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yiyouls.com/archives/b5f9.html"},"publisher":{"@type":"Organization","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png","logo":{"@type":"ImageObject","url":"http://cdn.yiyouls.com/profile.png"}},"url":"http://yiyouls.com/archives/b5f9.html","keywords":"深度学习, ANNs, 人工神经网络, learn","thumbnailUrl":"http://cdn.yiyouls.com/learn.png"}</script>
+    <meta name="description" content="神经网络的学习过程 这篇文章我们来探讨人工神经网络是怎样学习的． 本篇内容涵盖损失loss，梯度gradient，学习率lerning rate，epoch，verbose，batch批处理等概念．">
+<meta name="keywords" content="深度学习,ANNs,人工神经网络,learn">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="人工神经网络是如何学习(learn)的?">
+<meta property="og:url" content="http://yiyouls.com/archives/b5f9.html">
+<meta property="og:site_name" content="Deep Learning">
+<meta property="og:description" content="神经网络的学习过程 这篇文章我们来探讨人工神经网络是怎样学习的． 本篇内容涵盖损失loss，梯度gradient，学习率lerning rate，epoch，verbose，batch批处理等概念．">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:image" content="http://cdn.yiyouls.com/ann.png">
+<meta property="og:updated_time" content="2019-01-27T03:48:30.197Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="人工神经网络是如何学习(learn)的?">
+<meta name="twitter:description" content="神经网络的学习过程 这篇文章我们来探讨人工神经网络是怎样学习的． 本篇内容涵盖损失loss，梯度gradient，学习率lerning rate，epoch，verbose，batch批处理等概念．">
+<meta name="twitter:image" content="http://cdn.yiyouls.com/ann.png">
+<meta name="twitter:creator" content="@hanhaishiyi">
+    
+        <link rel="publisher" href="https://plus.google.com/108244569432480563366"/>
+    
+    
+        
+    
+    
+        <meta property="og:image" content="http://cdn.yiyouls.com/profile.png"/>
+    
+    
+        <meta property="og:image" content="http://cdn.yiyouls.com/learn.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://cdn.yiyouls.com/learn.png" />
+    
+    
+        <meta property="og:image" content="http://cdn.yiyouls.com/ai.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://cdn.yiyouls.com/ai.jpg" />
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style-c4ozcsklz4kht2pebhp44xorvyverh23toayhn7i6ubrpyedak24hv1v0hyd.min.css">
+    <!--STYLES END-->
+    
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/ ">Deep Learning</a>
+    </div>
+    
+        
+            <a class="header-right-picture " href="#about">
+        
+        
+            <img class="header-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about">
+                    <img class="sidebar-profile-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
+                </a>
+                <h4 class="sidebar-profile-name">友邻君</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>浙江大学在读</p>
+</h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/ " title="首页">
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">首页</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-categories" title="分类">
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">分类</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-tags" title="标签">
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">标签</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-archives" title="归档">
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">归档</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link open-algolia-search" href="#search" title="搜索">
+                    
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">搜索</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="#about" title="关于">
+                    
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">关于</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://github.com/yiyouls" target="_blank" rel="noopener" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="http://stackoverflow.com/users/10926004/yiyouls" target="_blank" rel="noopener" title="Stack Overflow">
+                    
+                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Stack Overflow</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://twitter.com/hanhaishiyi" target="_blank" rel="noopener" title="Twitter">
+                    
+                        <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Twitter</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://facebook.com/yiyouls" target="_blank" rel="noopener" title="Facebook">
+                    
+                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Facebook</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://plus.google.com/u/0/108244569432480563366" target="_blank" rel="noopener" title="Google Plus">
+                    
+                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Google Plus</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://www.linkedin.com/in/yiyouls" target="_blank" rel="noopener" title="LinkedIn">
+                    
+                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">LinkedIn</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://www.zhihu.com/people/yiyouls-66/activities" target="_blank" rel="noopener" title="知乎">
+                    
+                        <i class="sidebar-button-icon fa fa-book" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">知乎</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008" target="_blank" rel="noopener" title="网易云课堂">
+                    
+                        <i class="sidebar-button-icon fa fa-school" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">网易云课堂</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="http://space.bilibili.com/275230151?" target="_blank" rel="noopener" title="bilibili">
+                    
+                        <i class="sidebar-button-icon fa fa-video" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">bilibili</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/hanhaishiyi@gmail.com" title="邮箱">
+                    
+                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">邮箱</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/atom.xml" title="RSS">
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+        <div class="post-header-cover
+                    text-center
+                    " style="background-image:url('http://cdn.yiyouls.com/ai.jpg');" data-behavior="4">
+            
+        </div>
+
+            <div id="main" data-behavior="4"
+                 class="hasCover
+                        hasCoverMetaOut
+                        hasCoverCaption">
+                
+<article class="post">
+    
+        <span class="post-header-cover-caption caption">机器可以自己学习吗？</span>
+    
+    
+        <div class="post-header main-content-wrap text-center">
+    
+        <h1 class="post-title">
+            人工神经网络是如何学习(learn)的?
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2019-01-27T10:31:06+08:00">
+	
+		    1月 27, 2019
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/categories/深度学习/">深度学习</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <p>神经网络的学习过程</p>
+<p>这篇文章我们来探讨人工神经网络是怎样学习的．</p>
+<p>本篇内容涵盖损失loss，梯度gradient，学习率lerning rate，epoch，verbose，batch批处理等概念．</p>
+<a id="more"></a>
+<h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">＂学习＂指的是什么？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">损失函数的梯度(gradiant)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">学习率</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">更新权重</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">模型学习的过程即权重更新的过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">在Keras中进行模型训练</span></a></li></ol>
+<ul>
+<li><a href="#学习指的是什么">＂学习＂指的是什么？</a></li>
+<li><a href="#损失函数的梯度gradiant">损失函数的梯度(gradiant)</a></li>
+<li><a href="#学习率">学习率</a></li>
+<li><a href="#更新权重">更新权重</a></li>
+<li><a href="#模型学习的过程即权重更新的过程">模型学习的过程即权重更新的过程</a></li>
+<li><a href="#在keras中进行模型训练">在Keras中进行模型训练</a></li>
+</ul>
+<!-- tocstop -->
+<p><img src="http://cdn.yiyouls.com/ann.png" alt=""></p>
+<p>我们上一篇文章已经了解了训练的过程，数据集中的每一个数据都是从前向后，从输入到输出，在整个神经网络中传递，这被称为前向传播．输出的结果依赖于网络中节点连接的权重分配．</p>
+<p>当数据集中的所有数据点都通过了神经网络，我们称完成了一个epoch．</p>
+<blockquote>
+<p>一个epoch是指整个数据集在神经网络中的一次完整遍历</p>
+</blockquote>
+<p>一般来讲，在模型学习的过程中需要多个epoch过程．</p>
+<h4><span id="学习指的是什么">＂学习＂指的是什么？</span></h4><p>模型训练中的＂学习＂到底指的是什么？</p>
+<p>还记得吗，在模型建立之初网络中所有的权重值都是任意选择的．同时，在网络的末端，所有给定的输入都会得到一个输出．</p>
+<p>一旦输出结果，我们就可以通过比较预测值与实际标签，计算本次输出的损失（或者说误差），损失的计算依赖于损失函数的选择，我们会在以后仔细讨论这个问题．</p>
+<h4><span id="损失函数的梯度gradiant">损失函数的梯度(gradiant)</span></h4><p>在计算出损失之后，针对网络内的每个权重计算该损失函数的梯度。<em>梯度</em>这个概念并没有那么深奥，它只是用来表示几个变量函数的导数。</p>
+<p>根据上面的解释，我们先只关注模型的一个权重．</p>
+<p>目前为止，我们计算了单个输出的损失，并且计算了对于单个所选权重的损失梯度。这种计算是使用一种称为<em>反向传播</em>的技术完成的 ，反向传播会在以后重点介绍．</p>
+<p>一旦我们得到了损失函数的梯度值，我们就可以使用这个值来更新模型的权重。梯度的作用是告诉我们从哪个方向可以将损失移向最小值，我们的任务是朝着降低损失的方向移动并逐步接近该最小值。</p>
+<h4><span id="学习率">学习率</span></h4><p>我们将梯度值乘以称为<em>学习率的</em>东西 。学习率通常在0.01到0.0001之间，但实际值可能会有所不同。</p>
+<blockquote>
+<p>学习率告诉我们在最小化方向上应该采取多大步长。</p>
+</blockquote>
+<p>目前大家知道这一点就可以了，在以后的文章中会向大家详细介绍学习率这个概念．</p>
+<h4><span id="更新权重">更新权重</span></h4><p>将梯度值乘以学习率，然后用权重值减去刚刚计算的乘积，得到的值就是更新后的权重值．</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">新权重值＝旧权重值－（学习率＊梯度值）</span><br></pre></td></tr></table></figure>
+<p>在上面的讨论中，为了讲清概念，我们仅仅考虑单个权重．实际情况中，不同的权重会有不同的梯度值，我们是依据每个权重来计算梯度值的．</p>
+<p>在每个epoch之后所有的权重值都会进行迭代更新，SGD通过最小化损失函数使得权重越来越接近于最优值</p>
+<h4><span id="模型学习的过程即权重更新的过程">模型学习的过程即权重更新的过程</span></h4><p>当我们训练模型使其从数据中学习的时候，这种权重更新是必要的，只有只有我们才能说模型正在＂学习＂．它学习的是每个权重到底应该赋什么值，这些增量变化会对损失函数造成什么影响．权重的变化使得神经网络越来越＂聪明＂，越来越能够将输入映射到正确的输出．</p>
+<p>通过对＂学习＂的解释，以及上篇文章对模型训练的介绍，我们应该能够对模型的训练和学习有一个大致的了解，我们现在学习如何通过Keras完成这样的训练过程．</p>
+<h4><span id="在keras中进行模型训练">在Keras中进行模型训练</span></h4><p>在训练模型之前我们首先需要建立模型．</p>
+<p>模型的建立是从导入所需的类(classes)开始的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import keras</span><br><span class="line">from keras import backend as K</span><br><span class="line">from keras.models import Sequential</span><br><span class="line">from keras.layers import Activation</span><br><span class="line">from keras.layers.core import Dense</span><br><span class="line">from keras.optimizers import Adam</span><br><span class="line">from keras.metrics import categorical_crossentropy</span><br></pre></td></tr></table></figure>
+<p>之后是定义模型(sequential model)：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">model = Sequential([</span><br><span class="line">    Dense(16, input_shape=(1,), activation=&apos;relu&apos;),</span><br><span class="line">    Dense(32, activation=&apos;relu&apos;),</span><br><span class="line">    Dense(2, activation=&apos;sigmoid&apos;)</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+<p>在训练模型之前，需要对模型进行编译(compile），像这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">model.compile(</span><br><span class="line">    Adam(lr=.0001), </span><br><span class="line">    loss=&apos;sparse_categorical_crossentropy&apos;, </span><br><span class="line">    metrics=[&apos;accuracy&apos;]</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>给<code>compile()</code>函数传递优化器(optimizer)，损失函数(loss)，以及所需的精准度度量(metrics)．我们在这里指定的优化器被称为<code>Adam</code>．<code>Adam</code>是SGD的一个变种．在<code>Adam</code>构造函数内指定学习率，这里写的是<code>Adam(lr=.0001)</code>，表示学习率为<code>0.0001</code>.</p>
+<p>最后，将模型与数据拟合(fit)，把模型拟合到数据是指在数据上训练模型，通过下面的代码进行此操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">model.fit(</span><br><span class="line">    scaled_train_samples, </span><br><span class="line">    train_labels, </span><br><span class="line">    batch_size=10, </span><br><span class="line">    epochs=20, </span><br><span class="line">    shuffle=True, </span><br><span class="line">    verbose=2</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p><code>scaled_train_samples</code> 是一个由训练样本组成的numpy数组<sup><a href="#fn_1" id="reffn_1">1</a></sup>．</p>
+<p><code>train_labels</code> 也是一个numpy数组，由训练样本的相应标签组成．</p>
+<p><code>batch_size=10</code> batch批处理，指定应该一次向模型发送多少训练样本。</p>
+<p><code>epochs=20</code> 意味着完整的训练集（所有样本）将被传递给模型共20次。</p>
+<p><code>shuffle=True</code> 表示在传递给模型之前应首先对数据进行混洗(shuffle)。</p>
+<p><code>verbose=2</code> 表示在模型训练中显示多少日志<sup><a href="#fn_2" id="reffn_2">2</a></sup>。</p>
+<p>运行此代码会得到以下输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Epoch 1/20 0s - loss: 0.6400 - acc: 0.5576</span><br><span class="line">Epoch 2/20 0s - loss: 0.6061 - acc: 0.6310</span><br><span class="line">Epoch 3/20 0s - loss: 0.5748 - acc: 0.7010</span><br><span class="line">Epoch 4/20 0s - loss: 0.5401 - acc: 0.7633</span><br><span class="line">Epoch 5/20 0s - loss: 0.5050 - acc: 0.7990</span><br><span class="line">Epoch 6/20 0s - loss: 0.4702 - acc: 0.8300</span><br><span class="line">Epoch 7/20 0s - loss: 0.4366 - acc: 0.8495</span><br><span class="line">Epoch 8/20 0s - loss: 0.4066 - acc: 0.8767</span><br><span class="line">Epoch 9/20 0s - loss: 0.3808 - acc: 0.8814</span><br><span class="line">Epoch 10/20 0s - loss: 0.3596 - acc: 0.8962</span><br><span class="line">Epoch 11/20 0s - loss: 0.3420 - acc: 0.9043</span><br><span class="line">Epoch 12/20 0s - loss: 0.3282 - acc: 0.9090</span><br><span class="line">Epoch 13/20 0s - loss: 0.3170 - acc: 0.9129</span><br><span class="line">Epoch 14/20 0s - loss: 0.3081 - acc: 0.9210</span><br><span class="line">Epoch 15/20 0s - loss: 0.3014 - acc: 0.9190</span><br><span class="line">Epoch 16/20 0s - loss: 0.2959 - acc: 0.9205</span><br><span class="line">Epoch 17/20 0s - loss: 0.2916 - acc: 0.9238</span><br><span class="line">Epoch 18/20 0s - loss: 0.2879 - acc: 0.9267</span><br><span class="line">Epoch 19/20 0s - loss: 0.2848 - acc: 0.9252</span><br><span class="line">Epoch 20/20 0s - loss: 0.2824 - acc: 0.9286</span><br></pre></td></tr></table></figure>
+<p>上面的输出为每个epoch提供以下参考值：</p>
+<ol>
+<li>epoch编号</li>
+<li>持续时间（秒）</li>
+<li>损失</li>
+<li>精度</li>
+</ol>
+<p>从数据中可以看出，随着epoch的进行，loss损失的值不断下降，精度不断提高．</p>
+<p>这就是在Keras中训练模型的普遍方法，希望你可以对训练过程有一个大致的了解，明白模型到底是怎样＂学习＂的，也能够自己在Keras中训练一个模型．我们下篇文章再见！</p>
+<blockquote id="fn_1">
+<sup>1</sup>. numpy数组是数据的储存形式，使用的是Python语言的NumPy扩展库，支持大量的维度数组与矩阵运算．pytorch框架把这种数据结构称为张量(tensor)．<a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_2">
+<sup>2</sup>. verbose:显示日志．verbose = 0 为不在标准输出流输出日志信息， verbose = 1 为输出进度条记录， verbose = 2 为每个epoch输出一行记录． 注意： 默认为 1<a href="#reffn_2" title="Jump back to footnote [2] in the text."> &#8617;</a>
+</blockquote>
+
+            
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">标签</span><br>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/ANNs/">ANNs</a> <a class="tag tag--primary tag--small t-link" href="/tags/learn/">learn</a> <a class="tag tag--primary tag--small t-link" href="/tags/人工神经网络/">人工神经网络</a> <a class="tag tag--primary tag--small t-link" href="/tags/深度学习/">深度学习</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/archives/3b9f.html" data-tooltip="深入认识神经网络中的损失函数(loss function)" aria-label="上一篇: 深入认识神经网络中的损失函数(loss function)">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/archives/4c0a.html" data-tooltip="如何训练(train)人工神经网络？" aria-label="下一篇: 如何训练(train)人工神经网络？">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yiyouls.com/archives/b5f9.html" title="分享到 Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yiyouls.com/archives/b5f9.html" title="分享到 Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yiyouls.com/archives/b5f9.html" title="分享到 Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yiyouls.com/archives/b5f9.html" title="分享到 Weibo">
+                    <i class="fab fa-weibo" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yiyouls.com/archives/b5f9.html&amp;title=人工神经网络是如何学习(learn)的?" title="分享到 QQ">
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yiyouls.com/archives/b5f9.html" title="分享到 Qzone">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yiyouls.com/archives/b5f9.html" title="分享到 Renren">
+                    <i class="fab fa-renren" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#table-of-contents" aria-label="目录">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+                <div id="cyReward" role="cylabs" data-use="reward"></div>
+<div id="cyPoll" role="cylabs" data-use="poll"></div>
+<div id="cyEmoji" role="cylabs" data-use="emoji"></div>
+<div id="cyQing" role="cylabs" data-use="qing"></div>
+<div id="cyHotusers" role="cylabs" data-use="hotusers"></div>
+<div id="cyReping" role="cylabs" data-use="reping"></div>
+<div id="cyBarrage" role="cylabs" data-use="barrage"></div>
+<div id="SOHUCS" sid="人工神经网络是如何学习(learn)的?"></div>
+
+
+            
+        
+    </div>
+</article>
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2019 友邻君. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/archives/3b9f.html" data-tooltip="深入认识神经网络中的损失函数(loss function)" aria-label="上一篇: 深入认识神经网络中的损失函数(loss function)">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/archives/4c0a.html" data-tooltip="如何训练(train)人工神经网络？" aria-label="下一篇: 如何训练(train)人工神经网络？">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yiyouls.com/archives/b5f9.html" title="分享到 Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yiyouls.com/archives/b5f9.html" title="分享到 Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yiyouls.com/archives/b5f9.html" title="分享到 Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yiyouls.com/archives/b5f9.html" title="分享到 Weibo">
+                    <i class="fab fa-weibo" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yiyouls.com/archives/b5f9.html&amp;title=人工神经网络是如何学习(learn)的?" title="分享到 QQ">
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yiyouls.com/archives/b5f9.html" title="分享到 Qzone">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yiyouls.com/archives/b5f9.html" title="分享到 Renren">
+                    <i class="fab fa-renren" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#table-of-contents" aria-label="目录">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yiyouls.com/archives/b5f9.html">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>分享到 Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yiyouls.com/archives/b5f9.html">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yiyouls.com/archives/b5f9.html">
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>分享到 Google+</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yiyouls.com/archives/b5f9.html">
+                        <i class="fab fa-weibo" aria-hidden="true"></i><span>分享到 Weibo</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yiyouls.com/archives/b5f9.html&amp;title=人工神经网络是如何学习(learn)的?">
+                        <i class="fab fa-qq" aria-hidden="true"></i><span>分享到 QQ</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yiyouls.com/archives/b5f9.html">
+                        <i class="fa fa-star" aria-hidden="true"></i><span>分享到 Qzone</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yiyouls.com/archives/b5f9.html">
+                        <i class="fab fa-renren" aria-hidden="true"></i><span>分享到 Renren</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
+        
+            <h4 id="about-card-name">友邻君</h4>
+        
+            <div id="about-card-bio"><p>浙江大学在读</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                <p>博士研究生</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br>
+                Hangzhou,Zhejiang
+            </div>
+        
+    </div>
+</div>
+
+        
+            <div id="algolia-search-modal" class="modal-container">
+    <div class="modal">
+        <div class="modal-header">
+            <span class="close-button"><i class="fa fa-times"></i></span>
+            <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+                <span class="searchby-algolia-text text-color-light text-small">by</span>
+                <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+            </a>
+            <i class="search-icon fa fa-search"></i>
+            <form id="algolia-search-form">
+                <input type="text" id="algolia-search-input" name="search" class="form-control input--large search-input" placeholder="Search ">
+            </form>
+        </div>
+        <div class="modal-body">
+            <div class="no-result text-color-light text-center">没有找到文章</div>
+            <div class="results">
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yiyouls.com/archives/bc1e.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/image_1.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yiyouls.com/archives/bc1e.html">
+                            <h3 class="media-heading">什么是机器学习(Machine Learning)？</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月16日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>机器学习与深度学习基础教程－从零开始</p>
+<p>本系列教程是为初学者定制，涵盖并解释了深度学习和人工神经网络的基本概念</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yiyouls.com/archives/f498.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/image_2.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yiyouls.com/archives/f498.html">
+                            <h3 class="media-heading">什么是深度学习(Deep Learning)？</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月16日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>机器学习与深度学习基础教程</p>
+<p>这篇文章将要回答什么是深度学习这个问题．</p>
+<p>整个系列课程会涵盖深度学习领域的众多主题，我们会用很多篇文章来充分解释这些课题，以及它们的应用领域和技术实现。</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yiyouls.com/archives/97f0.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/web.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yiyouls.com/archives/97f0.html">
+                            <h3 class="media-heading">使用hexo在Github上免费搭建功能丰富的个人博客网站</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月18日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>这个系列博文将带你一步步搭建起自己的个人博客网站，包含tranquilpeak主题模板配置，站内搜索，live2d插件，mathjax数学公式插件，＂千牛云＂云加速，＂畅言＂评论区添加，打赏设置等等高阶功能．</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yiyouls.com/archives/7cef.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/Octocat.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yiyouls.com/archives/7cef.html">
+                            <h3 class="media-heading">如何在Github上免费开通一个Github Page作为个人主页</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月19日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>为什么要选择在Github上建站，原因很简单，它是免费的．</p>
+<p>只要你按照下面的六步走，就可以轻轻松松发布自己的网站，你不需要有任何关于编程或者网站建设的基础知识．所有的前提只是，你要有一个github账号．</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yiyouls.com/archives/b5e2.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/hexologo.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yiyouls.com/archives/b5e2.html">
+                            <h3 class="media-heading">11大最常用静态网站建站工具，你用过几个？</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月19日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>在进行下一步操作之前，你首先要明白，你通过我们上篇博文所介绍的方式建立的网站，是一种静态网站，这个是最近特别流行的静态网站搭建博客的技术，非常适合让站长专注于内容创作而非网站本身的维护．</p>
+<p>为什么不用动态网站例如大名鼎鼎的wordpress呢？</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yiyouls.com/archives/7770.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/anns.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yiyouls.com/archives/7770.html">
+                            <h3 class="media-heading">什么是人工神经网络ANNs?</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月25日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>什么是人工神经网络(artificial neural network)?</p>
+<p>在上一篇文章中我们把深度学习定义为机器学习的子领域，深度学习所用到的算法是受大脑神经网络的结构和功能的启发．因为这个浅显的的原因，深度学习中使用的模型被称为人工神经网络（ANN）。</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yiyouls.com/archives/da21.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/ceng.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yiyouls.com/archives/da21.html">
+                            <h3 class="media-heading">如何理解神经网络中层(layer)的概念？</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月25日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>如何理解神经网络中层(layer)的概念?</p>
+<p>我们在之前的文章中认识了只有三个层的神经网络，但在很多时候我们有多个隐藏层，这篇文章探讨如何深入理解神经网络中层的概念，并提供一个多层神经网络的构建方法．</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yiyouls.com/archives/10fe.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/function.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yiyouls.com/archives/10fe.html">
+                            <h3 class="media-heading">如何理解神经网络中的激活函数(ativation functions)?</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月26日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>神经网络中的激活函数</p>
+<p>这篇文章向大家解释激活函数到底是什么，以及如何在神经网络中使用激活函数．我会向大家介绍几种常见的激活函数，向大家展示这些激活函数如何在Keras中以代码的形式呈现．</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yiyouls.com/archives/4c0a.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/sgd.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yiyouls.com/archives/4c0a.html">
+                            <h3 class="media-heading">如何训练(train)人工神经网络？</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月26日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><h4 id="神经网络的训练"><a href="#神经网络的训练" class="headerlink" title="神经网络的训练"></a>神经网络的训练</h4><p>这篇文章带大家学习如何训练一个人工神经网络．之前的文章中我们学习了如何构建一个简单的人工神经网络，当我们把一个神经网络配置好之后，下一步就是来训练它了．</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yiyouls.com/archives/b5f9.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/learn.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yiyouls.com/archives/b5f9.html">
+                            <h3 class="media-heading">人工神经网络是如何学习(learn)的?</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月27日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>神经网络的学习过程</p>
+<p>这篇文章我们来探讨人工神经网络是怎样学习的．</p>
+<p>本篇内容涵盖损失loss，梯度gradient，学习率lerning rate，epoch，verbose，batch批处理等概念．</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+            </div>
+        </div>
+        <div class="modal-footer">
+            <p class="results-count text-medium" data-message-zero="没有找到文章" data-message-one="找到 1 篇文章" data-message-other="找到 {n} 篇文章">
+                找到 23 篇文章
+            </p>
+        </div>
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('http://cdn.yiyouls.com/cover.jpg');"></div>
+        <!--SCRIPTS-->
+<script src="/assets/js/script-dbd16rvloemmuxdzniplmnxxvwoz24eya9wol0b7vvmlokgqsjivmb8dnscy.min.js"></script>
+<!--SCRIPTS END-->
+
+    
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cyu2tTq0X'; 
+var conf = 'prod_04b0d924b891393f35b9626442a6e448'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script> 
+<script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyu2tTq0X"></script>
+    
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment-with-locales.min.js"></script>
+    <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+    <script>
+        var algoliaClient = algoliasearch('JRXR2OL9UV', '2f9d9502c1e5ad12ac19a2180d9ac94d');
+        var algoliaIndex = algoliaClient.initIndex('my-hexo-blog');
+    </script>
+
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>
