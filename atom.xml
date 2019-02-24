@@ -5,9 +5,9 @@
   <subtitle>深度学习</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="http://yiyouls.com/"/>
   <updated>2019-02-23T13:54:33.671Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>http://yiyouls.com/</id>
   
   <author>
     <name>友邻君</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>机器学习中的半监督学习(semi-supervised learning)</title>
-    <link href="http://yoursite.com/2019/02/23/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0-semi-supervised-learning/"/>
-    <id>http://yoursite.com/2019/02/23/机器学习中的半监督学习-semi-supervised-learning/</id>
+    <link href="http://yiyouls.com/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0-semi-supervised-learning.html"/>
+    <id>http://yiyouls.com/机器学习中的半监督学习-semi-supervised-learning.html</id>
     <published>2019-02-23T13:42:21.000Z</published>
     <updated>2019-02-23T13:54:33.671Z</updated>
     
@@ -34,25 +34,25 @@
     
     </summary>
     
-      <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="http://yiyouls.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="http://yiyouls.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="ANNs" scheme="http://yoursite.com/tags/ANNs/"/>
+      <category term="ANNs" scheme="http://yiyouls.com/tags/ANNs/"/>
     
-      <category term="人工神经网络" scheme="http://yoursite.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+      <category term="人工神经网络" scheme="http://yiyouls.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     
-      <category term="semi-supervised learning" scheme="http://yoursite.com/tags/semi-supervised-learning/"/>
+      <category term="semi-supervised learning" scheme="http://yiyouls.com/tags/semi-supervised-learning/"/>
     
-      <category term="半监督学习" scheme="http://yoursite.com/tags/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/"/>
+      <category term="半监督学习" scheme="http://yiyouls.com/tags/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
   <entry>
     <title>无监督学习(unsupervised learning)</title>
-    <link href="http://yoursite.com/2019/02/23/%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0-unsupervised-learning/"/>
-    <id>http://yoursite.com/2019/02/23/无监督学习-unsupervised-learning/</id>
+    <link href="http://yiyouls.com/%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0-unsupervised-learning.html"/>
+    <id>http://yiyouls.com/无监督学习-unsupervised-learning.html</id>
     <published>2019-02-23T11:36:23.000Z</published>
     <updated>2019-02-23T11:43:08.522Z</updated>
     
@@ -64,25 +64,25 @@
     
     </summary>
     
-      <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="http://yiyouls.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="http://yiyouls.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="ANNs" scheme="http://yoursite.com/tags/ANNs/"/>
+      <category term="ANNs" scheme="http://yiyouls.com/tags/ANNs/"/>
     
-      <category term="人工神经网络" scheme="http://yoursite.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+      <category term="人工神经网络" scheme="http://yiyouls.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     
-      <category term="无监督学习" scheme="http://yoursite.com/tags/%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/"/>
+      <category term="无监督学习" scheme="http://yiyouls.com/tags/%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="unsupervised learning" scheme="http://yoursite.com/tags/unsupervised-learning/"/>
+      <category term="unsupervised learning" scheme="http://yiyouls.com/tags/unsupervised-learning/"/>
     
   </entry>
   
   <entry>
     <title>监督学习(supervised learning)</title>
-    <link href="http://yoursite.com/2019/02/22/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0-supervised-learning/"/>
-    <id>http://yoursite.com/2019/02/22/监督学习-supervised-learning/</id>
+    <link href="http://yiyouls.com/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0-supervised-learning.html"/>
+    <id>http://yiyouls.com/监督学习-supervised-learning.html</id>
     <published>2019-02-22T13:26:39.000Z</published>
     <updated>2019-02-23T11:44:19.710Z</updated>
     
@@ -94,25 +94,25 @@
     
     </summary>
     
-      <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="http://yiyouls.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="http://yiyouls.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="ANNs" scheme="http://yoursite.com/tags/ANNs/"/>
+      <category term="ANNs" scheme="http://yiyouls.com/tags/ANNs/"/>
     
-      <category term="人工神经网络" scheme="http://yoursite.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+      <category term="人工神经网络" scheme="http://yiyouls.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     
-      <category term="supervised learning" scheme="http://yoursite.com/tags/supervised-learning/"/>
+      <category term="supervised learning" scheme="http://yiyouls.com/tags/supervised-learning/"/>
     
-      <category term="监督学习" scheme="http://yoursite.com/tags/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/"/>
+      <category term="监督学习" scheme="http://yiyouls.com/tags/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
   <entry>
     <title>人工神经网络是如何进行预测(prediction)的?</title>
-    <link href="http://yoursite.com/2019/02/22/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%98%AF%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E9%A2%84%E6%B5%8B-prediction-%E7%9A%84/"/>
-    <id>http://yoursite.com/2019/02/22/人工神经网络是如何进行预测-prediction-的/</id>
+    <link href="http://yiyouls.com/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%98%AF%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E9%A2%84%E6%B5%8B-prediction-%E7%9A%84.html"/>
+    <id>http://yiyouls.com/人工神经网络是如何进行预测-prediction-的.html</id>
     <published>2019-02-22T13:23:30.000Z</published>
     <updated>2019-02-23T11:47:47.078Z</updated>
     
@@ -124,29 +124,29 @@
     
     </summary>
     
-      <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="http://yiyouls.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="http://yiyouls.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="ANNs" scheme="http://yoursite.com/tags/ANNs/"/>
+      <category term="ANNs" scheme="http://yiyouls.com/tags/ANNs/"/>
     
-      <category term="人工神经网络" scheme="http://yoursite.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+      <category term="人工神经网络" scheme="http://yiyouls.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     
-      <category term="fine-tune" scheme="http://yoursite.com/tags/fine-tune/"/>
+      <category term="fine-tune" scheme="http://yiyouls.com/tags/fine-tune/"/>
     
-      <category term="微调" scheme="http://yoursite.com/tags/%E5%BE%AE%E8%B0%83/"/>
+      <category term="微调" scheme="http://yiyouls.com/tags/%E5%BE%AE%E8%B0%83/"/>
     
-      <category term="transfer learning" scheme="http://yoursite.com/tags/transfer-learning/"/>
+      <category term="transfer learning" scheme="http://yiyouls.com/tags/transfer-learning/"/>
     
-      <category term="迁移学习" scheme="http://yoursite.com/tags/%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0/"/>
+      <category term="迁移学习" scheme="http://yiyouls.com/tags/%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
   <entry>
     <title>机器学习中的数据增强(data augmentation)技术</title>
-    <link href="http://yoursite.com/2019/02/22/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA-data-augmentation-%E6%8A%80%E6%9C%AF/"/>
-    <id>http://yoursite.com/2019/02/22/机器学习中的数据增强-data-augmentation-技术/</id>
+    <link href="http://yiyouls.com/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA-data-augmentation-%E6%8A%80%E6%9C%AF.html"/>
+    <id>http://yiyouls.com/机器学习中的数据增强-data-augmentation-技术.html</id>
     <published>2019-02-22T13:09:08.000Z</published>
     <updated>2019-02-22T13:21:29.477Z</updated>
     
@@ -159,25 +159,25 @@
     
     </summary>
     
-      <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="http://yiyouls.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="http://yiyouls.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="ANNs" scheme="http://yoursite.com/tags/ANNs/"/>
+      <category term="ANNs" scheme="http://yiyouls.com/tags/ANNs/"/>
     
-      <category term="人工神经网络" scheme="http://yoursite.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+      <category term="人工神经网络" scheme="http://yiyouls.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     
-      <category term="data augmentation" scheme="http://yoursite.com/tags/data-augmentation/"/>
+      <category term="data augmentation" scheme="http://yiyouls.com/tags/data-augmentation/"/>
     
-      <category term="数据增强" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA/"/>
+      <category term="数据增强" scheme="http://yiyouls.com/tags/%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA/"/>
     
   </entry>
   
   <entry>
     <title>人工神经网络如何进行微调(fine-tuning)</title>
-    <link href="http://yoursite.com/2019/02/15/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E5%BE%AE%E8%B0%83-fine-tuning/"/>
-    <id>http://yoursite.com/2019/02/15/人工神经网络如何进行微调-fine-tuning/</id>
+    <link href="http://yiyouls.com/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E5%BE%AE%E8%B0%83-fine-tuning.html"/>
+    <id>http://yiyouls.com/人工神经网络如何进行微调-fine-tuning.html</id>
     <published>2019-02-15T14:00:46.000Z</published>
     <updated>2019-02-15T14:06:20.001Z</updated>
     
@@ -189,29 +189,29 @@
     
     </summary>
     
-      <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="http://yiyouls.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="http://yiyouls.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="ANNs" scheme="http://yoursite.com/tags/ANNs/"/>
+      <category term="ANNs" scheme="http://yiyouls.com/tags/ANNs/"/>
     
-      <category term="人工神经网络" scheme="http://yoursite.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+      <category term="人工神经网络" scheme="http://yiyouls.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     
-      <category term="fine-tune" scheme="http://yoursite.com/tags/fine-tune/"/>
+      <category term="fine-tune" scheme="http://yiyouls.com/tags/fine-tune/"/>
     
-      <category term="微调" scheme="http://yoursite.com/tags/%E5%BE%AE%E8%B0%83/"/>
+      <category term="微调" scheme="http://yiyouls.com/tags/%E5%BE%AE%E8%B0%83/"/>
     
-      <category term="transfer learning" scheme="http://yoursite.com/tags/transfer-learning/"/>
+      <category term="transfer learning" scheme="http://yiyouls.com/tags/transfer-learning/"/>
     
-      <category term="迁移学习" scheme="http://yoursite.com/tags/%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0/"/>
+      <category term="迁移学习" scheme="http://yiyouls.com/tags/%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
   <entry>
     <title>人工神经网络中的批尺寸(batch size)详解</title>
-    <link href="http://yoursite.com/2019/02/15/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E6%89%B9%E5%B0%BA%E5%AF%B8-batch-size/"/>
-    <id>http://yoursite.com/2019/02/15/人工神经网络中的批尺寸-batch-size/</id>
+    <link href="http://yiyouls.com/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E6%89%B9%E5%B0%BA%E5%AF%B8-batch-size.html"/>
+    <id>http://yiyouls.com/人工神经网络中的批尺寸-batch-size.html</id>
     <published>2019-02-15T08:47:02.000Z</published>
     <updated>2019-02-23T11:49:43.622Z</updated>
     
@@ -223,25 +223,25 @@
     
     </summary>
     
-      <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="http://yiyouls.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="http://yiyouls.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="ANNs" scheme="http://yoursite.com/tags/ANNs/"/>
+      <category term="ANNs" scheme="http://yiyouls.com/tags/ANNs/"/>
     
-      <category term="人工神经网络" scheme="http://yoursite.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+      <category term="人工神经网络" scheme="http://yiyouls.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     
-      <category term="批尺寸" scheme="http://yoursite.com/tags/%E6%89%B9%E5%B0%BA%E5%AF%B8/"/>
+      <category term="批尺寸" scheme="http://yiyouls.com/tags/%E6%89%B9%E5%B0%BA%E5%AF%B8/"/>
     
-      <category term="batch size" scheme="http://yoursite.com/tags/batch-size/"/>
+      <category term="batch size" scheme="http://yiyouls.com/tags/batch-size/"/>
     
   </entry>
   
   <entry>
     <title>人工神经网络中的学习率(learning rate)问题</title>
-    <link href="http://yoursite.com/2019/02/15/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%8E%87-learning-rate/"/>
-    <id>http://yoursite.com/2019/02/15/人工神经网络中的学习率-learning-rate/</id>
+    <link href="http://yiyouls.com/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%8E%87-learning-rate.html"/>
+    <id>http://yiyouls.com/人工神经网络中的学习率-learning-rate.html</id>
     <published>2019-02-15T08:46:23.000Z</published>
     <updated>2019-02-23T11:49:23.994Z</updated>
     
@@ -253,25 +253,25 @@
     
     </summary>
     
-      <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="http://yiyouls.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="http://yiyouls.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="ANNs" scheme="http://yoursite.com/tags/ANNs/"/>
+      <category term="ANNs" scheme="http://yiyouls.com/tags/ANNs/"/>
     
-      <category term="人工神经网络" scheme="http://yoursite.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+      <category term="人工神经网络" scheme="http://yiyouls.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     
-      <category term="学习率" scheme="http://yoursite.com/tags/%E5%AD%A6%E4%B9%A0%E7%8E%87/"/>
+      <category term="学习率" scheme="http://yiyouls.com/tags/%E5%AD%A6%E4%B9%A0%E7%8E%87/"/>
     
-      <category term="learning rate" scheme="http://yoursite.com/tags/learning-rate/"/>
+      <category term="learning rate" scheme="http://yiyouls.com/tags/learning-rate/"/>
     
   </entry>
   
   <entry>
     <title>人工神经网络中的正则化(regularization)</title>
-    <link href="http://yoursite.com/2019/02/14/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E6%AD%A3%E5%88%99%E5%8C%96-regularization/"/>
-    <id>http://yoursite.com/2019/02/14/人工神经网络中的正则化-regularization/</id>
+    <link href="http://yiyouls.com/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E6%AD%A3%E5%88%99%E5%8C%96-regularization.html"/>
+    <id>http://yiyouls.com/人工神经网络中的正则化-regularization.html</id>
     <published>2019-02-14T12:37:45.000Z</published>
     <updated>2019-02-23T11:50:13.082Z</updated>
     
@@ -284,27 +284,27 @@
     
     </summary>
     
-      <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="http://yiyouls.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="http://yiyouls.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="ANNs" scheme="http://yoursite.com/tags/ANNs/"/>
+      <category term="ANNs" scheme="http://yiyouls.com/tags/ANNs/"/>
     
-      <category term="人工神经网络" scheme="http://yoursite.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+      <category term="人工神经网络" scheme="http://yiyouls.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     
-      <category term="正则化" scheme="http://yoursite.com/tags/%E6%AD%A3%E5%88%99%E5%8C%96/"/>
+      <category term="正则化" scheme="http://yiyouls.com/tags/%E6%AD%A3%E5%88%99%E5%8C%96/"/>
     
-      <category term="L2正则化" scheme="http://yoursite.com/tags/L2%E6%AD%A3%E5%88%99%E5%8C%96/"/>
+      <category term="L2正则化" scheme="http://yiyouls.com/tags/L2%E6%AD%A3%E5%88%99%E5%8C%96/"/>
     
-      <category term="范数" scheme="http://yoursite.com/tags/%E8%8C%83%E6%95%B0/"/>
+      <category term="范数" scheme="http://yiyouls.com/tags/%E8%8C%83%E6%95%B0/"/>
     
   </entry>
   
   <entry>
     <title>什么是神经网络模型欠拟合(underfitting)?</title>
-    <link href="http://yoursite.com/2019/01/27/%E4%BB%80%E4%B9%88%E6%98%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E6%AC%A0%E6%8B%9F%E5%90%88-underfitting/"/>
-    <id>http://yoursite.com/2019/01/27/什么是神经网络模型欠拟合-underfitting/</id>
+    <link href="http://yiyouls.com/%E4%BB%80%E4%B9%88%E6%98%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E6%AC%A0%E6%8B%9F%E5%90%88-underfitting.html"/>
+    <id>http://yiyouls.com/什么是神经网络模型欠拟合-underfitting.html</id>
     <published>2019-01-27T13:13:42.000Z</published>
     <updated>2019-01-27T13:15:56.845Z</updated>
     
@@ -318,25 +318,25 @@
     
     </summary>
     
-      <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="http://yiyouls.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="http://yiyouls.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="ANNs" scheme="http://yoursite.com/tags/ANNs/"/>
+      <category term="ANNs" scheme="http://yiyouls.com/tags/ANNs/"/>
     
-      <category term="人工神经网络" scheme="http://yoursite.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+      <category term="人工神经网络" scheme="http://yiyouls.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     
-      <category term="欠拟合" scheme="http://yoursite.com/tags/%E6%AC%A0%E6%8B%9F%E5%90%88/"/>
+      <category term="欠拟合" scheme="http://yiyouls.com/tags/%E6%AC%A0%E6%8B%9F%E5%90%88/"/>
     
-      <category term="underfitting" scheme="http://yoursite.com/tags/underfitting/"/>
+      <category term="underfitting" scheme="http://yiyouls.com/tags/underfitting/"/>
     
   </entry>
   
   <entry>
     <title>什么是神经网络模型过度拟合(overfitting)?</title>
-    <link href="http://yoursite.com/2019/01/27/%E4%BB%80%E4%B9%88%E6%98%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E8%BF%87%E5%BA%A6%E6%8B%9F%E5%90%88-overfitting/"/>
-    <id>http://yoursite.com/2019/01/27/什么是神经网络模型过度拟合-overfitting/</id>
+    <link href="http://yiyouls.com/%E4%BB%80%E4%B9%88%E6%98%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E8%BF%87%E5%BA%A6%E6%8B%9F%E5%90%88-overfitting.html"/>
+    <id>http://yiyouls.com/什么是神经网络模型过度拟合-overfitting.html</id>
     <published>2019-01-27T12:30:11.000Z</published>
     <updated>2019-01-27T12:39:08.280Z</updated>
     
@@ -351,25 +351,25 @@
     
     </summary>
     
-      <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="http://yiyouls.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="http://yiyouls.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="ANNs" scheme="http://yoursite.com/tags/ANNs/"/>
+      <category term="ANNs" scheme="http://yiyouls.com/tags/ANNs/"/>
     
-      <category term="人工神经网络" scheme="http://yoursite.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+      <category term="人工神经网络" scheme="http://yiyouls.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     
-      <category term="过度拟合" scheme="http://yoursite.com/tags/%E8%BF%87%E5%BA%A6%E6%8B%9F%E5%90%88/"/>
+      <category term="过度拟合" scheme="http://yiyouls.com/tags/%E8%BF%87%E5%BA%A6%E6%8B%9F%E5%90%88/"/>
     
-      <category term="overfitting" scheme="http://yoursite.com/tags/overfitting/"/>
+      <category term="overfitting" scheme="http://yiyouls.com/tags/overfitting/"/>
     
   </entry>
   
   <entry>
     <title>如何理解数据集中的训练集(training set)，验证集(validation set)以及测试集(test set)?</title>
-    <link href="http://yoursite.com/2019/01/27/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%AD%E7%9A%84%E8%AE%AD%E7%BB%83%E9%9B%86-training-set-%EF%BC%8C%E9%AA%8C%E8%AF%81%E9%9B%86-validation-set-%E4%BB%A5%E5%8F%8A%E6%B5%8B%E8%AF%95%E9%9B%86-test-set/"/>
-    <id>http://yoursite.com/2019/01/27/如何理解数据集中的训练集-training-set-，验证集-validation-set-以及测试集-test-set/</id>
+    <link href="http://yiyouls.com/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%AD%E7%9A%84%E8%AE%AD%E7%BB%83%E9%9B%86-training-set-%EF%BC%8C%E9%AA%8C%E8%AF%81%E9%9B%86-validation-set-%E4%BB%A5%E5%8F%8A%E6%B5%8B%E8%AF%95%E9%9B%86-test-set.html"/>
+    <id>http://yiyouls.com/如何理解数据集中的训练集-training-set-，验证集-validation-set-以及测试集-test-set.html</id>
     <published>2019-01-27T11:27:23.000Z</published>
     <updated>2019-01-27T11:31:35.419Z</updated>
     
@@ -387,23 +387,23 @@
     
     </summary>
     
-      <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="http://yiyouls.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="http://yiyouls.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="ANNs" scheme="http://yoursite.com/tags/ANNs/"/>
+      <category term="ANNs" scheme="http://yiyouls.com/tags/ANNs/"/>
     
-      <category term="人工神经网络" scheme="http://yoursite.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+      <category term="人工神经网络" scheme="http://yiyouls.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     
-      <category term="数据集" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/"/>
+      <category term="数据集" scheme="http://yiyouls.com/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/"/>
     
   </entry>
   
   <entry>
     <title>深入认识神经网络中的损失函数(loss function)</title>
-    <link href="http://yoursite.com/2019/01/27/%E6%B7%B1%E5%85%A5%E8%AE%A4%E8%AF%86%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-loss-function/"/>
-    <id>http://yoursite.com/2019/01/27/深入认识神经网络中的损失函数-loss-function/</id>
+    <link href="http://yiyouls.com/%E6%B7%B1%E5%85%A5%E8%AE%A4%E8%AF%86%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-loss-function.html"/>
+    <id>http://yiyouls.com/深入认识神经网络中的损失函数-loss-function.html</id>
     <published>2019-01-27T10:05:23.000Z</published>
     <updated>2019-01-27T10:14:03.266Z</updated>
     
@@ -417,25 +417,25 @@
     
     </summary>
     
-      <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="http://yiyouls.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="http://yiyouls.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="ANNs" scheme="http://yoursite.com/tags/ANNs/"/>
+      <category term="ANNs" scheme="http://yiyouls.com/tags/ANNs/"/>
     
-      <category term="人工神经网络" scheme="http://yoursite.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+      <category term="人工神经网络" scheme="http://yiyouls.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     
-      <category term="损失函数" scheme="http://yoursite.com/tags/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/"/>
+      <category term="损失函数" scheme="http://yiyouls.com/tags/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/"/>
     
-      <category term="loss function" scheme="http://yoursite.com/tags/loss-function/"/>
+      <category term="loss function" scheme="http://yiyouls.com/tags/loss-function/"/>
     
   </entry>
   
   <entry>
     <title>人工神经网络是如何学习(learn)的?</title>
-    <link href="http://yoursite.com/2019/01/27/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%A6%E4%B9%A0-learn-%E7%9A%84/"/>
-    <id>http://yoursite.com/2019/01/27/人工神经网络是如何学习-learn-的/</id>
+    <link href="http://yiyouls.com/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%A6%E4%B9%A0-learn-%E7%9A%84.html"/>
+    <id>http://yiyouls.com/人工神经网络是如何学习-learn-的.html</id>
     <published>2019-01-27T02:31:06.000Z</published>
     <updated>2019-01-27T03:48:30.197Z</updated>
     
@@ -449,23 +449,23 @@
     
     </summary>
     
-      <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="http://yiyouls.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="http://yiyouls.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="ANNs" scheme="http://yoursite.com/tags/ANNs/"/>
+      <category term="ANNs" scheme="http://yiyouls.com/tags/ANNs/"/>
     
-      <category term="人工神经网络" scheme="http://yoursite.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+      <category term="人工神经网络" scheme="http://yiyouls.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     
-      <category term="learn" scheme="http://yoursite.com/tags/learn/"/>
+      <category term="learn" scheme="http://yiyouls.com/tags/learn/"/>
     
   </entry>
   
   <entry>
     <title>如何训练(train)人工神经网络？</title>
-    <link href="http://yoursite.com/2019/01/26/%E5%A6%82%E4%BD%95%E8%AE%AD%E7%BB%83%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%9F/"/>
-    <id>http://yoursite.com/2019/01/26/如何训练人工神经网络？/</id>
+    <link href="http://yiyouls.com/%E5%A6%82%E4%BD%95%E8%AE%AD%E7%BB%83%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%9F.html"/>
+    <id>http://yiyouls.com/如何训练人工神经网络？.html</id>
     <published>2019-01-26T07:56:23.000Z</published>
     <updated>2019-01-27T03:45:01.112Z</updated>
     
@@ -477,23 +477,23 @@
     
     </summary>
     
-      <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="http://yiyouls.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="http://yiyouls.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="ANNs" scheme="http://yoursite.com/tags/ANNs/"/>
+      <category term="ANNs" scheme="http://yiyouls.com/tags/ANNs/"/>
     
-      <category term="人工神经网络" scheme="http://yoursite.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+      <category term="人工神经网络" scheme="http://yiyouls.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     
-      <category term="训练" scheme="http://yoursite.com/tags/%E8%AE%AD%E7%BB%83/"/>
+      <category term="训练" scheme="http://yiyouls.com/tags/%E8%AE%AD%E7%BB%83/"/>
     
   </entry>
   
   <entry>
     <title>如何理解神经网络中的激活函数(ativation functions)?</title>
-    <link href="http://yoursite.com/2019/01/26/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0-ativation-functions/"/>
-    <id>http://yoursite.com/2019/01/26/如何理解神经网络中的激活函数-ativation-functions/</id>
+    <link href="http://yiyouls.com/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0-ativation-functions.html"/>
+    <id>http://yiyouls.com/如何理解神经网络中的激活函数-ativation-functions.html</id>
     <published>2019-01-26T03:18:07.000Z</published>
     <updated>2019-01-27T03:58:21.994Z</updated>
     
@@ -506,23 +506,23 @@
     
     </summary>
     
-      <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="http://yiyouls.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="http://yiyouls.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="ANNs" scheme="http://yoursite.com/tags/ANNs/"/>
+      <category term="ANNs" scheme="http://yiyouls.com/tags/ANNs/"/>
     
-      <category term="人工神经网络" scheme="http://yoursite.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+      <category term="人工神经网络" scheme="http://yiyouls.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     
-      <category term="激活函数" scheme="http://yoursite.com/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/"/>
+      <category term="激活函数" scheme="http://yiyouls.com/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/"/>
     
   </entry>
   
   <entry>
     <title>如何理解神经网络中层(layer)的概念？</title>
-    <link href="http://yoursite.com/2019/01/25/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%AD%E5%B1%82-layer-%E7%9A%84%E6%A6%82%E5%BF%B5%EF%BC%9F/"/>
-    <id>http://yoursite.com/2019/01/25/如何理解神经网络中层-layer-的概念？/</id>
+    <link href="http://yiyouls.com/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%AD%E5%B1%82-layer-%E7%9A%84%E6%A6%82%E5%BF%B5%EF%BC%9F.html"/>
+    <id>http://yiyouls.com/如何理解神经网络中层-layer-的概念？.html</id>
     <published>2019-01-25T12:59:25.000Z</published>
     <updated>2019-01-27T03:44:43.968Z</updated>
     
@@ -535,23 +535,23 @@
     
     </summary>
     
-      <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="http://yiyouls.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="http://yiyouls.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="ANNs" scheme="http://yoursite.com/tags/ANNs/"/>
+      <category term="ANNs" scheme="http://yiyouls.com/tags/ANNs/"/>
     
-      <category term="人工神经网络" scheme="http://yoursite.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+      <category term="人工神经网络" scheme="http://yiyouls.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     
-      <category term="layer" scheme="http://yoursite.com/tags/layer/"/>
+      <category term="layer" scheme="http://yiyouls.com/tags/layer/"/>
     
   </entry>
   
   <entry>
     <title>什么是人工神经网络ANNs?</title>
-    <link href="http://yoursite.com/2019/01/25/%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9CANNs/"/>
-    <id>http://yoursite.com/2019/01/25/什么是人工神经网络ANNs/</id>
+    <link href="http://yiyouls.com/%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9CANNs.html"/>
+    <id>http://yiyouls.com/什么是人工神经网络ANNs.html</id>
     <published>2019-01-25T07:21:58.000Z</published>
     <updated>2019-01-27T03:44:32.916Z</updated>
     
@@ -564,21 +564,21 @@
     
     </summary>
     
-      <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="http://yiyouls.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="http://yiyouls.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="ANNs" scheme="http://yoursite.com/tags/ANNs/"/>
+      <category term="ANNs" scheme="http://yiyouls.com/tags/ANNs/"/>
     
-      <category term="人工神经网络" scheme="http://yoursite.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+      <category term="人工神经网络" scheme="http://yiyouls.com/tags/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     
   </entry>
   
   <entry>
     <title>11大最常用静态网站建站工具，你用过几个？</title>
-    <link href="http://yoursite.com/2019/01/19/11%E5%A4%A7%E6%9C%80%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E5%BB%BA%E7%AB%99%E5%B7%A5%E5%85%B7%EF%BC%8C%E4%BD%A0%E7%94%A8%E8%BF%87%E5%87%A0%E4%B8%AA%EF%BC%9F/"/>
-    <id>http://yoursite.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/</id>
+    <link href="http://yiyouls.com/11%E5%A4%A7%E6%9C%80%E5%B8%B8%E7%94%A8%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E5%BB%BA%E7%AB%99%E5%B7%A5%E5%85%B7%EF%BC%8C%E4%BD%A0%E7%94%A8%E8%BF%87%E5%87%A0%E4%B8%AA%EF%BC%9F.html"/>
+    <id>http://yiyouls.com/11大最常用静态网站建站工具，你用过几个？.html</id>
     <published>2019-01-19T07:46:47.000Z</published>
     <updated>2019-01-19T07:59:01.170Z</updated>
     
@@ -591,19 +591,19 @@
     
     </summary>
     
-      <category term="建站" scheme="http://yoursite.com/categories/%E5%BB%BA%E7%AB%99/"/>
+      <category term="建站" scheme="http://yiyouls.com/categories/%E5%BB%BA%E7%AB%99/"/>
     
     
-      <category term="静态网站" scheme="http://yoursite.com/tags/%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/"/>
+      <category term="静态网站" scheme="http://yiyouls.com/tags/%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/"/>
     
-      <category term="建站工具" scheme="http://yoursite.com/tags/%E5%BB%BA%E7%AB%99%E5%B7%A5%E5%85%B7/"/>
+      <category term="建站工具" scheme="http://yiyouls.com/tags/%E5%BB%BA%E7%AB%99%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   
   <entry>
     <title>如何在Github上免费开通一个Github Page作为个人主页</title>
-    <link href="http://yoursite.com/2019/01/19/%E5%A6%82%E4%BD%95%E5%9C%A8Github%E4%B8%8A%E5%85%8D%E8%B4%B9%E5%BC%80%E9%80%9A%E4%B8%80%E4%B8%AAGithub-Page%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E4%B8%BB%E9%A1%B5/"/>
-    <id>http://yoursite.com/2019/01/19/如何在Github上免费开通一个Github-Page作为个人主页/</id>
+    <link href="http://yiyouls.com/%E5%A6%82%E4%BD%95%E5%9C%A8Github%E4%B8%8A%E5%85%8D%E8%B4%B9%E5%BC%80%E9%80%9A%E4%B8%80%E4%B8%AAGithub-Page%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E4%B8%BB%E9%A1%B5.html"/>
+    <id>http://yiyouls.com/如何在Github上免费开通一个Github-Page作为个人主页.html</id>
     <published>2019-01-19T06:13:27.000Z</published>
     <updated>2019-01-20T07:31:22.445Z</updated>
     
@@ -616,12 +616,12 @@
     
     </summary>
     
-      <category term="建站" scheme="http://yoursite.com/categories/%E5%BB%BA%E7%AB%99/"/>
+      <category term="建站" scheme="http://yiyouls.com/categories/%E5%BB%BA%E7%AB%99/"/>
     
     
-      <category term="Github" scheme="http://yoursite.com/tags/Github/"/>
+      <category term="Github" scheme="http://yiyouls.com/tags/Github/"/>
     
-      <category term="Github Page" scheme="http://yoursite.com/tags/Github-Page/"/>
+      <category term="Github Page" scheme="http://yiyouls.com/tags/Github-Page/"/>
     
   </entry>
   

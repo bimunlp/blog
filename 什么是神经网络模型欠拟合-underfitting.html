@@ -1,0 +1,1032 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn,en,ja,default">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Deep Learning">
+    <title>什么是神经网络模型欠拟合(underfitting)? - Deep Learning</title>
+    <meta name="author" content="友邻君">
+    
+        <meta name="keywords" content="deep learning,neural network,mechine learning,ANN,AI,深度学习,机器学习,">
+    
+    
+        <link rel="icon" href="http://cdn.yiyouls.com/favicon.ico">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"articleBody":"神经网络中的欠拟合(underfitting)在这篇文章中，我们将讨论当模型被认为欠拟合意味着什么，并且介绍一些可以用来减少欠拟合的技术。\n在之前的文章中，我们将过度拟合定义为我们的模型能够对训练数据进行有效预测，但是准确预测以前从未见过的数据。\n欠拟合与之恰恰相反。欠拟合的模型甚至无法对它所训练的数据进行正确分类，更不用说它以前没见过的数据了。\n\n\n当一个模型无法对其训练的数据进行正确分类时，该模型被认为是欠拟合(underfitting)的。\n\n我们可以通过模型的度量参数来判断，如果模型的训练的准确度低或训练的损失很高，模型就是欠拟合的。\n如果模型无法对其经过训练的数据进行分类，则可能无法很好地预测之前未曾见过的数据。\n减少欠拟合现在我们知道什么样的模型是欠拟合的，我们怎样才能减少这种欠拟合呢？\n增加模型的复杂度我们可以做的第一件事是增加模型的复杂度。这与我们为减少过度拟合所采用的技术完全相反。如果我们的数据太复杂，但我们有一个相对简单的模型，那么该模型的复杂度可能就不够高，无法准确地对复杂数据进行分类或预测。\n我们可以通过以下方式增加模型的复杂度：\n\n增加模型的层数。\n增加每层神经元的数量。\n更改层的类型和位置。\n\n为输入样本添加更多特征(features)减少欠拟合的另一种技术是在我们的训练集中为输入样本添加更多特征。这些添加的特征可以帮助模型更好地对数据进行分类。\n例如，假设我们有一个模型试图根据某股票的最后三个收盘价来预测股票的价格。这个时候输入一共有三个特征：\n\n第1天收盘\n第2天收盘\n第3天收盘\n\n如果我们为这些数据添加了额外的特征 ，例如，这些天的开盘价或当天的库存量，那么这可能有助于我们的模型更多地了解数据并提高其准确性。\n减少dropout我们这里讨论的最后一个方法是减少dropout。同样，这与我们在前一篇文章中减少过度拟合的技术完全相反 。\n使用dropout时，我们可以指定要删除的节点的百分比。因此，如果我们使用50%的dropout率，发现模型欠拟合，那么我们可以通过将比率降低到低于50的值来减少dropout，再次训练并观察相关度量指标。\n这些节点仅在训练时dropout，而不是在验证期间。因此，如果我们观察到模型更适合我们的验证数据而不是训练数据，这是说明dropout数量的减少会提高模型拟合程度的一个重要指标．\n希望你现在能够理解欠拟合的概念，它为什么会发生，如何减少欠拟合。在接下来的文章中，我们将着眼于正则化的神经网络。下次见！\n","dateCreated":"2019-01-27T21:13:42+08:00","dateModified":"2019-01-27T21:15:56+08:00","datePublished":"2019-01-27T21:13:42+08:00","description":"神经网络中的欠拟合(underfitting)在这篇文章中，我们将讨论当模型被认为欠拟合意味着什么，并且介绍一些可以用来减少欠拟合的技术。\n在之前的文章中，我们将过度拟合定义为我们的模型能够对训练数据进行有效预测，但是准确预测以前从未见过的数据。\n欠拟合与之恰恰相反。欠拟合的模型甚至无法对它所训练的数据进行正确分类，更不用说它以前没见过的数据了。","headline":"什么是神经网络模型欠拟合(underfitting)?","image":["http://cdn.yiyouls.com/underfit.png","http://cdn.yiyouls.com/ai.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yiyouls.com/什么是神经网络模型欠拟合-underfitting.html"},"publisher":{"@type":"Organization","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png","logo":{"@type":"ImageObject","url":"http://cdn.yiyouls.com/profile.png"}},"url":"http://yiyouls.com/什么是神经网络模型欠拟合-underfitting.html","keywords":"深度学习, ANNs, 人工神经网络, 欠拟合, underfitting","thumbnailUrl":"http://cdn.yiyouls.com/underfit.png"}</script>
+    <meta name="description" content="神经网络中的欠拟合(underfitting)在这篇文章中，我们将讨论当模型被认为欠拟合意味着什么，并且介绍一些可以用来减少欠拟合的技术。 在之前的文章中，我们将过度拟合定义为我们的模型能够对训练数据进行有效预测，但是准确预测以前从未见过的数据。 欠拟合与之恰恰相反。欠拟合的模型甚至无法对它所训练的数据进行正确分类，更不用说它以前没见过的数据了。">
+<meta name="keywords" content="深度学习,ANNs,人工神经网络,欠拟合,underfitting">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="什么是神经网络模型欠拟合(underfitting)?">
+<meta property="og:url" content="http://yiyouls.com/什么是神经网络模型欠拟合-underfitting.html">
+<meta property="og:site_name" content="Deep Learning">
+<meta property="og:description" content="神经网络中的欠拟合(underfitting)在这篇文章中，我们将讨论当模型被认为欠拟合意味着什么，并且介绍一些可以用来减少欠拟合的技术。 在之前的文章中，我们将过度拟合定义为我们的模型能够对训练数据进行有效预测，但是准确预测以前从未见过的数据。 欠拟合与之恰恰相反。欠拟合的模型甚至无法对它所训练的数据进行正确分类，更不用说它以前没见过的数据了。">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2019-01-27T13:15:56.845Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="什么是神经网络模型欠拟合(underfitting)?">
+<meta name="twitter:description" content="神经网络中的欠拟合(underfitting)在这篇文章中，我们将讨论当模型被认为欠拟合意味着什么，并且介绍一些可以用来减少欠拟合的技术。 在之前的文章中，我们将过度拟合定义为我们的模型能够对训练数据进行有效预测，但是准确预测以前从未见过的数据。 欠拟合与之恰恰相反。欠拟合的模型甚至无法对它所训练的数据进行正确分类，更不用说它以前没见过的数据了。">
+<meta name="twitter:creator" content="@hanhaishiyi">
+    
+        <link rel="publisher" href="https://plus.google.com/108244569432480563366"/>
+    
+    
+        
+    
+    
+        <meta property="og:image" content="http://cdn.yiyouls.com/profile.png"/>
+    
+    
+        <meta property="og:image" content="http://cdn.yiyouls.com/underfit.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://cdn.yiyouls.com/underfit.png" />
+    
+    
+        <meta property="og:image" content="http://cdn.yiyouls.com/ai.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://cdn.yiyouls.com/ai.jpg" />
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style-c4ozcsklz4kht2pebhp44xorvyverh23toayhn7i6ubrpyedak24hv1v0hyd.min.css">
+    <!--STYLES END-->
+    
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/ ">Deep Learning</a>
+    </div>
+    
+        
+            <a class="header-right-picture " href="#about">
+        
+        
+            <img class="header-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about">
+                    <img class="sidebar-profile-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
+                </a>
+                <h4 class="sidebar-profile-name">友邻君</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>浙江大学在读</p>
+</h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/ " title="首页">
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">首页</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-categories" title="分类">
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">分类</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-tags" title="标签">
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">标签</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-archives" title="归档">
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">归档</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link open-algolia-search" href="#search" title="搜索">
+                    
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">搜索</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="#about" title="关于">
+                    
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">关于</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://github.com/yiyouls" target="_blank" rel="noopener" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="http://stackoverflow.com/users/10926004/yiyouls" target="_blank" rel="noopener" title="Stack Overflow">
+                    
+                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Stack Overflow</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://twitter.com/hanhaishiyi" target="_blank" rel="noopener" title="Twitter">
+                    
+                        <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Twitter</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://facebook.com/yiyouls" target="_blank" rel="noopener" title="Facebook">
+                    
+                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Facebook</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://plus.google.com/u/0/108244569432480563366" target="_blank" rel="noopener" title="Google Plus">
+                    
+                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Google Plus</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://www.linkedin.com/in/yiyouls" target="_blank" rel="noopener" title="LinkedIn">
+                    
+                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">LinkedIn</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://www.zhihu.com/people/yiyouls-66/activities" target="_blank" rel="noopener" title="知乎">
+                    
+                        <i class="sidebar-button-icon fa fa-book" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">知乎</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008" target="_blank" rel="noopener" title="网易云课堂">
+                    
+                        <i class="sidebar-button-icon fa fa-school" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">网易云课堂</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="http://space.bilibili.com/275230151?" target="_blank" rel="noopener" title="bilibili">
+                    
+                        <i class="sidebar-button-icon fa fa-video" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">bilibili</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/hanhaishiyi@gmail.com" title="邮箱">
+                    
+                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">邮箱</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/atom.xml" title="RSS">
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+        <div class="post-header-cover
+                    text-center
+                    " style="background-image:url('http://cdn.yiyouls.com/ai.jpg');" data-behavior="4">
+            
+        </div>
+
+            <div id="main" data-behavior="4"
+                 class="hasCover
+                        hasCoverMetaOut
+                        hasCoverCaption">
+                
+<article class="post">
+    
+        <span class="post-header-cover-caption caption">欠拟合说明模型没有从数据中学到足够的知识</span>
+    
+    
+        <div class="post-header main-content-wrap text-center">
+    
+        <h1 class="post-title">
+            什么是神经网络模型欠拟合(underfitting)?
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2019-01-27T21:13:42+08:00">
+	
+		    1月 27, 2019
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/categories/深度学习/">深度学习</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <h3><span id="神经网络中的欠拟合underfitting">神经网络中的欠拟合(underfitting)</span></h3><p>在这篇文章中，我们将讨论当模型被认为欠拟合意味着什么，并且介绍一些可以用来减少欠拟合的技术。</p>
+<p>在之前的文章中，我们将过度拟合定义为我们的模型能够对训练数据进行有效预测，但是准确预测以前从未见过的数据。</p>
+<p>欠拟合与之恰恰相反。欠拟合的模型甚至无法对它所训练的数据进行正确分类，更不用说它以前没见过的数据了。</p>
+<a id="more"></a>
+<blockquote>
+<p>当一个模型无法对其训练的数据进行正确分类时，该模型被认为是欠拟合(underfitting)的。</p>
+</blockquote>
+<p>我们可以通过模型的度量参数来判断，如果模型的训练的准确度低或训练的损失很高，模型就是欠拟合的。</p>
+<p>如果模型无法对其经过训练的数据进行分类，则可能无法很好地预测之前未曾见过的数据。</p>
+<h3><span id="减少欠拟合">减少欠拟合</span></h3><p>现在我们知道什么样的模型是欠拟合的，我们怎样才能减少这种欠拟合呢？</p>
+<h4><span id="增加模型的复杂度">增加模型的复杂度</span></h4><p>我们可以做的第一件事是增加模型的复杂度。这与我们为减少过度拟合所采用的技术完全相反。如果我们的数据太复杂，但我们有一个相对简单的模型，那么该模型的复杂度可能就不够高，无法准确地对复杂数据进行分类或预测。</p>
+<p>我们可以通过以下方式增加模型的复杂度：</p>
+<ul>
+<li>增加模型的层数。</li>
+<li>增加每层神经元的数量。</li>
+<li>更改层的类型和位置。</li>
+</ul>
+<h4><span id="为输入样本添加更多特征features">为输入样本添加更多特征(features)</span></h4><p>减少欠拟合的另一种技术是在我们的训练集中为输入样本添加更多特征。这些添加的特征可以帮助模型更好地对数据进行分类。</p>
+<p>例如，假设我们有一个模型试图根据某股票的最后三个收盘价来预测股票的价格。这个时候输入一共有三个特征：</p>
+<ul>
+<li>第1天收盘</li>
+<li>第2天收盘</li>
+<li>第3天收盘</li>
+</ul>
+<p>如果我们为这些数据添加了额外的特征 ，例如，这些天的开盘价或当天的库存量，那么这可能有助于我们的模型更多地了解数据并提高其准确性。</p>
+<h4><span id="减少dropout">减少dropout</span></h4><p>我们这里讨论的最后一个方法是减少dropout。同样，这与我们在前一篇文章中减少过度拟合的技术完全相反 。</p>
+<p>使用dropout时，我们可以指定要删除的节点的百分比。因此，如果我们使用<code>50%</code>的dropout率，发现模型欠拟合，那么我们可以通过将比率降低到低于<code>50</code>的值来减少dropout，再次训练并观察相关度量指标。</p>
+<p>这些节点仅在训练时dropout，而不是在验证期间。因此，如果我们观察到模型更适合我们的验证数据而不是训练数据，这是说明dropout数量的减少会提高模型拟合程度的一个重要指标．</p>
+<p>希望你现在能够理解欠拟合的概念，它为什么会发生，如何减少欠拟合。在接下来的文章中，我们将着眼于正则化的神经网络。下次见！</p>
+
+            
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">标签</span><br>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/ANNs/">ANNs</a> <a class="tag tag--primary tag--small t-link" href="/tags/underfitting/">underfitting</a> <a class="tag tag--primary tag--small t-link" href="/tags/人工神经网络/">人工神经网络</a> <a class="tag tag--primary tag--small t-link" href="/tags/欠拟合/">欠拟合</a> <a class="tag tag--primary tag--small t-link" href="/tags/深度学习/">深度学习</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/人工神经网络中的正则化-regularization.html" data-tooltip="人工神经网络中的正则化(regularization)" aria-label="上一篇: 人工神经网络中的正则化(regularization)">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/什么是神经网络模型过度拟合-overfitting.html" data-tooltip="什么是神经网络模型过度拟合(overfitting)?" aria-label="下一篇: 什么是神经网络模型过度拟合(overfitting)?">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yiyouls.com/什么是神经网络模型欠拟合-underfitting.html" title="分享到 Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yiyouls.com/什么是神经网络模型欠拟合-underfitting.html" title="分享到 Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yiyouls.com/什么是神经网络模型欠拟合-underfitting.html" title="分享到 Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yiyouls.com/什么是神经网络模型欠拟合-underfitting.html" title="分享到 Weibo">
+                    <i class="fab fa-weibo" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yiyouls.com/什么是神经网络模型欠拟合-underfitting.html&amp;title=什么是神经网络模型欠拟合(underfitting)?" title="分享到 QQ">
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yiyouls.com/什么是神经网络模型欠拟合-underfitting.html" title="分享到 Qzone">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yiyouls.com/什么是神经网络模型欠拟合-underfitting.html" title="分享到 Renren">
+                    <i class="fab fa-renren" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+                <div id="cyReward" role="cylabs" data-use="reward"></div>
+<div id="cyPoll" role="cylabs" data-use="poll"></div>
+<div id="cyEmoji" role="cylabs" data-use="emoji"></div>
+<div id="cyQing" role="cylabs" data-use="qing"></div>
+<div id="cyHotusers" role="cylabs" data-use="hotusers"></div>
+<div id="cyReping" role="cylabs" data-use="reping"></div>
+<div id="cyBarrage" role="cylabs" data-use="barrage"></div>
+<div id="SOHUCS" sid="什么是神经网络模型欠拟合(underfitting)?"></div>
+
+
+            
+        
+    </div>
+</article>
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2019 友邻君. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/人工神经网络中的正则化-regularization.html" data-tooltip="人工神经网络中的正则化(regularization)" aria-label="上一篇: 人工神经网络中的正则化(regularization)">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/什么是神经网络模型过度拟合-overfitting.html" data-tooltip="什么是神经网络模型过度拟合(overfitting)?" aria-label="下一篇: 什么是神经网络模型过度拟合(overfitting)?">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yiyouls.com/什么是神经网络模型欠拟合-underfitting.html" title="分享到 Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yiyouls.com/什么是神经网络模型欠拟合-underfitting.html" title="分享到 Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yiyouls.com/什么是神经网络模型欠拟合-underfitting.html" title="分享到 Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yiyouls.com/什么是神经网络模型欠拟合-underfitting.html" title="分享到 Weibo">
+                    <i class="fab fa-weibo" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yiyouls.com/什么是神经网络模型欠拟合-underfitting.html&amp;title=什么是神经网络模型欠拟合(underfitting)?" title="分享到 QQ">
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yiyouls.com/什么是神经网络模型欠拟合-underfitting.html" title="分享到 Qzone">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yiyouls.com/什么是神经网络模型欠拟合-underfitting.html" title="分享到 Renren">
+                    <i class="fab fa-renren" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yiyouls.com/什么是神经网络模型欠拟合-underfitting.html">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>分享到 Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yiyouls.com/什么是神经网络模型欠拟合-underfitting.html">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yiyouls.com/什么是神经网络模型欠拟合-underfitting.html">
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>分享到 Google+</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yiyouls.com/什么是神经网络模型欠拟合-underfitting.html">
+                        <i class="fab fa-weibo" aria-hidden="true"></i><span>分享到 Weibo</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yiyouls.com/什么是神经网络模型欠拟合-underfitting.html&amp;title=什么是神经网络模型欠拟合(underfitting)?">
+                        <i class="fab fa-qq" aria-hidden="true"></i><span>分享到 QQ</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yiyouls.com/什么是神经网络模型欠拟合-underfitting.html">
+                        <i class="fa fa-star" aria-hidden="true"></i><span>分享到 Qzone</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yiyouls.com/什么是神经网络模型欠拟合-underfitting.html">
+                        <i class="fab fa-renren" aria-hidden="true"></i><span>分享到 Renren</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
+        
+            <h4 id="about-card-name">友邻君</h4>
+        
+            <div id="about-card-bio"><p>浙江大学在读</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                <p>博士研究生</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br>
+                Hangzhou,Zhejiang
+            </div>
+        
+    </div>
+</div>
+
+        
+            <div id="algolia-search-modal" class="modal-container">
+    <div class="modal">
+        <div class="modal-header">
+            <span class="close-button"><i class="fa fa-times"></i></span>
+            <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+                <span class="searchby-algolia-text text-color-light text-small">by</span>
+                <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+            </a>
+            <i class="search-icon fa fa-search"></i>
+            <form id="algolia-search-form">
+                <input type="text" id="algolia-search-input" name="search" class="form-control input--large search-input" placeholder="Search ">
+            </form>
+        </div>
+        <div class="modal-body">
+            <div class="no-result text-color-light text-center">没有找到文章</div>
+            <div class="results">
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yiyouls.com/No 1 什么是机器学习.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/image_1.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yiyouls.com/No 1 什么是机器学习.html">
+                            <h3 class="media-heading">什么是机器学习(Machine Learning)？</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月16日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>机器学习与深度学习基础教程－从零开始</p>
+<p>本系列教程是为初学者定制，涵盖并解释了深度学习和人工神经网络的基本概念</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yiyouls.com/No 2 什么是深度学习？.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/image_2.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yiyouls.com/No 2 什么是深度学习？.html">
+                            <h3 class="media-heading">什么是深度学习(Deep Learning)？</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月16日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>机器学习与深度学习基础教程</p>
+<p>这篇文章将要回答什么是深度学习这个问题．</p>
+<p>整个系列课程会涵盖深度学习领域的众多主题，我们会用很多篇文章来充分解释这些课题，以及它们的应用领域和技术实现。</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yiyouls.com/使用hexo在Github上免费搭建功能丰富的个人博客网站.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/web.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yiyouls.com/使用hexo在Github上免费搭建功能丰富的个人博客网站.html">
+                            <h3 class="media-heading">使用hexo在Github上免费搭建功能丰富的个人博客网站</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月18日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>这个系列博文将带你一步步搭建起自己的个人博客网站，包含tranquilpeak主题模板配置，站内搜索，live2d插件，mathjax数学公式插件，＂千牛云＂云加速，＂畅言＂评论区添加，打赏设置等等高阶功能．</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yiyouls.com/如何在Github上免费开通一个Github-Page作为个人主页.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/Octocat.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yiyouls.com/如何在Github上免费开通一个Github-Page作为个人主页.html">
+                            <h3 class="media-heading">如何在Github上免费开通一个Github Page作为个人主页</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月19日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>为什么要选择在Github上建站，原因很简单，它是免费的．</p>
+<p>只要你按照下面的六步走，就可以轻轻松松发布自己的网站，你不需要有任何关于编程或者网站建设的基础知识．所有的前提只是，你要有一个github账号．</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yiyouls.com/11大最常用静态网站建站工具，你用过几个？.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/hexologo.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yiyouls.com/11大最常用静态网站建站工具，你用过几个？.html">
+                            <h3 class="media-heading">11大最常用静态网站建站工具，你用过几个？</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月19日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>在进行下一步操作之前，你首先要明白，你通过我们上篇博文所介绍的方式建立的网站，是一种静态网站，这个是最近特别流行的静态网站搭建博客的技术，非常适合让站长专注于内容创作而非网站本身的维护．</p>
+<p>为什么不用动态网站例如大名鼎鼎的wordpress呢？</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yiyouls.com/什么是人工神经网络ANNs.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/anns.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yiyouls.com/什么是人工神经网络ANNs.html">
+                            <h3 class="media-heading">什么是人工神经网络ANNs?</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月25日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>什么是人工神经网络(artificial neural network)?</p>
+<p>在上一篇文章中我们把深度学习定义为机器学习的子领域，深度学习所用到的算法是受大脑神经网络的结构和功能的启发．因为这个浅显的的原因，深度学习中使用的模型被称为人工神经网络（ANN）。</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yiyouls.com/如何理解神经网络中层-layer-的概念？.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/ceng.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yiyouls.com/如何理解神经网络中层-layer-的概念？.html">
+                            <h3 class="media-heading">如何理解神经网络中层(layer)的概念？</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月25日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>如何理解神经网络中层(layer)的概念?</p>
+<p>我们在之前的文章中认识了只有三个层的神经网络，但在很多时候我们有多个隐藏层，这篇文章探讨如何深入理解神经网络中层的概念，并提供一个多层神经网络的构建方法．</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yiyouls.com/如何理解神经网络中的激活函数-ativation-functions.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/function.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yiyouls.com/如何理解神经网络中的激活函数-ativation-functions.html">
+                            <h3 class="media-heading">如何理解神经网络中的激活函数(ativation functions)?</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月26日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>神经网络中的激活函数</p>
+<p>这篇文章向大家解释激活函数到底是什么，以及如何在神经网络中使用激活函数．我会向大家介绍几种常见的激活函数，向大家展示这些激活函数如何在Keras中以代码的形式呈现．</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yiyouls.com/如何训练人工神经网络？.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/sgd.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yiyouls.com/如何训练人工神经网络？.html">
+                            <h3 class="media-heading">如何训练(train)人工神经网络？</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月26日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><h4 id="神经网络的训练"><a href="#神经网络的训练" class="headerlink" title="神经网络的训练"></a>神经网络的训练</h4><p>这篇文章带大家学习如何训练一个人工神经网络．之前的文章中我们学习了如何构建一个简单的人工神经网络，当我们把一个神经网络配置好之后，下一步就是来训练它了．</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yiyouls.com/人工神经网络是如何学习-learn-的.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/learn.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yiyouls.com/人工神经网络是如何学习-learn-的.html">
+                            <h3 class="media-heading">人工神经网络是如何学习(learn)的?</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月27日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>神经网络的学习过程</p>
+<p>这篇文章我们来探讨人工神经网络是怎样学习的．</p>
+<p>本篇内容涵盖损失loss，梯度gradient，学习率lerning rate，epoch，verbose，batch批处理等概念．</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+            </div>
+        </div>
+        <div class="modal-footer">
+            <p class="results-count text-medium" data-message-zero="没有找到文章" data-message-one="找到 1 篇文章" data-message-other="找到 {n} 篇文章">
+                找到 23 篇文章
+            </p>
+        </div>
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('http://cdn.yiyouls.com/cover.jpg');"></div>
+        <!--SCRIPTS-->
+<script src="/assets/js/script-dbd16rvloemmuxdzniplmnxxvwoz24eya9wol0b7vvmlokgqsjivmb8dnscy.min.js"></script>
+<!--SCRIPTS END-->
+
+    
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cyu2tTq0X'; 
+var conf = 'prod_04b0d924b891393f35b9626442a6e448'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script> 
+<script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyu2tTq0X"></script>
+    
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment-with-locales.min.js"></script>
+    <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+    <script>
+        var algoliaClient = algoliasearch('JRXR2OL9UV', '2f9d9502c1e5ad12ac19a2180d9ac94d');
+        var algoliaIndex = algoliaClient.initIndex('my-hexo-blog');
+    </script>
+
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>
