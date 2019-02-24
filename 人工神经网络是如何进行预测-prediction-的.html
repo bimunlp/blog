@@ -321,8 +321,8 @@
         <div class="main-content-wrap">
             <h4><span id="用神经网络做预测">用神经网络做预测</span></h4><p>在这篇文章中，我们将讨论使用人工神经网络进行预测的含义，以及如何使用Keras框架写出模型预测的代码。</p>
 <a id="more"></a>
-<p>在 <a href="https://yiyouls.com/2019/01/26/%E5%A6%82%E4%BD%95%E8%AE%AD%E7%BB%83%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%9F/" target="_blank" rel="noopener">之前的文章中</a>，我们讨论了如何训练神经网络。在此训练完成后，如果我们对模型在训练数据和验证数据中的指标感到满意，那么下一步就是让模型预测测试集中的数据</p>
-<p>回想一下<a href="https://yiyouls.com/2019/01/27/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%AD%E7%9A%84%E8%AE%AD%E7%BB%83%E9%9B%86-training-set-%EF%BC%8C%E9%AA%8C%E8%AF%81%E9%9B%86-validation-set-%E4%BB%A5%E5%8F%8A%E6%B5%8B%E8%AF%95%E9%9B%86-test-set/" target="_blank" rel="noopener">关于训练集，测试集和验证集的文章</a>，不同于训练集和验证集，当我们将测试数据传递给模型时，相应的标签<em>不会</em>被传递。因此，模型根本不知道测试集的标签。</p>
+<p>在 <a href="https://yiyouls.com/2019/01/26/%E5%A6%82%E4%BD%95%E8%AE%AD%E7%BB%83%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%9F/">之前的文章中</a>，我们讨论了如何训练神经网络。在此训练完成后，如果我们对模型在训练数据和验证数据中的指标感到满意，那么下一步就是让模型预测测试集中的数据</p>
+<p>回想一下<a href="https://yiyouls.com/2019/01/27/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%AD%E7%9A%84%E8%AE%AD%E7%BB%83%E9%9B%86-training-set-%EF%BC%8C%E9%AA%8C%E8%AF%81%E9%9B%86-validation-set-%E4%BB%A5%E5%8F%8A%E6%B5%8B%E8%AF%95%E9%9B%86-test-set/">关于训练集，测试集和验证集的文章</a>，不同于训练集和验证集，当我们将测试数据传递给模型时，相应的标签<em>不会</em>被传递。因此，模型根本不知道测试集的标签。</p>
 <h4><span id="传递没有标签的样本">传递没有标签的样本</span></h4><p>关于使用模型作预测，大概来讲是将未标记的测试数据传递给模型，并让模型对测试数据的样本标签做预测。这些预测基于模型在训练过程中学到的知识。</p>
 <blockquote>
 <p>预测是基于模型在训练期间学到的知识。</p>
@@ -1015,20 +1015,5 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
     </script>
 
 
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+    <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
 </html>

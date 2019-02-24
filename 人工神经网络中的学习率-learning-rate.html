@@ -321,7 +321,7 @@
         <div class="main-content-wrap">
             <h4><span id="学习率与神经网络">学习率与神经网络</span></h4><p>这篇文章介绍学习率的问题，向大家解释学习率在模型训练中的作用．</p>
 <a id="more"></a>
-<p>在<a href="https://yiyouls.com/2019/01/27/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%A6%E4%B9%A0-learn-%E7%9A%84/" target="_blank" rel="noopener">之前的文章</a>中我们向大家介绍过神经网络是怎样学习的，＂学习＂一词具体指的是什么．在那里我们第一次提到学习率的问题，在模型学习过程中我们要给梯度值乘以学习率，我们现在来具体了解一下这个问题．</p>
+<p>在<a href="https://yiyouls.com/2019/01/27/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%A6%E4%B9%A0-learn-%E7%9A%84/">之前的文章</a>中我们向大家介绍过神经网络是怎样学习的，＂学习＂一词具体指的是什么．在那里我们第一次提到学习率的问题，在模型学习过程中我们要给梯度值乘以学习率，我们现在来具体了解一下这个问题．</p>
 <h4><span id="什么是学习率">什么是学习率</span></h4><p>模型训练的目标是通过SGD的方法最小化训练数据预测输出与实际输出的损失．要完成这一目标需要几个步骤．</p>
 <p>训练一开始我们先给模型随机赋予一些初始权重，之后在每轮训练中我们更新权重，一步步直至接近于最小化损失．</p>
 <p>我们在这里所需要的步数是由我们指定的学习率决定的，从概念上，我们可以将模型的学习率理解为步长．</p>
@@ -1012,20 +1012,5 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
     </script>
 
 
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+    <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
 </html>

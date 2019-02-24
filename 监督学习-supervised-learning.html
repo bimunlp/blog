@@ -330,7 +330,7 @@
 <p>通过监督学习，模型根据从标记的训练数据中学习知识，建立给定输入到特定输出创建映射。</p>
 <p>例如，假设我们正在训练一个根据爬行动物的图像对不同类型的爬行动物进行分类的模型。训练中我们向模型传递<em>蜥蜴</em>的图像 。</p>
 <p>由于我们进行的是有监督的学习，我们需要为模型提供此图像的标签，也就是说<em>蜥蜴</em>。</p>
-<p>根据<a href="https://yiyouls.com/2019/01/26/%E5%A6%82%E4%BD%95%E8%AE%AD%E7%BB%83%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%9F/" target="_blank" rel="noopener">如何训练人工神经网络</a>一文中的介绍，该模型会对图像进行分类输出，然后通过查看该图像的预测值与图像的实际标签之间的差异来确定分类误差．</p>
+<p>根据<a href="https://yiyouls.com/2019/01/26/%E5%A6%82%E4%BD%95%E8%AE%AD%E7%BB%83%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%9F/">如何训练人工神经网络</a>一文中的介绍，该模型会对图像进行分类输出，然后通过查看该图像的预测值与图像的实际标签之间的差异来确定分类误差．</p>
 <h4><span id="标签以数字形式表示">标签以数字形式表示</span></h4><p>我们需要将标签编码为数字。例如，<em>蜥蜴</em>的标签可以编码为<code>0</code>，而<em>乌龟</em>的标签可以编码为<code>1</code>。</p>
 <p>然后我们将训练集经历完所有epoch，确定它们的损失和误差 。在训练中模型的目标是最大限度地减少损失，因此当我们部署模型并使用它来预测未经训练的数据时，它基于的是训练期间标记过的数据．</p>
 <p>但是，如果我们没有为模型提供相应的标签，那么替代方案是什么？嗯，与监督学习相反，我们可以使用一种称为无监督学习的方法 ，以及另一种称为半监督学习的技术。我们将在以后的文章中介绍这些方面。</p>
@@ -1017,20 +1017,5 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
     </script>
 
 
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+    <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
 </html>
