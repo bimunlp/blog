@@ -17,7 +17,7 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"articleBody":"这篇文章我们了解半监督学习的概念 。\n半监督学习在监督学习和无监督学习之间占据中间地位。\n回顾以前学过的内容， 监督学习是在训练中模型从被标记的数据集中学习。 无监督学习是从未被标记的数据中学习。那半监督学习又是怎样的呢？\n半监督学习将有监督和无监督学习技术结合起来，在我们使用半监督学习的情况下，我们会同时使用标记和未标记的 数据。\n\n让我们通过一个例子来深入理解这个概念。\n大规模未标记数据集假设我们有大量用来训练模型的未标记数据集，手动标记所有这些数据是不现实的。\n但是我们可以手动标记这个大型数据集的某些部分，并使用该部分来训练模型。\n\n实际上，这是大部分情况下神经网络标记大规模数据方式。不过，既然我们已经搜集到了大量数据，但只标记了这些数据的一小部分，那么将所有其他未标记数据扔掉就会很浪费。\n毕竟，训练模型的数据越多，模型就会变得越好，越强大。我们可以想办法利用数据集中剩余的未标记数据．\n我们可以使用一种属于半监督学习的技术，称为伪标签(pseudo-labeling)。\n伪标记下面是伪标签标记的原理。首先我们已经标记了数据集的某些部分，使用这些标记数据作为模型的训练集训练模型，这个环节跟之前所讲过的监督学习方法一样。\n通过正常的训练过程使模型的性能表现良好，我们到目前为止所做的一切都是监督学习的一般方法。\n然后无监督学习开始发挥作用。在数据集的标记部分训练结束之后，使用训练好的模型来预测剩余的未标记部分的数据，然后我们采纳这些预测并给这些无标签的数据做标记。\n用我们的神经网络预测的输出标记未标记数据的过程就是伪标记技术的本质。\n在通过伪标记方法标记未标记数据之后，我们在完整数据集上训练模型，包括真实标记的数据以及伪标记的数据。\n\n伪标记允许我们在更大的数据集上进行训练。\n\n否则这些数据可能会花费很多繁琐的人工时间来手动标记。\n我们可以想象，有时获取或生成完全标记数据集的成本太高，或者为所有数据打标签本身的是不可行的。\n通过这个过程，我们可以了解到半监督学习方法是如何利用监督学习下的标记数据以及无监督学习下的未标记数据的，这些数据共同组成了半监督学习的数据来源。\n希望大家现在能够了解半监督学习的内涵，以及如何通过伪标签的技术实施半监督学习。我们下篇文章再见！\n","dateCreated":"2019-02-23T21:42:21+08:00","dateModified":"2019-02-23T21:54:33+08:00","datePublished":"2019-02-23T21:42:21+08:00","description":"这篇文章我们了解半监督学习的概念 。\n半监督学习在监督学习和无监督学习之间占据中间地位。\n回顾以前学过的内容， 监督学习是在训练中模型从被标记的数据集中学习。 无监督学习是从未被标记的数据中学习。那半监督学习又是怎样的呢？\n半监督学习将有监督和无监督学习技术结合起来，在我们使用半监督学习的情况下，我们会同时使用标记和未标记的 数据。","headline":"机器学习中的半监督学习(semi-supervised learning)","image":["http://cdn.yiyouls.com/semi-supervise.png","http://cdn.yiyouls.com/ai.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yiyouls.com/archives/5110.html"},"publisher":{"@type":"Organization","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png","logo":{"@type":"ImageObject","url":"http://cdn.yiyouls.com/profile.png"}},"url":"http://yiyouls.com/archives/5110.html","keywords":"深度学习, ANNs, 人工神经网络, semi-supervised learning, 半监督学习","thumbnailUrl":"http://cdn.yiyouls.com/semi-supervise.png"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"articleBody":"这篇文章我们了解半监督学习的概念 。\n半监督学习在监督学习和无监督学习之间占据中间地位。\n回顾以前学过的内容， 监督学习是在训练中模型从被标记的数据集中学习。 无监督学习是从未被标记的数据中学习。那半监督学习又是怎样的呢？\n半监督学习将有监督和无监督学习技术结合起来，在我们使用半监督学习的情况下，我们会同时使用标记和未标记的 数据。\n\n让我们通过一个例子来深入理解这个概念。\n大规模未标记数据集假设我们有大量用来训练模型的未标记数据集，手动标记所有这些数据是不现实的。\n但是我们可以手动标记这个大型数据集的某些部分，并使用该部分来训练模型。\n\n实际上，这是大部分情况下神经网络标记大规模数据方式。不过，既然我们已经搜集到了大量数据，但只标记了这些数据的一小部分，那么将所有其他未标记数据扔掉就会很浪费。\n毕竟，训练模型的数据越多，模型就会变得越好，越强大。我们可以想办法利用数据集中剩余的未标记数据．\n我们可以使用一种属于半监督学习的技术，称为伪标签(pseudo-labeling)。\n伪标记下面是伪标签标记的原理。首先我们已经标记了数据集的某些部分，使用这些标记数据作为模型的训练集训练模型，这个环节跟之前所讲过的监督学习方法一样。\n通过正常的训练过程使模型的性能表现良好，我们到目前为止所做的一切都是监督学习的一般方法。\n然后无监督学习开始发挥作用。在数据集的标记部分训练结束之后，使用训练好的模型来预测剩余的未标记部分的数据，然后我们采纳这些预测并给这些无标签的数据做标记。\n用我们的神经网络预测的输出标记未标记数据的过程就是伪标记技术的本质。\n在通过伪标记方法标记未标记数据之后，我们在完整数据集上训练模型，包括真实标记的数据以及伪标记的数据。\n\n伪标记允许我们在更大的数据集上进行训练。\n\n否则这些数据可能会花费很多繁琐的人工时间来手动标记。\n我们可以想象，有时获取或生成完全标记数据集的成本太高，或者为所有数据打标签本身的是不可行的。\n通过这个过程，我们可以了解到半监督学习方法是如何利用监督学习下的标记数据以及无监督学习下的未标记数据的，这些数据共同组成了半监督学习的数据来源。\n希望大家现在能够了解半监督学习的内涵，以及如何通过伪标签的技术实施半监督学习。我们下篇文章再见！\n","dateCreated":"2019-02-23T21:42:21+08:00","dateModified":"2019-02-24T14:22:16+08:00","datePublished":"2019-02-23T21:42:21+08:00","description":"这篇文章我们了解半监督学习的概念 。\n半监督学习在监督学习和无监督学习之间占据中间地位。\n回顾以前学过的内容， 监督学习是在训练中模型从被标记的数据集中学习。 无监督学习是从未被标记的数据中学习。那半监督学习又是怎样的呢？\n半监督学习将有监督和无监督学习技术结合起来，在我们使用半监督学习的情况下，我们会同时使用标记和未标记的 数据。","headline":"机器学习中的半监督学习(semi-supervised learning)","image":["http://cdn.yiyouls.com/semi-supervise.png","http://cdn.yiyouls.com/ai.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yiyouls.com/archives/5110.html"},"publisher":{"@type":"Organization","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png","logo":{"@type":"ImageObject","url":"http://cdn.yiyouls.com/profile.png"}},"url":"http://yiyouls.com/archives/5110.html","keywords":"深度学习, ANNs, 人工神经网络, semi-supervised learning, 半监督学习","thumbnailUrl":"http://cdn.yiyouls.com/semi-supervise.png"}</script>
     <meta name="description" content="这篇文章我们了解半监督学习的概念 。 半监督学习在监督学习和无监督学习之间占据中间地位。 回顾以前学过的内容， 监督学习是在训练中模型从被标记的数据集中学习。 无监督学习是从未被标记的数据中学习。那半监督学习又是怎样的呢？ 半监督学习将有监督和无监督学习技术结合起来，在我们使用半监督学习的情况下，我们会同时使用标记和未标记的 数据。">
 <meta name="keywords" content="深度学习,ANNs,人工神经网络,semi-supervised learning,半监督学习">
 <meta property="og:type" content="blog">
@@ -27,7 +27,7 @@
 <meta property="og:description" content="这篇文章我们了解半监督学习的概念 。 半监督学习在监督学习和无监督学习之间占据中间地位。 回顾以前学过的内容， 监督学习是在训练中模型从被标记的数据集中学习。 无监督学习是从未被标记的数据中学习。那半监督学习又是怎样的呢？ 半监督学习将有监督和无监督学习技术结合起来，在我们使用半监督学习的情况下，我们会同时使用标记和未标记的 数据。">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="http://cdn.yiyouls.com/cluster-3-groups.png">
-<meta property="og:updated_time" content="2019-02-23T13:54:33.671Z">
+<meta property="og:updated_time" content="2019-02-24T06:22:16.694Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习中的半监督学习(semi-supervised learning)">
 <meta name="twitter:description" content="这篇文章我们了解半监督学习的概念 。 半监督学习在监督学习和无监督学习之间占据中间地位。 回顾以前学过的内容， 监督学习是在训练中模型从被标记的数据集中学习。 无监督学习是从未被标记的数据中学习。那半监督学习又是怎样的呢？ 半监督学习将有监督和无监督学习技术结合起来，在我们使用半监督学习的情况下，我们会同时使用标记和未标记的 数据。">
@@ -323,7 +323,7 @@
         <div class="main-content-wrap">
             <p>这篇文章我们了解<em>半监督学习</em>的概念 。</p>
 <p>半监督学习在监督学习和无监督学习之间占据中间地位。</p>
-<p>回顾以前学过的内容， <a href="http://yiyouls.com/2019/02/22/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0-supervised-learning/">监督学习</a>是在训练中模型从被标记的数据集中学习。 <a href="https://yiyouls.com/2019/02/23/%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0-unsupervised-learning/">无监督学习</a>是从未被标记的数据中学习。那半监督学习又是怎样的呢？</p>
+<p>回顾以前学过的内容， <a href="https://yiyouls.com/archives/804.html">监督学习</a>是在训练中模型从被标记的数据集中学习。 <a href="https://yiyouls.com/archives/81bb.html">无监督学习</a>是从未被标记的数据中学习。那半监督学习又是怎样的呢？</p>
 <p><em>半监督学习</em>将有监督和无监督学习技术结合起来，在我们使用半监督学习的情况下，我们会同时使用<em>标记</em>和<em>未标记的</em> 数据。</p>
 <a id="more"></a>
 <p>让我们通过一个例子来深入理解这个概念。</p>
@@ -365,7 +365,8 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--disabled">
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/archives/0.html" data-tooltip="什么是卷积神经网络(convolutional neural network)深度学习？" aria-label="上一篇: 什么是卷积神经网络(convolutional neural network)深度学习？">
                 
                     <i class="fa fa-angle-left" aria-hidden="true"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -492,7 +493,8 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--disabled">
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/archives/0.html" data-tooltip="什么是卷积神经网络(convolutional neural network)深度学习？" aria-label="上一篇: 什么是卷积神经网络(convolutional neural network)深度学习？">
                 
                     <i class="fa fa-angle-left" aria-hidden="true"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -974,7 +976,7 @@
         </div>
         <div class="modal-footer">
             <p class="results-count text-medium" data-message-zero="没有找到文章" data-message-one="找到 1 篇文章" data-message-other="找到 {n} 篇文章">
-                找到 23 篇文章
+                找到 24 篇文章
             </p>
         </div>
     </div>
