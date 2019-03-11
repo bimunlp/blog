@@ -1,0 +1,838 @@
+
+<!DOCTYPE html>
+<html lang="null">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hexo">
+    <title>什么是卷积神经网络(convolutional neural network)深度学习？ - Hexo</title>
+    <meta name="author" content="Scott Liu">
+    
+    
+        <link rel="icon" href="http://cdn.yiyouls.com/favicon.ico">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Scott Liu","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"articleBody":"什么是卷积神经网络(convolutional neural network)深度学习？这篇文章我们来了解卷积神经网络的概念。卷积神经网络，也称为 CNN或ConvNet，是一种人工神经网络，迄今为止最常用的计算机视觉领域神经网络。\n虽然图像分析是CNNS最广泛应用的领域，不过这种神经网络也可以用于其他数据分析或数据分类任务。让我们具体来看一看吧．\n\n什么是CNN？从本质上讲，CNN也是一种人工神经网络，它拥有能够检测并分离模式(pattern)的能力。这种对模式的识别能力使CNN在图像分析中非常有用。\nCNN并不简简单单只是一个人工神经网络，它与标准的多层感知机（MLP）有着明显的区别．\nCNN有被称作卷积层(convolutional layer)的隐藏层，这些层是构成CNN网络的关键所在，即卷积神经网络．\n\nCNN网络的隐藏层中包含卷积层。\n\nCNN网络中还有很多非卷积层，　但卷积层是CNN网络的基础。\n那么卷积层的作用是什么？\n卷积层与任何其他层一样，卷积层接收输入，以某种方式转换输入，然后将转换后的输入输出到下一层。卷积层的输入称为输入通道，输出称为输出通道。\n数据在卷积层中发生的变换称为卷积运算(convolution operation)。这个是深度学习从业者经常使用的名词，不过从数学上讲，卷积层执行的卷积运算实际应该被叫做互相关(cross-correlations)。\n我们稍后会对这种运算作介绍。现在，让我们首先了解一下卷积层所做的变换背后所蕴含的深层思想。\n滤波器(filter)和卷积运算如前所述，卷积神经网络能够检测图像的模式。\n对于每个卷积层，我们需要指定图层包含的滤波器的数量 。这些过滤器用来检测图像的模式。\n模式(pattern)我们所说的滤波器能够检测模式到底指的是什么？一张图片中包含了很多的元素，不同的边缘，形状，纹理，物体等。这就是我们所说的模式。\n\n边缘\n形状\n纹理\n曲线\n物体\n颜色\n\n滤波器在图像中可以检测到的一种模式是边缘，因此滤波器又被称为边缘检测器。\n除了边缘，一些滤波器可能会检测边角。有的可以检测圆弧，有的可以检测方形。这些简单的几何滤波器就是我们在卷积神经网络前端所看到的。\n网络越深，滤波器就越复杂。在后面的层中，滤波器可以检测特定的物体，如眼睛，耳朵，头发或毛发，羽毛，鳞片或喙，而不是只是边缘和简单的形状。\n在更深的层中，滤波器能够检测更复杂的物体，如犬，猫，蜥蜴和鸟类的整体。\n为了理解这些卷积层及其各自滤波器是如何工作的，让我们看一个例子。\n滤波器（模式检测器）假设我们有一个卷积神经网络，向它传递手写体数字的图像（如MNIST数据集中的），训练的目标是人网络识别这些书写体各自代表的数值1， 2，3等。\n\n假设模型中的第一个隐藏层是卷积层。如前所述，在向模型添加卷积层时，我们还必须指定卷积层的滤波器个数。\n滤波器的数量决定了输出通道的数量。\n从技术上讲，滤波器可以被认为是一个相对较小的矩阵（ 张量），我们需要选择该矩阵具有的行数和列数，并将矩阵内的值用随机数初始化。\n对于第一个卷积层，我们给它指定一个大小为3 x 3的过滤器。\n卷积层让我们看一下卷积操作的示例动画：\n\n此动画展示了以非数字呈现的卷积过程。底部是一个蓝色的输入通道，卷积滤波器在底部的输入通道依次投影到绿色的输出通道：\n\n蓝色（底部） - 输入通道\n阴影（蓝色上面） - 3 x 3卷积滤波器\n绿色（顶部） - 输出通道\n\n对于蓝色输入通道上的每个位置，3 x 3滤波器进行匹配计算，将蓝色输入通道的阴影部分映射到绿色输出通道的相应阴影部分。\n输入通道被卷积层接收之后，滤波器在输入的每组3 x 3像素上＂滑动＂，直到它从整个图像每个3 x 3像素块滑过。\n卷积操作这种滑动被称为卷积(convolving)，所以正确的说法是这个滤波器将在输入的每个3 x 3像素块上进行卷积。\n蓝色输入通道是用矩阵表示的MNIST数据集中的图像。此矩阵中的值是图像中的各个像素。这些图像是灰度图像，所以我们只有一个输入通道。\n\n灰度图像具有单个颜色通道\nRGB图像具有三个颜色通道\n\n将此输入传递到卷积层。\n我们指定第一个卷积层只有一个滤波器，这个滤波器在输入的每个3 x 3像素块上进行卷积。当滤波器落在第一个3 x 3像素块上时，会计算并存储滤波器本身与输入的3 x 3像素块的点积。对于每个3 x 3像素块滤波器都会执行这个操作。\n例如，我们计算滤波器与第一个3 x 3像素块的点积，然后将结果存储在输出通道中。接下来滤波器滑动到下一个3 x 3 像素块，计算点积，并将该值存储为输出通道中的下一个像素。\n在此过滤器对整个输入进行卷积之后，会形成对输入的新表示，现在将其存储在输出通道中。此输出通道称为特征映射(feature map)。\n这个绿色输出通道成为下一层输入通道的输入，然后重复滤波器在上层的步骤，形成新的输出通道。\n这只是一个非常简单的例子，这样的滤波器被视为模式检测器。\n输入和输出通道假设我们的输入是MNIST数据集中具有七个灰度图像（单色通道）：\n\n假设第一个卷积层有四个3 x 3滤波器，这些滤波器用下面的值填充。通过使-1s对应于黑色，1s对应于白色，并且0s对应于灰色，可以在视觉上表示这些值。\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n如果我们将这四个滤波器中的每个滤波器分别与原始图像进行卷积，每个滤波器的输出结果如下：\n\n\n\n\n\n\n\n\n\n\n\n\n卷积层输出通道\n\n\n\n\n\n\n可以看到所有这四个滤波器检测的都是边缘。在输出通道中，亮部的像素是滤波器检测到的像素。在第一张图中，亮部的像素（白色）检测到的是数字７顶部的水平边缘．\n第二张图检测到左侧垂直边缘，同样是以高亮的像素展示。第三张图检测底部水平边缘，第四张图检测右侧垂直边缘。\n正如我们之前提到的，这些滤波器的功能非常基础，能够检测边缘。这些是在卷积神经网络前端最有可能看到的滤波器。更复杂的滤波器位于网络的更深处，逐渐能够检测到更复杂的模式，如下所示：\n\n上图中左侧的形状是滤波器从右侧图像中获得的。我们可以从左侧分辨出圆圈，曲线和边角。在更深的层中滤波器可以检测到更复杂的图案，如狗的面部或鸟类的足，如下所示：\n\n要知道，这些模式检测器都是由神经网络自动生成的。滤波器的值通过随机初始化，网络在训练中通过学习来的知识对这些值做更改。滤波器对模式的检测能力是由网络自身所自动习得的。\n\n模式识别器是在学习中出现的。\n\n过去的计算机视觉科学家是通过手动建立滤波器（模式检测器）。其中一个例子是Sobel滤波器，它是一种边缘检测器。随着深度学习技术的发展，我们开始能够使用神经网络自动习得这些过滤器．\n如果您有兴趣了解如何在代码中使用CNN，那么请查看CNN和Keras系列中关于微调的文章 ，或者在本系列中使用PyTorch从头开始构建神经网络 。\n相信你现在应该对卷积神经网络有了一个基本的了解，我们下次再见！\n","dateCreated":"2019-02-27T13:36:22+08:00","dateModified":"2019-02-27T13:42:27+08:00","datePublished":"2019-02-27T13:36:22+08:00","description":"什么是卷积神经网络(convolutional neural network)深度学习？这篇文章我们来了解卷积神经网络的概念。卷积神经网络，也称为 CNN或ConvNet，是一种人工神经网络，迄今为止最常用的计算机视觉领域神经网络。\n虽然图像分析是CNNS最广泛应用的领域，不过这种神经网络也可以用于其他数据分析或数据分类任务。让我们具体来看一看吧．","headline":"什么是卷积神经网络(convolutional neural network)深度学习？","image":["http://cdn.yiyouls.com/convolution.png","http://cdn.yiyouls.com/ai.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yiyouls.com/2019/02/27/什么是卷积神经网络-convolutional-neural-network/"},"publisher":{"@type":"Organization","name":"Scott Liu","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png","logo":{"@type":"ImageObject","url":"http://cdn.yiyouls.com/profile.png"}},"url":"http://yiyouls.com/2019/02/27/什么是卷积神经网络-convolutional-neural-network/","keywords":"深度学习, ANNs, 人工神经网络, 卷积神经网络, CNN","thumbnailUrl":"http://cdn.yiyouls.com/convolution.png"}</script>
+    <meta name="description" content="什么是卷积神经网络(convolutional neural network)深度学习？这篇文章我们来了解卷积神经网络的概念。卷积神经网络，也称为 CNN或ConvNet，是一种人工神经网络，迄今为止最常用的计算机视觉领域神经网络。 虽然图像分析是CNNS最广泛应用的领域，不过这种神经网络也可以用于其他数据分析或数据分类任务。让我们具体来看一看吧．">
+<meta name="keywords" content="深度学习,ANNs,人工神经网络,卷积神经网络,CNN">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="什么是卷积神经网络(convolutional neural network)深度学习？">
+<meta property="og:url" content="http://yiyouls.com/2019/02/27/什么是卷积神经网络-convolutional-neural-network/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="什么是卷积神经网络(convolutional neural network)深度学习？这篇文章我们来了解卷积神经网络的概念。卷积神经网络，也称为 CNN或ConvNet，是一种人工神经网络，迄今为止最常用的计算机视觉领域神经网络。 虽然图像分析是CNNS最广泛应用的领域，不过这种神经网络也可以用于其他数据分析或数据分类任务。让我们具体来看一看吧．">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://cdn.yiyouls.com/mnist-dataset.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/padding.gif">
+<meta property="og:image" content="http://cdn.yiyouls.com/mnist7.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/cnn-filter.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/cnn-filter2.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/cnn-filter3.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/cnn-filter4.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/grey1.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/grey12.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/grey13.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/grey14.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/opc1.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/opc2.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/opc3.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/opc4.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/layer2filter.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/4layer.png">
+<meta property="og:updated_time" content="2019-02-27T05:42:27.542Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="什么是卷积神经网络(convolutional neural network)深度学习？">
+<meta name="twitter:description" content="什么是卷积神经网络(convolutional neural network)深度学习？这篇文章我们来了解卷积神经网络的概念。卷积神经网络，也称为 CNN或ConvNet，是一种人工神经网络，迄今为止最常用的计算机视觉领域神经网络。 虽然图像分析是CNNS最广泛应用的领域，不过这种神经网络也可以用于其他数据分析或数据分类任务。让我们具体来看一看吧．">
+<meta name="twitter:image" content="http://cdn.yiyouls.com/mnist-dataset.png">
+<meta name="twitter:creator" content="@hanhaishiyi">
+    
+        <link rel="publisher" href="https://plus.google.com/108244569432480563366"/>
+    
+    
+        
+    
+    
+        <meta property="og:image" content="http://cdn.yiyouls.com/profile.png"/>
+    
+    
+        <meta property="og:image" content="http://cdn.yiyouls.com/convolution.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://cdn.yiyouls.com/convolution.png" />
+    
+    
+        <meta property="og:image" content="http://cdn.yiyouls.com/ai.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://cdn.yiyouls.com/ai.jpg" />
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style-c4ozcsklz4kht2pebhp44xorvyverh23toayhn7i6ubrpyedak24hv1v0hyd.min.css">
+    <!--STYLES END-->
+    
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/ ">Hexo</a>
+    </div>
+    
+        
+            <a class="header-right-picture " href="#about">
+        
+        
+            <img class="header-picture" src="http://cdn.yiyouls.com/profile.png" alt="Foto de autor">
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about">
+                    <img class="sidebar-profile-picture" src="http://cdn.yiyouls.com/profile.png" alt="Foto de autor">
+                </a>
+                <h4 class="sidebar-profile-name">Scott Liu</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/ " title="Inicio">
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Inicio</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-categories" title="Categorías">
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categorías</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-tags" title="Etiquetas">
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Etiquetas</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-archives" title="Archivos">
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archivos</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link open-algolia-search" href="#search" title="Buscar">
+                    
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Buscar</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="#about" title="Acerca de">
+                    
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Acerca de</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://github.com/yiyouls" target="_blank" rel="noopener" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="http://stackoverflow.com/users/10926004/yiyouls" target="_blank" rel="noopener" title="Stack Overflow">
+                    
+                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Stack Overflow</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://twitter.com/hanhaishiyi" target="_blank" rel="noopener" title="Twitter">
+                    
+                        <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Twitter</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://facebook.com/yiyouls" target="_blank" rel="noopener" title="Facebook">
+                    
+                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Facebook</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://plus.google.com/u/0/108244569432480563366" target="_blank" rel="noopener" title="Google Plus">
+                    
+                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Google Plus</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://www.linkedin.com/in/yiyouls" target="_blank" rel="noopener" title="LinkedIn">
+                    
+                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">LinkedIn</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://www.zhihu.com/people/yiyouls-66/activities" target="_blank" rel="noopener" title="知乎">
+                    
+                        <i class="sidebar-button-icon fa fa-book" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">知乎</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008" target="_blank" rel="noopener" title="网易云课堂">
+                    
+                        <i class="sidebar-button-icon fa fa-school" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">网易云课堂</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="http://space.bilibili.com/275230151?" target="_blank" rel="noopener" title="bilibili">
+                    
+                        <i class="sidebar-button-icon fa fa-video" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">bilibili</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/hanhaishiyi@gmail.com" title="Correo">
+                    
+                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Correo</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/atom.xml" title="RSS">
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+        <div class="post-header-cover
+                    text-center
+                    " style="background-image:url('http://cdn.yiyouls.com/ai.jpg');" data-behavior="4">
+            
+        </div>
+
+            <div id="main" data-behavior="4"
+                 class="hasCover
+                        hasCoverMetaOut
+                        hasCoverCaption">
+                
+<article class="post">
+    
+        <span class="post-header-cover-caption caption">卷积神经网络已经在视觉识别领域大放异彩</span>
+    
+    
+        <div class="post-header main-content-wrap text-center">
+    
+        <h1 class="post-title">
+            什么是卷积神经网络(convolutional neural network)深度学习？
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2019-02-27T13:36:22+08:00">
+	
+		    27 Feb 2019
+    	
+    </time>
+    
+        <span>en </span>
+        
+    <a class="category-link" href="/categories/深度学习/">深度学习</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <h3><span id="什么是卷积神经网络convolutional-neural-network深度学习">什么是卷积神经网络(convolutional neural network)深度学习？</span></h3><p>这篇文章我们来了解<em>卷积神经网络</em>的概念。卷积神经网络，也称为 <em>CNN</em>或<em>ConvNet</em>，是一种人工神经网络，迄今为止最常用的计算机视觉领域神经网络。</p>
+<p>虽然图像分析是CNNS最广泛应用的领域，不过这种神经网络也可以用于其他数据分析或数据分类任务。让我们具体来看一看吧．</p>
+<a id="more"></a>
+<h3><span id="什么是cnn">什么是CNN？</span></h3><p>从本质上讲，CNN也是一种<a href="https://yiyouls.com/%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9CANNs.html">人工神经网络</a>，它拥有能够检测并分离模式(pattern)的能力。这种对模式的识别能力使CNN在图像分析中非常有用。</p>
+<p>CNN并不简简单单只是一个人工神经网络，它与标准的多层感知机（MLP）有着明显的区别．</p>
+<p>CNN有被称作<em>卷积层(convolutional layer)</em>的隐藏层，这些层是构成CNN网络的关键所在，即卷积神经网络．</p>
+<blockquote>
+<p>CNN网络的隐藏层中包含卷积层。</p>
+</blockquote>
+<p>CNN网络中还有很多非卷积层，　但卷积层是CNN网络的基础。</p>
+<p>那么卷积层的作用是什么？</p>
+<h4><span id="卷积层">卷积层</span></h4><p>与任何其他层一样，卷积层接收输入，以某种方式转换输入，然后将转换后的输入输出到下一层。卷积层的输入称为输入通道，输出称为输出通道。</p>
+<p>数据在卷积层中发生的变换称为<em>卷积运算(convolution operation)</em>。这个是深度学习从业者经常使用的名词，不过从数学上讲，卷积层执行的卷积运算实际应该被叫做<a href="https://en.wikipedia.org/wiki/Cross-correlation" target="_blank" rel="noopener">互相关(cross-correlations)</a>。</p>
+<p>我们稍后会对这种运算作介绍。现在，让我们首先了解一下卷积层所做的变换背后所蕴含的深层思想。</p>
+<h3><span id="滤波器filter和卷积运算">滤波器(filter)和卷积运算</span></h3><p>如前所述，卷积神经网络能够检测图像的模式。</p>
+<p>对于每个卷积层，我们需要指定图层包含的<em>滤波器</em>的数量 。这些过滤器用来检测图像的模式。</p>
+<h4><span id="模式pattern">模式(pattern)</span></h4><p>我们所说的滤波器能够检测模式到底指的是什么？一张图片中包含了很多的元素，不同的边缘，形状，纹理，物体等。这就是我们所说的<em>模式</em>。</p>
+<ul>
+<li>边缘</li>
+<li>形状</li>
+<li>纹理</li>
+<li>曲线</li>
+<li>物体</li>
+<li>颜色</li>
+</ul>
+<p>滤波器在图像中可以检测到的一种模式是边缘，因此滤波器又被称为<em>边缘检测器</em>。</p>
+<p>除了边缘，一些滤波器可能会检测边角。有的可以检测圆弧，有的可以检测方形。这些简单的几何滤波器就是我们在卷积神经网络前端所看到的。</p>
+<p>网络越深，滤波器就越复杂。在后面的层中，滤波器可以检测特定的物体，如眼睛，耳朵，头发或毛发，羽毛，鳞片或喙，而不是只是边缘和简单的形状。</p>
+<p>在更深的层中，滤波器能够检测更复杂的物体，如犬，猫，蜥蜴和鸟类的整体。</p>
+<p>为了理解这些卷积层及其各自滤波器是如何工作的，让我们看一个例子。</p>
+<h4><span id="滤波器模式检测器">滤波器（模式检测器）</span></h4><p>假设我们有一个卷积神经网络，向它传递手写体数字的图像（如MNIST数据集中的），训练的目标是人网络识别这些书写体各自代表的数值<code>1</code>， <code>2</code>，<code>3</code>等。</p>
+<p><img src="http://cdn.yiyouls.com/mnist-dataset.png" alt=""></p>
+<p>假设模型中的第一个隐藏层是卷积层。如前所述，在向模型添加卷积层时，我们还必须指定卷积层的滤波器个数。</p>
+<p>滤波器的数量决定了输出通道的数量。</p>
+<p>从技术上讲，滤波器可以被认为是一个相对较小的矩阵（ 张量），我们需要选择该矩阵具有的行数和列数，并将矩阵内的值用随机数初始化。</p>
+<p>对于第一个卷积层，我们给它指定一个大小为<code>3 x 3</code>的过滤器。</p>
+<h4><span id="卷积层">卷积层</span></h4><p>让我们看一下卷积操作的示例动画：</p>
+<p><img src="http://cdn.yiyouls.com/padding.gif" alt="卷积动画"></p>
+<p>此动画展示了以非数字呈现的卷积过程。底部是一个蓝色的输入通道，卷积滤波器在底部的输入通道依次投影到绿色的输出通道：</p>
+<ul>
+<li>蓝色（底部） - 输入通道</li>
+<li>阴影（蓝色上面） - <code>3 x 3</code>卷积滤波器</li>
+<li>绿色（顶部） - 输出通道</li>
+</ul>
+<p>对于蓝色输入通道上的每个位置，<code>3 x 3</code>滤波器进行匹配计算，将蓝色输入通道的阴影部分映射到绿色输出通道的相应阴影部分。</p>
+<p>输入通道被卷积层接收之后，滤波器在输入的每组<code>3 x 3</code>像素上＂滑动＂，直到它从整个图像每个<code>3 x 3</code>像素块滑过。</p>
+<h4><span id="卷积操作">卷积操作</span></h4><p>这种滑动被称为<em>卷积(convolving)</em>，所以正确的说法是这个滤波器将在输入的每个<code>3 x 3</code>像素块上进行<em>卷积</em>。</p>
+<p>蓝色输入通道是用矩阵表示的MNIST数据集中的图像。此矩阵中的值是图像中的各个像素。这些图像是灰度图像，所以我们只有一个输入通道。</p>
+<ul>
+<li>灰度图像具有单个颜色通道</li>
+<li>RGB图像具有三个颜色通道</li>
+</ul>
+<p>将此输入传递到卷积层。</p>
+<p>我们指定第一个卷积层只有一个滤波器，这个滤波器在输入的每个<code>3 x 3</code>像素块上进行卷积。当滤波器落在第一个<code>3 x 3</code>像素块上时，会计算并存储滤波器本身与输入的<code>3 x 3</code>像素块的点积。对于每个<code>3 x 3</code>像素块滤波器都会执行这个操作。</p>
+<p>例如，我们计算滤波器与第一个<code>3 x 3</code>像素块的点积，然后将结果存储在输出通道中。接下来滤波器滑动到下一个<code>3 x 3</code> 像素块，计算点积，并将该值存储为输出通道中的下一个像素。</p>
+<p>在此过滤器对整个输入进行卷积之后，会形成对输入的新表示，现在将其存储在输出通道中。此输出通道称为特征映射(feature map)。</p>
+<p>这个绿色输出通道成为下一层输入通道的输入，然后重复滤波器在上层的步骤，形成新的输出通道。</p>
+<p>这只是一个非常简单的例子，这样的滤波器被视为模式检测器。</p>
+<h3><span id="输入和输出通道">输入和输出通道</span></h3><p>假设我们的输入是MNIST数据集中具有七个灰度图像（单色通道）：</p>
+<p><img src="http://cdn.yiyouls.com/mnist7.png" alt=""></p>
+<p>假设第一个卷积层有四个<code>3 x 3</code>滤波器，这些滤波器用下面的值填充。通过使<code>-1</code>s对应于黑色，<code>1</code>s对应于白色，并且<code>0</code>s对应于灰色，可以在视觉上表示这些值。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th><img src="http://cdn.yiyouls.com/cnn-filter.png" alt=""></th>
+<th><img src="http://cdn.yiyouls.com/cnn-filter2.png" alt="过滤器2"></th>
+<th><img src="http://cdn.yiyouls.com/cnn-filter3.png" alt="过滤器3"></th>
+<th><img src="http://cdn.yiyouls.com/cnn-filter4.png" alt="过滤器4"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="http://cdn.yiyouls.com/grey1.png" alt="过滤"></td>
+<td><img src="http://cdn.yiyouls.com/grey12.png" alt="过滤"></td>
+<td><img src="http://cdn.yiyouls.com/grey13.png" alt="过滤"></td>
+<td><img src="http://cdn.yiyouls.com/grey14.png" alt="过滤"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>如果我们将这四个滤波器中的每个滤波器分别与原始图像进行卷积，每个滤波器的输出结果如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th><img src="http://cdn.yiyouls.com/opc1.png" alt="输出通道1"></th>
+<th><img src="http://cdn.yiyouls.com/opc2.png" alt="输出通道2"></th>
+<th><img src="http://cdn.yiyouls.com/opc3.png" alt="输出通道3"></th>
+<th><img src="http://cdn.yiyouls.com/opc4.png" alt="输出通道4"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>卷积层输出通道</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>可以看到所有这四个滤波器检测的都是边缘。在输出通道中，亮部的像素是滤波器检测到的像素。在第一张图中，亮部的像素（白色）检测到的是数字７顶部的水平边缘．</p>
+<p>第二张图检测到左侧垂直边缘，同样是以高亮的像素展示。第三张图检测底部水平边缘，第四张图检测右侧垂直边缘。</p>
+<p>正如我们之前提到的，这些滤波器的功能非常基础，能够检测边缘。这些是在卷积神经网络前端最有可能看到的滤波器。更复杂的滤波器位于网络的更深处，逐渐能够检测到更复杂的模式，如下所示：</p>
+<p><img src="http://cdn.yiyouls.com/layer2filter.png" alt=""></p>
+<p>上图中左侧的形状是滤波器从右侧图像中获得的。我们可以从左侧分辨出圆圈，曲线和边角。在更深的层中滤波器可以检测到更复杂的图案，如狗的面部或鸟类的足，如下所示：</p>
+<p><img src="http://cdn.yiyouls.com/4layer.png" alt=""></p>
+<p>要知道，这些模式检测器都是由神经网络自动生成的。滤波器的值通过随机初始化，网络在训练中通过学习来的知识对这些值做更改。滤波器对模式的检测能力是由网络自身所自动习得的。</p>
+<blockquote>
+<p>模式识别器是在学习中出现的。</p>
+</blockquote>
+<p>过去的计算机视觉科学家是通过手动建立滤波器（模式检测器）。其中一个例子是<a href="https://en.wikipedia.org/wiki/Sobel_operator" target="_blank" rel="noopener">Sobel滤波器</a>，它是一种边缘检测器。随着深度学习技术的发展，我们开始能够使用神经网络自动习得这些过滤器．</p>
+<p>如果您有兴趣了解如何在代码中使用CNN，那么请查看CNN和Keras系列中关于微调的文章 ，或者在本系列中使用PyTorch从头开始构建神经网络 。</p>
+<p>相信你现在应该对卷积神经网络有了一个基本的了解，我们下次再见！</p>
+
+            
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">ETIQUETADO EN</span><br>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/ANNs/">ANNs</a> <a class="tag tag--primary tag--small t-link" href="/tags/CNN/">CNN</a> <a class="tag tag--primary tag--small t-link" href="/tags/人工神经网络/">人工神经网络</a> <a class="tag tag--primary tag--small t-link" href="/tags/卷积神经网络/">卷积神经网络</a> <a class="tag tag--primary tag--small t-link" href="/tags/深度学习/">深度学习</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/03/11/C-算法与数据结构视频教程/" data-tooltip="C++算法与数据结构视频教程" aria-label="ANTERIOR: C++算法与数据结构视频教程">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">ANTERIOR</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/02/23/机器学习中的半监督学习-semi-supervised-learning/" data-tooltip="机器学习中的半监督学习(semi-supervised learning)" aria-label="SIGUIENTE: 机器学习中的半监督学习(semi-supervised learning)">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">SIGUIENTE</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yiyouls.com/2019/02/27/什么是卷积神经网络-convolutional-neural-network/" title="Compartir en Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yiyouls.com/2019/02/27/什么是卷积神经网络-convolutional-neural-network/" title="Compartir en Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yiyouls.com/2019/02/27/什么是卷积神经网络-convolutional-neural-network/" title="Compartir en Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yiyouls.com/2019/02/27/什么是卷积神经网络-convolutional-neural-network/" title="Compartir en Weibo">
+                    <i class="fab fa-weibo" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yiyouls.com/2019/02/27/什么是卷积神经网络-convolutional-neural-network/&amp;title=什么是卷积神经网络(convolutional neural network)深度学习？" title="Compartir en QQ">
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yiyouls.com/2019/02/27/什么是卷积神经网络-convolutional-neural-network/" title="Compartir en Qzone">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yiyouls.com/2019/02/27/什么是卷积神经网络-convolutional-neural-network/" title="Compartir en Renren">
+                    <i class="fab fa-renren" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+                <div id="cyReward" role="cylabs" data-use="reward"></div>
+<div id="cyPoll" role="cylabs" data-use="poll"></div>
+<div id="cyEmoji" role="cylabs" data-use="emoji"></div>
+<div id="cyQing" role="cylabs" data-use="qing"></div>
+<div id="cyHotusers" role="cylabs" data-use="hotusers"></div>
+<div id="cyReping" role="cylabs" data-use="reping"></div>
+<div id="cyBarrage" role="cylabs" data-use="barrage"></div>
+<div id="SOHUCS" sid="什么是卷积神经网络(convolutional neural network)深度学习？"></div>
+
+
+            
+        
+    </div>
+</article>
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2019 Scott Liu. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/03/11/C-算法与数据结构视频教程/" data-tooltip="C++算法与数据结构视频教程" aria-label="ANTERIOR: C++算法与数据结构视频教程">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">ANTERIOR</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/02/23/机器学习中的半监督学习-semi-supervised-learning/" data-tooltip="机器学习中的半监督学习(semi-supervised learning)" aria-label="SIGUIENTE: 机器学习中的半监督学习(semi-supervised learning)">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">SIGUIENTE</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yiyouls.com/2019/02/27/什么是卷积神经网络-convolutional-neural-network/" title="Compartir en Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yiyouls.com/2019/02/27/什么是卷积神经网络-convolutional-neural-network/" title="Compartir en Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yiyouls.com/2019/02/27/什么是卷积神经网络-convolutional-neural-network/" title="Compartir en Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yiyouls.com/2019/02/27/什么是卷积神经网络-convolutional-neural-network/" title="Compartir en Weibo">
+                    <i class="fab fa-weibo" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yiyouls.com/2019/02/27/什么是卷积神经网络-convolutional-neural-network/&amp;title=什么是卷积神经网络(convolutional neural network)深度学习？" title="Compartir en QQ">
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yiyouls.com/2019/02/27/什么是卷积神经网络-convolutional-neural-network/" title="Compartir en Qzone">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yiyouls.com/2019/02/27/什么是卷积神经网络-convolutional-neural-network/" title="Compartir en Renren">
+                    <i class="fab fa-renren" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yiyouls.com/2019/02/27/什么是卷积神经网络-convolutional-neural-network/">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Compartir en Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yiyouls.com/2019/02/27/什么是卷积神经网络-convolutional-neural-network/">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Compartir en Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yiyouls.com/2019/02/27/什么是卷积神经网络-convolutional-neural-network/">
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Compartir en Google+</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yiyouls.com/2019/02/27/什么是卷积神经网络-convolutional-neural-network/">
+                        <i class="fab fa-weibo" aria-hidden="true"></i><span>Compartir en Weibo</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yiyouls.com/2019/02/27/什么是卷积神经网络-convolutional-neural-network/&amp;title=什么是卷积神经网络(convolutional neural network)深度学习？">
+                        <i class="fab fa-qq" aria-hidden="true"></i><span>Compartir en QQ</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yiyouls.com/2019/02/27/什么是卷积神经网络-convolutional-neural-network/">
+                        <i class="fa fa-star" aria-hidden="true"></i><span>Compartir en Qzone</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yiyouls.com/2019/02/27/什么是卷积神经网络-convolutional-neural-network/">
+                        <i class="fab fa-renren" aria-hidden="true"></i><span>Compartir en Renren</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="http://cdn.yiyouls.com/profile.png" alt="Foto de autor">
+        
+            <h4 id="about-card-name">Scott Liu</h4>
+        
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                <p>author.job</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br>
+                Hangzhou,Zhejiang
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('http://cdn.yiyouls.com/cover.jpg');"></div>
+        <!--SCRIPTS-->
+<script src="/assets/js/script-dbd16rvloemmuxdzniplmnxxvwoz24eya9wol0b7vvmlokgqsjivmb8dnscy.min.js"></script>
+<!--SCRIPTS END-->
+
+    
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cyu2tTq0X'; 
+var conf = 'prod_04b0d924b891393f35b9626442a6e448'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script> 
+<script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyu2tTq0X"></script>
+    
+
+
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

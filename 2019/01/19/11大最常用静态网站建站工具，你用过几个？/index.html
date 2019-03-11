@@ -1,15 +1,13 @@
 
 <!DOCTYPE html>
-<html lang="zh-cn,en,ja,default">
+<html lang="null">
     
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="Deep Learning">
-    <title>11大最常用静态网站建站工具，你用过几个？ - Deep Learning</title>
-    <meta name="author" content="友邻君">
-    
-        <meta name="keywords" content="deep learning,neural network,mechine learning,ANN,AI,深度学习,机器学习,">
+    <meta name="generator" content="Hexo">
+    <title>11大最常用静态网站建站工具，你用过几个？ - Hexo</title>
+    <meta name="author" content="Scott Liu">
     
     
         <link rel="icon" href="http://cdn.yiyouls.com/favicon.ico">
@@ -17,15 +15,15 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"articleBody":"在进行下一步操作之前，你首先要明白，你通过我们上篇博文所介绍的方式建立的网站，是一种静态网站，这个是最近特别流行的静态网站搭建博客的技术，非常适合让站长专注于内容创作而非网站本身的维护．\n为什么不用动态网站例如大名鼎鼎的wordpress呢？\n\n究其原因，还是与博客类型网站本身的定位有关．静态网站和动态网站相比有如下好处：\n\n免费。静态网站占用的系统资源少。如果挂到github pages上，只要注册一个域名就可以了。\n高速。不经过php解析器，不用数据库，速度比动态网站快\n安全。由于静态网站的简洁，免疫很多web攻击方式。\n服务器端配置简单。只需要一个web server（apache、nginx）。\n非常容易维护。静态网站生成工具能从简单的纯文本文件生成一个网站/博客。尤其是对Markdown文法的支持，可以让你非常快捷地生成图文并茂的博文．\n\n关于Markdown语法，我会用专门的一篇博文来介绍Tyora下怎么使用．不单单是写博文，各种各样的文字工作用上Markdown语法后，可以让你的效率和创造力倍增．\n目前对于搭建静态网站，有很多有常用的开源工具．以下就是这些常用工具的介绍：\nJekyllJekyll做为GitHub Pages的构建工具（Ruby语言），使它成为最流行的静态网站生成工具。Jekyll的流行也因为它非常简单，只需要基础的web开发基础。你可以使用它轻易的把文本转换为自定义的网站/博客。\n如果你有wordpress或其他博客站点，你可以导入到Jekyll中。Jekyll支持插件、标签等等。\n\n\nGithub Pages：https://pages.github.com\n开始使用Jekyll：http://jekyllrb.com/docs/quickstart/\n\nOctopressOctopress是基于Jekyll的博客生成工具，它简化了Jekyll的操作，可以让你更舒服的创作。Octopress的一大优势是它插件很多，并且兼容Jekyll的官方插件。\nOctopress支持内建的社交平台（Twitter, Google+），Disqus评论和Google Analytics。\n\n\nOctopress的文档：http://octopress.org/docs/\n\nHexoHexo是用Node.js编写的博客框架。这个静态网站生成工具非常快，使用它构建一个完整的网站只需要几秒钟。Hexo支持所有的GitHub Markdown特性，并支持大多数Octopress插件。\n从其他博客平台迁移到hexo非常容易。\n\n\n[Hexo的文档]https://hexo.io/docs/\n\nHugo[Hugo]http://gohugo.io/是另一个流行的静态网站生成工具，它是使用go语言编写，并且使用Markdown语法。官网对它的描述：\n\nThis application does not depend on administrative privileges, databases, interpreters, or external libraries, and still works like a charm. Websites or blogs built with Hugo can be hosted on any web host including GitHub Pages, S3, and Dropbox.\n\n\n\n开始使用Hugo：http://gohugo.io/overview/quickstart/\n\nPelicanPelican是使用Python编写的静态网站生成工具。它支持用reStructuredText, Markdown, 和AsciiDoc创作网站内容。Pelican支持Jinja模版引擎，结果是，它支持很多自定义主题。\ngongneng\n\n开始使用Pelican：http://docs.getpelican.com/en/3.6.3/install.html\n\nMiddlemanMiddleman －中间人，又一个使用Ruby编写的静态网站生成工具。它提供怎么使用和自定义的文档，方便你自定义你的网站。\n\nMiddleman is a static site generator using all the shortcuts and tools in modern web development.\n\n\n\n开始使用Middleman：https://middlemanapp.com/basics/install/\n\nMetalsmithMetalsmith是简单、高效、pluggable静态网站生成工具，它使用nodejs编写。Metalsmith和其他工具的最大区别是它的所有东西都由插件处理，并且插件可以重用。只要决定网站的功能，然后找到相关插件，组合到一起，ok，ready to go!\nMetalsmith也可以生成PDF、电子书、文档等等。\n\n\n开始使用Metalsmith：http://www.metalsmith.io/\n\nDocPadDocPad自带建立好的网站主架，允许你快速的建立功能完整的网站。这个工具支持CoffeeScript、Ruby、PHP、Stylus等等。\n\nDocPad removes limitations and closes the gap between experts and beginners. Designers and developers can create websites faster than ever before.\n\n\n\n开始使用DocPad：http://docpad.org/docs/install\n\nWintersmithWintersmith是极简的、可扩展的静态网站生成工具，它使用Nodejs编写。它同样支持插件。Wintersmith的项目基于目录结构，可以方便的移植旧站点。\n\n\n开始使用Wintersmith：https://github.com/jnordberg/wintersmith#quick-start\n\nCactusCactus是使用Python和Django模版系统制作的静态网站生成工具。\nCactus的源码托管在github：\n\n\n开始使用Cactus：https://github.com/koenbok/Cactus/\n\n\nHubPressHubPress是开源的web应用，使用它可以允许你创建一个基于GitHub Pages的博客。HubPress的使用非常简单，你只需要fork这个项目到你的github，然后修改配置文件就可以了。\n\n\n开始使用HubPress：https://github.com/HubPress/hubpress.io\n\n\n对于到底为什么要用这一个工具而不是另外一个，每个人都能讲出一大推理由．hexo的确是它们当中较为突出并广受欢迎的．至于我为什么要用它，我不想在这里搜肠刮肚列出一系列炫酷的名词，我不得不说，我当初在选工具的时候并没有做太多的调研，没有在这一大推工具中犯选择困难症．当时在我面前的只有jekyll和hexo，而我在试用之后果断选择了hexo，在接下来的文章中我会告诉你原因．\n\n如果你觉得哪个工具是你更加喜欢的，请在下方评论区中介绍并说明原因，我迫不及待想试试它们的功能．\n","dateCreated":"2019-01-19T15:46:47+08:00","dateModified":"2019-01-19T15:59:01+08:00","datePublished":"2019-01-19T15:46:47+08:00","description":"在进行下一步操作之前，你首先要明白，你通过我们上篇博文所介绍的方式建立的网站，是一种静态网站，这个是最近特别流行的静态网站搭建博客的技术，非常适合让站长专注于内容创作而非网站本身的维护．\n为什么不用动态网站例如大名鼎鼎的wordpress呢？","headline":"11大最常用静态网站建站工具，你用过几个？","image":["http://cdn.yiyouls.com/hexologo.png","http://cdn.yiyouls.com/webcover.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/"},"publisher":{"@type":"Organization","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png","logo":{"@type":"ImageObject","url":"http://cdn.yiyouls.com/profile.png"}},"url":"http://yoursite.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/","keywords":"静态网站, 建站工具","thumbnailUrl":"http://cdn.yiyouls.com/hexologo.png"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Scott Liu","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"articleBody":"在进行下一步操作之前，你首先要明白，你通过我们上篇博文所介绍的方式建立的网站，是一种静态网站，这个是最近特别流行的静态网站搭建博客的技术，非常适合让站长专注于内容创作而非网站本身的维护．\n为什么不用动态网站例如大名鼎鼎的wordpress呢？\n\n究其原因，还是与博客类型网站本身的定位有关．静态网站和动态网站相比有如下好处：\n\n免费。静态网站占用的系统资源少。如果挂到github pages上，只要注册一个域名就可以了。\n高速。不经过php解析器，不用数据库，速度比动态网站快\n安全。由于静态网站的简洁，免疫很多web攻击方式。\n服务器端配置简单。只需要一个web server（apache、nginx）。\n非常容易维护。静态网站生成工具能从简单的纯文本文件生成一个网站/博客。尤其是对Markdown文法的支持，可以让你非常快捷地生成图文并茂的博文．\n\n关于Markdown语法，我会用专门的一篇博文来介绍Tyora下怎么使用．不单单是写博文，各种各样的文字工作用上Markdown语法后，可以让你的效率和创造力倍增．\n目前对于搭建静态网站，有很多有常用的开源工具．以下就是这些常用工具的介绍：\nJekyllJekyll做为GitHub Pages的构建工具（Ruby语言），使它成为最流行的静态网站生成工具。Jekyll的流行也因为它非常简单，只需要基础的web开发基础。你可以使用它轻易的把文本转换为自定义的网站/博客。\n如果你有wordpress或其他博客站点，你可以导入到Jekyll中。Jekyll支持插件、标签等等。\n\n\nGithub Pages：https://pages.github.com\n开始使用Jekyll：http://jekyllrb.com/docs/quickstart/\n\nOctopressOctopress是基于Jekyll的博客生成工具，它简化了Jekyll的操作，可以让你更舒服的创作。Octopress的一大优势是它插件很多，并且兼容Jekyll的官方插件。\nOctopress支持内建的社交平台（Twitter, Google+），Disqus评论和Google Analytics。\n\n\nOctopress的文档：http://octopress.org/docs/\n\nHexoHexo是用Node.js编写的博客框架。这个静态网站生成工具非常快，使用它构建一个完整的网站只需要几秒钟。Hexo支持所有的GitHub Markdown特性，并支持大多数Octopress插件。\n从其他博客平台迁移到hexo非常容易。\n\n\n[Hexo的文档]https://hexo.io/docs/\n\nHugo[Hugo]http://gohugo.io/是另一个流行的静态网站生成工具，它是使用go语言编写，并且使用Markdown语法。官网对它的描述：\n\nThis application does not depend on administrative privileges, databases, interpreters, or external libraries, and still works like a charm. Websites or blogs built with Hugo can be hosted on any web host including GitHub Pages, S3, and Dropbox.\n\n\n\n开始使用Hugo：http://gohugo.io/overview/quickstart/\n\nPelicanPelican是使用Python编写的静态网站生成工具。它支持用reStructuredText, Markdown, 和AsciiDoc创作网站内容。Pelican支持Jinja模版引擎，结果是，它支持很多自定义主题。\ngongneng\n\n开始使用Pelican：http://docs.getpelican.com/en/3.6.3/install.html\n\nMiddlemanMiddleman －中间人，又一个使用Ruby编写的静态网站生成工具。它提供怎么使用和自定义的文档，方便你自定义你的网站。\n\nMiddleman is a static site generator using all the shortcuts and tools in modern web development.\n\n\n\n开始使用Middleman：https://middlemanapp.com/basics/install/\n\nMetalsmithMetalsmith是简单、高效、pluggable静态网站生成工具，它使用nodejs编写。Metalsmith和其他工具的最大区别是它的所有东西都由插件处理，并且插件可以重用。只要决定网站的功能，然后找到相关插件，组合到一起，ok，ready to go!\nMetalsmith也可以生成PDF、电子书、文档等等。\n\n\n开始使用Metalsmith：http://www.metalsmith.io/\n\nDocPadDocPad自带建立好的网站主架，允许你快速的建立功能完整的网站。这个工具支持CoffeeScript、Ruby、PHP、Stylus等等。\n\nDocPad removes limitations and closes the gap between experts and beginners. Designers and developers can create websites faster than ever before.\n\n\n\n开始使用DocPad：http://docpad.org/docs/install\n\nWintersmithWintersmith是极简的、可扩展的静态网站生成工具，它使用Nodejs编写。它同样支持插件。Wintersmith的项目基于目录结构，可以方便的移植旧站点。\n\n\n开始使用Wintersmith：https://github.com/jnordberg/wintersmith#quick-start\n\nCactusCactus是使用Python和Django模版系统制作的静态网站生成工具。\nCactus的源码托管在github：\n\n\n开始使用Cactus：https://github.com/koenbok/Cactus/\n\n\nHubPressHubPress是开源的web应用，使用它可以允许你创建一个基于GitHub Pages的博客。HubPress的使用非常简单，你只需要fork这个项目到你的github，然后修改配置文件就可以了。\n\n\n开始使用HubPress：https://github.com/HubPress/hubpress.io\n\n\n对于到底为什么要用这一个工具而不是另外一个，每个人都能讲出一大推理由．hexo的确是它们当中较为突出并广受欢迎的．至于我为什么要用它，我不想在这里搜肠刮肚列出一系列炫酷的名词，我不得不说，我当初在选工具的时候并没有做太多的调研，没有在这一大推工具中犯选择困难症．当时在我面前的只有jekyll和hexo，而我在试用之后果断选择了hexo，在接下来的文章中我会告诉你原因．\n\n如果你觉得哪个工具是你更加喜欢的，请在下方评论区中介绍并说明原因，我迫不及待想试试它们的功能．\n","dateCreated":"2019-01-19T15:46:47+08:00","dateModified":"2019-02-24T13:52:34+08:00","datePublished":"2019-01-19T15:46:47+08:00","description":"在进行下一步操作之前，你首先要明白，你通过我们上篇博文所介绍的方式建立的网站，是一种静态网站，这个是最近特别流行的静态网站搭建博客的技术，非常适合让站长专注于内容创作而非网站本身的维护．\n为什么不用动态网站例如大名鼎鼎的wordpress呢？","headline":"11大最常用静态网站建站工具，你用过几个？","image":["http://cdn.yiyouls.com/hexologo.png","http://cdn.yiyouls.com/webcover.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yiyouls.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/"},"publisher":{"@type":"Organization","name":"Scott Liu","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png","logo":{"@type":"ImageObject","url":"http://cdn.yiyouls.com/profile.png"}},"url":"http://yiyouls.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/","keywords":"静态网站, 建站工具","thumbnailUrl":"http://cdn.yiyouls.com/hexologo.png"}</script>
     <meta name="description" content="在进行下一步操作之前，你首先要明白，你通过我们上篇博文所介绍的方式建立的网站，是一种静态网站，这个是最近特别流行的静态网站搭建博客的技术，非常适合让站长专注于内容创作而非网站本身的维护． 为什么不用动态网站例如大名鼎鼎的wordpress呢？">
 <meta name="keywords" content="静态网站,建站工具">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="11大最常用静态网站建站工具，你用过几个？">
-<meta property="og:url" content="http://yoursite.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/index.html">
-<meta property="og:site_name" content="Deep Learning">
+<meta property="og:url" content="http://yiyouls.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/index.html">
+<meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="在进行下一步操作之前，你首先要明白，你通过我们上篇博文所介绍的方式建立的网站，是一种静态网站，这个是最近特别流行的静态网站搭建博客的技术，非常适合让站长专注于内容创作而非网站本身的维护． 为什么不用动态网站例如大名鼎鼎的wordpress呢？">
-<meta property="og:locale" content="zh-cn">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://cdn.yiyouls.com/jekyll.png">
 <meta property="og:image" content="http://cdn.yiyouls.com/octopress.png">
 <meta property="og:image" content="http://cdn.yiyouls.com/hexo.png">
@@ -38,7 +36,7 @@
 <meta property="og:image" content="http://cdn.yiyouls.com/cactus.png">
 <meta property="og:image" content="http://cdn.yiyouls.com/hubpress.png">
 <meta property="og:image" content="http://cdn.yiyouls.com/choice.gif">
-<meta property="og:updated_time" content="2019-01-19T07:59:01.170Z">
+<meta property="og:updated_time" content="2019-02-24T05:52:34.456Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="11大最常用静态网站建站工具，你用过几个？">
 <meta name="twitter:description" content="在进行下一步操作之前，你首先要明白，你通过我们上篇博文所介绍的方式建立的网站，是一种静态网站，这个是最近特别流行的静态网站搭建博客的技术，非常适合让站长专注于内容创作而非网站本身的维护． 为什么不用动态网站例如大名鼎鼎的wordpress呢？">
@@ -84,14 +82,14 @@
 <header id="header" data-behavior="4">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
-        <a class="header-title-link" href="/ ">Deep Learning</a>
+        <a class="header-title-link" href="/ ">Hexo</a>
     </div>
     
         
             <a class="header-right-picture " href="#about">
         
         
-            <img class="header-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
+            <img class="header-picture" src="http://cdn.yiyouls.com/profile.png" alt="Foto de autor">
         
         </a>
     
@@ -109,11 +107,11 @@
         
             <div class="sidebar-profile">
                 <a href="/#about">
-                    <img class="sidebar-profile-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
+                    <img class="sidebar-profile-picture" src="http://cdn.yiyouls.com/profile.png" alt="Foto de autor">
                 </a>
-                <h4 class="sidebar-profile-name">友邻君</h4>
+                <h4 class="sidebar-profile-name">Scott Liu</h4>
                 
-                    <h5 class="sidebar-profile-bio"><p>浙江大学在读</p>
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
 </h5>
                 
             </div>
@@ -123,55 +121,55 @@
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/ " title="首页">
+                        <a class="sidebar-button-link " href="/ " title="Inicio">
                     
                         <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">首页</span>
+                        <span class="sidebar-button-desc">Inicio</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/all-categories" title="分类">
+                        <a class="sidebar-button-link " href="/all-categories" title="Categorías">
                     
                         <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">分类</span>
+                        <span class="sidebar-button-desc">Categorías</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/all-tags" title="标签">
+                        <a class="sidebar-button-link " href="/all-tags" title="Etiquetas">
                     
                         <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">标签</span>
+                        <span class="sidebar-button-desc">Etiquetas</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/all-archives" title="归档">
+                        <a class="sidebar-button-link " href="/all-archives" title="Archivos">
                     
                         <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">归档</span>
+                        <span class="sidebar-button-desc">Archivos</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link open-algolia-search" href="#search" title="搜索">
+                        <a class="sidebar-button-link open-algolia-search" href="#search" title="Buscar">
                     
                         <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">搜索</span>
+                        <span class="sidebar-button-desc">Buscar</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="#about" title="关于">
+                        <a class="sidebar-button-link " href="#about" title="Acerca de">
                     
                         <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">关于</span>
+                        <span class="sidebar-button-desc">Acerca de</span>
                     </a>
             </li>
             
@@ -262,10 +260,10 @@
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/hanhaishiyi@gmail.com" title="邮箱">
+                        <a class="sidebar-button-link " href="/hanhaishiyi@gmail.com" title="Correo">
                     
                         <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">邮箱</span>
+                        <span class="sidebar-button-desc">Correo</span>
                     </a>
             </li>
             
@@ -314,11 +312,11 @@
         <div class="post-meta">
     <time datetime="2019-01-19T15:46:47+08:00">
 	
-		    1月 19, 2019
+		    19 Jan 2019
     	
     </time>
     
-        <span>发布在 </span>
+        <span>en </span>
         
     <a class="category-link" href="/categories/建站/">建站</a>
 
@@ -428,7 +426,7 @@
     <div id="post-footer" class="post-footer main-content-wrap">
         
             <div class="post-footer-tags">
-                <span class="text-color-light text-small">标签</span><br>
+                <span class="text-color-light text-small">ETIQUETADO EN</span><br>
                 
     <a class="tag tag--primary tag--small t-link" href="/tags/建站工具/">建站工具</a> <a class="tag tag--primary tag--small t-link" href="/tags/静态网站/">静态网站</a>
 
@@ -441,18 +439,18 @@
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/01/25/什么是人工神经网络ANNs/" data-tooltip="什么是人工神经网络ANNs?" aria-label="上一篇: 什么是人工神经网络ANNs?">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/01/25/什么是人工神经网络ANNs/" data-tooltip="什么是人工神经网络ANNs?" aria-label="ANTERIOR: 什么是人工神经网络ANNs?">
                 
                     <i class="fa fa-angle-left" aria-hidden="true"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                    <span class="hide-xs hide-sm text-small icon-ml">ANTERIOR</span>
                 </a>
             </li>
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/01/19/如何在Github上免费开通一个Github-Page作为个人主页/" data-tooltip="如何在Github上免费开通一个Github Page作为个人主页" aria-label="下一篇: 如何在Github上免费开通一个Github Page作为个人主页">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/01/19/如何在Github上免费开通一个Github-Page作为个人主页/" data-tooltip="如何在Github上免费开通一个Github Page作为个人主页" aria-label="SIGUIENTE: 如何在Github上免费开通一个Github Page作为个人主页">
                 
-                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <span class="hide-xs hide-sm text-small icon-mr">SIGUIENTE</span>
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </a>
             </li>
@@ -468,7 +466,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/" title="分享到 Facebook">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yiyouls.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/" title="Compartir en Facebook">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -476,7 +474,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/" title="分享到 Twitter">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yiyouls.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/" title="Compartir en Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -484,7 +482,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/" title="分享到 Google+">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yiyouls.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/" title="Compartir en Google+">
                     <i class="fab fa-google-plus" aria-hidden="true"></i>
                 </a>
             </li>
@@ -492,7 +490,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/" title="分享到 Weibo">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yiyouls.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/" title="Compartir en Weibo">
                     <i class="fab fa-weibo" aria-hidden="true"></i>
                 </a>
             </li>
@@ -500,7 +498,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/&amp;title=11大最常用静态网站建站工具，你用过几个？" title="分享到 QQ">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yiyouls.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/&amp;title=11大最常用静态网站建站工具，你用过几个？" title="Compartir en QQ">
                     <i class="fab fa-qq" aria-hidden="true"></i>
                 </a>
             </li>
@@ -508,7 +506,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/" title="分享到 Qzone">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yiyouls.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/" title="Compartir en Qzone">
                     <i class="fa fa-star" aria-hidden="true"></i>
                 </a>
             </li>
@@ -516,7 +514,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yoursite.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/" title="分享到 Renren">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yiyouls.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/" title="Compartir en Renren">
                     <i class="fab fa-renren" aria-hidden="true"></i>
                 </a>
             </li>
@@ -556,7 +554,7 @@
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
-        Copyrights &copy; 2019 友邻君. All Rights Reserved.
+        Copyrights &copy; 2019 Scott Liu. All Rights Reserved.
     </span>
 </footer>
 
@@ -569,18 +567,18 @@
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/01/25/什么是人工神经网络ANNs/" data-tooltip="什么是人工神经网络ANNs?" aria-label="上一篇: 什么是人工神经网络ANNs?">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/01/25/什么是人工神经网络ANNs/" data-tooltip="什么是人工神经网络ANNs?" aria-label="ANTERIOR: 什么是人工神经网络ANNs?">
                 
                     <i class="fa fa-angle-left" aria-hidden="true"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                    <span class="hide-xs hide-sm text-small icon-ml">ANTERIOR</span>
                 </a>
             </li>
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/01/19/如何在Github上免费开通一个Github-Page作为个人主页/" data-tooltip="如何在Github上免费开通一个Github Page作为个人主页" aria-label="下一篇: 如何在Github上免费开通一个Github Page作为个人主页">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/01/19/如何在Github上免费开通一个Github-Page作为个人主页/" data-tooltip="如何在Github上免费开通一个Github Page作为个人主页" aria-label="SIGUIENTE: 如何在Github上免费开通一个Github Page作为个人主页">
                 
-                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <span class="hide-xs hide-sm text-small icon-mr">SIGUIENTE</span>
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </a>
             </li>
@@ -596,7 +594,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/" title="分享到 Facebook">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yiyouls.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/" title="Compartir en Facebook">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -604,7 +602,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/" title="分享到 Twitter">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yiyouls.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/" title="Compartir en Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -612,7 +610,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/" title="分享到 Google+">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yiyouls.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/" title="Compartir en Google+">
                     <i class="fab fa-google-plus" aria-hidden="true"></i>
                 </a>
             </li>
@@ -620,7 +618,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/" title="分享到 Weibo">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yiyouls.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/" title="Compartir en Weibo">
                     <i class="fab fa-weibo" aria-hidden="true"></i>
                 </a>
             </li>
@@ -628,7 +626,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/&amp;title=11大最常用静态网站建站工具，你用过几个？" title="分享到 QQ">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yiyouls.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/&amp;title=11大最常用静态网站建站工具，你用过几个？" title="Compartir en QQ">
                     <i class="fab fa-qq" aria-hidden="true"></i>
                 </a>
             </li>
@@ -636,7 +634,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/" title="分享到 Qzone">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yiyouls.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/" title="Compartir en Qzone">
                     <i class="fa fa-star" aria-hidden="true"></i>
                 </a>
             </li>
@@ -644,7 +642,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yoursite.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/" title="分享到 Renren">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yiyouls.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/" title="Compartir en Renren">
                     <i class="fab fa-renren" aria-hidden="true"></i>
                 </a>
             </li>
@@ -672,56 +670,56 @@
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/">
-                        <i class="fab fa-facebook" aria-hidden="true"></i><span>分享到 Facebook</span>
+                    <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yiyouls.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Compartir en Facebook</span>
                     </a>
                 </li>
             
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/">
-                        <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
+                    <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yiyouls.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Compartir en Twitter</span>
                     </a>
                 </li>
             
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/">
-                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>分享到 Google+</span>
+                    <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yiyouls.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/">
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Compartir en Google+</span>
                     </a>
                 </li>
             
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/">
-                        <i class="fab fa-weibo" aria-hidden="true"></i><span>分享到 Weibo</span>
+                    <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yiyouls.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/">
+                        <i class="fab fa-weibo" aria-hidden="true"></i><span>Compartir en Weibo</span>
                     </a>
                 </li>
             
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/&amp;title=11大最常用静态网站建站工具，你用过几个？">
-                        <i class="fab fa-qq" aria-hidden="true"></i><span>分享到 QQ</span>
+                    <a class="share-option-btn" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yiyouls.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/&amp;title=11大最常用静态网站建站工具，你用过几个？">
+                        <i class="fab fa-qq" aria-hidden="true"></i><span>Compartir en QQ</span>
                     </a>
                 </li>
             
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/">
-                        <i class="fa fa-star" aria-hidden="true"></i><span>分享到 Qzone</span>
+                    <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yiyouls.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/">
+                        <i class="fa fa-star" aria-hidden="true"></i><span>Compartir en Qzone</span>
                     </a>
                 </li>
             
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yoursite.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/">
-                        <i class="fab fa-renren" aria-hidden="true"></i><span>分享到 Renren</span>
+                    <a class="share-option-btn" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yiyouls.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/">
+                        <i class="fab fa-renren" aria-hidden="true"></i><span>Compartir en Renren</span>
                     </a>
                 </li>
             
@@ -744,18 +742,18 @@
             <i class="fa fa-times"></i>
         </div>
         
-            <img id="about-card-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
+            <img id="about-card-picture" src="http://cdn.yiyouls.com/profile.png" alt="Foto de autor">
         
-            <h4 id="about-card-name">友邻君</h4>
+            <h4 id="about-card-name">Scott Liu</h4>
         
-            <div id="about-card-bio"><p>浙江大学在读</p>
+            <div id="about-card-bio"><p>author.bio</p>
 </div>
         
         
             <div id="about-card-job">
                 <i class="fa fa-briefcase"></i>
                 <br>
-                <p>博士研究生</p>
+                <p>author.job</p>
 
             </div>
         
@@ -766,294 +764,6 @@
                 Hangzhou,Zhejiang
             </div>
         
-    </div>
-</div>
-
-        
-            <div id="algolia-search-modal" class="modal-container">
-    <div class="modal">
-        <div class="modal-header">
-            <span class="close-button"><i class="fa fa-times"></i></span>
-            <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
-                <span class="searchby-algolia-text text-color-light text-small">by</span>
-                <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
-            </a>
-            <i class="search-icon fa fa-search"></i>
-            <form id="algolia-search-form">
-                <input type="text" id="algolia-search-input" name="search" class="form-control input--large search-input" placeholder="Search ">
-            </form>
-        </div>
-        <div class="modal-body">
-            <div class="no-result text-color-light text-center">没有找到文章</div>
-            <div class="results">
-                
-                <div class="media">
-                    
-                    <div class="media-left">
-                        <a class="link-unstyled" href="http://yoursite.com/2019/01/16/No 1 什么是机器学习/">
-                            <img class="media-image" src="http://cdn.yiyouls.com/image_1.png" width="90" height="90">
-                        </a>
-                    </div>
-                    
-                    <div class="media-body">
-                        <a class="link-unstyled" href="http://yoursite.com/2019/01/16/No 1 什么是机器学习/">
-                            <h3 class="media-heading">什么是机器学习(Machine Learning)？</h3>
-                        </a>
-                        <span class="media-meta">
-                            <span class="media-date text-small">
-                                
-                                    2019年1月16日
-                                
-                            </span>
-                        </span>
-                        <div class="media-content hide-xs font-merryweather"><p>机器学习与深度学习基础教程－从零开始</p>
-<p>本系列教程是为初学者定制，涵盖并解释了深度学习和人工神经网络的基本概念</p></div>
-                    </div>
-                    <div style="clear:both;"></div>
-                    <hr>
-                </div>
-                
-                <div class="media">
-                    
-                    <div class="media-left">
-                        <a class="link-unstyled" href="http://yoursite.com/2019/01/16/No 2 什么是深度学习？/">
-                            <img class="media-image" src="http://cdn.yiyouls.com/image_2.png" width="90" height="90">
-                        </a>
-                    </div>
-                    
-                    <div class="media-body">
-                        <a class="link-unstyled" href="http://yoursite.com/2019/01/16/No 2 什么是深度学习？/">
-                            <h3 class="media-heading">什么是深度学习(Deep Learning)？</h3>
-                        </a>
-                        <span class="media-meta">
-                            <span class="media-date text-small">
-                                
-                                    2019年1月16日
-                                
-                            </span>
-                        </span>
-                        <div class="media-content hide-xs font-merryweather"><p>机器学习与深度学习基础教程</p>
-<p>这篇文章将要回答什么是深度学习这个问题．</p>
-<p>整个系列课程会涵盖深度学习领域的众多主题，我们会用很多篇文章来充分解释这些课题，以及它们的应用领域和技术实现。</p></div>
-                    </div>
-                    <div style="clear:both;"></div>
-                    <hr>
-                </div>
-                
-                <div class="media">
-                    
-                    <div class="media-left">
-                        <a class="link-unstyled" href="http://yoursite.com/2019/01/18/使用hexo在Github上免费搭建功能丰富的个人博客网站/">
-                            <img class="media-image" src="http://cdn.yiyouls.com/web.png" width="90" height="90">
-                        </a>
-                    </div>
-                    
-                    <div class="media-body">
-                        <a class="link-unstyled" href="http://yoursite.com/2019/01/18/使用hexo在Github上免费搭建功能丰富的个人博客网站/">
-                            <h3 class="media-heading">使用hexo在Github上免费搭建功能丰富的个人博客网站</h3>
-                        </a>
-                        <span class="media-meta">
-                            <span class="media-date text-small">
-                                
-                                    2019年1月18日
-                                
-                            </span>
-                        </span>
-                        <div class="media-content hide-xs font-merryweather"><p>这个系列博文将带你一步步搭建起自己的个人博客网站，包含tranquilpeak主题模板配置，站内搜索，live2d插件，mathjax数学公式插件，＂千牛云＂云加速，＂畅言＂评论区添加，打赏设置等等高阶功能．</p></div>
-                    </div>
-                    <div style="clear:both;"></div>
-                    <hr>
-                </div>
-                
-                <div class="media">
-                    
-                    <div class="media-left">
-                        <a class="link-unstyled" href="http://yoursite.com/2019/01/19/如何在Github上免费开通一个Github-Page作为个人主页/">
-                            <img class="media-image" src="http://cdn.yiyouls.com/Octocat.png" width="90" height="90">
-                        </a>
-                    </div>
-                    
-                    <div class="media-body">
-                        <a class="link-unstyled" href="http://yoursite.com/2019/01/19/如何在Github上免费开通一个Github-Page作为个人主页/">
-                            <h3 class="media-heading">如何在Github上免费开通一个Github Page作为个人主页</h3>
-                        </a>
-                        <span class="media-meta">
-                            <span class="media-date text-small">
-                                
-                                    2019年1月19日
-                                
-                            </span>
-                        </span>
-                        <div class="media-content hide-xs font-merryweather"><p>为什么要选择在Github上建站，原因很简单，它是免费的．</p>
-<p>只要你按照下面的六步走，就可以轻轻松松发布自己的网站，你不需要有任何关于编程或者网站建设的基础知识．所有的前提只是，你要有一个github账号．</p></div>
-                    </div>
-                    <div style="clear:both;"></div>
-                    <hr>
-                </div>
-                
-                <div class="media">
-                    
-                    <div class="media-left">
-                        <a class="link-unstyled" href="http://yoursite.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/">
-                            <img class="media-image" src="http://cdn.yiyouls.com/hexologo.png" width="90" height="90">
-                        </a>
-                    </div>
-                    
-                    <div class="media-body">
-                        <a class="link-unstyled" href="http://yoursite.com/2019/01/19/11大最常用静态网站建站工具，你用过几个？/">
-                            <h3 class="media-heading">11大最常用静态网站建站工具，你用过几个？</h3>
-                        </a>
-                        <span class="media-meta">
-                            <span class="media-date text-small">
-                                
-                                    2019年1月19日
-                                
-                            </span>
-                        </span>
-                        <div class="media-content hide-xs font-merryweather"><p>在进行下一步操作之前，你首先要明白，你通过我们上篇博文所介绍的方式建立的网站，是一种静态网站，这个是最近特别流行的静态网站搭建博客的技术，非常适合让站长专注于内容创作而非网站本身的维护．</p>
-<p>为什么不用动态网站例如大名鼎鼎的wordpress呢？</p></div>
-                    </div>
-                    <div style="clear:both;"></div>
-                    <hr>
-                </div>
-                
-                <div class="media">
-                    
-                    <div class="media-left">
-                        <a class="link-unstyled" href="http://yoursite.com/2019/01/25/什么是人工神经网络ANNs/">
-                            <img class="media-image" src="http://cdn.yiyouls.com/anns.png" width="90" height="90">
-                        </a>
-                    </div>
-                    
-                    <div class="media-body">
-                        <a class="link-unstyled" href="http://yoursite.com/2019/01/25/什么是人工神经网络ANNs/">
-                            <h3 class="media-heading">什么是人工神经网络ANNs?</h3>
-                        </a>
-                        <span class="media-meta">
-                            <span class="media-date text-small">
-                                
-                                    2019年1月25日
-                                
-                            </span>
-                        </span>
-                        <div class="media-content hide-xs font-merryweather"><p>什么是人工神经网络(artificial neural network)?</p>
-<p>在上一篇文章中我们把深度学习定义为机器学习的子领域，深度学习所用到的算法是受大脑神经网络的结构和功能的启发．因为这个浅显的的原因，深度学习中使用的模型被称为人工神经网络（ANN）。</p></div>
-                    </div>
-                    <div style="clear:both;"></div>
-                    <hr>
-                </div>
-                
-                <div class="media">
-                    
-                    <div class="media-left">
-                        <a class="link-unstyled" href="http://yoursite.com/2019/01/25/如何理解神经网络中层-layer-的概念？/">
-                            <img class="media-image" src="http://cdn.yiyouls.com/ceng.png" width="90" height="90">
-                        </a>
-                    </div>
-                    
-                    <div class="media-body">
-                        <a class="link-unstyled" href="http://yoursite.com/2019/01/25/如何理解神经网络中层-layer-的概念？/">
-                            <h3 class="media-heading">如何理解神经网络中层(layer)的概念？</h3>
-                        </a>
-                        <span class="media-meta">
-                            <span class="media-date text-small">
-                                
-                                    2019年1月25日
-                                
-                            </span>
-                        </span>
-                        <div class="media-content hide-xs font-merryweather"><p>如何理解神经网络中层(layer)的概念?</p>
-<p>我们在之前的文章中认识了只有三个层的神经网络，但在很多时候我们有多个隐藏层，这篇文章探讨如何深入理解神经网络中层的概念，并提供一个多层神经网络的构建方法．</p></div>
-                    </div>
-                    <div style="clear:both;"></div>
-                    <hr>
-                </div>
-                
-                <div class="media">
-                    
-                    <div class="media-left">
-                        <a class="link-unstyled" href="http://yoursite.com/2019/01/26/如何理解神经网络中的激活函数-ativation-functions/">
-                            <img class="media-image" src="http://cdn.yiyouls.com/function.png" width="90" height="90">
-                        </a>
-                    </div>
-                    
-                    <div class="media-body">
-                        <a class="link-unstyled" href="http://yoursite.com/2019/01/26/如何理解神经网络中的激活函数-ativation-functions/">
-                            <h3 class="media-heading">如何理解神经网络中的激活函数(ativation functions)?</h3>
-                        </a>
-                        <span class="media-meta">
-                            <span class="media-date text-small">
-                                
-                                    2019年1月26日
-                                
-                            </span>
-                        </span>
-                        <div class="media-content hide-xs font-merryweather"><p>神经网络中的激活函数</p>
-<p>这篇文章向大家解释激活函数到底是什么，以及如何在神经网络中使用激活函数．我会向大家介绍几种常见的激活函数，向大家展示这些激活函数如何在Keras中以代码的形式呈现．</p></div>
-                    </div>
-                    <div style="clear:both;"></div>
-                    <hr>
-                </div>
-                
-                <div class="media">
-                    
-                    <div class="media-left">
-                        <a class="link-unstyled" href="http://yoursite.com/2019/01/26/如何训练人工神经网络？/">
-                            <img class="media-image" src="http://cdn.yiyouls.com/sgd.png" width="90" height="90">
-                        </a>
-                    </div>
-                    
-                    <div class="media-body">
-                        <a class="link-unstyled" href="http://yoursite.com/2019/01/26/如何训练人工神经网络？/">
-                            <h3 class="media-heading">如何训练(train)人工神经网络？</h3>
-                        </a>
-                        <span class="media-meta">
-                            <span class="media-date text-small">
-                                
-                                    2019年1月26日
-                                
-                            </span>
-                        </span>
-                        <div class="media-content hide-xs font-merryweather"><h4 id="神经网络的训练"><a href="#神经网络的训练" class="headerlink" title="神经网络的训练"></a>神经网络的训练</h4><p>这篇文章带大家学习如何训练一个人工神经网络．之前的文章中我们学习了如何构建一个简单的人工神经网络，当我们把一个神经网络配置好之后，下一步就是来训练它了．</p></div>
-                    </div>
-                    <div style="clear:both;"></div>
-                    <hr>
-                </div>
-                
-                <div class="media">
-                    
-                    <div class="media-left">
-                        <a class="link-unstyled" href="http://yoursite.com/2019/01/27/人工神经网络是如何学习-learn-的/">
-                            <img class="media-image" src="http://cdn.yiyouls.com/learn.png" width="90" height="90">
-                        </a>
-                    </div>
-                    
-                    <div class="media-body">
-                        <a class="link-unstyled" href="http://yoursite.com/2019/01/27/人工神经网络是如何学习-learn-的/">
-                            <h3 class="media-heading">人工神经网络是如何学习(learn)的?</h3>
-                        </a>
-                        <span class="media-meta">
-                            <span class="media-date text-small">
-                                
-                                    2019年1月27日
-                                
-                            </span>
-                        </span>
-                        <div class="media-content hide-xs font-merryweather"><p>神经网络的学习过程</p>
-<p>这篇文章我们来探讨人工神经网络是怎样学习的．</p>
-<p>本篇内容涵盖损失loss，梯度gradient，学习率lerning rate，epoch，verbose，batch批处理等概念．</p></div>
-                    </div>
-                    <div style="clear:both;"></div>
-                    <hr>
-                </div>
-                
-            </div>
-        </div>
-        <div class="modal-footer">
-            <p class="results-count text-medium" data-message-zero="没有找到文章" data-message-one="找到 1 篇文章" data-message-other="找到 {n} 篇文章">
-                找到 23 篇文章
-            </p>
-        </div>
     </div>
 </div>
 
@@ -1077,13 +787,6 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
     
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment-with-locales.min.js"></script>
-    <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
-    <script>
-        var algoliaClient = algoliasearch('JRXR2OL9UV', '2f9d9502c1e5ad12ac19a2180d9ac94d');
-        var algoliaIndex = algoliaClient.initIndex('my-hexo-blog');
-    </script>
-
 
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -1100,5 +803,5 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
     });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>

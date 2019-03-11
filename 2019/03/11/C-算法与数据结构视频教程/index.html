@@ -1,0 +1,823 @@
+
+<!DOCTYPE html>
+<html lang="null">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hexo">
+    <title>C++算法与数据结构视频教程 - Hexo</title>
+    <meta name="author" content="Scott Liu">
+    
+    
+        <link rel="icon" href="http://cdn.yiyouls.com/favicon.ico">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Scott Liu","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"articleBody":"慕课网名师liuyubobobo的算法与数据结构课－－c++算法与数据结构，精品网络课程，课程设计质量很高，个人学习后觉得受益匪浅．目前该课程已在慕课网下架，现将个人收藏版分享出来，希望大家能够一起学习．本资源仅供学习参考，严禁商用，侵权立删．\n\n\n\n\n1.　当我们谈论算法的时候我们在谈论什么\n2.　排序基础\n3.　高级排序算法\n4.　堆和堆排序\n5.　二分搜索树\n6.　并查集\n7.　图的基础\n8.　最小生成树\n9.　最短路径\n10.　结束语\n源码\n\n\n1.　当我们谈论算法的时候我们在谈论什么\n\n2.　排序基础\n\n\n\n\n3.　高级排序算法\n\n\n\n\n4.　堆和堆排序\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5.　二分搜索树\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6.　并查集\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7.　图的基础\n\n\n\n\n\n\n\n\n\n8.　最小生成树\n\n\n\n\n\n\n\n\n\n\n\n\n\n9.　最短路径\n\n\n\n\n\n\n\n\n\n\n\n\n10.　结束语\n\n源码源码下载地址\n","dateCreated":"2019-03-11T17:39:09+08:00","dateModified":"2019-03-11T17:50:28+08:00","datePublished":"2019-03-11T17:39:09+08:00","description":"慕课网名师liuyubobobo的算法与数据结构课－－c++算法与数据结构，精品网络课程，课程设计质量很高，个人学习后觉得受益匪浅．目前该课程已在慕课网下架，现将个人收藏版分享出来，希望大家能够一起学习．本资源仅供学习参考，严禁商用，侵权立删．\n","headline":"C++算法与数据结构视频教程","image":["http://cdn.yiyouls.com/onlinecourse.png","http://cdn.yiyouls.com/ai.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yiyouls.com/2019/03/11/C-算法与数据结构视频教程/"},"publisher":{"@type":"Organization","name":"Scott Liu","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png","logo":{"@type":"ImageObject","url":"http://cdn.yiyouls.com/profile.png"}},"url":"http://yiyouls.com/2019/03/11/C-算法与数据结构视频教程/","keywords":"算法, 数据机构, algorithm, data structure, 网课","thumbnailUrl":"http://cdn.yiyouls.com/onlinecourse.png"}</script>
+    <meta name="description" content="慕课网名师liuyubobobo的算法与数据结构课－－c++算法与数据结构，精品网络课程，课程设计质量很高，个人学习后觉得受益匪浅．目前该课程已在慕课网下架，现将个人收藏版分享出来，希望大家能够一起学习．本资源仅供学习参考，严禁商用，侵权立删．">
+<meta name="keywords" content="算法,数据机构,algorithm,data structure,网课">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="C++算法与数据结构视频教程">
+<meta property="og:url" content="http://yiyouls.com/2019/03/11/C-算法与数据结构视频教程/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="慕课网名师liuyubobobo的算法与数据结构课－－c++算法与数据结构，精品网络课程，课程设计质量很高，个人学习后觉得受益匪浅．目前该课程已在慕课网下架，现将个人收藏版分享出来，希望大家能够一起学习．本资源仅供学习参考，严禁商用，侵权立删．">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://cdn.yiyouls.com/liuyubobobo.png">
+<meta property="og:updated_time" content="2019-03-11T09:50:28.556Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++算法与数据结构视频教程">
+<meta name="twitter:description" content="慕课网名师liuyubobobo的算法与数据结构课－－c++算法与数据结构，精品网络课程，课程设计质量很高，个人学习后觉得受益匪浅．目前该课程已在慕课网下架，现将个人收藏版分享出来，希望大家能够一起学习．本资源仅供学习参考，严禁商用，侵权立删．">
+<meta name="twitter:image" content="http://cdn.yiyouls.com/liuyubobobo.png">
+<meta name="twitter:creator" content="@hanhaishiyi">
+    
+        <link rel="publisher" href="https://plus.google.com/108244569432480563366"/>
+    
+    
+        
+    
+    
+        <meta property="og:image" content="http://cdn.yiyouls.com/profile.png"/>
+    
+    
+        <meta property="og:image" content="http://cdn.yiyouls.com/onlinecourse.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://cdn.yiyouls.com/onlinecourse.png" />
+    
+    
+        <meta property="og:image" content="http://cdn.yiyouls.com/ai.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://cdn.yiyouls.com/ai.jpg" />
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style-c4ozcsklz4kht2pebhp44xorvyverh23toayhn7i6ubrpyedak24hv1v0hyd.min.css">
+    <!--STYLES END-->
+    
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/ ">Hexo</a>
+    </div>
+    
+        
+            <a class="header-right-picture " href="#about">
+        
+        
+            <img class="header-picture" src="http://cdn.yiyouls.com/profile.png" alt="Foto de autor">
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about">
+                    <img class="sidebar-profile-picture" src="http://cdn.yiyouls.com/profile.png" alt="Foto de autor">
+                </a>
+                <h4 class="sidebar-profile-name">Scott Liu</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/ " title="Inicio">
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Inicio</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-categories" title="Categorías">
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categorías</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-tags" title="Etiquetas">
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Etiquetas</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-archives" title="Archivos">
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archivos</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link open-algolia-search" href="#search" title="Buscar">
+                    
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Buscar</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="#about" title="Acerca de">
+                    
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Acerca de</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://github.com/yiyouls" target="_blank" rel="noopener" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="http://stackoverflow.com/users/10926004/yiyouls" target="_blank" rel="noopener" title="Stack Overflow">
+                    
+                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Stack Overflow</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://twitter.com/hanhaishiyi" target="_blank" rel="noopener" title="Twitter">
+                    
+                        <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Twitter</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://facebook.com/yiyouls" target="_blank" rel="noopener" title="Facebook">
+                    
+                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Facebook</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://plus.google.com/u/0/108244569432480563366" target="_blank" rel="noopener" title="Google Plus">
+                    
+                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Google Plus</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://www.linkedin.com/in/yiyouls" target="_blank" rel="noopener" title="LinkedIn">
+                    
+                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">LinkedIn</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://www.zhihu.com/people/yiyouls-66/activities" target="_blank" rel="noopener" title="知乎">
+                    
+                        <i class="sidebar-button-icon fa fa-book" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">知乎</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008" target="_blank" rel="noopener" title="网易云课堂">
+                    
+                        <i class="sidebar-button-icon fa fa-school" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">网易云课堂</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="http://space.bilibili.com/275230151?" target="_blank" rel="noopener" title="bilibili">
+                    
+                        <i class="sidebar-button-icon fa fa-video" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">bilibili</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/hanhaishiyi@gmail.com" title="Correo">
+                    
+                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Correo</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/atom.xml" title="RSS">
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+        <div class="post-header-cover
+                    text-center
+                    " style="background-image:url('http://cdn.yiyouls.com/ai.jpg');" data-behavior="4">
+            
+        </div>
+
+            <div id="main" data-behavior="4"
+                 class="hasCover
+                        hasCoverMetaOut
+                        hasCoverCaption">
+                
+<article class="post">
+    
+        <span class="post-header-cover-caption caption">监督学习依赖于人工标注的数据</span>
+    
+    
+        <div class="post-header main-content-wrap text-center">
+    
+        <h1 class="post-title">
+            C++算法与数据结构视频教程
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2019-03-11T17:39:09+08:00">
+	
+		    11 Mar 2019
+    	
+    </time>
+    
+        <span>en </span>
+        
+    <a class="category-link" href="/categories/算法与数据结构/">算法与数据结构</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <p>慕课网名师liuyubobobo的算法与数据结构课－－c++算法与数据结构，精品网络课程，课程设计质量很高，个人学习后觉得受益匪浅．目前该课程已在慕课网下架，现将个人收藏版分享出来，希望大家能够一起学习．本资源仅供学习参考，严禁商用，侵权立删．</p>
+<p><img src="http://cdn.yiyouls.com/liuyubobobo.png" alt=""></p>
+<a id="more"></a>
+<h1 id="table-of-contents">Tabla de contenido</h1><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">1.　当我们谈论算法的时候我们在谈论什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">2.　排序基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">3.　高级排序算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">4.　堆和堆排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">5.　二分搜索树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">6.　并查集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">7.　图的基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">8.　最小生成树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">9.　最短路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">10.　结束语</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">源码</span></a></li></ol>
+<ul>
+<li><a href="#1-当我们谈论算法的时候我们在谈论什么">1.　当我们谈论算法的时候我们在谈论什么</a></li>
+<li><a href="#2-排序基础">2.　排序基础</a></li>
+<li><a href="#3-高级排序算法">3.　高级排序算法</a></li>
+<li><a href="#4-堆和堆排序">4.　堆和堆排序</a></li>
+<li><a href="#5-二分搜索树">5.　二分搜索树</a></li>
+<li><a href="#6-并查集">6.　并查集</a></li>
+<li><a href="#7-图的基础">7.　图的基础</a></li>
+<li><a href="#8-最小生成树">8.　最小生成树</a></li>
+<li><a href="#9-最短路径">9.　最短路径</a></li>
+<li><a href="#10-结束语">10.　结束语</a></li>
+<li><a href="#源码">源码</a></li>
+</ul>
+<!-- tocstop -->
+<h3><span id="1-当我们谈论算法的时候我们在谈论什么">1.　当我们谈论算法的时候我们在谈论什么</span></h3><iframe src="https://streamango.com/embed/caqnecdeflqtaelr/1_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<h3><span id="2-排序基础">2.　排序基础</span></h3><iframe src="https://streamango.com/embed/cpqadqkoptsdafnm/_1-3_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/mtodmsqpabatrfns/_4-6_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+
+<h3><span id="3-高级排序算法">3.　高级排序算法</span></h3><iframe src="https://streamango.com/embed/bclkdsqqbearckca/_1-5_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/drmataqenaolsmtm/_6-9_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+
+<h3><span id="4-堆和堆排序">4.　堆和堆排序</span></h3><iframe src="https://streamango.com/embed/dbecbkkmmemdlsda/_1-5_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/eladaeafpfffopnd/4_--6_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/nnlccfocanrbsbkn/4_-7_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/bdocqbbrtmoccoet/4_-8_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/rqtnfeclqnomksmn/4_-9_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/cdqerlcmltfaprfl/4_-10_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+
+
+
+<h3><span id="5-二分搜索树">5.　二分搜索树</span></h3><iframe src="https://streamango.com/embed/cafnsmctdtlmftfr/5-1_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/cfenoepmkqnkrsbq/5-2_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/kpfnkfesmsbdqmfa/5-3_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/sntmmpnofltmmplr/5-4_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/ebbltpnbtabnbtto/5-5_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/nepeoatrqflpackn/5-6_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/bqoaedcndbdcmadk/5-7_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+<iframe src="https://streamango.com/embed/nmdofeocqsfqooam/5-8_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+<iframe src="https://streamango.com/embed/flcptcddastaskkp/5-9_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+<iframe src="https://streamango.com/embed/matdfcsoomrmtoro/5-10_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<h3><span id="6-并查集">6.　并查集</span></h3><iframe src="https://streamango.com/embed/oslqrmmnmqqocsqf/6-1_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/leotfnqkkopssdnk/6-2_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/btqlocaterenmcok/6-3_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/apollcqksoosdsnl/6-4_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/lmsrfabrkaeotlpt/6-5_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/kbpadtpqaqcfbdkm/6-6_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+
+
+
+<h3><span id="7-图的基础">7.　图的基础</span></h3><iframe src="https://streamango.com/embed/sfpqelbcplqddtqe/7-1_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+<iframe src="https://streamango.com/embed/dbdtmqtoqmncpdre/7-2_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/kqnafmscoaardeqq/7-3_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+<iframe src="https://streamango.com/embed/deckbratlomcpfrt/7-4_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/nrmcrsspsqekqcnd/7-5_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/lttebrpmbmnrcdfa/7_6-8_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<h3><span id="8-最小生成树">8.　最小生成树</span></h3><iframe src="https://streamango.com/embed/bocfdpsefcbpmmtk/8-1_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+<iframe src="https://streamango.com/embed/lctebtedecpsssnr/8-2_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/qknaketlqrpafcbl/8-3_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/fcabpekafbtlpaom/8-4_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/lberembccdnrplmo/8-5_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/fmnatbaeaslspstm/8-6_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+<iframe src="https://streamango.com/embed/bllsnnqlreeerttl/8-7_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+
+
+<h3><span id="9-最短路径">9.　最短路径</span></h3><iframe src="https://streamango.com/embed/mtbbmklmbaqrnkln/9-1_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+
+<iframe src="https://streamango.com/embed/ppddekfkmoaqqrlo/9-2_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+<iframe src="https://streamango.com/embed/scpopotorefbmdab/9-3_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+<iframe src="https://streamango.com/embed/qmrobnomprlomeee/9-4_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+
+
+<iframe src="https://streamango.com/embed/bncsqrpqoqorcrds/9-5_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/akcaropmkqaeamnr/9-6_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<h3><span id="10-结束语">10.　结束语</span></h3><iframe src="https://streamango.com/embed/cbtskqasoaccmnom/10-1_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<h3><span id="源码">源码</span></h3><p><a href="https://github.com/yiyouls/courses" target="_blank" rel="noopener">源码下载地址</a></p>
+
+            
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">ETIQUETADO EN</span><br>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/algorithm/">algorithm</a> <a class="tag tag--primary tag--small t-link" href="/tags/data-structure/">data structure</a> <a class="tag tag--primary tag--small t-link" href="/tags/数据机构/">数据机构</a> <a class="tag tag--primary tag--small t-link" href="/tags/算法/">算法</a> <a class="tag tag--primary tag--small t-link" href="/tags/网课/">网课</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">ANTERIOR</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/02/27/什么是卷积神经网络-convolutional-neural-network/" data-tooltip="什么是卷积神经网络(convolutional neural network)深度学习？" aria-label="SIGUIENTE: 什么是卷积神经网络(convolutional neural network)深度学习？">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">SIGUIENTE</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yiyouls.com/2019/03/11/C-算法与数据结构视频教程/" title="Compartir en Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yiyouls.com/2019/03/11/C-算法与数据结构视频教程/" title="Compartir en Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yiyouls.com/2019/03/11/C-算法与数据结构视频教程/" title="Compartir en Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yiyouls.com/2019/03/11/C-算法与数据结构视频教程/" title="Compartir en Weibo">
+                    <i class="fab fa-weibo" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yiyouls.com/2019/03/11/C-算法与数据结构视频教程/&amp;title=C++算法与数据结构视频教程" title="Compartir en QQ">
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yiyouls.com/2019/03/11/C-算法与数据结构视频教程/" title="Compartir en Qzone">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yiyouls.com/2019/03/11/C-算法与数据结构视频教程/" title="Compartir en Renren">
+                    <i class="fab fa-renren" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#table-of-contents" aria-label="Tabla de contenido">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+                <div id="cyReward" role="cylabs" data-use="reward"></div>
+<div id="cyPoll" role="cylabs" data-use="poll"></div>
+<div id="cyEmoji" role="cylabs" data-use="emoji"></div>
+<div id="cyQing" role="cylabs" data-use="qing"></div>
+<div id="cyHotusers" role="cylabs" data-use="hotusers"></div>
+<div id="cyReping" role="cylabs" data-use="reping"></div>
+<div id="cyBarrage" role="cylabs" data-use="barrage"></div>
+<div id="SOHUCS" sid="C++算法与数据结构视频教程"></div>
+
+
+            
+        
+    </div>
+</article>
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2019 Scott Liu. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">ANTERIOR</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/02/27/什么是卷积神经网络-convolutional-neural-network/" data-tooltip="什么是卷积神经网络(convolutional neural network)深度学习？" aria-label="SIGUIENTE: 什么是卷积神经网络(convolutional neural network)深度学习？">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">SIGUIENTE</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yiyouls.com/2019/03/11/C-算法与数据结构视频教程/" title="Compartir en Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yiyouls.com/2019/03/11/C-算法与数据结构视频教程/" title="Compartir en Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yiyouls.com/2019/03/11/C-算法与数据结构视频教程/" title="Compartir en Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yiyouls.com/2019/03/11/C-算法与数据结构视频教程/" title="Compartir en Weibo">
+                    <i class="fab fa-weibo" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yiyouls.com/2019/03/11/C-算法与数据结构视频教程/&amp;title=C++算法与数据结构视频教程" title="Compartir en QQ">
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yiyouls.com/2019/03/11/C-算法与数据结构视频教程/" title="Compartir en Qzone">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yiyouls.com/2019/03/11/C-算法与数据结构视频教程/" title="Compartir en Renren">
+                    <i class="fab fa-renren" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#table-of-contents" aria-label="Tabla de contenido">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yiyouls.com/2019/03/11/C-算法与数据结构视频教程/">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Compartir en Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yiyouls.com/2019/03/11/C-算法与数据结构视频教程/">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Compartir en Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yiyouls.com/2019/03/11/C-算法与数据结构视频教程/">
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Compartir en Google+</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yiyouls.com/2019/03/11/C-算法与数据结构视频教程/">
+                        <i class="fab fa-weibo" aria-hidden="true"></i><span>Compartir en Weibo</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yiyouls.com/2019/03/11/C-算法与数据结构视频教程/&amp;title=C++算法与数据结构视频教程">
+                        <i class="fab fa-qq" aria-hidden="true"></i><span>Compartir en QQ</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yiyouls.com/2019/03/11/C-算法与数据结构视频教程/">
+                        <i class="fa fa-star" aria-hidden="true"></i><span>Compartir en Qzone</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yiyouls.com/2019/03/11/C-算法与数据结构视频教程/">
+                        <i class="fab fa-renren" aria-hidden="true"></i><span>Compartir en Renren</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="http://cdn.yiyouls.com/profile.png" alt="Foto de autor">
+        
+            <h4 id="about-card-name">Scott Liu</h4>
+        
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                <p>author.job</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br>
+                Hangzhou,Zhejiang
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('http://cdn.yiyouls.com/cover.jpg');"></div>
+        <!--SCRIPTS-->
+<script src="/assets/js/script-dbd16rvloemmuxdzniplmnxxvwoz24eya9wol0b7vvmlokgqsjivmb8dnscy.min.js"></script>
+<!--SCRIPTS END-->
+
+    
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cyu2tTq0X'; 
+var conf = 'prod_04b0d924b891393f35b9626442a6e448'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script> 
+<script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyu2tTq0X"></script>
+    
+
+
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
