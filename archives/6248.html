@@ -17,12 +17,12 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"articleBody":"这篇文章探讨什么是正则化，以及在神经网络中加入正则化的原因．\n在之前文章中我们讲过过度拟合的问题，简单介绍过dropout的技术，它是正则化的一种．但是我们并没有详细说什么是正则化，这篇文章将会补充这一部分内容．\n\n一般来讲，正则化通过惩罚过度复杂的模型来帮助模型减少过度拟合，弱化模型的变异．因为模型越复杂可能会使得模型泛化能力变弱，即使模型能够很好地契合数据．\n\n正则化通过惩罚过度复杂的模型来帮助模型减少过度拟合，弱化模型的变异\n\n所以，如果我们在模型中加入正则化技术，我们会不可避免地牺牲一些模型对于数据的契合能力来获取模型更好的泛化能力，这样模型就能对从未见过的新数据有更好的宽容度．\n如何给模型加入正则化呢，我们只需在损失函数中添加一个惩罚项，去减弱那些过多的权重．我们待会会详细介绍这一点．\nL2正则化最经常使用的正则化计算是L2正则化，那L2正则化是怎样在损失函数中添加惩罚项的呢．\nL2正则化表达式在L2正则化中我们给损失函数添加了权重矩阵的范数平方(squared norms)和，表达式为：\n$\\sum ^{n}_{j=1}||w^{|j|}||^2$,\n并乘以一个数值很小的常量\n$\\frac {\\lambda}{2m}$.\n范数的非负性如果你大致了解范数这一概念，你就能理解范数不过是给向量空间中的每个向量赋予一个严格为正的长度或大小的函数．我们这里所处理的模型空间依赖于权重矩阵的大小．\n我们这里不过多考虑范数的线性代数分析，还是回到正则化这条主线上来．范数是线性代数中的一个基本概念，如果你需要对它作进一步了解，你可以在网络上找到很多介绍．\n我们在这里只需要了解，每一个权重矩阵的范数都是一个非负数．\n假设$v$是向量空间中的一个向量，$v$的范数用$||v||$来标记，注意，\n$||v||\\ge0$,\n给损失函数加入正则化L2正则化的表达式如下\n$loss+(\\sum ^{n}_{j=1}||w^{|j|}||^2)\\frac {\\lambda}{2m}$.\n下面的表格是表达式中所有变量的定义\n\n\n\n\n变量\n定义\n\n\n\n\n$n$\n神经网络的层数\n\n\n$w$j\n第$j$层的权重矩阵\n\n\n$m$\n输入数据的个数\n\n\n$\\lambda$\n正则化参数\n\n\n\n\n$\\lambda$是正则化参数，它是我们在建立模型中另一个需要考虑的超参，我们通过选择超参，测试并调整超参以适应不同模型的需求．\n总结一下，目前我们了解了正则化的目的是弱化模型中相对较大的权重，而这是通过对损失函数添加惩罚项实现的．那么到底为什么正则化的方法可以帮助我们优化模型呢？\n正则化的影响以Ｌ2正则化为例，如果我们将超参数$\\lambda$定得比较大，就会激励模型参数向０靠拢，因为SGD的目标是最小化损失函数，要记得我们给最初的损失函数加了权重矩阵的范数平方和\n$\\sum ^{n}_{j=1}||w^{|j|}||^2$,\n并乘以一个数值很小的常量\n$\\frac {\\lambda}{2m}$.\n假如$\\lambda$的值比较大，那么$\\frac {\\lambda}{2m}$也会保持一个较大值，将这个值乘以范数平方和，那么所得的乘积也可能会相对较大，这取决于权重值的大小．这以为着模型会被激励着使权重值减小，来保证整个函数值保持在相对较小，以此最小化损失．\n这样的化，这种正则化可能会导致权重趋向于０，甚至会使的模型的某些层不再发挥作用，这样就使得模型不再那么复杂，模型的简化能够减少过低拟合，减少模型变异．\n希望大家到这里能够对正则化有比较清晰的认识，了解正则化起作用的方式，以及对L2正则化表达式有所熟悉．之后我们会对学习率(learning rate)做一个介绍，我们下次再见！\n","dateCreated":"2019-02-14T20:37:45+08:00","dateModified":"2019-02-24T14:27:40+08:00","datePublished":"2019-02-14T20:37:45+08:00","description":"这篇文章探讨什么是正则化，以及在神经网络中加入正则化的原因．\n在之前文章中我们讲过过度拟合的问题，简单介绍过dropout的技术，它是正则化的一种．但是我们并没有详细说什么是正则化，这篇文章将会补充这一部分内容．","headline":"人工神经网络中的正则化(regularization)","image":["http://cdn.yiyouls.com/regularization-nail.png","http://cdn.yiyouls.com/ai.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yiyouls.com/archives/6248.html"},"publisher":{"@type":"Organization","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png","logo":{"@type":"ImageObject","url":"http://cdn.yiyouls.com/profile.png"}},"url":"http://yiyouls.com/archives/6248.html","keywords":"深度学习, ANNs, 人工神经网络, 正则化, L2正则化, 范数","thumbnailUrl":"http://cdn.yiyouls.com/regularization-nail.png"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"articleBody":"这篇文章探讨什么是正则化，以及在神经网络中加入正则化的原因．\n在之前文章中我们讲过过度拟合的问题，简单介绍过dropout的技术，它是正则化的一种．但是我们并没有详细说什么是正则化，这篇文章将会补充这一部分内容．\n\n一般来讲，正则化通过惩罚过度复杂的模型来帮助模型减少过度拟合，弱化模型的变异．因为模型越复杂可能会使得模型泛化能力变弱，即使模型能够很好地契合数据．\n\n正则化通过惩罚过度复杂的模型来帮助模型减少过度拟合，弱化模型的变异\n\n所以，如果我们在模型中加入正则化技术，我们会不可避免地牺牲一些模型对于数据的契合能力来获取模型更好的泛化能力，这样模型就能对从未见过的新数据有更好的宽容度．\n如何给模型加入正则化呢，我们只需在损失函数中添加一个惩罚项，去减弱那些过多的权重．我们待会会详细介绍这一点．\nL2正则化最经常使用的正则化计算是L2正则化，那L2正则化是怎样在损失函数中添加惩罚项的呢．\nL2正则化表达式在L2正则化中我们给损失函数添加了权重矩阵的范数平方(squared norms)和，表达式为：\n$\\sum ^{n}_{j=1}||w^{|j|}||^2$,\n并乘以一个数值很小的常量\n$\\frac {\\lambda}{2m}$.\n范数的非负性如果你大致了解范数这一概念，你就能理解范数不过是给向量空间中的每个向量赋予一个严格为正的长度或大小的函数．我们这里所处理的模型空间依赖于权重矩阵的大小．\n我们这里不过多考虑范数的线性代数分析，还是回到正则化这条主线上来．范数是线性代数中的一个基本概念，如果你需要对它作进一步了解，你可以在网络上找到很多介绍．\n我们在这里只需要了解，每一个权重矩阵的范数都是一个非负数．\n假设$v$是向量空间中的一个向量，$v$的范数用$||v||$来标记，注意，\n$||v||\\ge0$,\n给损失函数加入正则化L2正则化的表达式如下\n$loss+(\\sum ^{n}_{j=1}||w^{|j|}||^2)\\frac {\\lambda}{2m}$.\n下面的表格是表达式中所有变量的定义\n\n\n\n\n变量\n定义\n\n\n\n\n$n$\n神经网络的层数\n\n\n$w$j\n第$j$层的权重矩阵\n\n\n$m$\n输入数据的个数\n\n\n$\\lambda$\n正则化参数\n\n\n\n\n$\\lambda$是正则化参数，它是我们在建立模型中另一个需要考虑的超参，我们通过选择超参，测试并调整超参以适应不同模型的需求．\n总结一下，目前我们了解了正则化的目的是弱化模型中相对较大的权重，而这是通过对损失函数添加惩罚项实现的．那么到底为什么正则化的方法可以帮助我们优化模型呢？\n正则化的影响以Ｌ2正则化为例，如果我们将超参数$\\lambda$定得比较大，就会激励模型参数向０靠拢，因为SGD的目标是最小化损失函数，要记得我们给最初的损失函数加了权重矩阵的范数平方和\n$\\sum ^{n}_{j=1}||w^{|j|}||^2$,\n并乘以一个数值很小的常量\n$\\frac {\\lambda}{2m}$.\n假如$\\lambda$的值比较大，那么$\\frac {\\lambda}{2m}$也会保持一个较大值，将这个值乘以范数平方和，那么所得的乘积也可能会相对较大，这取决于权重值的大小．这以为着模型会被激励着使权重值减小，来保证整个函数值保持在相对较小，以此最小化损失．\n这样的化，这种正则化可能会导致权重趋向于０，甚至会使的模型的某些层不再发挥作用，这样就使得模型不再那么复杂，模型的简化能够减少过低拟合，减少模型变异．\n希望大家到这里能够对正则化有比较清晰的认识，了解正则化起作用的方式，以及对L2正则化表达式有所熟悉．之后我们会对学习率(learning rate)做一个介绍，我们下次再见！\n","dateCreated":"2019-02-14T20:37:45+08:00","dateModified":"2019-02-24T14:27:40+08:00","datePublished":"2019-02-14T20:37:45+08:00","description":"这篇文章探讨什么是正则化，以及在神经网络中加入正则化的原因．\n在之前文章中我们讲过过度拟合的问题，简单介绍过dropout的技术，它是正则化的一种．但是我们并没有详细说什么是正则化，这篇文章将会补充这一部分内容．","headline":"人工神经网络中的正则化(regularization)","image":["http://cdn.yiyouls.com/regularization-nail.png","http://cdn.yiyouls.com/ai.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/archives/6248.html"},"publisher":{"@type":"Organization","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png","logo":{"@type":"ImageObject","url":"http://cdn.yiyouls.com/profile.png"}},"url":"http://yoursite.com/archives/6248.html","keywords":"深度学习, ANNs, 人工神经网络, 正则化, L2正则化, 范数","thumbnailUrl":"http://cdn.yiyouls.com/regularization-nail.png"}</script>
     <meta name="description" content="这篇文章探讨什么是正则化，以及在神经网络中加入正则化的原因． 在之前文章中我们讲过过度拟合的问题，简单介绍过dropout的技术，它是正则化的一种．但是我们并没有详细说什么是正则化，这篇文章将会补充这一部分内容．">
 <meta name="keywords" content="深度学习,ANNs,人工神经网络,正则化,L2正则化,范数">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="人工神经网络中的正则化(regularization)">
-<meta property="og:url" content="http://yiyouls.com/archives/6248.html">
+<meta property="og:url" content="http://yoursite.com/archives/6248.html">
 <meta property="og:site_name" content="Deep Learning">
 <meta property="og:description" content="这篇文章探讨什么是正则化，以及在神经网络中加入正则化的原因． 在之前文章中我们讲过过度拟合的问题，简单介绍过dropout的技术，它是正则化的一种．但是我们并没有详细说什么是正则化，这篇文章将会补充这一部分内容．">
 <meta property="og:locale" content="zh-cn">
@@ -320,7 +320,7 @@
     <div class="post-content markdown">
         <div class="main-content-wrap">
             <p>这篇文章探讨什么是正则化，以及在神经网络中加入正则化的原因．</p>
-<p>在<a href="https://yiyouls.com/archives/53ec.html">之前文章</a>中我们讲过过度拟合的问题，简单介绍过dropout的技术，它是正则化的一种．但是我们并没有详细说什么是正则化，这篇文章将会补充这一部分内容．</p>
+<p>在<a href="https://yiyouls.com/archives/53ec.html" target="_blank" rel="noopener">之前文章</a>中我们讲过过度拟合的问题，简单介绍过dropout的技术，它是正则化的一种．但是我们并没有详细说什么是正则化，这篇文章将会补充这一部分内容．</p>
 <a id="more"></a>
 <p>一般来讲，正则化通过惩罚过度复杂的模型来帮助模型减少过度拟合，弱化模型的变异．因为模型越复杂可能会使得模型泛化能力变弱，即使模型能够很好地契合数据．</p>
 <blockquote>
@@ -426,7 +426,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yiyouls.com/archives/6248.html" title="分享到 Facebook">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/archives/6248.html" title="分享到 Facebook">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -434,7 +434,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yiyouls.com/archives/6248.html" title="分享到 Twitter">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/archives/6248.html" title="分享到 Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -442,7 +442,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yiyouls.com/archives/6248.html" title="分享到 Google+">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/archives/6248.html" title="分享到 Google+">
                     <i class="fab fa-google-plus" aria-hidden="true"></i>
                 </a>
             </li>
@@ -450,7 +450,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yiyouls.com/archives/6248.html" title="分享到 Weibo">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/archives/6248.html" title="分享到 Weibo">
                     <i class="fab fa-weibo" aria-hidden="true"></i>
                 </a>
             </li>
@@ -458,7 +458,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yiyouls.com/archives/6248.html&amp;title=人工神经网络中的正则化(regularization)" title="分享到 QQ">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/archives/6248.html&amp;title=人工神经网络中的正则化(regularization)" title="分享到 QQ">
                     <i class="fab fa-qq" aria-hidden="true"></i>
                 </a>
             </li>
@@ -466,7 +466,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yiyouls.com/archives/6248.html" title="分享到 Qzone">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/archives/6248.html" title="分享到 Qzone">
                     <i class="fa fa-star" aria-hidden="true"></i>
                 </a>
             </li>
@@ -474,7 +474,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yiyouls.com/archives/6248.html" title="分享到 Renren">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yoursite.com/archives/6248.html" title="分享到 Renren">
                     <i class="fab fa-renren" aria-hidden="true"></i>
                 </a>
             </li>
@@ -554,7 +554,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yiyouls.com/archives/6248.html" title="分享到 Facebook">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/archives/6248.html" title="分享到 Facebook">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -562,7 +562,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yiyouls.com/archives/6248.html" title="分享到 Twitter">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/archives/6248.html" title="分享到 Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -570,7 +570,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yiyouls.com/archives/6248.html" title="分享到 Google+">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/archives/6248.html" title="分享到 Google+">
                     <i class="fab fa-google-plus" aria-hidden="true"></i>
                 </a>
             </li>
@@ -578,7 +578,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yiyouls.com/archives/6248.html" title="分享到 Weibo">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/archives/6248.html" title="分享到 Weibo">
                     <i class="fab fa-weibo" aria-hidden="true"></i>
                 </a>
             </li>
@@ -586,7 +586,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yiyouls.com/archives/6248.html&amp;title=人工神经网络中的正则化(regularization)" title="分享到 QQ">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/archives/6248.html&amp;title=人工神经网络中的正则化(regularization)" title="分享到 QQ">
                     <i class="fab fa-qq" aria-hidden="true"></i>
                 </a>
             </li>
@@ -594,7 +594,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yiyouls.com/archives/6248.html" title="分享到 Qzone">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/archives/6248.html" title="分享到 Qzone">
                     <i class="fa fa-star" aria-hidden="true"></i>
                 </a>
             </li>
@@ -602,7 +602,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yiyouls.com/archives/6248.html" title="分享到 Renren">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yoursite.com/archives/6248.html" title="分享到 Renren">
                     <i class="fab fa-renren" aria-hidden="true"></i>
                 </a>
             </li>
@@ -630,7 +630,7 @@
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yiyouls.com/archives/6248.html">
+                    <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/archives/6248.html">
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>分享到 Facebook</span>
                     </a>
                 </li>
@@ -638,7 +638,7 @@
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yiyouls.com/archives/6248.html">
+                    <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/archives/6248.html">
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
                     </a>
                 </li>
@@ -646,7 +646,7 @@
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yiyouls.com/archives/6248.html">
+                    <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/archives/6248.html">
                         <i class="fab fa-google-plus" aria-hidden="true"></i><span>分享到 Google+</span>
                     </a>
                 </li>
@@ -654,7 +654,7 @@
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yiyouls.com/archives/6248.html">
+                    <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/archives/6248.html">
                         <i class="fab fa-weibo" aria-hidden="true"></i><span>分享到 Weibo</span>
                     </a>
                 </li>
@@ -662,7 +662,7 @@
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yiyouls.com/archives/6248.html&amp;title=人工神经网络中的正则化(regularization)">
+                    <a class="share-option-btn" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/archives/6248.html&amp;title=人工神经网络中的正则化(regularization)">
                         <i class="fab fa-qq" aria-hidden="true"></i><span>分享到 QQ</span>
                     </a>
                 </li>
@@ -670,7 +670,7 @@
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yiyouls.com/archives/6248.html">
+                    <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/archives/6248.html">
                         <i class="fa fa-star" aria-hidden="true"></i><span>分享到 Qzone</span>
                     </a>
                 </li>
@@ -678,7 +678,7 @@
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yiyouls.com/archives/6248.html">
+                    <a class="share-option-btn" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yoursite.com/archives/6248.html">
                         <i class="fab fa-renren" aria-hidden="true"></i><span>分享到 Renren</span>
                     </a>
                 </li>
@@ -748,13 +748,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://yiyouls.com/archives/bc1e.html">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/bc1e.html">
                             <img class="media-image" src="http://cdn.yiyouls.com/image_1.png" width="90" height="90">
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://yiyouls.com/archives/bc1e.html">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/bc1e.html">
                             <h3 class="media-heading">什么是机器学习(Machine Learning)？</h3>
                         </a>
                         <span class="media-meta">
@@ -774,13 +774,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://yiyouls.com/archives/f498.html">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/f498.html">
                             <img class="media-image" src="http://cdn.yiyouls.com/image_2.png" width="90" height="90">
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://yiyouls.com/archives/f498.html">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/f498.html">
                             <h3 class="media-heading">什么是深度学习(Deep Learning)？</h3>
                         </a>
                         <span class="media-meta">
@@ -801,13 +801,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://yiyouls.com/archives/97f0.html">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/97f0.html">
                             <img class="media-image" src="http://cdn.yiyouls.com/web.png" width="90" height="90">
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://yiyouls.com/archives/97f0.html">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/97f0.html">
                             <h3 class="media-heading">使用hexo在Github上免费搭建功能丰富的个人博客网站</h3>
                         </a>
                         <span class="media-meta">
@@ -826,13 +826,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://yiyouls.com/archives/7cef.html">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/7cef.html">
                             <img class="media-image" src="http://cdn.yiyouls.com/Octocat.png" width="90" height="90">
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://yiyouls.com/archives/7cef.html">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/7cef.html">
                             <h3 class="media-heading">如何在Github上免费开通一个Github Page作为个人主页</h3>
                         </a>
                         <span class="media-meta">
@@ -852,13 +852,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://yiyouls.com/archives/b5e2.html">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/b5e2.html">
                             <img class="media-image" src="http://cdn.yiyouls.com/hexologo.png" width="90" height="90">
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://yiyouls.com/archives/b5e2.html">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/b5e2.html">
                             <h3 class="media-heading">11大最常用静态网站建站工具，你用过几个？</h3>
                         </a>
                         <span class="media-meta">
@@ -878,13 +878,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://yiyouls.com/archives/7770.html">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/7770.html">
                             <img class="media-image" src="http://cdn.yiyouls.com/anns.png" width="90" height="90">
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://yiyouls.com/archives/7770.html">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/7770.html">
                             <h3 class="media-heading">什么是人工神经网络ANNs?</h3>
                         </a>
                         <span class="media-meta">
@@ -904,13 +904,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://yiyouls.com/archives/da21.html">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/da21.html">
                             <img class="media-image" src="http://cdn.yiyouls.com/ceng.png" width="90" height="90">
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://yiyouls.com/archives/da21.html">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/da21.html">
                             <h3 class="media-heading">如何理解神经网络中层(layer)的概念？</h3>
                         </a>
                         <span class="media-meta">
@@ -930,13 +930,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://yiyouls.com/archives/10fe.html">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/10fe.html">
                             <img class="media-image" src="http://cdn.yiyouls.com/function.png" width="90" height="90">
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://yiyouls.com/archives/10fe.html">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/10fe.html">
                             <h3 class="media-heading">如何理解神经网络中的激活函数(ativation functions)?</h3>
                         </a>
                         <span class="media-meta">
@@ -956,13 +956,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://yiyouls.com/archives/4c0a.html">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/4c0a.html">
                             <img class="media-image" src="http://cdn.yiyouls.com/sgd.png" width="90" height="90">
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://yiyouls.com/archives/4c0a.html">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/4c0a.html">
                             <h3 class="media-heading">如何训练(train)人工神经网络？</h3>
                         </a>
                         <span class="media-meta">
@@ -981,13 +981,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://yiyouls.com/archives/b5f9.html">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/b5f9.html">
                             <img class="media-image" src="http://cdn.yiyouls.com/learn.png" width="90" height="90">
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://yiyouls.com/archives/b5f9.html">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/b5f9.html">
                             <h3 class="media-heading">人工神经网络是如何学习(learn)的?</h3>
                         </a>
                         <span class="media-meta">
@@ -1009,7 +1009,7 @@
         </div>
         <div class="modal-footer">
             <p class="results-count text-medium" data-message-zero="没有找到文章" data-message-one="找到 1 篇文章" data-message-other="找到 {n} 篇文章">
-                找到 24 篇文章
+                找到 25 篇文章
             </p>
         </div>
     </div>

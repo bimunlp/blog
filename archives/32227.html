@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Deep Learning">
-    <title>如何在Github上免费开通一个Github Page作为个人主页 - Deep Learning</title>
+    <title>C++算法与数据结构视频教程 - Deep Learning</title>
     <meta name="author" content="友邻君">
     
         <meta name="keywords" content="deep learning,neural network,mechine learning,ANN,AI,深度学习,机器学习,">
@@ -17,34 +17,21 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"articleBody":"为什么要选择在Github上建站，原因很简单，它是免费的．\n只要你按照下面的六步走，就可以轻轻松松发布自己的网站，你不需要有任何关于编程或者网站建设的基础知识．所有的前提只是，你要有一个github账号．\n\n\n少啰嗦，先看东西\n\niPhone显示效果\niPad显示效果\niMac显示效果\nMacbook显示效果\n\n看到这里，如果觉得这个风格不合胃口，你也可以选择可以提前离场，因为接下来的许多配置都将和这个主题相关．\n\n希望不被打脸．．．\n\n如果你喜欢这样的网站风格，想一步步照样配置（我会把源码给你），或者只是想从这篇教程中汲取自己所需要的东西，作为自己建站参考，你都会发现，这个系列博文是可以带给你很多有用的信息的．总之，希望大家能够各得其所，各取所需．\n为了给大家做出详细的讲解和展示，我会使用一个新的终端设备，把自己的仓库清空，以一种推倒重来的方式再现整个建站过程．\n\n当你下定决心要建站的时候，你就开始面临一系列的选择．我在上个文章中就已经提到了大家会面临的第一个分叉路口．对于一个想要搭建个人博客系统的新手，我坚定地建议你采用Github托管的方式，原因很简单，它是免费的．\n假定大家都知道Github是个什么东西，并且对它有着一种类似信仰的原始崇拜．\n\n你可以在Github上免费开通Github Page，为你个人或者你的项目建立一个网站．Github Page官方网站上有详细的介绍和操作流程．让我们开始操作吧．\n\n第一步．创建存储库 (repository)\n\n转到GitHub并创建一个名为username .github.io 的新存储库，其中username是你在GitHub上的用户名（或组织名称）。\n\n如果存储库的第一部分与您的用户名不完全匹配，则无法正常工作，因此请务必正确使用。\n\n*需要注意的是*\n\n\n在实际操作中你会发现，如果你有自己的独立域名，对新储存库的命名不需要遵循这么严格的规则．以我自己为例，我的Github用户名是yiyouls,　我给自己用来建立Github Page的新仓库命名为blog.　同样是可行的．\n仓库属性也可以选择Public\n\n\n第二步，进入储存库，转到设置(settings)\n\n在设置页面你可以对你的新储存库进行相关设置，你可以在这里设置你的GIthub Page特性，包括功能的开启与关闭，是否绑定定制域名(custom domain).\n\n\n第三步，下载使用Github桌面客户端(Github Desktop)\n\nGitHub Desktop是在macOS和Windows上使用Git和GitHub的好方法。（如果你不想使用Github客户端，你也可以直接在终端里通过git命令进行操作1，我会把terminal的操作方法一并列出）\n下载GitHub桌面\n\n\n第四步，将储存库克隆到本地，用Github桌面客户端打开\n\n客户端完成安装后，返回我们刚建的储存库主页并刷新页面。单击“Set up in Desktop”按钮。当GitHub桌面应用程序打开时，保存项目。这样我们就把该储存库克隆到了本地．\n\n注意\n\n\n如果Github桌面客户端未能打开，你可以从电脑应用程序库找到它并启动，用户登录后，你可以看到你名下的所有储存库，找到我们新建的那个，手动克隆它．\n\n如果你使用terminal操作，你首先需要cd到你准备存放你的项目的文件夹（一定要记得你存放的路径），通过下面的操作克隆你的刚建的储存库：\n1git clone https://github.com/username/username.github.io\n\n\n\n\n第五步，创建索引文件\n\n到这里，你的储存库尚未添加任何文件，你的网站也相应地空空如也．你需要添加索引文件\nindex.htmlhtml123456789​    &lt;!DOCTYPE html&gt;    &lt;html&gt;    &lt;body&gt;    &lt;h1&gt;Hello World&lt;/h1&gt;    &lt;p&gt;I'm hosted with GitHub Pages.&lt;/p&gt;    &lt;/body&gt;    &lt;/html&gt;​\n这样，你就在你的网站上添加了一行”hello world”\n\n注意\n\n如果是使用terminal操作，你需要cd进入克隆出的文件，然后向文件夹里添加内容：\n123cd username.github.ioecho &quot;Hello World&quot; &gt; index.html\n\n第六步，提交和发布\n\n输入存储库，提交更改，然后按发布按钮。\n\n注意\n\n\n你克隆下来的储存库在本地，你可以通过Finder或者资源管理器找到它，把新文件放进去，Github客户端就能够读取到这些改变啦．\n\n如果你使用terminal终端，可以用push推送操作进行发布：\n12345git add --allgit commit -m &quot;Initial commit&quot;git push -u origin master\n\n\n\n到这里，你的网站就已经发布在了username .github.io这个网址．教程到此结束．\nyou made it!\n\n\n网站这么丑，能用它来干嘛\n\n的确是这样，我们的网站虽然已经发布，但它基本还是个没用的废物，因为到目前为止我们只给它添加了一个索引文件．如果想要实现更多丰富的功能（可能是一些必备的功能），你必须添加很多代码和文件进去．\n\n那么问题来了，真的忍心让你一点点把所有功能实现的代码都敲进去吗？那么建站所耗费的时间成本也太大了．事实上，我们大可不必这样．我们的开源社区已经有了很多可爱的工具和框架供我们使用，免去我们许多许多繁杂的工作．\n\n那么下篇博文，我会跟大家介绍一些可以让你的网站瞬间高大上起来的那些可爱的开源工具．so stay tuned.\n\n1. 之所以要使用Githbub客户端，是因为它是一个非常便捷的git储存库管理工具，当我们开始使用jekyll这样的建站工具对网站进行功能升级的时候，单单通过终端显然是很麻烦的． &#8617;\n\n","dateCreated":"2019-01-19T14:13:27+08:00","dateModified":"2019-02-24T13:52:34+08:00","datePublished":"2019-01-19T14:13:27+08:00","description":"为什么要选择在Github上建站，原因很简单，它是免费的．\n只要你按照下面的六步走，就可以轻轻松松发布自己的网站，你不需要有任何关于编程或者网站建设的基础知识．所有的前提只是，你要有一个github账号．","headline":"如何在Github上免费开通一个Github Page作为个人主页","image":["http://cdn.yiyouls.com/Octocat.png","http://cdn.yiyouls.com/webcover.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/archives/7cef.html"},"publisher":{"@type":"Organization","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png","logo":{"@type":"ImageObject","url":"http://cdn.yiyouls.com/profile.png"}},"url":"http://yoursite.com/archives/7cef.html","keywords":"Github, Github Page","thumbnailUrl":"http://cdn.yiyouls.com/Octocat.png"}</script>
-    <meta name="description" content="为什么要选择在Github上建站，原因很简单，它是免费的． 只要你按照下面的六步走，就可以轻轻松松发布自己的网站，你不需要有任何关于编程或者网站建设的基础知识．所有的前提只是，你要有一个github账号．">
-<meta name="keywords" content="Github,Github Page">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"articleBody":"慕课网名师liuyubobobo的算法与数据结构课－－c++算法与数据结构，精品网络课程，课程设计质量很高，个人学习后觉得受益匪浅．目前该课程已在慕课网下架，现将个人收藏版分享出来，希望大家能够一起学习．本资源仅供学习参考，严禁商用，侵权立删．\n\n\n\n\n1.　当我们谈论算法的时候我们在谈论什么\n2.　排序基础\n3.　高级排序算法\n4.　堆和堆排序\n5.　二分搜索树\n6.　并查集\n7.　图的基础\n8.　最小生成树\n9.　最短路径\n10.　结束语\n源码\n\n\n1.　当我们谈论算法的时候我们在谈论什么\n\n2.　排序基础\n\n\n\n\n3.　高级排序算法\n\n\n\n\n4.　堆和堆排序\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5.　二分搜索树\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6.　并查集\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7.　图的基础\n\n\n\n\n\n\n\n\n\n8.　最小生成树\n\n\n\n\n\n\n\n\n\n\n\n\n\n9.　最短路径\n\n\n\n\n\n\n\n\n\n\n\n\n10.　结束语\n\n源码源码下载地址\n","dateCreated":"2019-03-11T17:39:09+08:00","dateModified":"2019-03-11T20:37:03+08:00","datePublished":"2019-03-11T17:39:09+08:00","description":"慕课网名师liuyubobobo的算法与数据结构课－－c++算法与数据结构，精品网络课程，课程设计质量很高，个人学习后觉得受益匪浅．目前该课程已在慕课网下架，现将个人收藏版分享出来，希望大家能够一起学习．本资源仅供学习参考，严禁商用，侵权立删．\n","headline":"C++算法与数据结构视频教程","image":["http://cdn.yiyouls.com/onlinecourse.png","http://cdn.yiyouls.com/ai.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/archives/32227.html"},"publisher":{"@type":"Organization","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png","logo":{"@type":"ImageObject","url":"http://cdn.yiyouls.com/profile.png"}},"url":"http://yoursite.com/archives/32227.html","keywords":"算法, 数据机构, algorithm, data structure, 网课","thumbnailUrl":"http://cdn.yiyouls.com/onlinecourse.png"}</script>
+    <meta name="description" content="慕课网名师liuyubobobo的算法与数据结构课－－c++算法与数据结构，精品网络课程，课程设计质量很高，个人学习后觉得受益匪浅．目前该课程已在慕课网下架，现将个人收藏版分享出来，希望大家能够一起学习．本资源仅供学习参考，严禁商用，侵权立删．">
+<meta name="keywords" content="算法,数据机构,algorithm,data structure,网课">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="如何在Github上免费开通一个Github Page作为个人主页">
-<meta property="og:url" content="http://yoursite.com/archives/7cef.html">
+<meta property="og:title" content="C++算法与数据结构视频教程">
+<meta property="og:url" content="http://yoursite.com/archives/32227.html">
 <meta property="og:site_name" content="Deep Learning">
-<meta property="og:description" content="为什么要选择在Github上建站，原因很简单，它是免费的． 只要你按照下面的六步走，就可以轻轻松松发布自己的网站，你不需要有任何关于编程或者网站建设的基础知识．所有的前提只是，你要有一个github账号．">
+<meta property="og:description" content="慕课网名师liuyubobobo的算法与数据结构课－－c++算法与数据结构，精品网络课程，课程设计质量很高，个人学习后觉得受益匪浅．目前该课程已在慕课网下架，现将个人收藏版分享出来，希望大家能够一起学习．本资源仅供学习参考，严禁商用，侵权立删．">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:image" content="http://cdn.yiyouls.com/show_the_stuff.jpeg">
-<meta property="og:image" content="http://cdn.yiyouls.com/applepds.png">
-<meta property="og:image" content="http://cdn.yiyouls.com/slap.gif">
-<meta property="og:image" content="http://cdn.yiyouls.com/domino.gif">
-<meta property="og:image" content="http://cdn.yiyouls.com/codeape.gif">
-<meta property="og:image" content="http://cdn.yiyouls.com/step1.png">
-<meta property="og:image" content="http://cdn.yiyouls.com/pagedomain.png">
-<meta property="og:image" content="http://cdn.yiyouls.com/githubdesk.png">
-<meta property="og:image" content="http://cdn.yiyouls.com/clone.png">
-<meta property="og:image" content="http://cdn.yiyouls.com/desktop-demo.gif">
-<meta property="og:image" content="http://cdn.yiyouls.com/really.gif">
-<meta property="og:image" content="http://cdn.yiyouls.com/ugly.gif">
-<meta property="og:image" content="http://cdn.yiyouls.com/busy.gif">
-<meta property="og:image" content="http://cdn.yiyouls.com/foryou.gif">
-<meta property="og:updated_time" content="2019-02-24T05:52:34.464Z">
+<meta property="og:image" content="http://cdn.yiyouls.com/liuyubobobo.png">
+<meta property="og:updated_time" content="2019-03-11T12:37:03.703Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如何在Github上免费开通一个Github Page作为个人主页">
-<meta name="twitter:description" content="为什么要选择在Github上建站，原因很简单，它是免费的． 只要你按照下面的六步走，就可以轻轻松松发布自己的网站，你不需要有任何关于编程或者网站建设的基础知识．所有的前提只是，你要有一个github账号．">
-<meta name="twitter:image" content="http://cdn.yiyouls.com/show_the_stuff.jpeg">
+<meta name="twitter:title" content="C++算法与数据结构视频教程">
+<meta name="twitter:description" content="慕课网名师liuyubobobo的算法与数据结构课－－c++算法与数据结构，精品网络课程，课程设计质量很高，个人学习后觉得受益匪浅．目前该课程已在慕课网下架，现将个人收藏版分享出来，希望大家能够一起学习．本资源仅供学习参考，严禁商用，侵权立删．">
+<meta name="twitter:image" content="http://cdn.yiyouls.com/liuyubobobo.png">
 <meta name="twitter:creator" content="@hanhaishiyi">
     
         <link rel="publisher" href="https://plus.google.com/108244569432480563366"/>
@@ -56,12 +43,12 @@
         <meta property="og:image" content="http://cdn.yiyouls.com/profile.png"/>
     
     
-        <meta property="og:image" content="http://cdn.yiyouls.com/Octocat.png"/>
-        <meta class="swiftype" name="image" data-type="enum" content="http://cdn.yiyouls.com/Octocat.png" />
+        <meta property="og:image" content="http://cdn.yiyouls.com/onlinecourse.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://cdn.yiyouls.com/onlinecourse.png" />
     
     
-        <meta property="og:image" content="http://cdn.yiyouls.com/webcover.jpg"/>
-        <meta class="swiftype" name="image" data-type="enum" content="http://cdn.yiyouls.com/webcover.jpg" />
+        <meta property="og:image" content="http://cdn.yiyouls.com/ai.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://cdn.yiyouls.com/ai.jpg" />
     
     
     <!--STYLES-->
@@ -292,7 +279,7 @@
             
         <div class="post-header-cover
                     text-center
-                    " style="background-image:url('http://cdn.yiyouls.com/webcover.jpg');" data-behavior="4">
+                    " style="background-image:url('http://cdn.yiyouls.com/ai.jpg');" data-behavior="4">
             
         </div>
 
@@ -303,26 +290,26 @@
                 
 <article class="post">
     
-        <span class="post-header-cover-caption caption">这篇文章是在告诉你你现在看到的这个网站是怎么一步步建成的</span>
+        <span class="post-header-cover-caption caption">算法与数据结构是计算机专业的核心课程</span>
     
     
         <div class="post-header main-content-wrap text-center">
     
         <h1 class="post-title">
-            如何在Github上免费开通一个Github Page作为个人主页
+            C++算法与数据结构视频教程
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2019-01-19T14:13:27+08:00">
+    <time datetime="2019-03-11T17:39:09+08:00">
 	
-		    1月 19, 2019
+		    3月 11, 2019
     	
     </time>
     
         <span>发布在 </span>
         
-    <a class="category-link" href="/categories/建站/">建站</a>
+    <a class="category-link" href="/categories/算法与数据结构/">算法与数据结构</a>
 
 
     
@@ -334,107 +321,123 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <p>为什么要选择在Github上建站，原因很简单，它是免费的．</p>
-<p>只要你按照下面的六步走，就可以轻轻松松发布自己的网站，你不需要有任何关于编程或者网站建设的基础知识．所有的前提只是，你要有一个github账号．</p>
+            <p>慕课网名师liuyubobobo的算法与数据结构课－－c++算法与数据结构，精品网络课程，课程设计质量很高，个人学习后觉得受益匪浅．目前该课程已在慕课网下架，现将个人收藏版分享出来，希望大家能够一起学习．本资源仅供学习参考，严禁商用，侵权立删．</p>
+<p><img src="http://cdn.yiyouls.com/liuyubobobo.png" alt=""></p>
 <a id="more"></a>
-<p><img src="http://cdn.yiyouls.com/show_the_stuff.jpeg" alt=""></p>
-<p>少啰嗦，先看东西</p>
-<p><img src="http://cdn.yiyouls.com/applepds.png" alt=""></p>
-<p>iPhone显示效果</p>
-<p>iPad显示效果</p>
-<p>iMac显示效果</p>
-<p>Macbook显示效果</p>
-<hr>
-<div class="alert warning"><p>看到这里，如果觉得这个风格不合胃口，你也可以选择可以提前离场，因为接下来的许多配置都将和这个主题相关．</p>
-</div>
-<p>希望不被打脸．．．</p>
-<p><img src="http://cdn.yiyouls.com/slap.gif" alt=""></p>
-<p>如果你喜欢这样的网站风格，想一步步照样配置（我会把源码给你），或者只是想从这篇教程中汲取自己所需要的东西，作为自己建站参考，你都会发现，这个系列博文是可以带给你很多有用的信息的．总之，希望大家能够各得其所，各取所需．</p>
-<p>为了给大家做出详细的讲解和展示，我会使用一个新的终端设备，把自己的仓库清空，以一种推倒重来的方式再现整个建站过程．</p>
-<p><img src="http://cdn.yiyouls.com/domino.gif" alt=""></p>
-<p>当你下定决心要建站的时候，你就开始面临一系列的选择．我在上个文章中就已经提到了大家会面临的第一个分叉路口．对于一个想要搭建<strong>个人博客</strong>系统的新手，我坚定地建议你采用Github托管的方式，原因很简单，它是免费的．</p>
-<p>假定大家都知道Github是个什么东西，并且对它有着一种类似信仰的原始崇拜．</p>
-<p><img src="http://cdn.yiyouls.com/codeape.gif" alt=""></p>
-<p>你可以在Github上免费开通<a href="https://pages.github.com" target="_blank" rel="noopener">Github Page</a>，为你个人或者你的项目建立一个网站．<a href="https://pages.github.com" target="_blank" rel="noopener">Github Page</a>官方网站上有详细的介绍和操作流程．让我们开始操作吧．</p>
-<blockquote>
-<p>第一步．创建存储库 (repository)</p>
-</blockquote>
-<p>转到<a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>并<a href="https://github.com/new" target="_blank" rel="noopener">创建一个</a>名为<em>username</em> .github.io <a href="https://github.com/new" target="_blank" rel="noopener">的新存储库</a>，其中<em>username</em>是你在GitHub上的用户名（或组织名称）。</p>
-<p><img src="http://cdn.yiyouls.com/step1.png" alt=""></p>
-<p>如果存储库的第一部分与您的用户名不完全匹配，则无法正常工作，因此请务必正确使用。</p>
-<span class="highlight-text danger">
-*需要注意的是*
-</span>
-<ol>
-<li>在实际操作中你会发现，如果你有自己的独立域名，对新储存库的命名不需要遵循这么严格的规则．以我自己为例，我的Github用户名是yiyouls,　我给自己用来建立Github Page的新仓库命名为blog.　同样是可行的．</li>
-<li>仓库属性也可以选择Public</li>
-</ol>
-<blockquote>
-<p>第二步，进入储存库，转到设置(settings)</p>
-</blockquote>
-<p>在设置页面你可以对你的新储存库进行相关设置，你可以在这里设置你的GIthub Page特性，包括功能的开启与关闭，是否绑定定制域名(custom domain).</p>
-<p><img src="http://cdn.yiyouls.com/pagedomain.png" alt=""></p>
-<blockquote>
-<p>第三步，下载使用Github桌面客户端(Github Desktop)</p>
-</blockquote>
-<p>GitHub Desktop是在macOS和Windows上使用Git和GitHub的好方法。（如果你不想使用Github客户端，你也可以直接在终端里通过<code>git</code>命令进行操作<sup><a href="#fn_1" id="reffn_1">1</a></sup>，我会把terminal的操作方法一并列出）</p>
-<p><a href="https://desktop.github.com/" target="_blank" rel="noopener">下载GitHub桌面</a></p>
-<p><img src="http://cdn.yiyouls.com/githubdesk.png" alt=""></p>
-<blockquote>
-<p>第四步，将储存库克隆到本地，用Github桌面客户端打开</p>
-</blockquote>
-<p>客户端完成安装后，返回我们刚建的储存库主页并刷新页面。单击“Set up in Desktop”按钮。当GitHub桌面应用程序打开时，保存项目。这样我们就把该储存库克隆到了本地．</p>
-<span class="highlight-text danger">
-注意
-</span>
-<ol>
-<li><p>如果Github桌面客户端未能打开，你可以从电脑应用程序库找到它并启动，用户登录后，你可以看到你名下的所有储存库，找到我们新建的那个，手动克隆它．</p>
-</li>
-<li><p>如果你使用terminal操作，你首先需要<code>cd</code>到你准备存放你的项目的文件夹（一定要记得你存放的路径），通过下面的操作克隆你的刚建的储存库：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/username/username.github.io</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><img src="http://cdn.yiyouls.com/clone.png" alt=""></p>
-<blockquote>
-<p>第五步，创建索引文件</p>
-</blockquote>
-<p>到这里，你的储存库尚未添加任何文件，你的网站也相应地空空如也．你需要添加索引文件</p>
-<figure class="codeblock codeblock--tabbed"><figcaption><a href="https://pages.github.com" target="_blank" rel="noopener">index.html</a><ul class="tabs"><li class="tab active">html</li></ul></figcaption><div class="tabs-content"><figure class="highlight html" style="display: block;"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">​    <span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello World<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>I'm hosted with GitHub Pages.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line">​</span><br></pre></td></tr></tbody></table></figure></div></figure>
-<p>这样，你就在你的网站上添加了一行”hello world”</p>
-<span class="highlight-text danger">
-注意
-</span>
-<p>如果是使用terminal操作，你需要<code>cd</code>进入克隆出的文件，然后向文件夹里添加内容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd username.github.io</span><br><span class="line"></span><br><span class="line">echo &quot;Hello World&quot; &gt; index.html</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>第六步，提交和发布</p>
-</blockquote>
-<p>输入存储库，提交更改，然后按发布按钮。</p>
-<span class="highlight-text danger">
-注意
-</span>
-<ol>
-<li><p>你克隆下来的储存库在本地，你可以通过Finder或者资源管理器找到它，把新文件放进去，Github客户端就能够读取到这些改变啦．</p>
-</li>
-<li><p>如果你使用terminal终端，可以用<code>push</code>推送操作进行发布：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git add --all</span><br><span class="line"></span><br><span class="line">git commit -m &quot;Initial commit&quot;</span><br><span class="line"></span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><img src="http://cdn.yiyouls.com/desktop-demo.gif" alt=""></p>
-<p>到这里，你的网站就已经发布在了<em>username</em> .github.io这个网址．教程到此结束．</p>
-<div class="alert success"><p>you made it!</p>
-</div>
-<p><img src="http://cdn.yiyouls.com/really.gif" alt=""></p>
-<p>网站这么丑，能用它来干嘛</p>
-<p><img src="http://cdn.yiyouls.com/ugly.gif" alt=""></p>
-<p>的确是这样，我们的网站虽然已经发布，但它基本还是个没用的废物，因为到目前为止我们只给它添加了一个索引文件．如果想要实现更多丰富的功能（可能是一些必备的功能），你必须添加很多代码和文件进去．</p>
-<p><img src="http://cdn.yiyouls.com/busy.gif" alt=""></p>
-<p>那么问题来了，真的忍心让你一点点把所有功能实现的代码都敲进去吗？那么建站所耗费的时间成本也太大了．事实上，我们大可不必这样．我们的开源社区已经有了很多可爱的工具和框架供我们使用，免去我们许多许多繁杂的工作．</p>
-<p><img src="http://cdn.yiyouls.com/foryou.gif" alt=""></p>
-<p>那么下篇博文，我会跟大家介绍一些可以让你的网站瞬间高大上起来的那些可爱的开源工具．so stay tuned.</p>
-<blockquote id="fn_1">
-<sup>1</sup>. 之所以要使用Githbub客户端，是因为它是一个非常便捷的git储存库管理工具，当我们开始使用jekyll这样的建站工具对网站进行功能升级的时候，单单通过终端显然是很麻烦的．<a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
-</blockquote>
+<h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">1.　当我们谈论算法的时候我们在谈论什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">2.　排序基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">3.　高级排序算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">4.　堆和堆排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">5.　二分搜索树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">6.　并查集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">7.　图的基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">8.　最小生成树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">9.　最短路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">10.　结束语</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">源码</span></a></li></ol>
+<ul>
+<li><a href="#1-当我们谈论算法的时候我们在谈论什么">1.　当我们谈论算法的时候我们在谈论什么</a></li>
+<li><a href="#2-排序基础">2.　排序基础</a></li>
+<li><a href="#3-高级排序算法">3.　高级排序算法</a></li>
+<li><a href="#4-堆和堆排序">4.　堆和堆排序</a></li>
+<li><a href="#5-二分搜索树">5.　二分搜索树</a></li>
+<li><a href="#6-并查集">6.　并查集</a></li>
+<li><a href="#7-图的基础">7.　图的基础</a></li>
+<li><a href="#8-最小生成树">8.　最小生成树</a></li>
+<li><a href="#9-最短路径">9.　最短路径</a></li>
+<li><a href="#10-结束语">10.　结束语</a></li>
+<li><a href="#源码">源码</a></li>
+</ul>
+<!-- tocstop -->
+<h3><span id="1-当我们谈论算法的时候我们在谈论什么">1.　当我们谈论算法的时候我们在谈论什么</span></h3><iframe src="https://streamango.com/embed/caqnecdeflqtaelr/1_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<h3><span id="2-排序基础">2.　排序基础</span></h3><iframe src="https://streamango.com/embed/cpqadqkoptsdafnm/_1-3_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/mtodmsqpabatrfns/_4-6_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+
+<h3><span id="3-高级排序算法">3.　高级排序算法</span></h3><iframe src="https://streamango.com/embed/bclkdsqqbearckca/_1-5_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/drmataqenaolsmtm/_6-9_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+
+<h3><span id="4-堆和堆排序">4.　堆和堆排序</span></h3><iframe src="https://streamango.com/embed/dbecbkkmmemdlsda/_1-5_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/eladaeafpfffopnd/4_--6_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/nnlccfocanrbsbkn/4_-7_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/bdocqbbrtmoccoet/4_-8_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/rqtnfeclqnomksmn/4_-9_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/cdqerlcmltfaprfl/4_-10_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+
+
+
+<h3><span id="5-二分搜索树">5.　二分搜索树</span></h3><iframe src="https://streamango.com/embed/cafnsmctdtlmftfr/5-1_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/cfenoepmkqnkrsbq/5-2_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/kpfnkfesmsbdqmfa/5-3_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/sntmmpnofltmmplr/5-4_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/ebbltpnbtabnbtto/5-5_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/nepeoatrqflpackn/5-6_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/bqoaedcndbdcmadk/5-7_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+<iframe src="https://streamango.com/embed/nmdofeocqsfqooam/5-8_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+<iframe src="https://streamango.com/embed/flcptcddastaskkp/5-9_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+<iframe src="https://streamango.com/embed/matdfcsoomrmtoro/5-10_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<h3><span id="6-并查集">6.　并查集</span></h3><iframe src="https://streamango.com/embed/oslqrmmnmqqocsqf/6-1_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/leotfnqkkopssdnk/6-2_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/btqlocaterenmcok/6-3_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/apollcqksoosdsnl/6-4_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/lmsrfabrkaeotlpt/6-5_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/kbpadtpqaqcfbdkm/6-6_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+
+
+
+<h3><span id="7-图的基础">7.　图的基础</span></h3><iframe src="https://streamango.com/embed/sfpqelbcplqddtqe/7-1_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+<iframe src="https://streamango.com/embed/dbdtmqtoqmncpdre/7-2_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/kqnafmscoaardeqq/7-3_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+<iframe src="https://streamango.com/embed/deckbratlomcpfrt/7-4_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/nrmcrsspsqekqcnd/7-5_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/lttebrpmbmnrcdfa/7_6-8_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<h3><span id="8-最小生成树">8.　最小生成树</span></h3><iframe src="https://streamango.com/embed/bocfdpsefcbpmmtk/8-1_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+<iframe src="https://streamango.com/embed/lctebtedecpsssnr/8-2_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/qknaketlqrpafcbl/8-3_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/fcabpekafbtlpaom/8-4_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/lberembccdnrplmo/8-5_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/fmnatbaeaslspstm/8-6_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+<iframe src="https://streamango.com/embed/bllsnnqlreeerttl/8-7_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+
+
+<h3><span id="9-最短路径">9.　最短路径</span></h3><iframe src="https://streamango.com/embed/mtbbmklmbaqrnkln/9-1_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+
+<iframe src="https://streamango.com/embed/ppddekfkmoaqqrlo/9-2_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+<iframe src="https://streamango.com/embed/scpopotorefbmdab/9-3_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+<iframe src="https://streamango.com/embed/qmrobnomprlomeee/9-4_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+
+
+<iframe src="https://streamango.com/embed/bncsqrpqoqorcrds/9-5_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<iframe src="https://streamango.com/embed/akcaropmkqaeamnr/9-6_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<h3><span id="10-结束语">10.　结束语</span></h3><iframe src="https://streamango.com/embed/cbtskqasoaccmnom/10-1_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+<h3><span id="源码">源码</span></h3><p><a href="https://github.com/yiyouls/courses" target="_blank" rel="noopener">源码下载地址</a></p>
 
             
 
@@ -445,7 +448,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">标签</span><br>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/Github/">Github</a> <a class="tag tag--primary tag--small t-link" href="/tags/Github-Page/">Github Page</a>
+    <a class="tag tag--primary tag--small t-link" href="/tags/algorithm/">algorithm</a> <a class="tag tag--primary tag--small t-link" href="/tags/data-structure/">data structure</a> <a class="tag tag--primary tag--small t-link" href="/tags/数据机构/">数据机构</a> <a class="tag tag--primary tag--small t-link" href="/tags/算法/">算法</a> <a class="tag tag--primary tag--small t-link" href="/tags/网课/">网课</a>
 
             </div>
         
@@ -455,8 +458,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/archives/b5e2.html" data-tooltip="11大最常用静态网站建站工具，你用过几个？" aria-label="上一篇: 11大最常用静态网站建站工具，你用过几个？">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left" aria-hidden="true"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -465,7 +467,7 @@
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/archives/97f0.html" data-tooltip="使用hexo在Github上免费搭建功能丰富的个人博客网站" aria-label="下一篇: 使用hexo在Github上免费搭建功能丰富的个人博客网站">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/archives/0.html" data-tooltip="什么是卷积神经网络(convolutional neural network)深度学习？" aria-label="下一篇: 什么是卷积神经网络(convolutional neural network)深度学习？">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -483,7 +485,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/archives/7cef.html" title="分享到 Facebook">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/archives/32227.html" title="分享到 Facebook">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -491,7 +493,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/archives/7cef.html" title="分享到 Twitter">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/archives/32227.html" title="分享到 Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -499,7 +501,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/archives/7cef.html" title="分享到 Google+">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/archives/32227.html" title="分享到 Google+">
                     <i class="fab fa-google-plus" aria-hidden="true"></i>
                 </a>
             </li>
@@ -507,7 +509,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/archives/7cef.html" title="分享到 Weibo">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/archives/32227.html" title="分享到 Weibo">
                     <i class="fab fa-weibo" aria-hidden="true"></i>
                 </a>
             </li>
@@ -515,7 +517,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/archives/7cef.html&amp;title=如何在Github上免费开通一个Github Page作为个人主页" title="分享到 QQ">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/archives/32227.html&amp;title=C++算法与数据结构视频教程" title="分享到 QQ">
                     <i class="fab fa-qq" aria-hidden="true"></i>
                 </a>
             </li>
@@ -523,7 +525,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/archives/7cef.html" title="分享到 Qzone">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/archives/32227.html" title="分享到 Qzone">
                     <i class="fa fa-star" aria-hidden="true"></i>
                 </a>
             </li>
@@ -531,7 +533,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yoursite.com/archives/7cef.html" title="分享到 Renren">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yoursite.com/archives/32227.html" title="分享到 Renren">
                     <i class="fab fa-renren" aria-hidden="true"></i>
                 </a>
             </li>
@@ -541,7 +543,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#table-of-contents" aria-label="目录">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -560,7 +562,7 @@
 <div id="cyHotusers" role="cylabs" data-use="hotusers"></div>
 <div id="cyReping" role="cylabs" data-use="reping"></div>
 <div id="cyBarrage" role="cylabs" data-use="barrage"></div>
-<div id="SOHUCS" sid="如何在Github上免费开通一个Github Page作为个人主页"></div>
+<div id="SOHUCS" sid="C++算法与数据结构视频教程"></div>
 
 
             
@@ -583,8 +585,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/archives/b5e2.html" data-tooltip="11大最常用静态网站建站工具，你用过几个？" aria-label="上一篇: 11大最常用静态网站建站工具，你用过几个？">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left" aria-hidden="true"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -593,7 +594,7 @@
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/archives/97f0.html" data-tooltip="使用hexo在Github上免费搭建功能丰富的个人博客网站" aria-label="下一篇: 使用hexo在Github上免费搭建功能丰富的个人博客网站">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/archives/0.html" data-tooltip="什么是卷积神经网络(convolutional neural network)深度学习？" aria-label="下一篇: 什么是卷积神经网络(convolutional neural network)深度学习？">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -611,7 +612,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/archives/7cef.html" title="分享到 Facebook">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/archives/32227.html" title="分享到 Facebook">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -619,7 +620,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/archives/7cef.html" title="分享到 Twitter">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/archives/32227.html" title="分享到 Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -627,7 +628,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/archives/7cef.html" title="分享到 Google+">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/archives/32227.html" title="分享到 Google+">
                     <i class="fab fa-google-plus" aria-hidden="true"></i>
                 </a>
             </li>
@@ -635,7 +636,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/archives/7cef.html" title="分享到 Weibo">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/archives/32227.html" title="分享到 Weibo">
                     <i class="fab fa-weibo" aria-hidden="true"></i>
                 </a>
             </li>
@@ -643,7 +644,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/archives/7cef.html&amp;title=如何在Github上免费开通一个Github Page作为个人主页" title="分享到 QQ">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/archives/32227.html&amp;title=C++算法与数据结构视频教程" title="分享到 QQ">
                     <i class="fab fa-qq" aria-hidden="true"></i>
                 </a>
             </li>
@@ -651,7 +652,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/archives/7cef.html" title="分享到 Qzone">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/archives/32227.html" title="分享到 Qzone">
                     <i class="fa fa-star" aria-hidden="true"></i>
                 </a>
             </li>
@@ -659,7 +660,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yoursite.com/archives/7cef.html" title="分享到 Renren">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yoursite.com/archives/32227.html" title="分享到 Renren">
                     <i class="fab fa-renren" aria-hidden="true"></i>
                 </a>
             </li>
@@ -669,7 +670,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#table-of-contents" aria-label="目录">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -687,7 +688,7 @@
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/archives/7cef.html">
+                    <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/archives/32227.html">
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>分享到 Facebook</span>
                     </a>
                 </li>
@@ -695,7 +696,7 @@
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/archives/7cef.html">
+                    <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/archives/32227.html">
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
                     </a>
                 </li>
@@ -703,7 +704,7 @@
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/archives/7cef.html">
+                    <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/archives/32227.html">
                         <i class="fab fa-google-plus" aria-hidden="true"></i><span>分享到 Google+</span>
                     </a>
                 </li>
@@ -711,7 +712,7 @@
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/archives/7cef.html">
+                    <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/archives/32227.html">
                         <i class="fab fa-weibo" aria-hidden="true"></i><span>分享到 Weibo</span>
                     </a>
                 </li>
@@ -719,7 +720,7 @@
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/archives/7cef.html&amp;title=如何在Github上免费开通一个Github Page作为个人主页">
+                    <a class="share-option-btn" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/archives/32227.html&amp;title=C++算法与数据结构视频教程">
                         <i class="fab fa-qq" aria-hidden="true"></i><span>分享到 QQ</span>
                     </a>
                 </li>
@@ -727,7 +728,7 @@
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/archives/7cef.html">
+                    <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/archives/32227.html">
                         <i class="fa fa-star" aria-hidden="true"></i><span>分享到 Qzone</span>
                     </a>
                 </li>
@@ -735,7 +736,7 @@
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yoursite.com/archives/7cef.html">
+                    <a class="share-option-btn" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yoursite.com/archives/32227.html">
                         <i class="fab fa-renren" aria-hidden="true"></i><span>分享到 Renren</span>
                     </a>
                 </li>

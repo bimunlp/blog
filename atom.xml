@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-03-11T09:50:28.556Z</updated>
+  <updated>2019-03-11T12:37:03.703Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>C++算法与数据结构视频教程</title>
-    <link href="http://yoursite.com/2019/03/11/C-%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B/"/>
-    <id>http://yoursite.com/2019/03/11/C-算法与数据结构视频教程/</id>
+    <link href="http://yoursite.com/archives/32227.html"/>
+    <id>http://yoursite.com/archives/32227.html</id>
     <published>2019-03-11T09:39:09.000Z</published>
-    <updated>2019-03-11T09:50:28.556Z</updated>
+    <updated>2019-03-11T12:37:03.703Z</updated>
     
     <content type="html"><![CDATA[<p>慕课网名师liuyubobobo的算法与数据结构课－－c++算法与数据结构，精品网络课程，课程设计质量很高，个人学习后觉得受益匪浅．目前该课程已在慕课网下架，现将个人收藏版分享出来，希望大家能够一起学习．本资源仅供学习参考，严禁商用，侵权立删．</p><p><img src="http://cdn.yiyouls.com/liuyubobobo.png" alt=""></p><a id="more"></a><!-- toc --><ul><li><a href="#1-当我们谈论算法的时候我们在谈论什么">1.　当我们谈论算法的时候我们在谈论什么</a></li><li><a href="#2-排序基础">2.　排序基础</a></li><li><a href="#3-高级排序算法">3.　高级排序算法</a></li><li><a href="#4-堆和堆排序">4.　堆和堆排序</a></li><li><a href="#5-二分搜索树">5.　二分搜索树</a></li><li><a href="#6-并查集">6.　并查集</a></li><li><a href="#7-图的基础">7.　图的基础</a></li><li><a href="#8-最小生成树">8.　最小生成树</a></li><li><a href="#9-最短路径">9.　最短路径</a></li><li><a href="#10-结束语">10.　结束语</a></li><li><a href="#源码">源码</a></li></ul><!-- tocstop --><h3><span id="1-当我们谈论算法的时候我们在谈论什么">1.　当我们谈论算法的时候我们在谈论什么</span></h3><iframe src="https://streamango.com/embed/caqnecdeflqtaelr/1_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><h3><span id="2-排序基础">2.　排序基础</span></h3><iframe src="https://streamango.com/embed/cpqadqkoptsdafnm/_1-3_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><iframe src="https://streamango.com/embed/mtodmsqpabatrfns/_4-6_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><h3><span id="3-高级排序算法">3.　高级排序算法</span></h3><iframe src="https://streamango.com/embed/bclkdsqqbearckca/_1-5_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><iframe src="https://streamango.com/embed/drmataqenaolsmtm/_6-9_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><h3><span id="4-堆和堆排序">4.　堆和堆排序</span></h3><iframe src="https://streamango.com/embed/dbecbkkmmemdlsda/_1-5_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><iframe src="https://streamango.com/embed/eladaeafpfffopnd/4_--6_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><iframe src="https://streamango.com/embed/nnlccfocanrbsbkn/4_-7_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><iframe src="https://streamango.com/embed/bdocqbbrtmoccoet/4_-8_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><iframe src="https://streamango.com/embed/rqtnfeclqnomksmn/4_-9_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><iframe src="https://streamango.com/embed/cdqerlcmltfaprfl/4_-10_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><h3><span id="5-二分搜索树">5.　二分搜索树</span></h3><iframe src="https://streamango.com/embed/cafnsmctdtlmftfr/5-1_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><iframe src="https://streamango.com/embed/cfenoepmkqnkrsbq/5-2_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><iframe src="https://streamango.com/embed/kpfnkfesmsbdqmfa/5-3_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><iframe src="https://streamango.com/embed/sntmmpnofltmmplr/5-4_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><iframe src="https://streamango.com/embed/ebbltpnbtabnbtto/5-5_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><iframe src="https://streamango.com/embed/nepeoatrqflpackn/5-6_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><iframe src="https://streamango.com/embed/bqoaedcndbdcmadk/5-7_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><iframe src="https://streamango.com/embed/nmdofeocqsfqooam/5-8_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><iframe src="https://streamango.com/embed/flcptcddastaskkp/5-9_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><iframe src="https://streamango.com/embed/matdfcsoomrmtoro/5-10_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><h3><span id="6-并查集">6.　并查集</span></h3><iframe src="https://streamango.com/embed/oslqrmmnmqqocsqf/6-1_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><iframe src="https://streamango.com/embed/leotfnqkkopssdnk/6-2_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><iframe src="https://streamango.com/embed/btqlocaterenmcok/6-3_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><iframe src="https://streamango.com/embed/apollcqksoosdsnl/6-4_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><iframe src="https://streamango.com/embed/lmsrfabrkaeotlpt/6-5_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><iframe src="https://streamango.com/embed/kbpadtpqaqcfbdkm/6-6_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><h3><span id="7-图的基础">7.　图的基础</span></h3><iframe src="https://streamango.com/embed/sfpqelbcplqddtqe/7-1_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><iframe src="https://streamango.com/embed/dbdtmqtoqmncpdre/7-2_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><iframe src="https://streamango.com/embed/kqnafmscoaardeqq/7-3_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><iframe src="https://streamango.com/embed/deckbratlomcpfrt/7-4_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><iframe src="https://streamango.com/embed/nrmcrsspsqekqcnd/7-5_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><iframe src="https://streamango.com/embed/lttebrpmbmnrcdfa/7_6-8_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><h3><span id="8-最小生成树">8.　最小生成树</span></h3><iframe src="https://streamango.com/embed/bocfdpsefcbpmmtk/8-1_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><iframe src="https://streamango.com/embed/lctebtedecpsssnr/8-2_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><iframe src="https://streamango.com/embed/qknaketlqrpafcbl/8-3_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><iframe src="https://streamango.com/embed/fcabpekafbtlpaom/8-4_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><iframe src="https://streamango.com/embed/lberembccdnrplmo/8-5_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><iframe src="https://streamango.com/embed/fmnatbaeaslspstm/8-6_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><iframe src="https://streamango.com/embed/bllsnnqlreeerttl/8-7_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><h3><span id="9-最短路径">9.　最短路径</span></h3><iframe src="https://streamango.com/embed/mtbbmklmbaqrnkln/9-1_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><iframe src="https://streamango.com/embed/ppddekfkmoaqqrlo/9-2_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><iframe src="https://streamango.com/embed/scpopotorefbmdab/9-3_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><iframe src="https://streamango.com/embed/qmrobnomprlomeee/9-4_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><iframe src="https://streamango.com/embed/bncsqrpqoqorcrds/9-5_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><iframe src="https://streamango.com/embed/akcaropmkqaeamnr/9-6_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><h3><span id="10-结束语">10.　结束语</span></h3><iframe src="https://streamango.com/embed/cbtskqasoaccmnom/10-1_mp4" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe><h3><span id="源码">源码</span></h3><p><a href="https://github.com/yiyouls/courses" target="_blank" rel="noopener">源码下载地址</a></p>]]></content>
     
@@ -49,8 +49,8 @@
   
   <entry>
     <title>什么是卷积神经网络(convolutional neural network)深度学习？</title>
-    <link href="http://yoursite.com/2019/02/27/%E4%BB%80%E4%B9%88%E6%98%AF%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-convolutional-neural-network/"/>
-    <id>http://yoursite.com/2019/02/27/什么是卷积神经网络-convolutional-neural-network/</id>
+    <link href="http://yoursite.com/archives/0.html"/>
+    <id>http://yoursite.com/archives/0.html</id>
     <published>2019-02-27T05:36:22.000Z</published>
     <updated>2019-02-27T05:42:27.542Z</updated>
     
@@ -80,8 +80,8 @@
   
   <entry>
     <title>机器学习中的半监督学习(semi-supervised learning)</title>
-    <link href="http://yoursite.com/2019/02/23/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0-semi-supervised-learning/"/>
-    <id>http://yoursite.com/2019/02/23/机器学习中的半监督学习-semi-supervised-learning/</id>
+    <link href="http://yoursite.com/archives/5110.html"/>
+    <id>http://yoursite.com/archives/5110.html</id>
     <published>2019-02-23T13:42:21.000Z</published>
     <updated>2019-02-24T06:22:16.694Z</updated>
     
@@ -113,8 +113,8 @@
   
   <entry>
     <title>无监督学习(unsupervised learning)</title>
-    <link href="http://yoursite.com/2019/02/23/%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0-unsupervised-learning/"/>
-    <id>http://yoursite.com/2019/02/23/无监督学习-unsupervised-learning/</id>
+    <link href="http://yoursite.com/archives/81bb.html"/>
+    <id>http://yoursite.com/archives/81bb.html</id>
     <published>2019-02-23T11:36:23.000Z</published>
     <updated>2019-02-24T06:22:59.842Z</updated>
     
@@ -143,8 +143,8 @@
   
   <entry>
     <title>监督学习(supervised learning)</title>
-    <link href="http://yoursite.com/2019/02/22/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0-supervised-learning/"/>
-    <id>http://yoursite.com/2019/02/22/监督学习-supervised-learning/</id>
+    <link href="http://yoursite.com/archives/804.html"/>
+    <id>http://yoursite.com/archives/804.html</id>
     <published>2019-02-22T13:26:39.000Z</published>
     <updated>2019-02-24T06:23:54.098Z</updated>
     
@@ -173,8 +173,8 @@
   
   <entry>
     <title>人工神经网络是如何进行预测(prediction)的?</title>
-    <link href="http://yoursite.com/2019/02/22/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%98%AF%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E9%A2%84%E6%B5%8B-prediction-%E7%9A%84/"/>
-    <id>http://yoursite.com/2019/02/22/人工神经网络是如何进行预测-prediction-的/</id>
+    <link href="http://yoursite.com/archives/847f.html"/>
+    <id>http://yoursite.com/archives/847f.html</id>
     <published>2019-02-22T13:23:30.000Z</published>
     <updated>2019-02-24T06:25:14.151Z</updated>
     
@@ -207,8 +207,8 @@
   
   <entry>
     <title>机器学习中的数据增强(data augmentation)技术</title>
-    <link href="http://yoursite.com/2019/02/22/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA-data-augmentation-%E6%8A%80%E6%9C%AF/"/>
-    <id>http://yoursite.com/2019/02/22/机器学习中的数据增强-data-augmentation-技术/</id>
+    <link href="http://yoursite.com/archives/dcf4.html"/>
+    <id>http://yoursite.com/archives/dcf4.html</id>
     <published>2019-02-22T13:09:08.000Z</published>
     <updated>2019-02-24T05:52:34.464Z</updated>
     
@@ -238,8 +238,8 @@
   
   <entry>
     <title>人工神经网络如何进行微调(fine-tuning)</title>
-    <link href="http://yoursite.com/2019/02/15/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E5%BE%AE%E8%B0%83-fine-tuning/"/>
-    <id>http://yoursite.com/2019/02/15/人工神经网络如何进行微调-fine-tuning/</id>
+    <link href="http://yoursite.com/archives/b792.html"/>
+    <id>http://yoursite.com/archives/b792.html</id>
     <published>2019-02-15T14:00:46.000Z</published>
     <updated>2019-02-24T05:52:34.460Z</updated>
     
@@ -272,8 +272,8 @@
   
   <entry>
     <title>人工神经网络中的批尺寸(batch size)详解</title>
-    <link href="http://yoursite.com/2019/02/15/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E6%89%B9%E5%B0%BA%E5%AF%B8-batch-size/"/>
-    <id>http://yoursite.com/2019/02/15/人工神经网络中的批尺寸-batch-size/</id>
+    <link href="http://yoursite.com/archives/7814.html"/>
+    <id>http://yoursite.com/archives/7814.html</id>
     <published>2019-02-15T08:47:02.000Z</published>
     <updated>2019-02-24T06:28:23.131Z</updated>
     
@@ -302,8 +302,8 @@
   
   <entry>
     <title>人工神经网络中的学习率(learning rate)问题</title>
-    <link href="http://yoursite.com/2019/02/15/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%8E%87-learning-rate/"/>
-    <id>http://yoursite.com/2019/02/15/人工神经网络中的学习率-learning-rate/</id>
+    <link href="http://yoursite.com/archives/2d8a.html"/>
+    <id>http://yoursite.com/archives/2d8a.html</id>
     <published>2019-02-15T08:46:23.000Z</published>
     <updated>2019-02-24T05:52:34.460Z</updated>
     
@@ -332,8 +332,8 @@
   
   <entry>
     <title>人工神经网络中的正则化(regularization)</title>
-    <link href="http://yoursite.com/2019/02/14/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E6%AD%A3%E5%88%99%E5%8C%96-regularization/"/>
-    <id>http://yoursite.com/2019/02/14/人工神经网络中的正则化-regularization/</id>
+    <link href="http://yoursite.com/archives/6248.html"/>
+    <id>http://yoursite.com/archives/6248.html</id>
     <published>2019-02-14T12:37:45.000Z</published>
     <updated>2019-02-24T06:27:40.603Z</updated>
     
@@ -365,8 +365,8 @@
   
   <entry>
     <title>什么是神经网络模型欠拟合(underfitting)?</title>
-    <link href="http://yoursite.com/2019/01/27/%E4%BB%80%E4%B9%88%E6%98%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E6%AC%A0%E6%8B%9F%E5%90%88-underfitting/"/>
-    <id>http://yoursite.com/2019/01/27/什么是神经网络模型欠拟合-underfitting/</id>
+    <link href="http://yoursite.com/archives/ddcb.html"/>
+    <id>http://yoursite.com/archives/ddcb.html</id>
     <published>2019-01-27T13:13:42.000Z</published>
     <updated>2019-02-24T06:27:02.031Z</updated>
     
@@ -397,8 +397,8 @@
   
   <entry>
     <title>什么是神经网络模型过度拟合(overfitting)?</title>
-    <link href="http://yoursite.com/2019/01/27/%E4%BB%80%E4%B9%88%E6%98%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E8%BF%87%E5%BA%A6%E6%8B%9F%E5%90%88-overfitting/"/>
-    <id>http://yoursite.com/2019/01/27/什么是神经网络模型过度拟合-overfitting/</id>
+    <link href="http://yoursite.com/archives/53ec.html"/>
+    <id>http://yoursite.com/archives/53ec.html</id>
     <published>2019-01-27T12:30:11.000Z</published>
     <updated>2019-02-24T05:52:34.464Z</updated>
     
@@ -430,8 +430,8 @@
   
   <entry>
     <title>如何理解数据集中的训练集(training set)，验证集(validation set)以及测试集(test set)?</title>
-    <link href="http://yoursite.com/2019/01/27/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%AD%E7%9A%84%E8%AE%AD%E7%BB%83%E9%9B%86-training-set-%EF%BC%8C%E9%AA%8C%E8%AF%81%E9%9B%86-validation-set-%E4%BB%A5%E5%8F%8A%E6%B5%8B%E8%AF%95%E9%9B%86-test-set/"/>
-    <id>http://yoursite.com/2019/01/27/如何理解数据集中的训练集-training-set-，验证集-validation-set-以及测试集-test-set/</id>
+    <link href="http://yoursite.com/archives/f05f.html"/>
+    <id>http://yoursite.com/archives/f05f.html</id>
     <published>2019-01-27T11:27:23.000Z</published>
     <updated>2019-02-24T05:52:34.468Z</updated>
     
@@ -464,8 +464,8 @@
   
   <entry>
     <title>深入认识神经网络中的损失函数(loss function)</title>
-    <link href="http://yoursite.com/2019/01/27/%E6%B7%B1%E5%85%A5%E8%AE%A4%E8%AF%86%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-loss-function/"/>
-    <id>http://yoursite.com/2019/01/27/深入认识神经网络中的损失函数-loss-function/</id>
+    <link href="http://yoursite.com/archives/3b9f.html"/>
+    <id>http://yoursite.com/archives/3b9f.html</id>
     <published>2019-01-27T10:05:23.000Z</published>
     <updated>2019-02-24T05:52:34.468Z</updated>
     
@@ -496,8 +496,8 @@
   
   <entry>
     <title>人工神经网络是如何学习(learn)的?</title>
-    <link href="http://yoursite.com/2019/01/27/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%A6%E4%B9%A0-learn-%E7%9A%84/"/>
-    <id>http://yoursite.com/2019/01/27/人工神经网络是如何学习-learn-的/</id>
+    <link href="http://yoursite.com/archives/b5f9.html"/>
+    <id>http://yoursite.com/archives/b5f9.html</id>
     <published>2019-01-27T02:31:06.000Z</published>
     <updated>2019-02-24T05:52:34.460Z</updated>
     
@@ -526,8 +526,8 @@
   
   <entry>
     <title>如何训练(train)人工神经网络？</title>
-    <link href="http://yoursite.com/2019/01/26/%E5%A6%82%E4%BD%95%E8%AE%AD%E7%BB%83%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%9F/"/>
-    <id>http://yoursite.com/2019/01/26/如何训练人工神经网络？/</id>
+    <link href="http://yoursite.com/archives/4c0a.html"/>
+    <id>http://yoursite.com/archives/4c0a.html</id>
     <published>2019-01-26T07:56:23.000Z</published>
     <updated>2019-02-24T05:52:34.464Z</updated>
     
@@ -554,8 +554,8 @@
   
   <entry>
     <title>如何理解神经网络中的激活函数(ativation functions)?</title>
-    <link href="http://yoursite.com/2019/01/26/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0-ativation-functions/"/>
-    <id>http://yoursite.com/2019/01/26/如何理解神经网络中的激活函数-ativation-functions/</id>
+    <link href="http://yoursite.com/archives/10fe.html"/>
+    <id>http://yoursite.com/archives/10fe.html</id>
     <published>2019-01-26T03:18:07.000Z</published>
     <updated>2019-02-24T05:52:34.464Z</updated>
     
@@ -583,8 +583,8 @@
   
   <entry>
     <title>如何理解神经网络中层(layer)的概念？</title>
-    <link href="http://yoursite.com/2019/01/25/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%AD%E5%B1%82-layer-%E7%9A%84%E6%A6%82%E5%BF%B5%EF%BC%9F/"/>
-    <id>http://yoursite.com/2019/01/25/如何理解神经网络中层-layer-的概念？/</id>
+    <link href="http://yoursite.com/archives/da21.html"/>
+    <id>http://yoursite.com/archives/da21.html</id>
     <published>2019-01-25T12:59:25.000Z</published>
     <updated>2019-02-24T05:52:34.464Z</updated>
     
@@ -612,8 +612,8 @@
   
   <entry>
     <title>什么是人工神经网络ANNs?</title>
-    <link href="http://yoursite.com/2019/01/25/%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9CANNs/"/>
-    <id>http://yoursite.com/2019/01/25/什么是人工神经网络ANNs/</id>
+    <link href="http://yoursite.com/archives/7770.html"/>
+    <id>http://yoursite.com/archives/7770.html</id>
     <published>2019-01-25T07:21:58.000Z</published>
     <updated>2019-02-24T05:52:34.460Z</updated>
     
