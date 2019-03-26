@@ -1,0 +1,1060 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn,en,ja,default">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Deep Learning">
+    <title>使用python语言进行高阶多项式曲线拟合，numpy,tensorflow,regularization,polynomial curve fitting - Deep Learning</title>
+    <meta name="author" content="友邻君">
+    
+        <meta name="keywords" content="deep learning,neural network,mechine learning,ANN,AI,深度学习,机器学习,">
+    
+    
+        <link rel="icon" href="http://cdn.yiyouls.com/favicon.ico">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"articleBody":"多项式曲线拟合在机器学习中有着重要应用，是机器学习中的基础算法，也是我们在平常学习和训练中经常遇到的练习内容，我们通过这样多项式曲线拟合的训练能够认识并理解很多关于机器学习的知识．这篇博文会涵盖曲线拟合中的以下问题：\n\nnumpy的使用\nmatplotlib的使用\ntensorflow的应用\nregularization正则化\n\n\n\n问题定义：首先随机生成一组包含10个样本的二维原始数据，ｘ轴的样本通过随机生成，对应的ｙ轴目标函数为正弦函数$y=sin(x)$.　对ｙ轴数据进行随机扰动，添加噪声时需要遵循高斯分布．\n对原始数据进行一阶，二阶，三阶，九阶曲线拟合，生成拟合图像．\n观察九阶曲线拟合的图像，如何减少过度拟合？尝试将数据量增加到15和100，情况会怎么样？如何调用Tensorflow工具，并加入正则化？\n使用numpy工具进行曲线拟合导入所需的python库并生成数据随机生成ｘ轴数据12345678import numpy as npimport matplotlib.pyplot as pltfrom scipy.stats import norm# generate 10 random float numberx = np.random.uniform(-4,4,10)print(x)\n12[ 1.67603371  1.01310745 -2.65060466 -0.75565533 -2.06252363 -3.45162238 -2.04364972 -0.54315604 -2.58499939 -0.92976288]\n对ｙ轴数据加入随机扰动1234# generate normal distribution numbernoise = norm.rvs(loc=0,size=10,scale=0.1)t = np.sin(x) + noiseprint(t)\n12[ 0.91049305  0.85032867 -0.54713737 -0.66409378 -0.92457743  0.20255023 -0.75517069 -0.38654689 -0.45367272 -0.76358836]\n使用pyplot做出数据的分布图12345plt.scatter(x,t)plt.xlabel('x')plt.ylabel('t')plt.title('orginal data')plt.show()\n\n一阶曲线拟合123# 1rd order polynomial f1 = np.polyfit(x,t,1)print('curve fitting for 1rd order polynomial:\\n',f1)\n12curve fitting for 1rd order polynomial: [0.24833456 0.05312533]\n拟合曲线的方程12p1 = np.poly1d(f1)print('1rd order polynomial:\\n',p1)\n1231rd order polynomial:  0.2483 x + 0.05313\n拟合曲线的y轴数据12yvals = p1(x)print('y values:\\n',yvals)\n123y values: [ 0.46934243  0.30471493 -0.60511141 -0.13453    -0.45907056 -0.80403179 -0.45438352 -0.08175908 -0.58881935 -0.17776692]\n绘制拟合曲线12345678x1 = np.linspace(-4,4)plot1 = plt.plot(x,t,'o',label='orginal values')plot2 = plt.plot(x1,p1(x1),'r',label='polyfit values')plt.xlabel('x')plt.ylabel('t')plt.legend(loc=4)plt.title('1rd order polyfitting')plt.show()\n\n二阶曲线拟合1234# 2rd order polynomial f2 = np.polyfit(x,t,2)p2 = np.poly1d(f2)print('2rd order polynomial:\\n',p2)\n1232rd order polynomial:        20.198 x + 0.5819 x - 0.32\n12yvals2 = p2(x)print('y values:\\n',yvals2)\n123y values: [ 1.21149151  0.47272928 -0.47114666 -0.64666592 -0.67780587  0.03067832 -0.68216995 -0.57766838 -0.50098881 -0.68986878]\n12345678x2 = np.linspace(-4,4)plt.plot(x,t,'o',label='orginal values')plt.plot(x2,p2(x2),'r',label='polyfit values')plt.xlabel('x')plt.ylabel('t')plt.legend(loc=4)plt.title('2rd order Polyfitting')plt.show()\n\n三阶曲线拟合1234# 3rd order polynomial f3 = np.polyfit(x,t,3)p3 = np.poly1d(f3)print('3rd order polynomial:\\n',p3)\n1233rd order polynomial:           3           2-0.05146 x + 0.05682 x + 0.7038 x - 0.07329\n12yvals3 = p3(x)print('y values:\\n',yvals3)\n123y values: [ 0.71180245 -0.25197688  0.70965725  0.36540935  0.25124788 -0.10259368 -0.84104962  0.12408621 -0.87483302  0.31862768]\n12345678x3 = np.linspace(-4,4)plt.plot(x,t,'o',label='orginal values')plt.plot(x3,p3(x3),'r',label='polyfit values')plt.xlabel('x')plt.ylabel('t')plt.legend(loc=4)plt.title('3rd order Polyfitting')plt.show()\n\n九阶曲线拟合1234# 9rd order polynomial f9 = np.polyfit(x,t,9)p9 = np.poly1d(f9)print('9th order polynomial:\\n',p9)\n123459th order polynomial:          9         8        7         6         5         4         3-0.9049 x - 9.232 x - 31.2 x - 22.27 x + 90.69 x + 185.7 x + 51.59 x          2 - 131.1 x - 113.1 x - 26.55\n12yvals9 = p9(x)print('y values:\\n',yvals9)\n123y values: [ 0.61305322 -0.25918286  0.81462254  0.29418865  0.31430274 -0.05044914 -0.97126446  0.05028544 -0.75572541  0.3605469 ]\n12345678x9 = np.linspace(-4,4)plt.plot(x,t,'o',label='orginal values')plt.plot(x9,p9(x9),'r',label='polyfit values')plt.xlabel('x')plt.ylabel('t')plt.legend(loc=4)plt.title('9th order Polyfitting')plt.show()\n\n15个数据点下的九阶曲线拟合1234567891011121314151617# 9th order polyfitting with 15 and 100 samples# 15 samplesx_15 = np.random.uniform(-4,4,15)noise = norm.rvs(loc=0,size=15,scale=0.1)t_15 = np.sin(x_15) + noisef9_15 = np.polyfit(x_15,t_15,9)p9_15 = np.poly1d(f9_15)x9_15 = np.linspace(-4,4)plt.plot(x_15,t_15,'o',label='orginal values')plt.plot(x9_15,p9_15(x9_15),'r',label='polyfit values')plt.xlabel('x')plt.ylabel('t')plt.legend(loc=4)plt.title('9th order Polyfitting with 15 samples')plt.show()\n\n100个数据点下的九阶曲线拟合123456789101112131415# 100 samplesx_100 = np.random.uniform(-4,4,100)noise = norm.rvs(loc=0,size=100,scale=0.1)t_100 = np.sin(x_100) + noisef9_100 = np.polyfit(x_100,t_100,9)p9_100 = np.poly1d(f9_100)x9_100 = np.linspace(-4,4)plt.plot(x_100,t_100,'o',label='orginal values')plt.plot(x9_100,p9_100(x9_100),'r',label='polyfit values')plt.xlabel('x')plt.ylabel('t')plt.legend(loc=4)plt.title('9th order Polyfitting with 100 samples')plt.show()\n\n使用tensorflow进行九阶曲线拟合，并加入正则化12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667# 9th order polyftting with regularization term in tensorflowimport tensorflow as tf# placeholder for the input and output of the networkX = tf.placeholder(tf.float32,name='X')Y = tf.placeholder(tf.float32,name='Y')# initializing weights and bias, y=w9*x^9+w8*x^8+...w*x+bW = tf.Variable(tf.random_normal([1]),name='weight')B = tf.Variable(tf.random_normal([1]),name='bias')W_2 = tf.Variable(tf.random_normal([1]),name='weight_2')W_3 = tf.Variable(tf.random_normal([1]),name='weight_3')W_4 = tf.Variable(tf.random_normal([1]),name='weight_4')W_5 = tf.Variable(tf.random_normal([1]),name='weight_5')W_6 = tf.Variable(tf.random_normal([1]),name='weight_6')W_7 = tf.Variable(tf.random_normal([1]),name='weight_7')W_8 = tf.Variable(tf.random_normal([1]),name='weight_8')W_9 = tf.Variable(tf.random_normal([1]),name='weight_9')weights = [W,W_2,W_3,W_4,W_5,W_6,W_7,W_8,W_9]# compute the predicting resultY_pred = tf.add(tf.multiply(X,W),B)Y_pred = tf.add(tf.multiply(tf.pow(X,2),W_2),Y_pred)Y_pred = tf.add(tf.multiply(tf.pow(X,3),W_3),Y_pred)Y_pred = tf.add(tf.multiply(tf.pow(X,4),W_4),Y_pred)Y_pred = tf.add(tf.multiply(tf.pow(X,5),W_5),Y_pred)Y_pred = tf.add(tf.multiply(tf.pow(X,6),W_6),Y_pred)Y_pred = tf.add(tf.multiply(tf.pow(X,7),W_7),Y_pred)Y_pred = tf.add(tf.multiply(tf.pow(X,8),W_8),Y_pred)Y_pred = tf.add(tf.multiply(tf.pow(X,9),W_9),Y_pred)# define loss function and regularization termregularizer = tf.nn.l2_loss(weights)loss = tf.reduce_mean(tf.square(Y_pred-Y) + regularizer)# initializing the optimizerlearning_rate = 0.01optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(loss)# n_shape = x.shape[0]init = tf.global_variables_initializer()with tf.Session() as sess:    sess.run(init)        for i in range(1000):        total_loss = 0    for x_t,y in zip(x,t):        _,l = sess.run([optimizer,loss],feed_dict=&#123;X:x_t,Y:y&#125;)        total_loss += l    if i%20 == 0:        print('Epoch&#123;0&#125;:&#123;1&#125;'.format(i,total_loss/10))            W,W_2,W_3,W_4,W_5,W_6,W_7,W_8,W_9,B = sess.run([W,W_2,W_3,W_4,W_5,W_6,W_7,W_8,W_9,B])        xn = np.linspace(-4,4)   plt.scatter(x,t)plt.plot(xn, xn**9*W_9 + xn**8*W_8 + xn**7*W_7 + xn**6*W_6 + xn**5*W_5 + xn**4*W_4 + xn**3*W_3 + xn**2*W_2 + xn*W + B         ,'r',label='polyfit values' )plt.xlabel('x')plt.ylabel('t')plt.legend(loc=4)plt.title('9th order Polyfitting with regularization')plt.show()\n\n","dateCreated":"2019-03-26T14:06:24+08:00","dateModified":"2019-03-26T15:03:40+08:00","datePublished":"2019-03-26T14:06:24+08:00","description":"多项式曲线拟合在机器学习中有着重要应用，是机器学习中的基础算法，也是我们在平常学习和训练中经常遇到的练习内容，我们通过这样多项式曲线拟合的训练能够认识并理解很多关于机器学习的知识．这篇博文会涵盖曲线拟合中的以下问题：\n\nnumpy的使用\nmatplotlib的使用\ntensorflow的应用\nregularization正则化\n","headline":"使用python语言进行高阶多项式曲线拟合，numpy,tensorflow,regularization,polynomial curve fitting","image":["http://cdn.yiyouls.com/curve_fitting.png","http://cdn.yiyouls.com/ai.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/archives/a2283ff6.html"},"publisher":{"@type":"Organization","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png","logo":{"@type":"ImageObject","url":"http://cdn.yiyouls.com/profile.png"}},"url":"http://yoursite.com/archives/a2283ff6.html","keywords":"正则化, numpy, tensorflow, python, regularization, polynomial curve fitting, 多项式曲线拟合","thumbnailUrl":"http://cdn.yiyouls.com/curve_fitting.png"}</script>
+    <meta name="description" content="多项式曲线拟合在机器学习中有着重要应用，是机器学习中的基础算法，也是我们在平常学习和训练中经常遇到的练习内容，我们通过这样多项式曲线拟合的训练能够认识并理解很多关于机器学习的知识．这篇博文会涵盖曲线拟合中的以下问题：  numpy的使用 matplotlib的使用 tensorflow的应用 regularization正则化">
+<meta name="keywords" content="正则化,numpy,tensorflow,python,regularization,polynomial curve fitting,多项式曲线拟合">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="使用python语言进行高阶多项式曲线拟合，numpy,tensorflow,regularization,polynomial curve fitting">
+<meta property="og:url" content="http://yoursite.com/archives/a2283ff6.html">
+<meta property="og:site_name" content="Deep Learning">
+<meta property="og:description" content="多项式曲线拟合在机器学习中有着重要应用，是机器学习中的基础算法，也是我们在平常学习和训练中经常遇到的练习内容，我们通过这样多项式曲线拟合的训练能够认识并理解很多关于机器学习的知识．这篇博文会涵盖曲线拟合中的以下问题：  numpy的使用 matplotlib的使用 tensorflow的应用 regularization正则化">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:image" content="http://cdn.yiyouls.com/output_2_0.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/output_6_0.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/output_9_0.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/output_12_0.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/output_15_0.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/output_16_0.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/output_17_0.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/output_18_0.png">
+<meta property="og:updated_time" content="2019-03-26T07:03:40.367Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用python语言进行高阶多项式曲线拟合，numpy,tensorflow,regularization,polynomial curve fitting">
+<meta name="twitter:description" content="多项式曲线拟合在机器学习中有着重要应用，是机器学习中的基础算法，也是我们在平常学习和训练中经常遇到的练习内容，我们通过这样多项式曲线拟合的训练能够认识并理解很多关于机器学习的知识．这篇博文会涵盖曲线拟合中的以下问题：  numpy的使用 matplotlib的使用 tensorflow的应用 regularization正则化">
+<meta name="twitter:image" content="http://cdn.yiyouls.com/output_2_0.png">
+<meta name="twitter:creator" content="@hanhaishiyi">
+    
+        <link rel="publisher" href="https://plus.google.com/108244569432480563366"/>
+    
+    
+        
+    
+    
+        <meta property="og:image" content="http://cdn.yiyouls.com/profile.png"/>
+    
+    
+        <meta property="og:image" content="http://cdn.yiyouls.com/curve_fitting.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://cdn.yiyouls.com/curve_fitting.png" />
+    
+    
+        <meta property="og:image" content="http://cdn.yiyouls.com/ai.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://cdn.yiyouls.com/ai.jpg" />
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style-c4ozcsklz4kht2pebhp44xorvyverh23toayhn7i6ubrpyedak24hv1v0hyd.min.css">
+    <!--STYLES END-->
+    
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/ ">Deep Learning</a>
+    </div>
+    
+        
+            <a class="header-right-picture " href="#about">
+        
+        
+            <img class="header-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about">
+                    <img class="sidebar-profile-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
+                </a>
+                <h4 class="sidebar-profile-name">友邻君</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>浙江大学在读</p>
+</h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/ " title="首页">
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">首页</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-categories" title="分类">
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">分类</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-tags" title="标签">
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">标签</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-archives" title="归档">
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">归档</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link open-algolia-search" href="#search" title="搜索">
+                    
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">搜索</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="#about" title="关于">
+                    
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">关于</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://github.com/yiyouls" target="_blank" rel="noopener" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="http://stackoverflow.com/users/10926004/yiyouls" target="_blank" rel="noopener" title="Stack Overflow">
+                    
+                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Stack Overflow</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://twitter.com/hanhaishiyi" target="_blank" rel="noopener" title="Twitter">
+                    
+                        <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Twitter</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://facebook.com/yiyouls" target="_blank" rel="noopener" title="Facebook">
+                    
+                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Facebook</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://plus.google.com/u/0/108244569432480563366" target="_blank" rel="noopener" title="Google Plus">
+                    
+                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Google Plus</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://www.linkedin.com/in/yiyouls" target="_blank" rel="noopener" title="LinkedIn">
+                    
+                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">LinkedIn</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://www.zhihu.com/people/yiyouls-66/activities" target="_blank" rel="noopener" title="知乎">
+                    
+                        <i class="sidebar-button-icon fa fa-book" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">知乎</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008" target="_blank" rel="noopener" title="网易云课堂">
+                    
+                        <i class="sidebar-button-icon fa fa-school" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">网易云课堂</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="http://space.bilibili.com/275230151?" target="_blank" rel="noopener" title="bilibili">
+                    
+                        <i class="sidebar-button-icon fa fa-video" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">bilibili</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/hanhaishiyi@gmail.com" title="邮箱">
+                    
+                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">邮箱</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/atom.xml" title="RSS">
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+        <div class="post-header-cover
+                    text-center
+                    " style="background-image:url('http://cdn.yiyouls.com/ai.jpg');" data-behavior="4">
+            
+        </div>
+
+            <div id="main" data-behavior="4"
+                 class="hasCover
+                        hasCoverMetaOut
+                        hasCoverCaption">
+                
+<article class="post">
+    
+        <span class="post-header-cover-caption caption">曲线拟合问题是机器学习算法中最基本的问题</span>
+    
+    
+        <div class="post-header main-content-wrap text-center">
+    
+        <h1 class="post-title">
+            使用python语言进行高阶多项式曲线拟合，numpy,tensorflow,regularization,polynomial curve fitting
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2019-03-26T14:06:24+08:00">
+	
+		    3月 26, 2019
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/categories/练习/">练习</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <p>多项式曲线拟合在机器学习中有着重要应用，是机器学习中的基础算法，也是我们在平常学习和训练中经常遇到的练习内容，我们通过这样多项式曲线拟合的训练能够认识并理解很多关于机器学习的知识．这篇博文会涵盖曲线拟合中的以下问题：</p>
+<ul>
+<li>numpy的使用</li>
+<li>matplotlib的使用</li>
+<li>tensorflow的应用</li>
+<li>regularization正则化</li>
+</ul>
+<a id="more"></a>
+<h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">问题定义：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">使用numpy工具进行曲线拟合</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">导入所需的python库并生成数据</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">随机生成ｘ轴数据</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">对ｙ轴数据加入随机扰动</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">使用pyplot做出数据的分布图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">一阶曲线拟合</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">拟合曲线的方程</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">拟合曲线的y轴数据</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">绘制拟合曲线</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">二阶曲线拟合</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">三阶曲线拟合</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">九阶曲线拟合</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">15个数据点下的九阶曲线拟合</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">100个数据点下的九阶曲线拟合</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">使用tensorflow进行九阶曲线拟合，并加入正则化</span></a></li></ol></li></ol>
+<h3><span id="问题定义">问题定义：</span></h3><p>首先随机生成一组包含10个样本的二维原始数据，ｘ轴的样本通过随机生成，对应的ｙ轴目标函数为正弦函数$y=sin(x)$.　对ｙ轴数据进行随机扰动，添加噪声时需要遵循高斯分布．</p>
+<p>对原始数据进行一阶，二阶，三阶，九阶曲线拟合，生成拟合图像．</p>
+<p>观察九阶曲线拟合的图像，如何减少过度拟合？尝试将数据量增加到15和100，情况会怎么样？如何调用Tensorflow工具，并加入正则化？</p>
+<h3><span id="使用numpy工具进行曲线拟合">使用numpy工具进行曲线拟合</span></h3><h4><span id="导入所需的python库并生成数据">导入所需的python库并生成数据</span></h4><h5><span id="随机生成x轴数据">随机生成ｘ轴数据</span></h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> scipy.stats <span class="keyword">import</span> norm</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># generate 10 random float number</span></span><br><span class="line">x = np.random.uniform(<span class="number">-4</span>,<span class="number">4</span>,<span class="number">10</span>)</span><br><span class="line">print(x)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[ 1.67603371  1.01310745 -2.65060466 -0.75565533 -2.06252363 -3.45162238</span><br><span class="line"> -2.04364972 -0.54315604 -2.58499939 -0.92976288]</span><br></pre></td></tr></table></figure>
+<h5><span id="对y轴数据加入随机扰动">对ｙ轴数据加入随机扰动</span></h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># generate normal distribution number</span></span><br><span class="line">noise = norm.rvs(loc=<span class="number">0</span>,size=<span class="number">10</span>,scale=<span class="number">0.1</span>)</span><br><span class="line">t = np.sin(x) + noise</span><br><span class="line">print(t)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[ 0.91049305  0.85032867 -0.54713737 -0.66409378 -0.92457743  0.20255023</span><br><span class="line"> -0.75517069 -0.38654689 -0.45367272 -0.76358836]</span><br></pre></td></tr></table></figure>
+<h4><span id="使用pyplot做出数据的分布图">使用pyplot做出数据的分布图</span></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">plt.scatter(x,t)</span><br><span class="line">plt.xlabel(<span class="string">'x'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'t'</span>)</span><br><span class="line">plt.title(<span class="string">'orginal data'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="http://cdn.yiyouls.com/output_2_0.png" alt="png"></p>
+<h4><span id="一阶曲线拟合">一阶曲线拟合</span></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1rd order polynomial </span></span><br><span class="line">f1 = np.polyfit(x,t,<span class="number">1</span>)</span><br><span class="line">print(<span class="string">'curve fitting for 1rd order polynomial:\n'</span>,f1)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curve fitting for 1rd order polynomial:</span><br><span class="line"> [0.24833456 0.05312533]</span><br></pre></td></tr></table></figure>
+<h5><span id="拟合曲线的方程">拟合曲线的方程</span></h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">p1 = np.poly1d(f1)</span><br><span class="line">print(<span class="string">'1rd order polynomial:\n'</span>,p1)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1rd order polynomial:</span><br><span class="line">  </span><br><span class="line">0.2483 x + 0.05313</span><br></pre></td></tr></table></figure>
+<h5><span id="拟合曲线的y轴数据">拟合曲线的y轴数据</span></h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yvals = p1(x)</span><br><span class="line">print(<span class="string">'y values:\n'</span>,yvals)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">y values:</span><br><span class="line"> [ 0.46934243  0.30471493 -0.60511141 -0.13453    -0.45907056 -0.80403179</span><br><span class="line"> -0.45438352 -0.08175908 -0.58881935 -0.17776692]</span><br></pre></td></tr></table></figure>
+<h5><span id="绘制拟合曲线">绘制拟合曲线</span></h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">x1 = np.linspace(<span class="number">-4</span>,<span class="number">4</span>)</span><br><span class="line">plot1 = plt.plot(x,t,<span class="string">'o'</span>,label=<span class="string">'orginal values'</span>)</span><br><span class="line">plot2 = plt.plot(x1,p1(x1),<span class="string">'r'</span>,label=<span class="string">'polyfit values'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'x'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'t'</span>)</span><br><span class="line">plt.legend(loc=<span class="number">4</span>)</span><br><span class="line">plt.title(<span class="string">'1rd order polyfitting'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="http://cdn.yiyouls.com/output_6_0.png" alt="png"></p>
+<h4><span id="二阶曲线拟合">二阶曲线拟合</span></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 2rd order polynomial </span></span><br><span class="line">f2 = np.polyfit(x,t,<span class="number">2</span>)</span><br><span class="line">p2 = np.poly1d(f2)</span><br><span class="line">print(<span class="string">'2rd order polynomial:\n'</span>,p2)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">2rd order polynomial:</span><br><span class="line">        2</span><br><span class="line">0.198 x + 0.5819 x - 0.32</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yvals2 = p2(x)</span><br><span class="line">print(<span class="string">'y values:\n'</span>,yvals2)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">y values:</span><br><span class="line"> [ 1.21149151  0.47272928 -0.47114666 -0.64666592 -0.67780587  0.03067832</span><br><span class="line"> -0.68216995 -0.57766838 -0.50098881 -0.68986878]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">x2 = np.linspace(<span class="number">-4</span>,<span class="number">4</span>)</span><br><span class="line">plt.plot(x,t,<span class="string">'o'</span>,label=<span class="string">'orginal values'</span>)</span><br><span class="line">plt.plot(x2,p2(x2),<span class="string">'r'</span>,label=<span class="string">'polyfit values'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'x'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'t'</span>)</span><br><span class="line">plt.legend(loc=<span class="number">4</span>)</span><br><span class="line">plt.title(<span class="string">'2rd order Polyfitting'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="http://cdn.yiyouls.com/output_9_0.png" alt="png"></p>
+<h4><span id="三阶曲线拟合">三阶曲线拟合</span></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 3rd order polynomial </span></span><br><span class="line">f3 = np.polyfit(x,t,<span class="number">3</span>)</span><br><span class="line">p3 = np.poly1d(f3)</span><br><span class="line">print(<span class="string">'3rd order polynomial:\n'</span>,p3)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">3rd order polynomial:</span><br><span class="line">           3           2</span><br><span class="line">-0.05146 x + 0.05682 x + 0.7038 x - 0.07329</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yvals3 = p3(x)</span><br><span class="line">print(<span class="string">'y values:\n'</span>,yvals3)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">y values:</span><br><span class="line"> [ 0.71180245 -0.25197688  0.70965725  0.36540935  0.25124788 -0.10259368</span><br><span class="line"> -0.84104962  0.12408621 -0.87483302  0.31862768]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">x3 = np.linspace(<span class="number">-4</span>,<span class="number">4</span>)</span><br><span class="line">plt.plot(x,t,<span class="string">'o'</span>,label=<span class="string">'orginal values'</span>)</span><br><span class="line">plt.plot(x3,p3(x3),<span class="string">'r'</span>,label=<span class="string">'polyfit values'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'x'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'t'</span>)</span><br><span class="line">plt.legend(loc=<span class="number">4</span>)</span><br><span class="line">plt.title(<span class="string">'3rd order Polyfitting'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="http://cdn.yiyouls.com/output_12_0.png" alt="png"></p>
+<h4><span id="九阶曲线拟合">九阶曲线拟合</span></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 9rd order polynomial </span></span><br><span class="line">f9 = np.polyfit(x,t,<span class="number">9</span>)</span><br><span class="line">p9 = np.poly1d(f9)</span><br><span class="line">print(<span class="string">'9th order polynomial:\n'</span>,p9)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">9th order polynomial:</span><br><span class="line">          9         8        7         6         5         4         3</span><br><span class="line">-0.9049 x - 9.232 x - 31.2 x - 22.27 x + 90.69 x + 185.7 x + 51.59 x</span><br><span class="line">          2</span><br><span class="line"> - 131.1 x - 113.1 x - 26.55</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yvals9 = p9(x)</span><br><span class="line">print(<span class="string">'y values:\n'</span>,yvals9)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">y values:</span><br><span class="line"> [ 0.61305322 -0.25918286  0.81462254  0.29418865  0.31430274 -0.05044914</span><br><span class="line"> -0.97126446  0.05028544 -0.75572541  0.3605469 ]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">x9 = np.linspace(<span class="number">-4</span>,<span class="number">4</span>)</span><br><span class="line">plt.plot(x,t,<span class="string">'o'</span>,label=<span class="string">'orginal values'</span>)</span><br><span class="line">plt.plot(x9,p9(x9),<span class="string">'r'</span>,label=<span class="string">'polyfit values'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'x'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'t'</span>)</span><br><span class="line">plt.legend(loc=<span class="number">4</span>)</span><br><span class="line">plt.title(<span class="string">'9th order Polyfitting'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="http://cdn.yiyouls.com/output_15_0.png" alt="png"></p>
+<h4><span id="15个数据点下的九阶曲线拟合">15个数据点下的九阶曲线拟合</span></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 9th order polyfitting with 15 and 100 samples</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 15 samples</span></span><br><span class="line">x_15 = np.random.uniform(<span class="number">-4</span>,<span class="number">4</span>,<span class="number">15</span>)</span><br><span class="line">noise = norm.rvs(loc=<span class="number">0</span>,size=<span class="number">15</span>,scale=<span class="number">0.1</span>)</span><br><span class="line">t_15 = np.sin(x_15) + noise</span><br><span class="line">f9_15 = np.polyfit(x_15,t_15,<span class="number">9</span>)</span><br><span class="line">p9_15 = np.poly1d(f9_15)</span><br><span class="line"></span><br><span class="line">x9_15 = np.linspace(<span class="number">-4</span>,<span class="number">4</span>)</span><br><span class="line">plt.plot(x_15,t_15,<span class="string">'o'</span>,label=<span class="string">'orginal values'</span>)</span><br><span class="line">plt.plot(x9_15,p9_15(x9_15),<span class="string">'r'</span>,label=<span class="string">'polyfit values'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'x'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'t'</span>)</span><br><span class="line">plt.legend(loc=<span class="number">4</span>)</span><br><span class="line">plt.title(<span class="string">'9th order Polyfitting with 15 samples'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="http://cdn.yiyouls.com/output_16_0.png" alt="png"></p>
+<h4><span id="100个数据点下的九阶曲线拟合">100个数据点下的九阶曲线拟合</span></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 100 samples</span></span><br><span class="line">x_100 = np.random.uniform(<span class="number">-4</span>,<span class="number">4</span>,<span class="number">100</span>)</span><br><span class="line">noise = norm.rvs(loc=<span class="number">0</span>,size=<span class="number">100</span>,scale=<span class="number">0.1</span>)</span><br><span class="line">t_100 = np.sin(x_100) + noise</span><br><span class="line">f9_100 = np.polyfit(x_100,t_100,<span class="number">9</span>)</span><br><span class="line">p9_100 = np.poly1d(f9_100)</span><br><span class="line"></span><br><span class="line">x9_100 = np.linspace(<span class="number">-4</span>,<span class="number">4</span>)</span><br><span class="line">plt.plot(x_100,t_100,<span class="string">'o'</span>,label=<span class="string">'orginal values'</span>)</span><br><span class="line">plt.plot(x9_100,p9_100(x9_100),<span class="string">'r'</span>,label=<span class="string">'polyfit values'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'x'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'t'</span>)</span><br><span class="line">plt.legend(loc=<span class="number">4</span>)</span><br><span class="line">plt.title(<span class="string">'9th order Polyfitting with 100 samples'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="http://cdn.yiyouls.com/output_17_0.png" alt="png"></p>
+<h4><span id="使用tensorflow进行九阶曲线拟合并加入正则化">使用tensorflow进行九阶曲线拟合，并加入正则化</span></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 9th order polyftting with regularization term in tensorflow</span></span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line"><span class="comment"># placeholder for the input and output of the network</span></span><br><span class="line">X = tf.placeholder(tf.float32,name=<span class="string">'X'</span>)</span><br><span class="line">Y = tf.placeholder(tf.float32,name=<span class="string">'Y'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># initializing weights and bias, y=w9*x^9+w8*x^8+...w*x+b</span></span><br><span class="line">W = tf.Variable(tf.random_normal([<span class="number">1</span>]),name=<span class="string">'weight'</span>)</span><br><span class="line">B = tf.Variable(tf.random_normal([<span class="number">1</span>]),name=<span class="string">'bias'</span>)</span><br><span class="line">W_2 = tf.Variable(tf.random_normal([<span class="number">1</span>]),name=<span class="string">'weight_2'</span>)</span><br><span class="line">W_3 = tf.Variable(tf.random_normal([<span class="number">1</span>]),name=<span class="string">'weight_3'</span>)</span><br><span class="line">W_4 = tf.Variable(tf.random_normal([<span class="number">1</span>]),name=<span class="string">'weight_4'</span>)</span><br><span class="line">W_5 = tf.Variable(tf.random_normal([<span class="number">1</span>]),name=<span class="string">'weight_5'</span>)</span><br><span class="line">W_6 = tf.Variable(tf.random_normal([<span class="number">1</span>]),name=<span class="string">'weight_6'</span>)</span><br><span class="line">W_7 = tf.Variable(tf.random_normal([<span class="number">1</span>]),name=<span class="string">'weight_7'</span>)</span><br><span class="line">W_8 = tf.Variable(tf.random_normal([<span class="number">1</span>]),name=<span class="string">'weight_8'</span>)</span><br><span class="line">W_9 = tf.Variable(tf.random_normal([<span class="number">1</span>]),name=<span class="string">'weight_9'</span>)</span><br><span class="line">weights = [W,W_2,W_3,W_4,W_5,W_6,W_7,W_8,W_9]</span><br><span class="line"></span><br><span class="line"><span class="comment"># compute the predicting result</span></span><br><span class="line">Y_pred = tf.add(tf.multiply(X,W),B)</span><br><span class="line">Y_pred = tf.add(tf.multiply(tf.pow(X,<span class="number">2</span>),W_2),Y_pred)</span><br><span class="line">Y_pred = tf.add(tf.multiply(tf.pow(X,<span class="number">3</span>),W_3),Y_pred)</span><br><span class="line">Y_pred = tf.add(tf.multiply(tf.pow(X,<span class="number">4</span>),W_4),Y_pred)</span><br><span class="line">Y_pred = tf.add(tf.multiply(tf.pow(X,<span class="number">5</span>),W_5),Y_pred)</span><br><span class="line">Y_pred = tf.add(tf.multiply(tf.pow(X,<span class="number">6</span>),W_6),Y_pred)</span><br><span class="line">Y_pred = tf.add(tf.multiply(tf.pow(X,<span class="number">7</span>),W_7),Y_pred)</span><br><span class="line">Y_pred = tf.add(tf.multiply(tf.pow(X,<span class="number">8</span>),W_8),Y_pred)</span><br><span class="line">Y_pred = tf.add(tf.multiply(tf.pow(X,<span class="number">9</span>),W_9),Y_pred)</span><br><span class="line"></span><br><span class="line"><span class="comment"># define loss function and regularization term</span></span><br><span class="line">regularizer = tf.nn.l2_loss(weights)</span><br><span class="line">loss = tf.reduce_mean(tf.square(Y_pred-Y) + regularizer)</span><br><span class="line"></span><br><span class="line"><span class="comment"># initializing the optimizer</span></span><br><span class="line">learning_rate = <span class="number">0.01</span></span><br><span class="line">optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(loss)</span><br><span class="line"></span><br><span class="line"><span class="comment"># </span></span><br><span class="line">n_shape = x.shape[<span class="number">0</span>]</span><br><span class="line">init = tf.global_variables_initializer()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    sess.run(init)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1000</span>):</span><br><span class="line">        total_loss = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> x_t,y <span class="keyword">in</span> zip(x,t):</span><br><span class="line">        _,l = sess.run([optimizer,loss],feed_dict=&#123;X:x_t,Y:y&#125;)</span><br><span class="line">        total_loss += l</span><br><span class="line">    <span class="keyword">if</span> i%<span class="number">20</span> == <span class="number">0</span>:</span><br><span class="line">        print(<span class="string">'Epoch&#123;0&#125;:&#123;1&#125;'</span>.format(i,total_loss/<span class="number">10</span>))</span><br><span class="line">        </span><br><span class="line">    W,W_2,W_3,W_4,W_5,W_6,W_7,W_8,W_9,B = sess.run([W,W_2,W_3,W_4,W_5,W_6,W_7,W_8,W_9,B])</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">xn = np.linspace(<span class="number">-4</span>,<span class="number">4</span>)   </span><br><span class="line">plt.scatter(x,t)</span><br><span class="line">plt.plot(xn, xn**<span class="number">9</span>*W_9 + xn**<span class="number">8</span>*W_8 + xn**<span class="number">7</span>*W_7 + xn**<span class="number">6</span>*W_6 + xn**<span class="number">5</span>*W_5 + xn**<span class="number">4</span>*W_4 + xn**<span class="number">3</span>*W_3 + xn**<span class="number">2</span>*W_2 + xn*W + B</span><br><span class="line">         ,<span class="string">'r'</span>,label=<span class="string">'polyfit values'</span> )</span><br><span class="line">plt.xlabel(<span class="string">'x'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'t'</span>)</span><br><span class="line">plt.legend(loc=<span class="number">4</span>)</span><br><span class="line">plt.title(<span class="string">'9th order Polyfitting with regularization'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="http://cdn.yiyouls.com/output_18_0.png" alt="png"></p>
+
+            
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">标签</span><br>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/numpy/">numpy</a> <a class="tag tag--primary tag--small t-link" href="/tags/polynomial-curve-fitting/">polynomial curve fitting</a> <a class="tag tag--primary tag--small t-link" href="/tags/python/">python</a> <a class="tag tag--primary tag--small t-link" href="/tags/regularization/">regularization</a> <a class="tag tag--primary tag--small t-link" href="/tags/tensorflow/">tensorflow</a> <a class="tag tag--primary tag--small t-link" href="/tags/多项式曲线拟合/">多项式曲线拟合</a> <a class="tag tag--primary tag--small t-link" href="/tags/正则化/">正则化</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/archives/32227.html" data-tooltip="C++算法与数据结构视频教程" aria-label="下一篇: C++算法与数据结构视频教程">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/archives/a2283ff6.html" title="分享到 Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/archives/a2283ff6.html" title="分享到 Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/archives/a2283ff6.html" title="分享到 Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/archives/a2283ff6.html" title="分享到 Weibo">
+                    <i class="fab fa-weibo" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/archives/a2283ff6.html&amp;title=使用python语言进行高阶多项式曲线拟合，numpy,tensorflow,regularization,polynomial curve fitting" title="分享到 QQ">
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/archives/a2283ff6.html" title="分享到 Qzone">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yoursite.com/archives/a2283ff6.html" title="分享到 Renren">
+                    <i class="fab fa-renren" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#table-of-contents" aria-label="目录">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+                <div id="cyReward" role="cylabs" data-use="reward"></div>
+<div id="cyPoll" role="cylabs" data-use="poll"></div>
+<div id="cyEmoji" role="cylabs" data-use="emoji"></div>
+<div id="cyQing" role="cylabs" data-use="qing"></div>
+<div id="cyHotusers" role="cylabs" data-use="hotusers"></div>
+<div id="cyReping" role="cylabs" data-use="reping"></div>
+<div id="cyBarrage" role="cylabs" data-use="barrage"></div>
+<div id="SOHUCS" sid="使用python语言进行高阶多项式曲线拟合，numpy,tensorflow,regularization,polynomial curve fitting"></div>
+
+
+            
+        
+    </div>
+</article>
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2019 友邻君. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/archives/32227.html" data-tooltip="C++算法与数据结构视频教程" aria-label="下一篇: C++算法与数据结构视频教程">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/archives/a2283ff6.html" title="分享到 Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/archives/a2283ff6.html" title="分享到 Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/archives/a2283ff6.html" title="分享到 Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/archives/a2283ff6.html" title="分享到 Weibo">
+                    <i class="fab fa-weibo" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/archives/a2283ff6.html&amp;title=使用python语言进行高阶多项式曲线拟合，numpy,tensorflow,regularization,polynomial curve fitting" title="分享到 QQ">
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/archives/a2283ff6.html" title="分享到 Qzone">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yoursite.com/archives/a2283ff6.html" title="分享到 Renren">
+                    <i class="fab fa-renren" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#table-of-contents" aria-label="目录">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/archives/a2283ff6.html">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>分享到 Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/archives/a2283ff6.html">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/archives/a2283ff6.html">
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>分享到 Google+</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/archives/a2283ff6.html">
+                        <i class="fab fa-weibo" aria-hidden="true"></i><span>分享到 Weibo</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/archives/a2283ff6.html&amp;title=使用python语言进行高阶多项式曲线拟合，numpy,tensorflow,regularization,polynomial curve fitting">
+                        <i class="fab fa-qq" aria-hidden="true"></i><span>分享到 QQ</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/archives/a2283ff6.html">
+                        <i class="fa fa-star" aria-hidden="true"></i><span>分享到 Qzone</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yoursite.com/archives/a2283ff6.html">
+                        <i class="fab fa-renren" aria-hidden="true"></i><span>分享到 Renren</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
+        
+            <h4 id="about-card-name">友邻君</h4>
+        
+            <div id="about-card-bio"><p>浙江大学在读</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                <p>博士研究生</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br>
+                Hangzhou,Zhejiang
+            </div>
+        
+    </div>
+</div>
+
+        
+            <div id="algolia-search-modal" class="modal-container">
+    <div class="modal">
+        <div class="modal-header">
+            <span class="close-button"><i class="fa fa-times"></i></span>
+            <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+                <span class="searchby-algolia-text text-color-light text-small">by</span>
+                <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+            </a>
+            <i class="search-icon fa fa-search"></i>
+            <form id="algolia-search-form">
+                <input type="text" id="algolia-search-input" name="search" class="form-control input--large search-input" placeholder="Search ">
+            </form>
+        </div>
+        <div class="modal-body">
+            <div class="no-result text-color-light text-center">没有找到文章</div>
+            <div class="results">
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/bc1e.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/image_1.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/bc1e.html">
+                            <h3 class="media-heading">什么是机器学习(Machine Learning)？</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月16日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>机器学习与深度学习基础教程－从零开始</p>
+<p>本系列教程是为初学者定制，涵盖并解释了深度学习和人工神经网络的基本概念</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/f498.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/image_2.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/f498.html">
+                            <h3 class="media-heading">什么是深度学习(Deep Learning)？</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月16日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>机器学习与深度学习基础教程</p>
+<p>这篇文章将要回答什么是深度学习这个问题．</p>
+<p>整个系列课程会涵盖深度学习领域的众多主题，我们会用很多篇文章来充分解释这些课题，以及它们的应用领域和技术实现。</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/97f0.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/web.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/97f0.html">
+                            <h3 class="media-heading">使用hexo在Github上免费搭建功能丰富的个人博客网站</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月18日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>这个系列博文将带你一步步搭建起自己的个人博客网站，包含tranquilpeak主题模板配置，站内搜索，live2d插件，mathjax数学公式插件，＂千牛云＂云加速，＂畅言＂评论区添加，打赏设置等等高阶功能．</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/7cef.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/Octocat.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/7cef.html">
+                            <h3 class="media-heading">如何在Github上免费开通一个Github Page作为个人主页</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月19日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>为什么要选择在Github上建站，原因很简单，它是免费的．</p>
+<p>只要你按照下面的六步走，就可以轻轻松松发布自己的网站，你不需要有任何关于编程或者网站建设的基础知识．所有的前提只是，你要有一个github账号．</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/b5e2.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/hexologo.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/b5e2.html">
+                            <h3 class="media-heading">11大最常用静态网站建站工具，你用过几个？</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月19日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>在进行下一步操作之前，你首先要明白，你通过我们上篇博文所介绍的方式建立的网站，是一种静态网站，这个是最近特别流行的静态网站搭建博客的技术，非常适合让站长专注于内容创作而非网站本身的维护．</p>
+<p>为什么不用动态网站例如大名鼎鼎的wordpress呢？</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/7770.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/anns.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/7770.html">
+                            <h3 class="media-heading">什么是人工神经网络ANNs?</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月25日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>什么是人工神经网络(artificial neural network)?</p>
+<p>在上一篇文章中我们把深度学习定义为机器学习的子领域，深度学习所用到的算法是受大脑神经网络的结构和功能的启发．因为这个浅显的的原因，深度学习中使用的模型被称为人工神经网络（ANN）。</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/da21.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/ceng.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/da21.html">
+                            <h3 class="media-heading">如何理解神经网络中层(layer)的概念？</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月25日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>如何理解神经网络中层(layer)的概念?</p>
+<p>我们在之前的文章中认识了只有三个层的神经网络，但在很多时候我们有多个隐藏层，这篇文章探讨如何深入理解神经网络中层的概念，并提供一个多层神经网络的构建方法．</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/10fe.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/function.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/10fe.html">
+                            <h3 class="media-heading">如何理解神经网络中的激活函数(ativation functions)?</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月26日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>神经网络中的激活函数</p>
+<p>这篇文章向大家解释激活函数到底是什么，以及如何在神经网络中使用激活函数．我会向大家介绍几种常见的激活函数，向大家展示这些激活函数如何在Keras中以代码的形式呈现．</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/4c0a.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/sgd.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/4c0a.html">
+                            <h3 class="media-heading">如何训练(train)人工神经网络？</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月26日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><h4 id="神经网络的训练"><a href="#神经网络的训练" class="headerlink" title="神经网络的训练"></a>神经网络的训练</h4><p>这篇文章带大家学习如何训练一个人工神经网络．之前的文章中我们学习了如何构建一个简单的人工神经网络，当我们把一个神经网络配置好之后，下一步就是来训练它了．</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/b5f9.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/learn.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/b5f9.html">
+                            <h3 class="media-heading">人工神经网络是如何学习(learn)的?</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月27日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>神经网络的学习过程</p>
+<p>这篇文章我们来探讨人工神经网络是怎样学习的．</p>
+<p>本篇内容涵盖损失loss，梯度gradient，学习率lerning rate，epoch，verbose，batch批处理等概念．</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+            </div>
+        </div>
+        <div class="modal-footer">
+            <p class="results-count text-medium" data-message-zero="没有找到文章" data-message-one="找到 1 篇文章" data-message-other="找到 {n} 篇文章">
+                找到 26 篇文章
+            </p>
+        </div>
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('http://cdn.yiyouls.com/cover.jpg');"></div>
+        <!--SCRIPTS-->
+<script src="/assets/js/script-dbd16rvloemmuxdzniplmnxxvwoz24eya9wol0b7vvmlokgqsjivmb8dnscy.min.js"></script>
+<!--SCRIPTS END-->
+
+    
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cyu2tTq0X'; 
+var conf = 'prod_04b0d924b891393f35b9626442a6e448'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script> 
+<script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyu2tTq0X"></script>
+    
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment-with-locales.min.js"></script>
+    <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+    <script>
+        var algoliaClient = algoliasearch('JRXR2OL9UV', '2f9d9502c1e5ad12ac19a2180d9ac94d');
+        var algoliaIndex = algoliaClient.initIndex('my-hexo-blog');
+    </script>
+
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>
