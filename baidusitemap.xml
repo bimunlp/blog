@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://yoursite.com/archives/humin.html</loc>
+    <lastmod>2019-04-01</lastmod>
+  </url>  <url>
     <loc>http://yoursite.com/archives/27de7aac.html</loc>
     <lastmod>2019-03-27</lastmod>
   </url>  <url>
@@ -70,10 +73,10 @@
     <loc>http://yoursite.com/archives/b792.html</loc>
     <lastmod>2019-02-24</lastmod>
   </url>  <url>
-    <loc>http://yoursite.com/archives/b5f9.html</loc>
+    <loc>http://yoursite.com/archives/7770.html</loc>
     <lastmod>2019-02-24</lastmod>
   </url>  <url>
-    <loc>http://yoursite.com/archives/7770.html</loc>
+    <loc>http://yoursite.com/archives/b5f9.html</loc>
     <lastmod>2019-02-24</lastmod>
   </url>  <url>
     <loc>http://yoursite.com/archives/bc1e.html</loc>

@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/archives/humin.html</loc>
+    
+    <lastmod>2019-04-01T02:01:30.991Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/archives/27de7aac.html</loc>
     
     <lastmod>2019-03-27T13:43:34.773Z</lastmod>
@@ -163,14 +170,14 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/archives/b5f9.html</loc>
+    <loc>http://yoursite.com/archives/7770.html</loc>
     
     <lastmod>2019-02-24T05:52:34.460Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/archives/7770.html</loc>
+    <loc>http://yoursite.com/archives/b5f9.html</loc>
     
     <lastmod>2019-02-24T05:52:34.460Z</lastmod>
     
