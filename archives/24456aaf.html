@@ -1,0 +1,1721 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn,en,ja,default">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Deep Learning">
+    <title>Natural language processing - foundations and algorithms - Deep Learning</title>
+    <meta name="author" content="友邻君">
+    
+        <meta name="keywords" content="deep learning,neural network,mechine learning,ANN,AI,深度学习,机器学习,">
+    
+    
+        <link rel="icon" href="http://cdn.yiyouls.com/favicon.ico">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"articleBody":"\n\n\n\nChapter 1\nIntroduction\nContents\n1.1 What is NLP?\nMain approaches to NLP tasks\n\n\n1.2 NLP Tasks\n1.2.1\nFoundamental NLP tasks\nWord level tasks\nResources\nSyntactic tasks\nWord level\n\n\nResources\nSentence level\n\n\nConstituent parsers\nDependency parsers\nCCG derivation\nSupertagging\nResources\nSemantic tasks\nWord level\n\n\nResources\nSentence level semantic tasks\nPredicate-argument relations\n\n\nResources\nLogic\nSemantic graphs\n\n\nResources\nText entailment\n\n\nResources\nDiscourse tasks\nDiscourse parsing:\nDiscourse segmentation\n\n\nResources\n\n\n1.2.2\nInformation extraction tasks\nInformation extraction (IE)\nEntities\nNamed entity recognition(NER)\n\n\nResources\nAnaphora resolution\nCo-reference resolution\n\n\nResources\nRelations\nRelation extraction+ [Knowledge graph](#knowledge-graph)\n\nResources\nEntity linking (entity disambiguation)+ [Related task: Named entity normalisation](#related-task-named-entity-normalisation)\n\nResources\nLink prediction (knowledge graph completion)\nResources\nEvents\nEvents have timing\n\n\nResources\nEvents have coreferences\n\n\nResources\nScript learning\n\n\nResources\nSentiment analysis (opinion mining)\nResources\nOther sentiments tasks\nResources\n\n\n1.2.3\nOther Applications\nInformation retrieval\nMachine translation\nResources\nSub-task:\nResources\nSummarization\nResources\nGrammar error correction\nResources\nQuestion answering (QA)\nResources\nResources\nRecomendation system\nResources\nText mining\nText analytics\nResources\n\n\n1.2.4\nCategorizing NLP tasks\nCategorized by the outputs\nCategorized by the training data\nCategorized by the amount of manual annotation\n\n\n\n\nSummary\n\n\n\nChapter 1Introduction\nContents\nWhat is Natural Language Processing (NLP)?\nNLP tasks and approaches\nA spectrum of NLP problems\n\n\n1.1 What is NLP? NLP refers to any program that automatically processes human languages\nFrom simple algorithms to sophisticated systems, for bussiness and daily lives\n\nMain approaches to NLP tasks# Rule-based (symbolic) approach\nThe oldest approaches to NLP (1950s-1980s)\nBased on human-developed regulations and lexicons\n\npattern-matching or parsing\n“fill in the blanks” methods\n“Regualr expressions” and “context free grammars”\n\n\nStatistical approach (traditional mechine learning)#Gradually adopted both by research literature and the industry (1980s-2000s)\nUsing probabilistic modeling, likelihood maximization and linear classifiers, develop its own semantic rules\n\ntraining data (corpus with markup)\nfeature engineering\ntraining a model on parameters\napplying model to test data\n\n\nConnectionist approach (Neural networks)#Deep learning suprass statistical methods as the domain approach. (2000s-now)\nIncludes recurrent neural networks (RNNs) and convolutional neural networks (CNNs)\n\nfree from linguistic features\nvery large training courpus\nuse words without engineered features\n\n\n1.2  NLP TasksAt the confluence of linguistics and computer science\n\n\n1.2.1Foundamental NLP tasks\nWord level tasksMorphological analysisWord segmentationTokenizationPOS Tagging\n\nResources \n\nNLTK - leading platform for text processing libraries and corpora\nhttps://www.nltk.org\n\nAllenNLP - NLP research library built on PyTorch\nhttps://allennlp.org/\n\nStanford's Core NLP Suite - tools for tokenization,POS and more\nhttp://nlp.stanford.edu/software/corenlp.shtml\n\nJuman++ - A morphological analyser using RNNLM\nhttps://github.com/ku-nlp/jumanpp\n\njieba - Words Segmentation Utilities in Chinese\nhttps://github.com/fxsjy/jieba#jieba-1\n\n\n\nSyntactic tasks##\nWord level\nPart-of speech (POS)basic syntactic role that words play in a sentence\n\n\nResources \n\n POS tagging online: \n https://part-of-speech.info\n\n The Stanford log-linear POS tagger\n https://nlp.stanford.edu/software/tagger.html\n\n  NLP4j - robust POS tagging using dynamic model selection\n https://emorynlp.github.io/nlp4j/\n\n Flair - with a state-of-the-art POS tagging model(2018)\nhttps://github.com/zalandoresearch/flair/\n\n\n\nSentence levelGrammar formalisms for syntactic parsing:\n\n\n\n\n\nConstituent parsersConstituent parsers assign phrase labels to constituent, also refered to as phrase-structure grammars.\n\n\nDependency parsersDependency parsers analyze a sentence in head words and dependent words. \n\n\nCCG derivation\nComposition rules \n\n\nSupertaggingAlso called shallow parsing, a pre-proccesing step before parsing.\n\nSyntactic chunkingidentify basic syntactic phrases from a given sentence.\n\n\n\n\nResources   \n\n   spaCy - industrial-strength NLP in python, for parsing and more\n  https://spacy.io/\n\n  phpSyntaxTree - generate graphical syntax trees\n\n  http://ironcreek.net/phpsyntaxtree/\n\nThe Stanford Parser\n  https://nlp.stanford.edu/software/lex-parser.html\n\n\n\n MSTParser - dependency parsing \n http://nlp.ffzg.hr/resources/models/dependency-parsing/\n\n The Charniak Statistical Syntactic Parser\n  http://www.cs.brown.edu/~ec/#software\n\nThe MINIPAR Parser\n  http://www.cs.ualberta.ca/~lindek/minipar.htm\n\n\n\nSemantic tasks#\nWord level\nWord sense disambiguation (WSD)\n\n\n\nSense relations between words\n\n\n\n\nResources  \n WordNet - the de-facto sense inventory for English\n\n  https://wordnet.princeton.edu/\n\nBabelNet - multilingual encyclopedic dictionary, semantic network  \n https://babelnet.org/\n\nOpen Mind Word Expert sense-tagged data\nhttp://www.cse.unt.edu/~rada/downloads.html#omwe\n\nCuiTools - a complete word sense disambiguation system\nhttp://sourceforge.net/projects/cuitools/\n\nWDS Gate - a WSD toolkit using GATE and WEKA\nhttp://sourceforge.net/projects/wsdgate/\n\n  \n\n\nSentence level semantic tasksPredicate-argument relations\nResources  \n\n SEMPRE - a toolkit for training semantic parsers\n  https://nlp.stanford.edu/software/sempre/\n\n\n\nLogica traditional meaning representation in artificial intelligence research.\n\n\nSemantic graphs\nResources  \n\n Segrada - semantic graph database  \n  https://segrada.org/\n  \n\n\nText entailmenta directional semantic relation between two texts\n\nResources \n\nThe Standford Natural Language Inference (SNLI) Corpus\n https://nlp.stanford.edu/projects/snli/\n\n  \n\n\nDiscourse tasksDiscourse: multiple sub topics and coherence relations#\nDiscourse parsing:Analyze the coherence relations between sub topics in a discourse.\n\nDiscourse segmentation#\nResources \n\nDocument-level Discourse Parser for English\n  https://ntunlpsg.github.io/project/parser/parser/\n  \n\n\n\n1.2.2Information extraction tasks\nInformation extraction (IE)Obtain structured information from unstructured texts.\n\nEntitiesNamed entity recognition(NER)To identify all named entity mentions from a given piece of text\n\n\nResources \n\n Stanford Named Entity Recognizer (NER)\n  https://nlp.stanford.edu/software/CRF-NER.html\n\n OpeNER - open Polarity Enhanced Name ENtity Recognition\n  https://www.opener-project.eu/\n\n CoNLL 2003 language-indenpendent named entity recognition\nhttp://www.cnts.ua.ac.be/conll2003/ner/\n\n dbPedia - a very big corpus built form WikiPedia\n http://wiki.dbpedia.org/Downloads351#otitles\n\n OntoNotes \nhttps://catalog.ldc.upenn.edu/LDC2013T19\n\n MUC-3 and MUC-4 datasets\nhttp://www.itl.nist.gov/iaui/894.02/related_projects/muc/\n \n\n\nAnaphora resolutionresolves what a pronoun or noun phrase refers toZero-pronoun resolutiondetects and interprets dropped pronouns\n\nCo-reference resolution finds all expressions that refer to the same entities in a text document \nResources  \n\n BART coreference system \n http://www.bart-coref.org/\n\nCherryPicker - a coreference resolution tool with cluster ranker\n  http://www.hlt.utdallas.edu/~altaf/cherrypicker/\n \n\n\nRelationsRelations between entities represent knowledge\n\ncommon relations\nhierarchical \ndomain-specific\n\n\nRelation extractionidentify relations between entity under a set of pre-specified relation categories.\n\nKnowledge grapha type of databases, entities form nodes and relations form edges.\n\nResources \n\n The NewYorkTimes(NYT) - supervised relationship extraction\nhttps://catalog.ldc.upenn.edu/LDC2008T19\n\nACE2004 - multilingual training corpus\nhttps://catalog.ldc.upenn.edu/LDC2005T09\n\n SemWval2010\nhttp://semeval2.fbk.eu/\n\nSwmEval-2010 Task 8\nhttp://www.aclweb.org/anthology/S10-1006\n\nTACRED - relation extraction dataset built on newswire, web text\nhttps://nlp.stanford.edu/projects/tacred/\n\nRewRel - the largest supervised relation classification dataset\nhttp://www.zhuhao.me/fewrel/\n\n \n\n\nEntity linking (entity disambiguation)determines the identity of entity mentioned from text.\nRelated task: Named entity normalisationfinds a canonical term for named entity mentions\nResources \n\n Microsoft Text Analytics\n  https://labs.cognitive.microsoft.com/en-us/project-entity-linking\n\n Dexter - a open source framework for entity linking\n  http://dexter.isti.cnr.it/\n \n\n\nLink prediction (knowledge graph completion)Knowledge graphs allow knowledge inference.\n\nResources\n\n neleval - for named entity liking and coreference resolution\n  https://pypi.org/project/neleval/\n \n\n\nEvents\n\nEvents have timing\nNews event detection (first story detection)\nEvent factuality prediction (predict the likelihood of event)\n\n\n\nEvent time extraction (e.g.temporal ordering of events)\nCausality detection\n\nResources\nTimeBank 1.2\nhttps://catalog.ldc.upenn.edu/LDC2006T08\n \n\n\nEvents have coreferences\nEvent coreference resolution\n\n12&quot; I interviewed Mary yesterday. It went very smooth.&quot;&quot;it&quot; refers to the interviewing event\n\nZero-pronouns“ Mary went to Russia to see the World Cup. Tom too.”   verb phrase ellipsis\n\nResources \n\n TAC KBP 2017 - event tracking\nhttps://tac.nist.gov/2017/KBP/data.html\n \n\n\nScript learningaims to extract a set of partially ordered events knowledge\nIn the scenario “restaurant visiting”\n\n“customer to be seated”\n“customer to order food”\n“waiter to serve food”\n“customer to eat food”\n“customer to pay”\n\nResources\n\nStory Cloze Test corpora\nhttp://cs.rochester.edu/nlp/rocstories/\n \n\n\nSentiment analysis (opinion mining)\n\nResources\n\n The Stanford Sentiment Treebank(SST) - movie reviews\nhttps://nlp.stanford.edu/sentiment/index.html\n\n MPQA - news articles manually annotated for opinions\n http://mpqa.cs.pitt.edu/corpora/\n\n SemEval17 - consist of 5 subtasks, both Arabic and English\nhttp://www.aclweb.org/anthology/S17-2088\n\n The IMDb dataset - reviews from IMDb with label\nhttps://kaggle.com/carolzhangdc/imdb-5000-movie-dataset\n\n MeaningCloud\n Https://www.meaningcloud.com\n \n\n\nOther sentiments tasks\nSarcasm  detection“Like you care!”\nSentiment lexicon acquisitionlexicons that contain sentiment-baring words, polarities and strengths\nStance detection“for”,”against”\nEmotion detection“anger”,”disappointed”,”excited”\n\nResources\n\n Self-Annotated Reddit Corpus (SARC) -corpus for sarcasm\nhttps://github.com/NLPrinceton/SARC\n \n\n\n\n\n\n1.2.3Other Applications\nInformation retrievalIR related tasks\n\nText classification / text clustering\nText topics classification“finance”,”sports”,”Tech”…\nSpam detectionemail spam\nOpinion spam detection\n\n\n\n123456*whether a review contains deceptive false opinions* * Language identification *&quot;French&quot;,&quot;English&quot;* * Rumour detection *false statement* * Humour detection\n\nMachine translation\nResources\n\nWorkshop on Statistical Machine Translation (WMT)\nhttp://www.statmt.org/wmt14/translation-task.html\n\n International Workshop on Spoken Language Translation (IWSLT) http://workshop2015.iwslt.org/\n \n\n\nSub-task:\nText generation (Tree linearization)\nRealization\n\nResources\n\nOpenNMT - open source neural machine translation\nhttp://opennmt.net/\nCLTE Benchmark - cross-lingual textual entailment dataset\nhttps://ict.fbk.eu/clte-benchmark/\nBinQE - a machine translation dataset annotated with binary quality judgements\nhttps://ict.fbk.eu/binqe/\nT2T for neural translation\nhttps://github.com/tensorflow/tensor2tensor\n\n\n\nSummarizationBoth for single document adn Multi-documents\n\nTitle generation\nKey phrase generation\n\n\nResources\n\n The CNN / Daily Mail dataset - training machine reading systems\nhttps://arxiv.org/abs/1506.03340\n \n\n\nGrammar error correction\nGrammar error detection\nDisfluency detection\nWritting quality assessment\n\nResources\n\n CoNLL-2014 Shared Task - benchmark GEC systems\nhttps://www.comp.nus.edu.sg/~nlp/conll14st/\n \n\n\nQuestion answering (QA)\nReading comprehension (machine reading)answer questions in interpretive ways\n\nResources\n\nCoQA - a conversational question answering dataset\nhttps://stanfordnlp.github.io/coqa/\n\n QBLink - sequential open-domain question answering\nhttps://sites.google.com/view/qanta/projects/qblink\n\n DrQA: Open Domain Question Answering\nhttps://github.com/facebookresearch/DrQA\n\n DocQA: Multi-Paragraph Reading Comprehension by AllenAI\nhttps://github.com/allenai/document-qa\n\n\n\n\nDialogue systems\nChit-chat\nTask-oriented dialogues\n\n\n\nResources\n\nCMU Communicator - travel plan and booking system\nhttps://github.com/denizyuret/nlpcourse/tree/master/download\n\n MultiWOZ (2018) - for goal-driven dialogue system\nhttp://dialogue.mi.eng.cam.ac.uk/index.php/corpus/\n\n DailyDialog Dataset (2017) \n http://yanran.li/dailydialog\n\n DeepPavlov - open-source library for dialogue systems\nhttps://deeppavlov.ai/\n\n\n\nRecomendation systemleverage text reviews for recommending\nResources\n\n Amazon product review\nhttp://jmcauley.ucsd.edu/data/amazon/\n\n Case Recommender - recommender tool\n https://github.com/caserec/CaseRecommender\n\n MyMediaLife - recommender system library\nhttp://www.mymedialite.net/\n\n LIBMF - a matrix-factorization library for recommender system\n  https://www.csie.ntu.edu.tw/~cjlin/libmf/\n  \n\n\nText miningderive high-qualityinformation from text\nText analytics\nStock market prdiction\nMovie revenue prdiction\nPresidential election results prediction\n\nResources\n\n   GATE - general architecture for text engineering\nhttps://gate.ac.uk/\n\n\n\n\n1.2.4Categorizing NLP tasks\nCategorized by the outputs\nClassificationOutput is a distinct label from a set\nRegressionOutput is a real valued number, e.g. predicting stock     prices\nStructure predictionOutputs are structures with inter-related sub structures \n\n\nCategorized by the training data\nUnsupervised learningdata without human annotation\nSupervised learningdata with human annotated gold-standard output labels\nSemi-supervised learningboth data with labels and data without  annotation\n\n\n\n\nCategorized by the amount of manual annotation\nPartial annotationHuman-give gold-standard output is incomplete.\nNatural annotation (distant supervision)where the gold-standard naturally exists in a form not directly design for the end task.infoboxes\n\n\n\nSummary\nWhat is Natural Language Processing (NLP)\nMain approaches to NLP\nA spectrum of NLP problems\n\n","dateCreated":"2019-04-02T15:45:33+08:00","dateModified":"2019-04-08T20:13:13+08:00","datePublished":"2019-04-02T15:45:33+08:00","description":"","headline":"Natural language processing - foundations and algorithms","image":["http://cdn.yiyouls.com/unsupervised-learning.png","http://cdn.yiyouls.com/ai.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/archives/24456aaf.html"},"publisher":{"@type":"Organization","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png","logo":{"@type":"ImageObject","url":"http://cdn.yiyouls.com/profile.png"}},"url":"http://yoursite.com/archives/24456aaf.html","keywords":"nlp, natural language processing, 自然语言处理","thumbnailUrl":"http://cdn.yiyouls.com/unsupervised-learning.png"}</script>
+    <meta name="keywords" content="nlp,natural language processing,自然语言处理">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Natural language processing - foundations and algorithms">
+<meta property="og:url" content="http://yoursite.com/archives/24456aaf.html">
+<meta property="og:site_name" content="Deep Learning">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:image" content="http://cdn.yiyouls.com/fengmian4.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/onlineretailing.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/diagram8.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/4.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/5.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/6.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/7.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/pos.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/diagram6.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/const_tree.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/dependencytree.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/ccg.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/compositionrule.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/supertag.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/ambi.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/senserelation.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/predicate.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/logic.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/graphs.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/entailment.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/discoursetree.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/discourse.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/discoursemarker.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/cambridge.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/infoextract.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/ners.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/anaphoras.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/zeropronouns.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/coreference.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/relationex.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/relationextra.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/multiplemention.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/linkpred.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/trigger.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/factuality.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/sentimentanly.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/cambridge.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/diagram3.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/diagram4.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/correctness.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/cambridge.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/byoutput.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/goldlabel.png">
+<meta property="og:image" content="http://cdn.yiyouls.com/hello.png">
+<meta property="og:updated_time" content="2019-04-08T12:13:13.236Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Natural language processing - foundations and algorithms">
+<meta name="twitter:image" content="http://cdn.yiyouls.com/fengmian4.png">
+<meta name="twitter:creator" content="@hanhaishiyi">
+    
+        <link rel="publisher" href="https://plus.google.com/108244569432480563366"/>
+    
+    
+        
+    
+    
+        <meta property="og:image" content="http://cdn.yiyouls.com/profile.png"/>
+    
+    
+        <meta property="og:image" content="http://cdn.yiyouls.com/unsupervised-learning.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://cdn.yiyouls.com/unsupervised-learning.png" />
+    
+    
+        <meta property="og:image" content="http://cdn.yiyouls.com/ai.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://cdn.yiyouls.com/ai.jpg" />
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style-c4ozcsklz4kht2pebhp44xorvyverh23toayhn7i6ubrpyedak24hv1v0hyd.min.css">
+    <!--STYLES END-->
+    
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/ ">Deep Learning</a>
+    </div>
+    
+        
+            <a class="header-right-picture " href="#about">
+        
+        
+            <img class="header-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about">
+                    <img class="sidebar-profile-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
+                </a>
+                <h4 class="sidebar-profile-name">友邻君</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>浙江大学在读</p>
+</h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/ " title="首页">
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">首页</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-categories" title="分类">
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">分类</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-tags" title="标签">
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">标签</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-archives" title="归档">
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">归档</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link open-algolia-search" href="#search" title="搜索">
+                    
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">搜索</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="#about" title="关于">
+                    
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">关于</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://github.com/yiyouls" target="_blank" rel="noopener" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="http://stackoverflow.com/users/10926004/yiyouls" target="_blank" rel="noopener" title="Stack Overflow">
+                    
+                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Stack Overflow</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://twitter.com/hanhaishiyi" target="_blank" rel="noopener" title="Twitter">
+                    
+                        <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Twitter</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://facebook.com/yiyouls" target="_blank" rel="noopener" title="Facebook">
+                    
+                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Facebook</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://plus.google.com/u/0/108244569432480563366" target="_blank" rel="noopener" title="Google Plus">
+                    
+                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Google Plus</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://www.linkedin.com/in/yiyouls" target="_blank" rel="noopener" title="LinkedIn">
+                    
+                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">LinkedIn</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://www.zhihu.com/people/yiyouls-66/activities" target="_blank" rel="noopener" title="知乎">
+                    
+                        <i class="sidebar-button-icon fa fa-book" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">知乎</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008" target="_blank" rel="noopener" title="网易云课堂">
+                    
+                        <i class="sidebar-button-icon fa fa-school" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">网易云课堂</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="http://space.bilibili.com/275230151?" target="_blank" rel="noopener" title="bilibili">
+                    
+                        <i class="sidebar-button-icon fa fa-video" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">bilibili</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/hanhaishiyi@gmail.com" title="邮箱">
+                    
+                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">邮箱</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/atom.xml" title="RSS">
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+        <div class="post-header-cover
+                    text-center
+                    " style="background-image:url('http://cdn.yiyouls.com/ai.jpg');" data-behavior="4">
+            
+        </div>
+
+            <div id="main" data-behavior="4"
+                 class="hasCover
+                        hasCoverMetaOut
+                        hasCoverCaption">
+                
+<article class="post">
+    
+        <span class="post-header-cover-caption caption">自然语言处理是人工智能皇冠上的明珠</span>
+    
+    
+        <div class="post-header main-content-wrap text-center">
+    
+        <h1 class="post-title">
+            Natural language processing - foundations and algorithms
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2019-04-02T15:45:33+08:00">
+	
+		    4月 02, 2019
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/categories/自然语言处理/">自然语言处理</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <p><img src="http://cdn.yiyouls.com/fengmian4.png" alt=""></p>
+<a id="more"></a>
+<h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-text">Chapter 1</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-text">Contents</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-text">1.1 What is NLP?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Main approaches to NLP tasks</span></a></li></ol></li></ol><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-text">1.2  NLP Tasks</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">1.2.1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">Foundamental NLP tasks</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Word level tasks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Resources</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Syntactic tasks</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">Word level</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Resources</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">Sentence level</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Constituent parsers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Dependency parsers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">CCG derivation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Supertagging</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Resources</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Semantic tasks</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">Word level</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Resources</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Sentence level semantic tasks</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">Predicate-argument relations</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Resources</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">Logic</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">Semantic graphs</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Resources</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">Text entailment</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Resources</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Discourse tasks</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">Discourse parsing:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">Discourse segmentation</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Resources</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">1.2.2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">Information extraction tasks</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Information extraction (IE)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Entities</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">Named entity recognition(NER)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Resources</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">Anaphora resolution</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">Co-reference resolution</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Resources</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Relations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Relation extraction</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-text">Knowledge graph</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Resources</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Entity linking (entity disambiguation)</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-text">Related task: Named entity normalisation</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Resources</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Link prediction (knowledge graph completion)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Resources</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Events</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">Events have timing</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Resources</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">Events have coreferences</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Resources</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">Script learning</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Resources</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Sentiment analysis (opinion mining)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Resources</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Other sentiments tasks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Resources</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">1.2.3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">Other Applications</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Information retrieval</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Machine translation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Resources</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Sub-task:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Resources</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Summarization</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Resources</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Grammar error correction</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Resources</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Question answering (QA)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Resources</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Resources</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Recomendation system</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Resources</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Text mining</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Text analytics</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Resources</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">1.2.4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">Categorizing NLP tasks</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Categorized by the outputs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Categorized by the training data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Categorized by the amount of manual annotation</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-text">Summary</span></a></li>
+<ul>
+<li><a href="#chapter-1">Chapter 1</a></li>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#contents">Contents</a></li>
+<li><a href="#11-what-is-nlp">1.1 What is NLP?</a><ul>
+<li><a href="#main-approaches-to-nlp-tasks">Main approaches to NLP tasks</a></li>
+</ul>
+</li>
+<li><a href="#12-nlp-tasks">1.2 NLP Tasks</a><ul>
+<li><a href="#121">1.2.1</a></li>
+<li><a href="#foundamental-nlp-tasks">Foundamental NLP tasks</a><ul>
+<li><a href="#word-level-tasks">Word level tasks</a></li>
+<li><a href="#resources">Resources</a></li>
+<li><a href="#syntactic-tasks">Syntactic tasks</a><ul>
+<li><a href="#word-level">Word level</a></li>
+</ul>
+</li>
+<li><a href="#resources-1">Resources</a><ul>
+<li><a href="#sentence-level">Sentence level</a></li>
+</ul>
+</li>
+<li><a href="#constituent-parsers">Constituent parsers</a></li>
+<li><a href="#dependency-parsers">Dependency parsers</a></li>
+<li><a href="#ccg-derivation">CCG derivation</a></li>
+<li><a href="#supertagging">Supertagging</a></li>
+<li><a href="#resources-2">Resources</a></li>
+<li><a href="#semantic-tasks">Semantic tasks</a><ul>
+<li><a href="#word-level-1">Word level</a></li>
+</ul>
+</li>
+<li><a href="#resources-3">Resources</a></li>
+<li><a href="#sentence-level-semantic-tasks">Sentence level semantic tasks</a><ul>
+<li><a href="#predicate-argument-relations">Predicate-argument relations</a></li>
+</ul>
+</li>
+<li><a href="#resources-4">Resources</a><ul>
+<li><a href="#logic">Logic</a></li>
+<li><a href="#semantic-graphs">Semantic graphs</a></li>
+</ul>
+</li>
+<li><a href="#resources-5">Resources</a><ul>
+<li><a href="#text-entailment">Text entailment</a></li>
+</ul>
+</li>
+<li><a href="#resources-6">Resources</a></li>
+<li><a href="#discourse-tasks">Discourse tasks</a><ul>
+<li><a href="#discourse-parsing">Discourse parsing:</a></li>
+<li><a href="#discourse-segmentation">Discourse segmentation</a></li>
+</ul>
+</li>
+<li><a href="#resources-7">Resources</a></li>
+</ul>
+</li>
+<li><a href="#122">1.2.2</a></li>
+<li><a href="#information-extraction-tasks">Information extraction tasks</a><ul>
+<li><a href="#information-extraction-ie">Information extraction (IE)</a></li>
+<li><a href="#entities">Entities</a><ul>
+<li><a href="#named-entity-recognitionner">Named entity recognition(NER)</a></li>
+</ul>
+</li>
+<li><a href="#resources-8">Resources</a><ul>
+<li><a href="#anaphora-resolution">Anaphora resolution</a></li>
+<li><a href="#co-reference-resolution">Co-reference resolution</a></li>
+</ul>
+</li>
+<li><a href="#resources-9">Resources</a></li>
+<li><a href="#relations">Relations</a></li>
+<li><a href="#relation-extraction">Relation extraction</a><pre><code>+ [Knowledge graph](#knowledge-graph)
+</code></pre></li>
+<li><a href="#resources-10">Resources</a></li>
+<li><a href="#entity-linking-entity-disambiguation">Entity linking (entity disambiguation)</a><pre><code>+ [Related task: Named entity normalisation](#related-task-named-entity-normalisation)
+</code></pre></li>
+<li><a href="#resources-11">Resources</a></li>
+<li><a href="#link-prediction-knowledge-graph-completion">Link prediction (knowledge graph completion)</a></li>
+<li><a href="#resources-12">Resources</a></li>
+<li><a href="#events">Events</a><ul>
+<li><a href="#events-have-timing">Events have timing</a></li>
+</ul>
+</li>
+<li><a href="#resources-13">Resources</a><ul>
+<li><a href="#events-have-coreferences">Events have coreferences</a></li>
+</ul>
+</li>
+<li><a href="#resources-14">Resources</a><ul>
+<li><a href="#script-learning">Script learning</a></li>
+</ul>
+</li>
+<li><a href="#resources-15">Resources</a></li>
+<li><a href="#sentiment-analysis-opinion-mining">Sentiment analysis (opinion mining)</a></li>
+<li><a href="#resources-16">Resources</a></li>
+<li><a href="#other-sentiments-tasks">Other sentiments tasks</a></li>
+<li><a href="#resources-17">Resources</a></li>
+</ul>
+</li>
+<li><a href="#123">1.2.3</a></li>
+<li><a href="#other-applications">Other Applications</a><ul>
+<li><a href="#information-retrieval">Information retrieval</a></li>
+<li><a href="#machine-translation">Machine translation</a></li>
+<li><a href="#resources-18">Resources</a></li>
+<li><a href="#sub-task">Sub-task:</a></li>
+<li><a href="#resources-19">Resources</a></li>
+<li><a href="#summarization">Summarization</a></li>
+<li><a href="#resources-20">Resources</a></li>
+<li><a href="#grammar-error-correction">Grammar error correction</a></li>
+<li><a href="#resources-21">Resources</a></li>
+<li><a href="#question-answering-qa">Question answering (QA)</a></li>
+<li><a href="#resources-22">Resources</a></li>
+<li><a href="#resources-23">Resources</a></li>
+<li><a href="#recomendation-system">Recomendation system</a></li>
+<li><a href="#resources-24">Resources</a></li>
+<li><a href="#text-mining">Text mining</a></li>
+<li><a href="#text-analytics">Text analytics</a></li>
+<li><a href="#resources-25">Resources</a></li>
+</ul>
+</li>
+<li><a href="#124">1.2.4</a></li>
+<li><a href="#categorizing-nlp-tasks">Categorizing NLP tasks</a><ul>
+<li><a href="#categorized-by-the-outputs">Categorized by the outputs</a></li>
+<li><a href="#categorized-by-the-training-data">Categorized by the training data</a></li>
+<li><a href="#categorized-by-the-amount-of-manual-annotation">Categorized by the amount of manual annotation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#summary">Summary</a></li>
+</ul>
+<!-- tocstop -->
+<hr>
+<h1><span id="chapter-1">Chapter 1</span></h1><h1><span id="introduction">Introduction</span></h1><hr>
+<h1><span id="contents">Contents</span></h1><ul>
+<li>What is Natural Language Processing (NLP)?</li>
+<li>NLP tasks and approaches</li>
+<li>A spectrum of NLP problems</li>
+</ul>
+<hr>
+<h1><span id="11-what-is-nlp">1.1 What is NLP?</span></h1><p> <strong>NLP refers to any program that automatically processes human languages</strong></p>
+<p>From simple algorithms to sophisticated systems, for bussiness and daily lives<br><img src="http://cdn.yiyouls.com/onlineretailing.png" alt=""></p>
+<hr>
+<h3><span id="main-approaches-to-nlp-tasks">Main approaches to NLP tasks</span></h3><p>#<br> <strong>Rule-based (symbolic) approach</strong></p>
+<p>The oldest approaches to NLP (1950s-1980s)</p>
+<p>Based on human-developed regulations and lexicons</p>
+<ul>
+<li>pattern-matching or parsing</li>
+<li>“fill in the blanks” methods</li>
+<li><em>“Regualr expressions”</em> and <em>“context free grammars”</em></li>
+</ul>
+<hr>
+<p><strong>Statistical approach (traditional mechine learning)</strong><br>#<br>Gradually adopted both by research literature and the industry (1980s-2000s)</p>
+<p>Using probabilistic modeling, likelihood maximization and linear classifiers, develop its own semantic rules</p>
+<ul>
+<li>training data (corpus with markup)</li>
+<li>feature engineering</li>
+<li>training a model on parameters</li>
+<li>applying model to test data</li>
+</ul>
+<hr>
+<p><strong>Connectionist approach (Neural networks)</strong><br>#<br>Deep learning suprass statistical methods as the domain approach. (2000s-now)</p>
+<p>Includes recurrent neural networks (RNNs) and convolutional neural networks (CNNs)</p>
+<ul>
+<li>free from linguistic features</li>
+<li>very large training courpus</li>
+<li>use words without engineered features</li>
+</ul>
+<hr>
+<h1><span id="12-nlp-tasks">1.2  NLP Tasks</span></h1><p>At the confluence of linguistics and computer science</p>
+<p><img src="http://cdn.yiyouls.com/diagram8.png" alt=""></p>
+<hr>
+<h2><span id="121">1.2.1</span></h2><h2><span id="foundamental-nlp-tasks">Foundamental NLP tasks</span></h2><hr>
+<h3><span id="word-level-tasks">Word level tasks</span></h3><p>Morphological analysis<br><img src="http://cdn.yiyouls.com/4.png" alt=""><br>Word segmentation<br><img src="http://cdn.yiyouls.com/5.png" alt=""><br>Tokenization<br><img src="http://cdn.yiyouls.com/6.png" alt=""><br>POS Tagging<br><img src="http://cdn.yiyouls.com/7.png" alt=""></p>
+<hr>
+<h3><span id="resources">Resources</span></h3><table><tr><td bgcolor="BlanchedAlmond"> 
+
+NLTK - leading platform for text processing libraries and corpora
+https://www.nltk.org
+
+AllenNLP - NLP research library built on PyTorch
+https://allennlp.org/
+
+Stanford's Core NLP Suite - tools for tokenization,POS and more
+http://nlp.stanford.edu/software/corenlp.shtml
+
+Juman++ - A morphological analyser using RNNLM
+https://github.com/ku-nlp/jumanpp
+
+jieba - Words Segmentation Utilities in Chinese
+https://github.com/fxsjy/jieba#jieba-1
+</td></tr></table>
+
+<hr>
+<h3><span id="syntactic-tasks">Syntactic tasks</span></h3><p>#<br>#</p>
+<h4><span id="word-level">Word level</span></h4><ul>
+<li>Part-of speech (POS)<br>basic syntactic role that words play in a sentence<br><img src="http://cdn.yiyouls.com/pos.png" alt="80%"></li>
+</ul>
+<hr>
+<h3><span id="resources">Resources</span></h3><table><tr><td bgcolor="BlanchedAlmond"> 
+
+ POS tagging online: 
+ https://part-of-speech.info
+
+ The Stanford log-linear POS tagger
+ https://nlp.stanford.edu/software/tagger.html
+
+  NLP4j - robust POS tagging using dynamic model selection
+ https://emorynlp.github.io/nlp4j/
+
+ Flair - with a state-of-the-art POS tagging model(2018)
+https://github.com/zalandoresearch/flair/
+</td></tr></table>
+
+<hr>
+<h4><span id="sentence-level">Sentence level</span></h4><p>Grammar formalisms for syntactic parsing:</p>
+<div align="center">
+<img src="http://cdn.yiyouls.com/diagram6.png" height="500px">
+</div>
+
+<hr>
+<h3><span id="constituent-parsers">Constituent parsers</span></h3><p>Constituent parsers assign phrase labels to constituent, also refered to as phrase-structure grammars.</p>
+<p><img src="http://cdn.yiyouls.com/const_tree.png" alt=""></p>
+<hr>
+<h3><span id="dependency-parsers">Dependency parsers</span></h3><p>Dependency parsers analyze a sentence in <em>head words</em> and <em>dependent words</em>. </p>
+<p><img src="http://cdn.yiyouls.com/dependencytree.png" alt=""></p>
+<hr>
+<h3><span id="ccg-derivation">CCG derivation</span></h3><p><img src="http://cdn.yiyouls.com/ccg.png" alt=""></p>
+<p>Composition rules </p>
+<p><img src="http://cdn.yiyouls.com/compositionrule.png" alt=""></p>
+<hr>
+<h3><span id="supertagging">Supertagging</span></h3><p>Also called shallow parsing, a pre-proccesing step before parsing.</p>
+<ul>
+<li><p>Syntactic chunking<br>identify basic syntactic phrases from a given sentence.</p>
+<p><img src="http://cdn.yiyouls.com/supertag.png" alt="50%"></p>
+</li>
+</ul>
+<hr>
+<h3><span id="resources">Resources</span></h3>  <table><tr><td bgcolor="BlanchedAlmond"> 
+
+   spaCy - industrial-strength NLP in python, for parsing and more
+  https://spacy.io/
+
+  phpSyntaxTree - generate graphical syntax trees
+
+  http://ironcreek.net/phpsyntaxtree/
+
+The Stanford Parser
+  https://nlp.stanford.edu/software/lex-parser.html
+
+
+
+ MSTParser - dependency parsing 
+ http://nlp.ffzg.hr/resources/models/dependency-parsing/
+
+ The Charniak Statistical Syntactic Parser
+  http://www.cs.brown.edu/~ec/#software
+
+The MINIPAR Parser
+  http://www.cs.ualberta.ca/~lindek/minipar.htm
+</td></tr></table>
+
+<hr>
+<h3><span id="semantic-tasks">Semantic tasks</span></h3><p>#</p>
+<h4><span id="word-level">Word level</span></h4><ul>
+<li>Word sense disambiguation (WSD)</li>
+</ul>
+<p><img src="http://cdn.yiyouls.com/ambi.png" alt=""></p>
+<ul>
+<li><p>Sense relations between words</p>
+<p><img src="http://cdn.yiyouls.com/senserelation.png" alt=""></p>
+</li>
+</ul>
+<hr>
+<h3><span id="resources">Resources</span></h3> <table><tr><td bgcolor="BlanchedAlmond"> 
+ WordNet - the de-facto sense inventory for English
+
+  https://wordnet.princeton.edu/
+
+BabelNet - multilingual encyclopedic dictionary, semantic network  
+ https://babelnet.org/
+
+Open Mind Word Expert sense-tagged data
+http://www.cse.unt.edu/~rada/downloads.html#omwe
+
+CuiTools - a complete word sense disambiguation system
+http://sourceforge.net/projects/cuitools/
+
+WDS Gate - a WSD toolkit using GATE and WEKA
+http://sourceforge.net/projects/wsdgate/
+
+  </td></tr></table>
+
+<hr>
+<h3><span id="sentence-level-semantic-tasks">Sentence level semantic tasks</span></h3><h5><span id="predicate-argument-relations">Predicate-argument relations</span></h5><p><img src="http://cdn.yiyouls.com/predicate.png" alt=""></p>
+<h3><span id="resources">Resources</span></h3> <table><tr><td bgcolor="BlanchedAlmond"> 
+
+ SEMPRE - a toolkit for training semantic parsers
+  https://nlp.stanford.edu/software/sempre/
+</td></tr></table>
+
+<hr>
+<h5><span id="logic">Logic</span></h5><p>a traditional meaning representation in artificial intelligence research.</p>
+<p><img src="http://cdn.yiyouls.com/logic.png" alt=""></p>
+<hr>
+<h5><span id="semantic-graphs">Semantic graphs</span></h5><p><img src="http://cdn.yiyouls.com/graphs.png" alt=""></p>
+<h3><span id="resources">Resources</span></h3> <table><tr><td bgcolor="BlanchedAlmond"> 
+
+ Segrada - semantic graph database  
+  https://segrada.org/
+  </td></tr></table>
+
+<hr>
+<h5><span id="text-entailment">Text entailment</span></h5><p>a directional semantic relation between two texts</p>
+<p><img src="http://cdn.yiyouls.com/entailment.png" alt=""></p>
+<h3><span id="resources">Resources</span></h3><table><tr><td bgcolor="BlanchedAlmond"> 
+
+The Standford Natural Language Inference (SNLI) Corpus
+ https://nlp.stanford.edu/projects/snli/
+
+  </td></tr></table>
+
+<hr>
+<h3><span id="discourse-tasks">Discourse tasks</span></h3><p>Discourse: multiple sub topics and coherence relations<br>#</p>
+<h4><span id="discourse-parsing">Discourse parsing:</span></h4><p>Analyze the coherence relations between sub topics in a discourse.<br><img src="http://cdn.yiyouls.com/discoursetree.png" alt=""></p>
+<hr>
+<h4><span id="discourse-segmentation">Discourse segmentation</span></h4><p>#<br><img src="http://cdn.yiyouls.com/discourse.png" alt=""><br><img src="http://cdn.yiyouls.com/discoursemarker.png" alt="40%"></p>
+<h3><span id="resources">Resources</span></h3><table><tr><td bgcolor="BlanchedAlmond"> 
+
+Document-level Discourse Parser for English
+  https://ntunlpsg.github.io/project/parser/parser/
+  </td></tr></table>
+
+<hr>
+<p><img src="http://cdn.yiyouls.com/cambridge.png" alt="bg original"></p>
+<h2><span id="122">1.2.2</span></h2><h2><span id="information-extraction-tasks">Information extraction tasks</span></h2><hr>
+<h3><span id="information-extraction-ie">Information extraction (IE)</span></h3><p>Obtain structured information from unstructured texts.<br><img src="http://cdn.yiyouls.com/infoextract.png" alt=""></p>
+<hr>
+<h3><span id="entities">Entities</span></h3><h5><span id="named-entity-recognitionner">Named entity recognition(NER)</span></h5><p>To identify all named entity mentions from a given piece of text</p>
+<p><img src="http://cdn.yiyouls.com/ners.png" alt="35%"></p>
+<hr>
+<h3><span id="resources">Resources</span></h3><table><tr><td bgcolor="BlanchedAlmond"> 
+
+ Stanford Named Entity Recognizer (NER)
+  https://nlp.stanford.edu/software/CRF-NER.html
+
+ OpeNER - open Polarity Enhanced Name ENtity Recognition
+  https://www.opener-project.eu/
+
+ CoNLL 2003 language-indenpendent named entity recognition
+http://www.cnts.ua.ac.be/conll2003/ner/
+
+ dbPedia - a very big corpus built form WikiPedia
+ http://wiki.dbpedia.org/Downloads351#otitles
+
+ OntoNotes 
+https://catalog.ldc.upenn.edu/LDC2013T19
+
+ MUC-3 and MUC-4 datasets
+http://www.itl.nist.gov/iaui/894.02/related_projects/muc/
+ </td></tr></table>
+
+<hr>
+<h5><span id="anaphora-resolution">Anaphora resolution</span></h5><p>resolves what a pronoun or noun phrase refers to<br><img src="http://cdn.yiyouls.com/anaphoras.png" alt="50%"><br>Zero-pronoun resolution<br>detects and interprets dropped pronouns<br><img src="http://cdn.yiyouls.com/zeropronouns.png" alt="50%"></p>
+<hr>
+<h5><span id="co-reference-resolution">Co-reference resolution</span></h5><p> finds all expressions that refer to the same entities in a text document<br> <img src="http://cdn.yiyouls.com/coreference.png" alt=""></p>
+<h3><span id="resources">Resources</span></h3> <table><tr><td bgcolor="BlanchedAlmond"> 
+
+ BART coreference system 
+ http://www.bart-coref.org/
+
+CherryPicker - a coreference resolution tool with cluster ranker
+  http://www.hlt.utdallas.edu/~altaf/cherrypicker/
+ </td></tr></table>
+
+<hr>
+<h3><span id="relations">Relations</span></h3><p>Relations between entities represent knowledge</p>
+<ul>
+<li>common relations</li>
+<li>hierarchical </li>
+<li>domain-specific<br><img src="http://cdn.yiyouls.com/relationex.png" alt=""></li>
+</ul>
+<hr>
+<h3><span id="relation-extraction">Relation extraction</span></h3><p>identify relations between entity under a set of pre-specified relation categories.</p>
+<p><img src="http://cdn.yiyouls.com/relationextra.png" alt=""></p>
+<h6><span id="knowledge-graph">Knowledge graph</span></h6><p>a type of databases, entities form nodes and relations form edges.</p>
+<hr>
+<h3><span id="resources">Resources</span></h3><table><tr><td bgcolor="BlanchedAlmond"> 
+
+ The NewYorkTimes(NYT) - supervised relationship extraction
+https://catalog.ldc.upenn.edu/LDC2008T19
+
+ACE2004 - multilingual training corpus
+https://catalog.ldc.upenn.edu/LDC2005T09
+
+ SemWval2010
+http://semeval2.fbk.eu/
+
+SwmEval-2010 Task 8
+http://www.aclweb.org/anthology/S10-1006
+
+TACRED - relation extraction dataset built on newswire, web text
+https://nlp.stanford.edu/projects/tacred/
+
+RewRel - the largest supervised relation classification dataset
+http://www.zhuhao.me/fewrel/
+
+ </td></tr></table>
+
+<hr>
+<h3><span id="entity-linking-entity-disambiguation">Entity linking (entity disambiguation)</span></h3><p>determines the identity of entity mentioned from text.<br><img src="http://cdn.yiyouls.com/multiplemention.png" alt="50%"></p>
+<h6><span id="related-task-named-entity-normalisation">Related task: Named entity normalisation</span></h6><p>finds a canonical term for named entity mentions</p>
+<h3><span id="resources">Resources</span></h3><table><tr><td bgcolor="BlanchedAlmond"> 
+
+ Microsoft Text Analytics
+  https://labs.cognitive.microsoft.com/en-us/project-entity-linking
+
+ Dexter - a open source framework for entity linking
+  http://dexter.isti.cnr.it/
+ </td></tr></table>
+
+<hr>
+<h3><span id="link-prediction-knowledge-graph-completion">Link prediction (knowledge graph completion)</span></h3><p>Knowledge graphs allow knowledge inference.</p>
+<p><img src="http://cdn.yiyouls.com/linkpred.png" alt=""></p>
+<h3><span id="resources">Resources</span></h3><table><tr><td bgcolor="BlanchedAlmond">
+
+ neleval - for named entity liking and coreference resolution
+  https://pypi.org/project/neleval/
+ </td></tr></table>
+
+<hr>
+<h3><span id="events">Events</span></h3><p><img src="http://cdn.yiyouls.com/trigger.png" alt=""></p>
+<hr>
+<h5><span id="events-have-timing">Events have timing</span></h5><ul>
+<li>News event detection (first story detection)</li>
+<li>Event factuality prediction (predict the likelihood of event)</li>
+</ul>
+<p><img src="http://cdn.yiyouls.com/factuality.png" alt=""></p>
+<ul>
+<li>Event time extraction (e.g.temporal ordering of events)</li>
+<li>Causality detection</li>
+</ul>
+<h3><span id="resources">Resources</span></h3><table><tr><td bgcolor="BlanchedAlmond">
+TimeBank 1.2
+https://catalog.ldc.upenn.edu/LDC2006T08
+ </td></tr></table>
+
+<hr>
+<h5><span id="events-have-coreferences">Events have coreferences</span></h5><ul>
+<li>Event coreference resolution</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot; I interviewed Mary yesterday. It went very smooth.&quot;</span><br><span class="line">&quot;it&quot; refers to the interviewing event</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Zero-pronouns<br>“ Mary went to Russia to see the World Cup. Tom too.”<br>   <em>verb phrase ellipsis</em></li>
+</ul>
+<h3><span id="resources">Resources</span></h3> <table><tr><td bgcolor="BlanchedAlmond">
+
+ TAC KBP 2017 - event tracking
+https://tac.nist.gov/2017/KBP/data.html
+ </td></tr></table>
+
+<hr>
+<h4><span id="script-learning">Script learning</span></h4><p>aims to extract a set of partially ordered events knowledge</p>
+<p><em>In the scenario “restaurant visiting”</em></p>
+<ul>
+<li>“customer to be seated”</li>
+<li>“customer to order food”</li>
+<li>“waiter to serve food”</li>
+<li>“customer to eat food”</li>
+<li>“customer to pay”</li>
+</ul>
+<h3><span id="resources">Resources</span></h3><table><tr><td bgcolor="BlanchedAlmond">
+
+Story Cloze Test corpora
+http://cs.rochester.edu/nlp/rocstories/
+ </td></tr></table>
+
+<hr>
+<h3><span id="sentiment-analysis-opinion-mining">Sentiment analysis (opinion mining)</span></h3><p><img src="http://cdn.yiyouls.com/sentimentanly.png" alt=""></p>
+<hr>
+<h3><span id="resources">Resources</span></h3><table><tr><td bgcolor="BlanchedAlmond">
+
+ The Stanford Sentiment Treebank(SST) - movie reviews
+https://nlp.stanford.edu/sentiment/index.html
+
+ MPQA - news articles manually annotated for opinions
+ http://mpqa.cs.pitt.edu/corpora/
+
+ SemEval17 - consist of 5 subtasks, both Arabic and English
+http://www.aclweb.org/anthology/S17-2088
+
+ The IMDb dataset - reviews from IMDb with label
+https://kaggle.com/carolzhangdc/imdb-5000-movie-dataset
+
+ MeaningCloud
+ Https://www.meaningcloud.com
+ </td></tr></table>
+
+<hr>
+<h3><span id="other-sentiments-tasks">Other sentiments tasks</span></h3><ul>
+<li>Sarcasm  detection<br><em>“Like you care!”</em></li>
+<li>Sentiment lexicon acquisition<br>lexicons that contain sentiment-baring words, polarities and strengths</li>
+<li>Stance detection<br><em>“for”,”against”</em></li>
+<li>Emotion detection<br><em>“anger”,”disappointed”,”excited”</em></li>
+</ul>
+<h3><span id="resources">Resources</span></h3><table><tr><td bgcolor="BlanchedAlmond">
+
+ Self-Annotated Reddit Corpus (SARC) -corpus for sarcasm
+https://github.com/NLPrinceton/SARC
+ </td></tr></table>
+
+
+
+<hr>
+<p><img src="http://cdn.yiyouls.com/cambridge.png" alt="bg original"></p>
+<h2><span id="123">1.2.3</span></h2><h2><span id="other-applications">Other Applications</span></h2><hr>
+<h3><span id="information-retrieval">Information retrieval</span></h3><p>IR related tasks</p>
+<ul>
+<li>Text classification / text clustering<ul>
+<li>Text topics classification<br><em>“finance”,”sports”,”Tech”…</em></li>
+<li>Spam detection<br><em>email spam</em></li>
+<li>Opinion spam detection</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">*whether a review contains deceptive false opinions*</span><br><span class="line"> * Language identification</span><br><span class="line"> *&quot;French&quot;,&quot;English&quot;*</span><br><span class="line"> * Rumour detection</span><br><span class="line"> *false statement*</span><br><span class="line"> * Humour detection</span><br></pre></td></tr></table></figure>
+<hr>
+<h3><span id="machine-translation">Machine translation</span></h3><p><img src="http://cdn.yiyouls.com/diagram3.png" alt="80%"></p>
+<h3><span id="resources">Resources</span></h3><table><tr><td bgcolor="BlanchedAlmond">
+
+Workshop on Statistical Machine Translation (WMT)
+http://www.statmt.org/wmt14/translation-task.html
+
+ International Workshop on Spoken Language Translation (IWSLT) http://workshop2015.iwslt.org/
+ </td></tr></table>
+
+<hr>
+<h3><span id="sub-task">Sub-task:</span></h3><ul>
+<li>Text generation (Tree linearization)</li>
+<li>Realization</li>
+</ul>
+<h3><span id="resources">Resources</span></h3><table><tr><td bgcolor="BlanchedAlmond">
+
+OpenNMT - open source neural machine translation
+http://opennmt.net/
+CLTE Benchmark - cross-lingual textual entailment dataset
+https://ict.fbk.eu/clte-benchmark/
+BinQE - a machine translation dataset annotated with binary quality judgements
+https://ict.fbk.eu/binqe/
+T2T for neural translation
+https://github.com/tensorflow/tensor2tensor
+</td></tr></table>
+
+<hr>
+<h3><span id="summarization">Summarization</span></h3><p>Both for single document adn Multi-documents</p>
+<ul>
+<li>Title generation</li>
+<li>Key phrase generation</li>
+</ul>
+<p><img src="http://cdn.yiyouls.com/diagram4.png" alt=""></p>
+<h3><span id="resources">Resources</span></h3><table><tr><td bgcolor="BlanchedAlmond">
+
+ The CNN / Daily Mail dataset - training machine reading systems
+https://arxiv.org/abs/1506.03340
+ </td></tr></table>
+
+<hr>
+<h3><span id="grammar-error-correction">Grammar error correction</span></h3><ul>
+<li>Grammar error detection</li>
+<li>Disfluency detection</li>
+<li>Writting quality assessment<br><img src="http://cdn.yiyouls.com/correctness.png" alt="60%"></li>
+</ul>
+<h3><span id="resources">Resources</span></h3><table><tr><td bgcolor="BlanchedAlmond">
+
+ CoNLL-2014 Shared Task - benchmark GEC systems
+https://www.comp.nus.edu.sg/~nlp/conll14st/
+ </td></tr></table>
+
+<hr>
+<h3><span id="question-answering-qa">Question answering (QA)</span></h3><ul>
+<li>Reading comprehension (machine reading)<br>answer questions in interpretive ways</li>
+</ul>
+<h3><span id="resources">Resources</span></h3><table><tr><td bgcolor="BlanchedAlmond">
+
+CoQA - a conversational question answering dataset
+https://stanfordnlp.github.io/coqa/
+
+ QBLink - sequential open-domain question answering
+https://sites.google.com/view/qanta/projects/qblink
+
+ DrQA: Open Domain Question Answering
+https://github.com/facebookresearch/DrQA
+
+ DocQA: Multi-Paragraph Reading Comprehension by AllenAI
+https://github.com/allenai/document-qa
+</td></tr></table>
+
+<hr>
+<ul>
+<li>Dialogue systems<ul>
+<li>Chit-chat</li>
+<li>Task-oriented dialogues</li>
+</ul>
+</li>
+</ul>
+<h3><span id="resources">Resources</span></h3><table><tr><td bgcolor="BlanchedAlmond">
+
+CMU Communicator - travel plan and booking system
+https://github.com/denizyuret/nlpcourse/tree/master/download
+
+ MultiWOZ (2018) - for goal-driven dialogue system
+http://dialogue.mi.eng.cam.ac.uk/index.php/corpus/
+
+ DailyDialog Dataset (2017) 
+ http://yanran.li/dailydialog
+
+ DeepPavlov - open-source library for dialogue systems
+https://deeppavlov.ai/
+</td></tr></table>
+
+<hr>
+<h3><span id="recomendation-system">Recomendation system</span></h3><p>leverage text reviews for recommending</p>
+<h3><span id="resources">Resources</span></h3><table><tr><td bgcolor="BlanchedAlmond">
+
+ Amazon product review
+http://jmcauley.ucsd.edu/data/amazon/
+
+ Case Recommender - recommender tool
+ https://github.com/caserec/CaseRecommender
+
+ MyMediaLife - recommender system library
+http://www.mymedialite.net/
+
+ LIBMF - a matrix-factorization library for recommender system
+  https://www.csie.ntu.edu.tw/~cjlin/libmf/
+  </td></tr></table>
+
+<hr>
+<h3><span id="text-mining">Text mining</span></h3><p>derive high-qualityinformation from text</p>
+<h3><span id="text-analytics">Text analytics</span></h3><ul>
+<li>Stock market prdiction</li>
+<li>Movie revenue prdiction</li>
+<li>Presidential election results prediction</li>
+</ul>
+<h3><span id="resources">Resources</span></h3><table><tr><td bgcolor="BlanchedAlmond">
+
+   GATE - general architecture for text engineering
+https://gate.ac.uk/
+</td></tr></table>
+
+<hr>
+<p><img src="http://cdn.yiyouls.com/cambridge.png" alt="bg original"></p>
+<h2><span id="124">1.2.4</span></h2><h2><span id="categorizing-nlp-tasks">Categorizing NLP tasks</span></h2><hr>
+<h3><span id="categorized-by-the-outputs">Categorized by the outputs</span></h3><ul>
+<li>Classification<br>Output is a distinct label from a set</li>
+<li>Regression<br>Output is a real valued number, e.g. predicting stock     prices</li>
+<li>Structure prediction<br>Outputs are structures with inter-related sub structures<br> <img src="http://cdn.yiyouls.com/byoutput.png" alt=""></li>
+</ul>
+<hr>
+<h3><span id="categorized-by-the-training-data">Categorized by the training data</span></h3><ul>
+<li>Unsupervised learning<br>data without human annotation</li>
+<li>Supervised learning<br>data with human annotated gold-standard output labels</li>
+<li><p>Semi-supervised learning<br>both data with labels and data without  annotation</p>
+<p><img src="http://cdn.yiyouls.com/goldlabel.png" alt="18%"></p>
+</li>
+</ul>
+<hr>
+<h3><span id="categorized-by-the-amount-of-manual-annotation">Categorized by the amount of manual annotation</span></h3><ul>
+<li>Partial annotation<br>Human-give gold-standard output is incomplete.</li>
+<li>Natural annotation (distant supervision)<br>where the gold-standard naturally exists in a form not directly design for the end task.<br><em>infoboxes</em></li>
+</ul>
+<hr>
+<p><img src="http://cdn.yiyouls.com/hello.png" alt="bg "></p>
+<h1><span id="summary">Summary</span></h1><ul>
+<li>What is Natural Language Processing (NLP)</li>
+<li>Main approaches to NLP</li>
+<li>A spectrum of NLP problems</li>
+</ul>
+
+            
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">标签</span><br>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/natural-language-processing/">natural language processing</a> <a class="tag tag--primary tag--small t-link" href="/tags/nlp/">nlp</a> <a class="tag tag--primary tag--small t-link" href="/tags/自然语言处理/">自然语言处理</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/archives/ccb21e16.html" data-tooltip="SoPa: Bridging CNNs, RNNs, and Weighted Finite-State Machines" aria-label="上一篇: SoPa: Bridging CNNs, RNNs, and Weighted Finite-State Machines">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/archives/humin.html" data-tooltip="胡敏读故事背雅思单词（最新版）" aria-label="下一篇: 胡敏读故事背雅思单词（最新版）">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/archives/24456aaf.html" title="分享到 Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/archives/24456aaf.html" title="分享到 Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/archives/24456aaf.html" title="分享到 Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/archives/24456aaf.html" title="分享到 Weibo">
+                    <i class="fab fa-weibo" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/archives/24456aaf.html&amp;title=Natural language processing - foundations and algorithms" title="分享到 QQ">
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/archives/24456aaf.html" title="分享到 Qzone">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yoursite.com/archives/24456aaf.html" title="分享到 Renren">
+                    <i class="fab fa-renren" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#table-of-contents" aria-label="目录">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+                <div id="cyReward" role="cylabs" data-use="reward"></div>
+<div id="cyPoll" role="cylabs" data-use="poll"></div>
+<div id="cyEmoji" role="cylabs" data-use="emoji"></div>
+<div id="cyQing" role="cylabs" data-use="qing"></div>
+<div id="cyHotusers" role="cylabs" data-use="hotusers"></div>
+<div id="cyReping" role="cylabs" data-use="reping"></div>
+<div id="cyBarrage" role="cylabs" data-use="barrage"></div>
+<div id="SOHUCS" sid="Natural language processing - foundations and algorithms"></div>
+
+
+            
+        
+    </div>
+</article>
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2019 友邻君. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/archives/ccb21e16.html" data-tooltip="SoPa: Bridging CNNs, RNNs, and Weighted Finite-State Machines" aria-label="上一篇: SoPa: Bridging CNNs, RNNs, and Weighted Finite-State Machines">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/archives/humin.html" data-tooltip="胡敏读故事背雅思单词（最新版）" aria-label="下一篇: 胡敏读故事背雅思单词（最新版）">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/archives/24456aaf.html" title="分享到 Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/archives/24456aaf.html" title="分享到 Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/archives/24456aaf.html" title="分享到 Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/archives/24456aaf.html" title="分享到 Weibo">
+                    <i class="fab fa-weibo" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/archives/24456aaf.html&amp;title=Natural language processing - foundations and algorithms" title="分享到 QQ">
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/archives/24456aaf.html" title="分享到 Qzone">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yoursite.com/archives/24456aaf.html" title="分享到 Renren">
+                    <i class="fab fa-renren" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#table-of-contents" aria-label="目录">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/archives/24456aaf.html">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>分享到 Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/archives/24456aaf.html">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/archives/24456aaf.html">
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>分享到 Google+</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/archives/24456aaf.html">
+                        <i class="fab fa-weibo" aria-hidden="true"></i><span>分享到 Weibo</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/archives/24456aaf.html&amp;title=Natural language processing - foundations and algorithms">
+                        <i class="fab fa-qq" aria-hidden="true"></i><span>分享到 QQ</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/archives/24456aaf.html">
+                        <i class="fa fa-star" aria-hidden="true"></i><span>分享到 Qzone</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=http://yoursite.com/archives/24456aaf.html">
+                        <i class="fab fa-renren" aria-hidden="true"></i><span>分享到 Renren</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
+        
+            <h4 id="about-card-name">友邻君</h4>
+        
+            <div id="about-card-bio"><p>浙江大学在读</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                <p>博士研究生</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br>
+                Hangzhou,Zhejiang
+            </div>
+        
+    </div>
+</div>
+
+        
+            <div id="algolia-search-modal" class="modal-container">
+    <div class="modal">
+        <div class="modal-header">
+            <span class="close-button"><i class="fa fa-times"></i></span>
+            <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+                <span class="searchby-algolia-text text-color-light text-small">by</span>
+                <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+            </a>
+            <i class="search-icon fa fa-search"></i>
+            <form id="algolia-search-form">
+                <input type="text" id="algolia-search-input" name="search" class="form-control input--large search-input" placeholder="Search ">
+            </form>
+        </div>
+        <div class="modal-body">
+            <div class="no-result text-color-light text-center">没有找到文章</div>
+            <div class="results">
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/bc1e.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/image_1.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/bc1e.html">
+                            <h3 class="media-heading">什么是机器学习(Machine Learning)？</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月16日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>机器学习与深度学习基础教程－从零开始</p>
+<p>本系列教程是为初学者定制，涵盖并解释了深度学习和人工神经网络的基本概念</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/f498.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/image_2.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/f498.html">
+                            <h3 class="media-heading">什么是深度学习(Deep Learning)？</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月16日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>机器学习与深度学习基础教程</p>
+<p>这篇文章将要回答什么是深度学习这个问题．</p>
+<p>整个系列课程会涵盖深度学习领域的众多主题，我们会用很多篇文章来充分解释这些课题，以及它们的应用领域和技术实现。</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/97f0.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/web.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/97f0.html">
+                            <h3 class="media-heading">使用hexo在Github上免费搭建功能丰富的个人博客网站</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月18日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>这个系列博文将带你一步步搭建起自己的个人博客网站，包含tranquilpeak主题模板配置，站内搜索，live2d插件，mathjax数学公式插件，＂千牛云＂云加速，＂畅言＂评论区添加，打赏设置等等高阶功能．</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/7cef.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/Octocat.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/7cef.html">
+                            <h3 class="media-heading">如何在Github上免费开通一个Github Page作为个人主页</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月19日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>为什么要选择在Github上建站，原因很简单，它是免费的．</p>
+<p>只要你按照下面的六步走，就可以轻轻松松发布自己的网站，你不需要有任何关于编程或者网站建设的基础知识．所有的前提只是，你要有一个github账号．</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/b5e2.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/hexologo.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/b5e2.html">
+                            <h3 class="media-heading">11大最常用静态网站建站工具，你用过几个？</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月19日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>在进行下一步操作之前，你首先要明白，你通过我们上篇博文所介绍的方式建立的网站，是一种静态网站，这个是最近特别流行的静态网站搭建博客的技术，非常适合让站长专注于内容创作而非网站本身的维护．</p>
+<p>为什么不用动态网站例如大名鼎鼎的wordpress呢？</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/7770.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/anns.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/7770.html">
+                            <h3 class="media-heading">什么是人工神经网络ANNs?</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月25日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>什么是人工神经网络(artificial neural network)?</p>
+<p>在上一篇文章中我们把深度学习定义为机器学习的子领域，深度学习所用到的算法是受大脑神经网络的结构和功能的启发．因为这个浅显的的原因，深度学习中使用的模型被称为人工神经网络（ANN）。</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/da21.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/ceng.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/da21.html">
+                            <h3 class="media-heading">如何理解神经网络中层(layer)的概念？</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月25日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>如何理解神经网络中层(layer)的概念?</p>
+<p>我们在之前的文章中认识了只有三个层的神经网络，但在很多时候我们有多个隐藏层，这篇文章探讨如何深入理解神经网络中层的概念，并提供一个多层神经网络的构建方法．</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/10fe.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/function.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/10fe.html">
+                            <h3 class="media-heading">如何理解神经网络中的激活函数(ativation functions)?</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月26日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>神经网络中的激活函数</p>
+<p>这篇文章向大家解释激活函数到底是什么，以及如何在神经网络中使用激活函数．我会向大家介绍几种常见的激活函数，向大家展示这些激活函数如何在Keras中以代码的形式呈现．</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/4c0a.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/sgd.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/4c0a.html">
+                            <h3 class="media-heading">如何训练(train)人工神经网络？</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月26日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><h4 id="神经网络的训练"><a href="#神经网络的训练" class="headerlink" title="神经网络的训练"></a>神经网络的训练</h4><p>这篇文章带大家学习如何训练一个人工神经网络．之前的文章中我们学习了如何构建一个简单的人工神经网络，当我们把一个神经网络配置好之后，下一步就是来训练它了．</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/b5f9.html">
+                            <img class="media-image" src="http://cdn.yiyouls.com/learn.png" width="90" height="90">
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://yoursite.com/archives/b5f9.html">
+                            <h3 class="media-heading">人工神经网络是如何学习(learn)的?</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2019年1月27日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>神经网络的学习过程</p>
+<p>这篇文章我们来探讨人工神经网络是怎样学习的．</p>
+<p>本篇内容涵盖损失loss，梯度gradient，学习率lerning rate，epoch，verbose，batch批处理等概念．</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+            </div>
+        </div>
+        <div class="modal-footer">
+            <p class="results-count text-medium" data-message-zero="没有找到文章" data-message-one="找到 1 篇文章" data-message-other="找到 {n} 篇文章">
+                找到 30 篇文章
+            </p>
+        </div>
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('http://cdn.yiyouls.com/cover.jpg');"></div>
+        <!--SCRIPTS-->
+<script src="/assets/js/script-dbd16rvloemmuxdzniplmnxxvwoz24eya9wol0b7vvmlokgqsjivmb8dnscy.min.js"></script>
+<!--SCRIPTS END-->
+
+    
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cyu2tTq0X'; 
+var conf = 'prod_04b0d924b891393f35b9626442a6e448'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script> 
+<script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyu2tTq0X"></script>
+    
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment-with-locales.min.js"></script>
+    <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+    <script>
+        var algoliaClient = algoliasearch('JRXR2OL9UV', '2f9d9502c1e5ad12ac19a2180d9ac94d');
+        var algoliaIndex = algoliaClient.initIndex('my-hexo-blog');
+    </script>
+
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>
