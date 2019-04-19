@@ -5,9 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="Deep Learning">
-    <title>机器学习中的半监督学习(semi-supervised learning) - Deep Learning</title>
-    <meta name="author" content="友邻君">
+    <meta name="generator" content="天津亦友拾光文化传播有限公司">
+    <title>机器学习中的半监督学习(semi-supervised learning) - 天津亦友拾光文化传播有限公司</title>
+    <meta name="author" content="亦友拾光">
     
         <meta name="keywords" content="deep learning,neural network,mechine learning,ANN,AI,深度学习,机器学习,">
     
@@ -17,13 +17,13 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"articleBody":"这篇文章我们了解半监督学习的概念 。\n半监督学习在监督学习和无监督学习之间占据中间地位。\n回顾以前学过的内容， 监督学习是在训练中模型从被标记的数据集中学习。 无监督学习是从未被标记的数据中学习。那半监督学习又是怎样的呢？\n半监督学习将有监督和无监督学习技术结合起来，在我们使用半监督学习的情况下，我们会同时使用标记和未标记的 数据。\n\n让我们通过一个例子来深入理解这个概念。\n大规模未标记数据集假设我们有大量用来训练模型的未标记数据集，手动标记所有这些数据是不现实的。\n但是我们可以手动标记这个大型数据集的某些部分，并使用该部分来训练模型。\n\n实际上，这是大部分情况下神经网络标记大规模数据方式。不过，既然我们已经搜集到了大量数据，但只标记了这些数据的一小部分，那么将所有其他未标记数据扔掉就会很浪费。\n毕竟，训练模型的数据越多，模型就会变得越好，越强大。我们可以想办法利用数据集中剩余的未标记数据．\n我们可以使用一种属于半监督学习的技术，称为伪标签(pseudo-labeling)。\n伪标记下面是伪标签标记的原理。首先我们已经标记了数据集的某些部分，使用这些标记数据作为模型的训练集训练模型，这个环节跟之前所讲过的监督学习方法一样。\n通过正常的训练过程使模型的性能表现良好，我们到目前为止所做的一切都是监督学习的一般方法。\n然后无监督学习开始发挥作用。在数据集的标记部分训练结束之后，使用训练好的模型来预测剩余的未标记部分的数据，然后我们采纳这些预测并给这些无标签的数据做标记。\n用我们的神经网络预测的输出标记未标记数据的过程就是伪标记技术的本质。\n在通过伪标记方法标记未标记数据之后，我们在完整数据集上训练模型，包括真实标记的数据以及伪标记的数据。\n\n伪标记允许我们在更大的数据集上进行训练。\n\n否则这些数据可能会花费很多繁琐的人工时间来手动标记。\n我们可以想象，有时获取或生成完全标记数据集的成本太高，或者为所有数据打标签本身的是不可行的。\n通过这个过程，我们可以了解到半监督学习方法是如何利用监督学习下的标记数据以及无监督学习下的未标记数据的，这些数据共同组成了半监督学习的数据来源。\n希望大家现在能够了解半监督学习的内涵，以及如何通过伪标签的技术实施半监督学习。我们下篇文章再见！\n","dateCreated":"2019-02-23T21:42:21+08:00","dateModified":"2019-02-24T14:22:16+08:00","datePublished":"2019-02-23T21:42:21+08:00","description":"这篇文章我们了解半监督学习的概念 。\n半监督学习在监督学习和无监督学习之间占据中间地位。\n回顾以前学过的内容， 监督学习是在训练中模型从被标记的数据集中学习。 无监督学习是从未被标记的数据中学习。那半监督学习又是怎样的呢？\n半监督学习将有监督和无监督学习技术结合起来，在我们使用半监督学习的情况下，我们会同时使用标记和未标记的 数据。","headline":"机器学习中的半监督学习(semi-supervised learning)","image":["http://cdn.yiyouls.com/semi-supervise.png","http://cdn.yiyouls.com/ai.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/archives/5110.html"},"publisher":{"@type":"Organization","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png","logo":{"@type":"ImageObject","url":"http://cdn.yiyouls.com/profile.png"}},"url":"http://yoursite.com/archives/5110.html","keywords":"深度学习, ANNs, 人工神经网络, semi-supervised learning, 半监督学习","thumbnailUrl":"http://cdn.yiyouls.com/semi-supervise.png"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"亦友拾光","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"articleBody":"这篇文章我们了解半监督学习的概念 。\n半监督学习在监督学习和无监督学习之间占据中间地位。\n回顾以前学过的内容， 监督学习是在训练中模型从被标记的数据集中学习。 无监督学习是从未被标记的数据中学习。那半监督学习又是怎样的呢？\n半监督学习将有监督和无监督学习技术结合起来，在我们使用半监督学习的情况下，我们会同时使用标记和未标记的 数据。\n\n让我们通过一个例子来深入理解这个概念。\n大规模未标记数据集假设我们有大量用来训练模型的未标记数据集，手动标记所有这些数据是不现实的。\n但是我们可以手动标记这个大型数据集的某些部分，并使用该部分来训练模型。\n\n实际上，这是大部分情况下神经网络标记大规模数据方式。不过，既然我们已经搜集到了大量数据，但只标记了这些数据的一小部分，那么将所有其他未标记数据扔掉就会很浪费。\n毕竟，训练模型的数据越多，模型就会变得越好，越强大。我们可以想办法利用数据集中剩余的未标记数据．\n我们可以使用一种属于半监督学习的技术，称为伪标签(pseudo-labeling)。\n伪标记下面是伪标签标记的原理。首先我们已经标记了数据集的某些部分，使用这些标记数据作为模型的训练集训练模型，这个环节跟之前所讲过的监督学习方法一样。\n通过正常的训练过程使模型的性能表现良好，我们到目前为止所做的一切都是监督学习的一般方法。\n然后无监督学习开始发挥作用。在数据集的标记部分训练结束之后，使用训练好的模型来预测剩余的未标记部分的数据，然后我们采纳这些预测并给这些无标签的数据做标记。\n用我们的神经网络预测的输出标记未标记数据的过程就是伪标记技术的本质。\n在通过伪标记方法标记未标记数据之后，我们在完整数据集上训练模型，包括真实标记的数据以及伪标记的数据。\n\n伪标记允许我们在更大的数据集上进行训练。\n\n否则这些数据可能会花费很多繁琐的人工时间来手动标记。\n我们可以想象，有时获取或生成完全标记数据集的成本太高，或者为所有数据打标签本身的是不可行的。\n通过这个过程，我们可以了解到半监督学习方法是如何利用监督学习下的标记数据以及无监督学习下的未标记数据的，这些数据共同组成了半监督学习的数据来源。\n希望大家现在能够了解半监督学习的内涵，以及如何通过伪标签的技术实施半监督学习。我们下篇文章再见！\n","dateCreated":"2019-02-23T21:42:21+08:00","dateModified":"2019-02-24T14:22:16+08:00","datePublished":"2019-02-23T21:42:21+08:00","description":"这篇文章我们了解半监督学习的概念 。\n半监督学习在监督学习和无监督学习之间占据中间地位。\n回顾以前学过的内容， 监督学习是在训练中模型从被标记的数据集中学习。 无监督学习是从未被标记的数据中学习。那半监督学习又是怎样的呢？\n半监督学习将有监督和无监督学习技术结合起来，在我们使用半监督学习的情况下，我们会同时使用标记和未标记的 数据。","headline":"机器学习中的半监督学习(semi-supervised learning)","image":["http://cdn.yiyouls.com/semi-supervise.png","http://cdn.yiyouls.com/ai.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/archives/5110.html"},"publisher":{"@type":"Organization","name":"亦友拾光","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png","logo":{"@type":"ImageObject","url":"http://cdn.yiyouls.com/profile.png"}},"url":"http://yoursite.com/archives/5110.html","keywords":"深度学习, ANNs, 人工神经网络, semi-supervised learning, 半监督学习","thumbnailUrl":"http://cdn.yiyouls.com/semi-supervise.png"}</script>
     <meta name="description" content="这篇文章我们了解半监督学习的概念 。 半监督学习在监督学习和无监督学习之间占据中间地位。 回顾以前学过的内容， 监督学习是在训练中模型从被标记的数据集中学习。 无监督学习是从未被标记的数据中学习。那半监督学习又是怎样的呢？ 半监督学习将有监督和无监督学习技术结合起来，在我们使用半监督学习的情况下，我们会同时使用标记和未标记的 数据。">
 <meta name="keywords" content="深度学习,ANNs,人工神经网络,semi-supervised learning,半监督学习">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="机器学习中的半监督学习(semi-supervised learning)">
 <meta property="og:url" content="http://yoursite.com/archives/5110.html">
-<meta property="og:site_name" content="Deep Learning">
+<meta property="og:site_name" content="天津亦友拾光文化传播有限公司">
 <meta property="og:description" content="这篇文章我们了解半监督学习的概念 。 半监督学习在监督学习和无监督学习之间占据中间地位。 回顾以前学过的内容， 监督学习是在训练中模型从被标记的数据集中学习。 无监督学习是从未被标记的数据中学习。那半监督学习又是怎样的呢？ 半监督学习将有监督和无监督学习技术结合起来，在我们使用半监督学习的情况下，我们会同时使用标记和未标记的 数据。">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="http://cdn.yiyouls.com/cluster-3-groups.png">
@@ -73,7 +73,7 @@
 <header id="header" data-behavior="4">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
-        <a class="header-title-link" href="/ ">Deep Learning</a>
+        <a class="header-title-link" href="/ ">天津亦友拾光文化传播有限公司</a>
     </div>
     
         
@@ -100,7 +100,7 @@
                 <a href="/#about">
                     <img class="sidebar-profile-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
                 </a>
-                <h4 class="sidebar-profile-name">友邻君</h4>
+                <h4 class="sidebar-profile-name">亦友拾光</h4>
                 
                     <h5 class="sidebar-profile-bio"><p>浙江大学在读</p>
 </h5>
@@ -481,7 +481,7 @@
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
-        Copyrights &copy; 2019 友邻君. 津ICP备18005385号.
+        Copyrights &copy; 2019 亦友拾光. 津ICP备18005385号.
     </span>
 </footer>
 
@@ -671,7 +671,7 @@
         
             <img id="about-card-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
         
-            <h4 id="about-card-name">友邻君</h4>
+            <h4 id="about-card-name">亦友拾光</h4>
         
             <div id="about-card-bio"><p>浙江大学在读</p>
 </div>
@@ -1010,20 +1010,5 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
     </script>
 
 
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+    <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
 </html>

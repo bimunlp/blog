@@ -5,9 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="Deep Learning">
-    <title>什么是神经网络模型过度拟合(overfitting)? - Deep Learning</title>
-    <meta name="author" content="友邻君">
+    <meta name="generator" content="天津亦友拾光文化传播有限公司">
+    <title>什么是神经网络模型过度拟合(overfitting)? - 天津亦友拾光文化传播有限公司</title>
+    <meta name="author" content="亦友拾光">
     
         <meta name="keywords" content="deep learning,neural network,mechine learning,ANN,AI,深度学习,机器学习,">
     
@@ -17,13 +17,13 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"articleBody":"神经网络中的过度拟合(overfitting)\n这篇文章我们介绍过度拟合的含义，以及一些减少过度拟合的技术．\n上篇文章中我们在讨论验证集的时候提到了过度拟合的概念，我们现在具体讨论一下它．\n当模型能够对训练集中包含的数据进行正确分类或预测，但是在对未经过训练的数据进行分类时效果不佳，就会发生过度拟合。这个时候该模型过度学习了训练集中的数据。\n\n如何检查模型是否过度拟合我们根据模型训练过程中训练数据和验证数据的相关指标来判断模型是否过度拟合．当我们在训练中指定验证集的时候，我们同时得到模型验证的准确度和损失，以及模型训练的准确度和损失．\n如果验证指标比训练指标差得多，则表明我们的模型过度拟合。\n如果在训练期间，模型的指标是好的，但是当我们使用模型来预测测试数据时，它不能准确地对测试集中的数据进行分类，我们也可以得知我们的模型过度拟合。\n过度拟合的概念可以归结为模型无法很好地进行泛化。它已经非常好地学习了训练集的特征，但是如果我们给模型任何稍微偏离训练期间所使用数据的新数据，它就无法对特征进行推广，不能准确预测输出。\n减少过度拟合过度拟合是一个非常常见的问题。我们怎样才能减少过度拟合呢？我们来看看一些技巧。\n向训练集添加更多数据最简单的方法就是添加更多数据。我们可以训练模型的数据越多，从训练集中学到的知识就越多。此外，随着数据的增加，我们希望增加数据集的多样性。\n例如，如果我们训练模型来分类图像是狗或猫的图像，但只给模型一些大型犬的图像，如拉布拉多，金毛猎犬等，那么在实践中如果它看到一只博美犬，它可能不太能认出这是一条狗。\n如果我们向该模型添加更多以包含更多品种狗的数据，那么我们的训练数据将变得更加多样化，这样模型就不太可能过度拟合了。\n数据增强减少模型过度拟合的另一个技巧是使用数据增强(data augmentation)，这是通过合理修改训练集中的数据来产生更多数据的过程。例如，对于图像数据，我们可以通过以下方式对数据进行修改：\n\n裁剪\n旋转\n翻转\n缩放\n\n我们将在后面的文章中详细介绍数据增强的概念 。\n数据增强的理念是允许我们向训练集添加更多数据，这些数据与我们已有的数据类似，它们并不完全相同，是某种程度上进行的合理的修改。\n例如，如果我们的大多数狗图像都是面向左侧的狗，那么添加翻转图像的增强数据将是一个合理的修改，这样我们的训练集也会有面向右侧的狗了。\n降低模型的复杂度我们可以采取的其他措施来减少过度拟合，比如降低模型的复杂度。我们可以通过简单的更改来降低复杂性，例如从模型中删除一些层，或减少层中神经元的数量。这可能有助于提高模型对以前从未见过的数据的泛化能力。\nDropout我们这里最后再讲一个减少过度拟合的方法－dropout 。这个方法背后的理念是，如果我们给模型添加dropout，它将在训练期间随机忽略给定层中的某些节点子集，即，它从层中删除一些节点。这些被dropout的节点将不参与数据的预测．\n这个技术同样可以提高模型的泛化能力。dropout是一种正则化技术(regularization technique)，我们会在以后的文章中完整介绍这个概念， 你也将理解为什么dropout能够满足我们的需要。\n希望你现在能够理解过度拟合的概念，明白它为什么会发生，以及如何去减少它。在接下来的文章中，我们将探讨欠拟合的概念。下次再见！\n","dateCreated":"2019-01-27T20:30:11+08:00","dateModified":"2019-02-24T13:52:34+08:00","datePublished":"2019-01-27T20:30:11+08:00","description":"神经网络中的过度拟合(overfitting)\n这篇文章我们介绍过度拟合的含义，以及一些减少过度拟合的技术．\n上篇文章中我们在讨论验证集的时候提到了过度拟合的概念，我们现在具体讨论一下它．\n当模型能够对训练集中包含的数据进行正确分类或预测，但是在对未经过训练的数据进行分类时效果不佳，就会发生过度拟合。这个时候该模型过度学习了训练集中的数据。","headline":"什么是神经网络模型过度拟合(overfitting)?","image":["http://cdn.yiyouls.com/overfit.png","http://cdn.yiyouls.com/ai.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/archives/53ec.html"},"publisher":{"@type":"Organization","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png","logo":{"@type":"ImageObject","url":"http://cdn.yiyouls.com/profile.png"}},"url":"http://yoursite.com/archives/53ec.html","keywords":"深度学习, ANNs, 人工神经网络, 过度拟合, overfitting","thumbnailUrl":"http://cdn.yiyouls.com/overfit.png"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"亦友拾光","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"articleBody":"神经网络中的过度拟合(overfitting)\n这篇文章我们介绍过度拟合的含义，以及一些减少过度拟合的技术．\n上篇文章中我们在讨论验证集的时候提到了过度拟合的概念，我们现在具体讨论一下它．\n当模型能够对训练集中包含的数据进行正确分类或预测，但是在对未经过训练的数据进行分类时效果不佳，就会发生过度拟合。这个时候该模型过度学习了训练集中的数据。\n\n如何检查模型是否过度拟合我们根据模型训练过程中训练数据和验证数据的相关指标来判断模型是否过度拟合．当我们在训练中指定验证集的时候，我们同时得到模型验证的准确度和损失，以及模型训练的准确度和损失．\n如果验证指标比训练指标差得多，则表明我们的模型过度拟合。\n如果在训练期间，模型的指标是好的，但是当我们使用模型来预测测试数据时，它不能准确地对测试集中的数据进行分类，我们也可以得知我们的模型过度拟合。\n过度拟合的概念可以归结为模型无法很好地进行泛化。它已经非常好地学习了训练集的特征，但是如果我们给模型任何稍微偏离训练期间所使用数据的新数据，它就无法对特征进行推广，不能准确预测输出。\n减少过度拟合过度拟合是一个非常常见的问题。我们怎样才能减少过度拟合呢？我们来看看一些技巧。\n向训练集添加更多数据最简单的方法就是添加更多数据。我们可以训练模型的数据越多，从训练集中学到的知识就越多。此外，随着数据的增加，我们希望增加数据集的多样性。\n例如，如果我们训练模型来分类图像是狗或猫的图像，但只给模型一些大型犬的图像，如拉布拉多，金毛猎犬等，那么在实践中如果它看到一只博美犬，它可能不太能认出这是一条狗。\n如果我们向该模型添加更多以包含更多品种狗的数据，那么我们的训练数据将变得更加多样化，这样模型就不太可能过度拟合了。\n数据增强减少模型过度拟合的另一个技巧是使用数据增强(data augmentation)，这是通过合理修改训练集中的数据来产生更多数据的过程。例如，对于图像数据，我们可以通过以下方式对数据进行修改：\n\n裁剪\n旋转\n翻转\n缩放\n\n我们将在后面的文章中详细介绍数据增强的概念 。\n数据增强的理念是允许我们向训练集添加更多数据，这些数据与我们已有的数据类似，它们并不完全相同，是某种程度上进行的合理的修改。\n例如，如果我们的大多数狗图像都是面向左侧的狗，那么添加翻转图像的增强数据将是一个合理的修改，这样我们的训练集也会有面向右侧的狗了。\n降低模型的复杂度我们可以采取的其他措施来减少过度拟合，比如降低模型的复杂度。我们可以通过简单的更改来降低复杂性，例如从模型中删除一些层，或减少层中神经元的数量。这可能有助于提高模型对以前从未见过的数据的泛化能力。\nDropout我们这里最后再讲一个减少过度拟合的方法－dropout 。这个方法背后的理念是，如果我们给模型添加dropout，它将在训练期间随机忽略给定层中的某些节点子集，即，它从层中删除一些节点。这些被dropout的节点将不参与数据的预测．\n这个技术同样可以提高模型的泛化能力。dropout是一种正则化技术(regularization technique)，我们会在以后的文章中完整介绍这个概念， 你也将理解为什么dropout能够满足我们的需要。\n希望你现在能够理解过度拟合的概念，明白它为什么会发生，以及如何去减少它。在接下来的文章中，我们将探讨欠拟合的概念。下次再见！\n","dateCreated":"2019-01-27T20:30:11+08:00","dateModified":"2019-02-24T13:52:34+08:00","datePublished":"2019-01-27T20:30:11+08:00","description":"神经网络中的过度拟合(overfitting)\n这篇文章我们介绍过度拟合的含义，以及一些减少过度拟合的技术．\n上篇文章中我们在讨论验证集的时候提到了过度拟合的概念，我们现在具体讨论一下它．\n当模型能够对训练集中包含的数据进行正确分类或预测，但是在对未经过训练的数据进行分类时效果不佳，就会发生过度拟合。这个时候该模型过度学习了训练集中的数据。","headline":"什么是神经网络模型过度拟合(overfitting)?","image":["http://cdn.yiyouls.com/overfit.png","http://cdn.yiyouls.com/ai.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/archives/53ec.html"},"publisher":{"@type":"Organization","name":"亦友拾光","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png","logo":{"@type":"ImageObject","url":"http://cdn.yiyouls.com/profile.png"}},"url":"http://yoursite.com/archives/53ec.html","keywords":"深度学习, ANNs, 人工神经网络, 过度拟合, overfitting","thumbnailUrl":"http://cdn.yiyouls.com/overfit.png"}</script>
     <meta name="description" content="神经网络中的过度拟合(overfitting) 这篇文章我们介绍过度拟合的含义，以及一些减少过度拟合的技术． 上篇文章中我们在讨论验证集的时候提到了过度拟合的概念，我们现在具体讨论一下它． 当模型能够对训练集中包含的数据进行正确分类或预测，但是在对未经过训练的数据进行分类时效果不佳，就会发生过度拟合。这个时候该模型过度学习了训练集中的数据。">
 <meta name="keywords" content="深度学习,ANNs,人工神经网络,过度拟合,overfitting">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="什么是神经网络模型过度拟合(overfitting)?">
 <meta property="og:url" content="http://yoursite.com/archives/53ec.html">
-<meta property="og:site_name" content="Deep Learning">
+<meta property="og:site_name" content="天津亦友拾光文化传播有限公司">
 <meta property="og:description" content="神经网络中的过度拟合(overfitting) 这篇文章我们介绍过度拟合的含义，以及一些减少过度拟合的技术． 上篇文章中我们在讨论验证集的时候提到了过度拟合的概念，我们现在具体讨论一下它． 当模型能够对训练集中包含的数据进行正确分类或预测，但是在对未经过训练的数据进行分类时效果不佳，就会发生过度拟合。这个时候该模型过度学习了训练集中的数据。">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:updated_time" content="2019-02-24T05:52:34.464Z">
@@ -71,7 +71,7 @@
 <header id="header" data-behavior="4">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
-        <a class="header-title-link" href="/ ">Deep Learning</a>
+        <a class="header-title-link" href="/ ">天津亦友拾光文化传播有限公司</a>
     </div>
     
         
@@ -98,7 +98,7 @@
                 <a href="/#about">
                     <img class="sidebar-profile-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
                 </a>
-                <h4 class="sidebar-profile-name">友邻君</h4>
+                <h4 class="sidebar-profile-name">亦友拾光</h4>
                 
                     <h5 class="sidebar-profile-bio"><p>浙江大学在读</p>
 </h5>
@@ -482,7 +482,7 @@
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
-        Copyrights &copy; 2019 友邻君. 津ICP备18005385号.
+        Copyrights &copy; 2019 亦友拾光. 津ICP备18005385号.
     </span>
 </footer>
 
@@ -672,7 +672,7 @@
         
             <img id="about-card-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
         
-            <h4 id="about-card-name">友邻君</h4>
+            <h4 id="about-card-name">亦友拾光</h4>
         
             <div id="about-card-bio"><p>浙江大学在读</p>
 </div>
@@ -1011,20 +1011,5 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
     </script>
 
 
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+    <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
 </html>

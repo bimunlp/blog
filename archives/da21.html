@@ -5,9 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="Deep Learning">
-    <title>如何理解神经网络中层(layer)的概念？ - Deep Learning</title>
-    <meta name="author" content="友邻君">
+    <meta name="generator" content="天津亦友拾光文化传播有限公司">
+    <title>如何理解神经网络中层(layer)的概念？ - 天津亦友拾光文化传播有限公司</title>
+    <meta name="author" content="亦友拾光">
     
         <meta name="keywords" content="deep learning,neural network,mechine learning,ANN,AI,深度学习,机器学习,">
     
@@ -17,13 +17,13 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"articleBody":"如何理解神经网络中层(layer)的概念?\n我们在之前的文章中认识了只有三个层的神经网络，但在很多时候我们有多个隐藏层，这篇文章探讨如何深入理解神经网络中层的概念，并提供一个多层神经网络的构建方法．\n\n\n\n神经网络的层\n为什么有不同类型的层？\n人工神经网络示例\n层的权重\n神经网络正向传播\n找到最佳权重\n\n\n用Keras代码定义神经网络\n\n\n神经网络的层\n为了更加深入地学习，我们需要更好地理解人工神经网络中层的概念，以及如何在keras中给一个顺序模型添加更多的层．\n上篇文章我们学习了ANN中的神经元是如何组织成层结构的．我们用了一个dense层的例子，这是一种全连接．当然，层的类型不止这一种，keras中有各种各样的层类型：\n\nDense层（全连接层）\n卷积(convolutional)层\n池化(pooling)层\n递归(recurrent)层\n正则化(normalization)层\n\n为什么有不同类型的层？不同的层对其输入执行不同的转换，并且某些层比其他层更适合某些特定任务。例如，卷积层通常用于处理图像数据的模型中。递归层用于处理时间序列数据的模型，完全连接层（顾名思义）将每个输入完全连接到其图层中的每个输出。\n这篇文章将继续从宏观层面理解层的概念，随着我们对深度学习认识的深入，我们会更加了解特定层类型的特殊作用．\n人工神经网络示例我们一起来看下面例子中的ANN模型：\n\n对于这个例子，第一层，即输入层，由八个节点组成，每个节点代表数据集中给定样本的某个要素．\n我们可以知道，来自数据集的单个样本由八个维度组成．当我们从数据集中选择样本并将此样本传递给模型时，样本中包含的八个值中的每一个都将提供给输入层中的相应节点。\n我们可以看到八个输入节点中的每一个都连接到下一层中的每个节点。\n第一层和第二层之间的每个连接将来自前一节点的输出传送到接收节点的输入（从左到右）。中间有六个节点的两个层都是隐藏层，因为它们位于输入和输出层之间。\n层的权重每两个节点之间的连接都有一个相关的权重，这个权重是一个数字。\n每个权重代表两个节点之间连接的强度。当网络在输入层中的给定节点处接收输入时，该输入通过连接传递到下一节点，并且输入将乘以分配给该连接的权重。\n对于第二层的每个节点，计算每个传入连接的加权和。然后将该总和传递给激活函数，该激活函数对给定的总和执行某种类型的变换。例如，激活函数可以将和变换为0和1之间的数。实际转换将根据使用的激活函数而变化。更多关于激活功能的介绍之后会提到．\n1node output = activation(weighted sum of inputs)\n神经网络正向传播一旦我们获得给定节点的输出，获得的输出就是作为输入传递给下一层节点的值。\n重复此过程直到到达输出层。输出层中的节点数取决于我们可能的输出个数或预测类的数量。在示例中，我们的预测类有四个。\n假设我们的模型的任务是对四种动物进行分类。输出层中的每个节点将代表四种可能性之一。例如，这些动物可以是猫，狗，马或牛。具体怎样分类取决于数据集中有多少个类。\n对于来自数据集的给定样本，从输入层到输出层的整个过程称为网络的前向传播。\n找到最佳权重在模型学习时，更新和优化所有连接的权重，使得输入数据点映射到正确的输出预测类。我们以后会学到更多关于此优化过程 。\n我们已经对神经网络模型中层是如何工作的有了一个大致了解。现在让我们看看如何用Keras代码表示我们的模型。\n用Keras代码定义神经网络在我们之前的讨论中，我们学习了如何使用Keras构建顺序模型。我们现在把它应用到本文中所讲的这个示例中。\n我们从定义一个Dense对象数组开始，即定义各个层。然后将该数组传递给顺序模型的构造函数。\n我们的神经网络是长这样：\n\n鉴于此，我们有：\n12345layers = [    Dense(6, input_shape=(8,), activation=&apos;relu&apos;),    Dense(6, activation=&apos;relu&apos;),    Dense(4, activation=&apos;softmax&apos;)]\n注意Dense数组中指定的第一个对象不是输入层。第一个Dense对象是第一个隐藏层。输入层被指定为第一个Dense对象构造函数中的参数。\n输入层共有８个节点，因此输入层形状被指定为input_shape=(8,)，第一个隐藏层有六个节点，第二个隐藏层也是如此，输出层有四个节点。\n我们通过activation=&#39;relu&#39;为两个隐藏层使用一个名为relu的激活函数，通过activation=&#39;softmax&#39; 为输出层使用一个名为softmax的激活函数。我们将在下一篇关于激活功能的文章中更详细地介绍这些功能。\n完整代码如下：\n12345678910from keras.models import Sequentialfrom keras.layers import Dense, Activationlayers = [    Dense(6, input_shape=(8,), activation=&apos;relu&apos;),    Dense(6, activation=&apos;relu&apos;),    Dense(4, activation=&apos;softmax&apos;)]model = Sequential(layers)\n以上是如何在Keras中表示一个拥有四个层的神经网络。通过这篇文章的介绍，希望你能够对神经网络中有哪些层及其运行方式有一个大致的了解。我们下篇文章再见！\n","dateCreated":"2019-01-25T20:59:25+08:00","dateModified":"2019-02-24T13:52:34+08:00","datePublished":"2019-01-25T20:59:25+08:00","description":"如何理解神经网络中层(layer)的概念?\n我们在之前的文章中认识了只有三个层的神经网络，但在很多时候我们有多个隐藏层，这篇文章探讨如何深入理解神经网络中层的概念，并提供一个多层神经网络的构建方法．","headline":"如何理解神经网络中层(layer)的概念？","image":["http://cdn.yiyouls.com/ceng.png","http://cdn.yiyouls.com/ai.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/archives/da21.html"},"publisher":{"@type":"Organization","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png","logo":{"@type":"ImageObject","url":"http://cdn.yiyouls.com/profile.png"}},"url":"http://yoursite.com/archives/da21.html","keywords":"深度学习, ANNs, 人工神经网络, layer","thumbnailUrl":"http://cdn.yiyouls.com/ceng.png"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"亦友拾光","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"articleBody":"如何理解神经网络中层(layer)的概念?\n我们在之前的文章中认识了只有三个层的神经网络，但在很多时候我们有多个隐藏层，这篇文章探讨如何深入理解神经网络中层的概念，并提供一个多层神经网络的构建方法．\n\n\n\n神经网络的层\n为什么有不同类型的层？\n人工神经网络示例\n层的权重\n神经网络正向传播\n找到最佳权重\n\n\n用Keras代码定义神经网络\n\n\n神经网络的层\n为了更加深入地学习，我们需要更好地理解人工神经网络中层的概念，以及如何在keras中给一个顺序模型添加更多的层．\n上篇文章我们学习了ANN中的神经元是如何组织成层结构的．我们用了一个dense层的例子，这是一种全连接．当然，层的类型不止这一种，keras中有各种各样的层类型：\n\nDense层（全连接层）\n卷积(convolutional)层\n池化(pooling)层\n递归(recurrent)层\n正则化(normalization)层\n\n为什么有不同类型的层？不同的层对其输入执行不同的转换，并且某些层比其他层更适合某些特定任务。例如，卷积层通常用于处理图像数据的模型中。递归层用于处理时间序列数据的模型，完全连接层（顾名思义）将每个输入完全连接到其图层中的每个输出。\n这篇文章将继续从宏观层面理解层的概念，随着我们对深度学习认识的深入，我们会更加了解特定层类型的特殊作用．\n人工神经网络示例我们一起来看下面例子中的ANN模型：\n\n对于这个例子，第一层，即输入层，由八个节点组成，每个节点代表数据集中给定样本的某个要素．\n我们可以知道，来自数据集的单个样本由八个维度组成．当我们从数据集中选择样本并将此样本传递给模型时，样本中包含的八个值中的每一个都将提供给输入层中的相应节点。\n我们可以看到八个输入节点中的每一个都连接到下一层中的每个节点。\n第一层和第二层之间的每个连接将来自前一节点的输出传送到接收节点的输入（从左到右）。中间有六个节点的两个层都是隐藏层，因为它们位于输入和输出层之间。\n层的权重每两个节点之间的连接都有一个相关的权重，这个权重是一个数字。\n每个权重代表两个节点之间连接的强度。当网络在输入层中的给定节点处接收输入时，该输入通过连接传递到下一节点，并且输入将乘以分配给该连接的权重。\n对于第二层的每个节点，计算每个传入连接的加权和。然后将该总和传递给激活函数，该激活函数对给定的总和执行某种类型的变换。例如，激活函数可以将和变换为0和1之间的数。实际转换将根据使用的激活函数而变化。更多关于激活功能的介绍之后会提到．\n1node output = activation(weighted sum of inputs)\n神经网络正向传播一旦我们获得给定节点的输出，获得的输出就是作为输入传递给下一层节点的值。\n重复此过程直到到达输出层。输出层中的节点数取决于我们可能的输出个数或预测类的数量。在示例中，我们的预测类有四个。\n假设我们的模型的任务是对四种动物进行分类。输出层中的每个节点将代表四种可能性之一。例如，这些动物可以是猫，狗，马或牛。具体怎样分类取决于数据集中有多少个类。\n对于来自数据集的给定样本，从输入层到输出层的整个过程称为网络的前向传播。\n找到最佳权重在模型学习时，更新和优化所有连接的权重，使得输入数据点映射到正确的输出预测类。我们以后会学到更多关于此优化过程 。\n我们已经对神经网络模型中层是如何工作的有了一个大致了解。现在让我们看看如何用Keras代码表示我们的模型。\n用Keras代码定义神经网络在我们之前的讨论中，我们学习了如何使用Keras构建顺序模型。我们现在把它应用到本文中所讲的这个示例中。\n我们从定义一个Dense对象数组开始，即定义各个层。然后将该数组传递给顺序模型的构造函数。\n我们的神经网络是长这样：\n\n鉴于此，我们有：\n12345layers = [    Dense(6, input_shape=(8,), activation=&apos;relu&apos;),    Dense(6, activation=&apos;relu&apos;),    Dense(4, activation=&apos;softmax&apos;)]\n注意Dense数组中指定的第一个对象不是输入层。第一个Dense对象是第一个隐藏层。输入层被指定为第一个Dense对象构造函数中的参数。\n输入层共有８个节点，因此输入层形状被指定为input_shape=(8,)，第一个隐藏层有六个节点，第二个隐藏层也是如此，输出层有四个节点。\n我们通过activation=&#39;relu&#39;为两个隐藏层使用一个名为relu的激活函数，通过activation=&#39;softmax&#39; 为输出层使用一个名为softmax的激活函数。我们将在下一篇关于激活功能的文章中更详细地介绍这些功能。\n完整代码如下：\n12345678910from keras.models import Sequentialfrom keras.layers import Dense, Activationlayers = [    Dense(6, input_shape=(8,), activation=&apos;relu&apos;),    Dense(6, activation=&apos;relu&apos;),    Dense(4, activation=&apos;softmax&apos;)]model = Sequential(layers)\n以上是如何在Keras中表示一个拥有四个层的神经网络。通过这篇文章的介绍，希望你能够对神经网络中有哪些层及其运行方式有一个大致的了解。我们下篇文章再见！\n","dateCreated":"2019-01-25T20:59:25+08:00","dateModified":"2019-02-24T13:52:34+08:00","datePublished":"2019-01-25T20:59:25+08:00","description":"如何理解神经网络中层(layer)的概念?\n我们在之前的文章中认识了只有三个层的神经网络，但在很多时候我们有多个隐藏层，这篇文章探讨如何深入理解神经网络中层的概念，并提供一个多层神经网络的构建方法．","headline":"如何理解神经网络中层(layer)的概念？","image":["http://cdn.yiyouls.com/ceng.png","http://cdn.yiyouls.com/ai.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/archives/da21.html"},"publisher":{"@type":"Organization","name":"亦友拾光","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png","logo":{"@type":"ImageObject","url":"http://cdn.yiyouls.com/profile.png"}},"url":"http://yoursite.com/archives/da21.html","keywords":"深度学习, ANNs, 人工神经网络, layer","thumbnailUrl":"http://cdn.yiyouls.com/ceng.png"}</script>
     <meta name="description" content="如何理解神经网络中层(layer)的概念? 我们在之前的文章中认识了只有三个层的神经网络，但在很多时候我们有多个隐藏层，这篇文章探讨如何深入理解神经网络中层的概念，并提供一个多层神经网络的构建方法．">
 <meta name="keywords" content="深度学习,ANNs,人工神经网络,layer">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="如何理解神经网络中层(layer)的概念？">
 <meta property="og:url" content="http://yoursite.com/archives/da21.html">
-<meta property="og:site_name" content="Deep Learning">
+<meta property="og:site_name" content="天津亦友拾光文化传播有限公司">
 <meta property="og:description" content="如何理解神经网络中层(layer)的概念? 我们在之前的文章中认识了只有三个层的神经网络，但在很多时候我们有多个隐藏层，这篇文章探讨如何深入理解神经网络中层的概念，并提供一个多层神经网络的构建方法．">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="http://cdn.yiyouls.com/cover_1.jpg">
@@ -75,7 +75,7 @@
 <header id="header" data-behavior="4">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
-        <a class="header-title-link" href="/ ">Deep Learning</a>
+        <a class="header-title-link" href="/ ">天津亦友拾光文化传播有限公司</a>
     </div>
     
         
@@ -102,7 +102,7 @@
                 <a href="/#about">
                     <img class="sidebar-profile-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
                 </a>
-                <h4 class="sidebar-profile-name">友邻君</h4>
+                <h4 class="sidebar-profile-name">亦友拾光</h4>
                 
                     <h5 class="sidebar-profile-bio"><p>浙江大学在读</p>
 </h5>
@@ -515,7 +515,7 @@
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
-        Copyrights &copy; 2019 友邻君. 津ICP备18005385号.
+        Copyrights &copy; 2019 亦友拾光. 津ICP备18005385号.
     </span>
 </footer>
 
@@ -705,7 +705,7 @@
         
             <img id="about-card-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
         
-            <h4 id="about-card-name">友邻君</h4>
+            <h4 id="about-card-name">亦友拾光</h4>
         
             <div id="about-card-bio"><p>浙江大学在读</p>
 </div>
@@ -1044,20 +1044,5 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
     </script>
 
 
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+    <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
 </html>

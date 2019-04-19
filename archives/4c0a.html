@@ -5,9 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="Deep Learning">
-    <title>如何训练(train)人工神经网络？ - Deep Learning</title>
-    <meta name="author" content="友邻君">
+    <meta name="generator" content="天津亦友拾光文化传播有限公司">
+    <title>如何训练(train)人工神经网络？ - 天津亦友拾光文化传播有限公司</title>
+    <meta name="author" content="亦友拾光">
     
         <meta name="keywords" content="deep learning,neural network,mechine learning,ANN,AI,深度学习,机器学习,">
     
@@ -17,13 +17,13 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"articleBody":"神经网络的训练这篇文章带大家学习如何训练一个人工神经网络．之前的文章中我们学习了如何构建一个简单的人工神经网络，当我们把一个神经网络配置好之后，下一步就是来训练它了．\n\n\n\n什么是训练？\n优化算法(optimization algorithm)\n损失函数(loss function)\n\n\n结论\n\n\n什么是训练？模型的训练过程，基本来说就是一个解决优化问题的过程，优化模型中的权重．我们的任务是找到最准确地将输入数据映射到正确输出类的权重。这种映射是网络学习而来的。\n在关于层的介绍的那篇文章中我们提到了这个概念．我们在构建模型的时候，可以给这些节点的连接分配任意的权重，在训练中对这些权重进行迭代更新使其向最优值移动．\n123// 伪代码def train(model):    model.weights.update()\n优化算法(optimization algorithm)使用我们称之为优化算法(optimization algorithm)的方法来优化权重。不同的优化算法有不同的优化流程。我们用优化器(optimizer)一词来指代所选择的优化算法。最广为人知的优化器称为随机梯度下降(stochastic gradient descent)，或更简单地称为 SGD。\n当处理优化问题时，必须先有一个优化目标，现在让我们考虑一下SGD在优化模型权重时的优化目标。\n SGD的目标是优化一些给定的函数，这些函数被称为损失函数．SGD更新模型的权重，使得此损失函数尽可能接近其最小值。\n损失函数(loss function)我们在模型优化中可以用的损失函数有很多，一个常见的损失函数是均方误差（MSE）。具体使用哪种损失函数是由我们在实践中决定的。现在，让我们先从一般层面认识一下损失函数，之后再更加详细地研究具体的损失函数。\n我们所说的损失指的是什么？在训练过程中，我们给模型提供数据和数据相应的标签．\n例如，假设我们想要训练一个用来分类图像中是猫的还是狗的模型。我们给这个模型提供猫和狗的图像，以及说明每个图是猫是狗的标签。\n我们现在把一只猫的图像传递给模型，当猫的图像数据从网络中传递，前向传播结束后，模型会产生一个输出．这个输出包含了模型认为这个图像是猫是狗的信息．\n具体来讲，这个输出反映的是图像是猫或是狗的概率．比如，模型给图像是猫分配７５％的概率，给图像是狗分配２５％的概率．在这种情况下，模型为图像是猫赋予更大的可能性．\n\n有75％的可能性是猫\n25％的几率它是一只狗\n\n这其实跟人类的思维方式很类似，我们所有的判断都是基于猜想和预测．\n\n所谓损失是神经网络对图像的猜测跟图像的标签之间的差距，SGD尝试最小化这种误差，使得模型猜测尽可能地精确．\n在我们把所有的数据都传递给模型之后，我们会重复这一过程，让数据在模型中一次次传递．这种重复的数据传递就是训练．模型在训练的过程中能够＂学到＂很多信息，我们在下一篇文章会详细介绍．SGD通过反复的迭代，最终能够从数据中学习．\n结论我们现在已经了解到数据在网络中前向传播的过程中大致发生了什么．在下一篇文章中我们会介绍模型是怎样通过多次前向传播学习的，以及SGD最小化损失函数的具体方法．\n这篇文章提到了很多新的概念，例如优化器，损失，我们会在以后的文章中分开来讲这些内容．记得去查看我们最新的博文．\n","dateCreated":"2019-01-26T15:56:23+08:00","dateModified":"2019-02-24T13:52:34+08:00","datePublished":"2019-01-26T15:56:23+08:00","description":"神经网络的训练这篇文章带大家学习如何训练一个人工神经网络．之前的文章中我们学习了如何构建一个简单的人工神经网络，当我们把一个神经网络配置好之后，下一步就是来训练它了．","headline":"如何训练(train)人工神经网络？","image":["http://cdn.yiyouls.com/sgd.png","http://cdn.yiyouls.com/ai.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/archives/4c0a.html"},"publisher":{"@type":"Organization","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png","logo":{"@type":"ImageObject","url":"http://cdn.yiyouls.com/profile.png"}},"url":"http://yoursite.com/archives/4c0a.html","keywords":"深度学习, ANNs, 人工神经网络, 训练","thumbnailUrl":"http://cdn.yiyouls.com/sgd.png"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"亦友拾光","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"articleBody":"神经网络的训练这篇文章带大家学习如何训练一个人工神经网络．之前的文章中我们学习了如何构建一个简单的人工神经网络，当我们把一个神经网络配置好之后，下一步就是来训练它了．\n\n\n\n什么是训练？\n优化算法(optimization algorithm)\n损失函数(loss function)\n\n\n结论\n\n\n什么是训练？模型的训练过程，基本来说就是一个解决优化问题的过程，优化模型中的权重．我们的任务是找到最准确地将输入数据映射到正确输出类的权重。这种映射是网络学习而来的。\n在关于层的介绍的那篇文章中我们提到了这个概念．我们在构建模型的时候，可以给这些节点的连接分配任意的权重，在训练中对这些权重进行迭代更新使其向最优值移动．\n123// 伪代码def train(model):    model.weights.update()\n优化算法(optimization algorithm)使用我们称之为优化算法(optimization algorithm)的方法来优化权重。不同的优化算法有不同的优化流程。我们用优化器(optimizer)一词来指代所选择的优化算法。最广为人知的优化器称为随机梯度下降(stochastic gradient descent)，或更简单地称为 SGD。\n当处理优化问题时，必须先有一个优化目标，现在让我们考虑一下SGD在优化模型权重时的优化目标。\n SGD的目标是优化一些给定的函数，这些函数被称为损失函数．SGD更新模型的权重，使得此损失函数尽可能接近其最小值。\n损失函数(loss function)我们在模型优化中可以用的损失函数有很多，一个常见的损失函数是均方误差（MSE）。具体使用哪种损失函数是由我们在实践中决定的。现在，让我们先从一般层面认识一下损失函数，之后再更加详细地研究具体的损失函数。\n我们所说的损失指的是什么？在训练过程中，我们给模型提供数据和数据相应的标签．\n例如，假设我们想要训练一个用来分类图像中是猫的还是狗的模型。我们给这个模型提供猫和狗的图像，以及说明每个图是猫是狗的标签。\n我们现在把一只猫的图像传递给模型，当猫的图像数据从网络中传递，前向传播结束后，模型会产生一个输出．这个输出包含了模型认为这个图像是猫是狗的信息．\n具体来讲，这个输出反映的是图像是猫或是狗的概率．比如，模型给图像是猫分配７５％的概率，给图像是狗分配２５％的概率．在这种情况下，模型为图像是猫赋予更大的可能性．\n\n有75％的可能性是猫\n25％的几率它是一只狗\n\n这其实跟人类的思维方式很类似，我们所有的判断都是基于猜想和预测．\n\n所谓损失是神经网络对图像的猜测跟图像的标签之间的差距，SGD尝试最小化这种误差，使得模型猜测尽可能地精确．\n在我们把所有的数据都传递给模型之后，我们会重复这一过程，让数据在模型中一次次传递．这种重复的数据传递就是训练．模型在训练的过程中能够＂学到＂很多信息，我们在下一篇文章会详细介绍．SGD通过反复的迭代，最终能够从数据中学习．\n结论我们现在已经了解到数据在网络中前向传播的过程中大致发生了什么．在下一篇文章中我们会介绍模型是怎样通过多次前向传播学习的，以及SGD最小化损失函数的具体方法．\n这篇文章提到了很多新的概念，例如优化器，损失，我们会在以后的文章中分开来讲这些内容．记得去查看我们最新的博文．\n","dateCreated":"2019-01-26T15:56:23+08:00","dateModified":"2019-02-24T13:52:34+08:00","datePublished":"2019-01-26T15:56:23+08:00","description":"神经网络的训练这篇文章带大家学习如何训练一个人工神经网络．之前的文章中我们学习了如何构建一个简单的人工神经网络，当我们把一个神经网络配置好之后，下一步就是来训练它了．","headline":"如何训练(train)人工神经网络？","image":["http://cdn.yiyouls.com/sgd.png","http://cdn.yiyouls.com/ai.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/archives/4c0a.html"},"publisher":{"@type":"Organization","name":"亦友拾光","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png","logo":{"@type":"ImageObject","url":"http://cdn.yiyouls.com/profile.png"}},"url":"http://yoursite.com/archives/4c0a.html","keywords":"深度学习, ANNs, 人工神经网络, 训练","thumbnailUrl":"http://cdn.yiyouls.com/sgd.png"}</script>
     <meta name="description" content="神经网络的训练这篇文章带大家学习如何训练一个人工神经网络．之前的文章中我们学习了如何构建一个简单的人工神经网络，当我们把一个神经网络配置好之后，下一步就是来训练它了．">
 <meta name="keywords" content="深度学习,ANNs,人工神经网络,训练">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="如何训练(train)人工神经网络？">
 <meta property="og:url" content="http://yoursite.com/archives/4c0a.html">
-<meta property="og:site_name" content="Deep Learning">
+<meta property="og:site_name" content="天津亦友拾光文化传播有限公司">
 <meta property="og:description" content="神经网络的训练这篇文章带大家学习如何训练一个人工神经网络．之前的文章中我们学习了如何构建一个简单的人工神经网络，当我们把一个神经网络配置好之后，下一步就是来训练它了．">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="http://cdn.yiyouls.com/humanlearn.jpg">
@@ -73,7 +73,7 @@
 <header id="header" data-behavior="4">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
-        <a class="header-title-link" href="/ ">Deep Learning</a>
+        <a class="header-title-link" href="/ ">天津亦友拾光文化传播有限公司</a>
     </div>
     
         
@@ -100,7 +100,7 @@
                 <a href="/#about">
                     <img class="sidebar-profile-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
                 </a>
-                <h4 class="sidebar-profile-name">友邻君</h4>
+                <h4 class="sidebar-profile-name">亦友拾光</h4>
                 
                     <h5 class="sidebar-profile-bio"><p>浙江大学在读</p>
 </h5>
@@ -490,7 +490,7 @@
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
-        Copyrights &copy; 2019 友邻君. 津ICP备18005385号.
+        Copyrights &copy; 2019 亦友拾光. 津ICP备18005385号.
     </span>
 </footer>
 
@@ -680,7 +680,7 @@
         
             <img id="about-card-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
         
-            <h4 id="about-card-name">友邻君</h4>
+            <h4 id="about-card-name">亦友拾光</h4>
         
             <div id="about-card-bio"><p>浙江大学在读</p>
 </div>
@@ -1019,20 +1019,5 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
     </script>
 
 
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+    <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
 </html>

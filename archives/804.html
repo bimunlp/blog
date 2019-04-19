@@ -5,9 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="Deep Learning">
-    <title>监督学习(supervised learning) - Deep Learning</title>
-    <meta name="author" content="友邻君">
+    <meta name="generator" content="天津亦友拾光文化传播有限公司">
+    <title>监督学习(supervised learning) - 天津亦友拾光文化传播有限公司</title>
+    <meta name="author" content="亦友拾光">
     
         <meta name="keywords" content="deep learning,neural network,mechine learning,ANN,AI,深度学习,机器学习,">
     
@@ -17,13 +17,13 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"articleBody":"有监督的机器学习这篇文章中讨论有监督学习。到目前为止，在本系列中，每当我们提到模型训练过程或模型经历的学习过程时，我们实际上所指的都是有监督的学习。\n\n标记数据(labeled data)当我们给训练集中的数据加标签(label)时，我们所做的就是有监督的学习。\n\n标签(label)用于监督或指导学习过程。\n\n我们在训练集，验证集和测试集的文章中解释过，在向模型传递数据的时候，不管是训练数据还是验证数据都是标记过的。这是发生在监督学习中的情况。\n在监督学习中，在训练期间传递给模型的每条数据都是由输入对象（样本）以及相应的标签（输出值）组成的对。\n通过监督学习，模型根据从标记的训练数据中学习知识，建立给定输入到特定输出创建映射。\n例如，假设我们正在训练一个根据爬行动物的图像对不同类型的爬行动物进行分类的模型。训练中我们向模型传递蜥蜴的图像 。\n由于我们进行的是有监督的学习，我们需要为模型提供此图像的标签，也就是说蜥蜴。\n根据如何训练人工神经网络一文中的介绍，该模型会对图像进行分类输出，然后通过查看该图像的预测值与图像的实际标签之间的差异来确定分类误差．\n标签以数字形式表示我们需要将标签编码为数字。例如，蜥蜴的标签可以编码为0，而乌龟的标签可以编码为1。\n然后我们将训练集经历完所有epoch，确定它们的损失和误差 。在训练中模型的目标是最大限度地减少损失，因此当我们部署模型并使用它来预测未经训练的数据时，它基于的是训练期间标记过的数据．\n但是，如果我们没有为模型提供相应的标签，那么替代方案是什么？嗯，与监督学习相反，我们可以使用一种称为无监督学习的方法 ，以及另一种称为半监督学习的技术。我们将在以后的文章中介绍这些方面。\n现在，我们通过一些Keras代码，向大家展示怎样向模型传递标记样本。\n在Keras框架下处理标记数据首先导入相应的库：\n123456import kerasfrom keras import backend as Kfrom keras.models import Sequentialfrom keras.layers import Activationfrom keras.layers.core import Densefrom keras.optimizers import Adam\n假设我们使用的是一个简单的Sequential模型，它有两个隐藏的dense层和一个具有两个输出类别的输出层。\n12345model = Sequential([    Dense(16, input_shape=(2,), activation=&apos;relu&apos;),    Dense(32, activation=&apos;relu&apos;),    Dense(2, activation=&apos;sigmoid&apos;)])\n在本系列早期文章中已经介绍了这些所导入的库，模型的体系结构以及我们如何编译模型等内容 。\n我们假设这个模型的任务是根据身高和体重两个特征来为男性和女性分类。\n12345model.compile(    Adam(lr=0.0001),     loss=&apos;sparse_categorical_crossentropy&apos;,     metrics=[&apos;accuracy&apos;])\n在模型编译之后，我们先给大家一些训练数据的示例。\n123456789# 体重, 身高train_samples = [    [150, 67],     [130, 60],     [200, 65],     [125, 52],     [230, 72],     [181, 70]]\n实际训练数据存储在train_samples变量中。我们用列表来储存这些体重－身高对，每对是一个单独的样本．\n每对中的一个元素是以英镑为单位的体重，第二个元素是以英寸为单位的高度 。\n接下来，我们将标签存储在此train_labels变量中，0代表男性，1代表女性。\n123＃0：男性＃1：女性train_labels = [ 1 ，1 ，0 ，1 ，0 ，0 ]\n每个标签的位置对应于train_samples变量中每个样本的位置。例如，这里的第一个1代表一个女性，是train_samples数组中第一个元素的标签。第二个train_labels元素对应于第二个train_samples元素，以此类推。\n12345678model.fit(    x=train_samples,     y=train_labels,    batch_size=3,    epochs=10,    shuffle=True,    verbose=2)\n我们通过调用model.fit()来训练模型，这在之前的文章中讲过，这里指定的第一个参数x是train_samples 变量，而第二个参数y是相应的train_labels。\n希望您现在能够理解监督学习是什么以及如何做监督学习。在后面的文章中，我们将这个方法与其他学习方法进行对比。下篇文章见！\n","dateCreated":"2019-02-22T21:26:39+08:00","dateModified":"2019-02-24T14:23:54+08:00","datePublished":"2019-02-22T21:26:39+08:00","description":"有监督的机器学习这篇文章中讨论有监督学习。到目前为止，在本系列中，每当我们提到模型训练过程或模型经历的学习过程时，我们实际上所指的都是有监督的学习。","headline":"监督学习(supervised learning)","image":["http://cdn.yiyouls.com/supervise.png","http://cdn.yiyouls.com/ai.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/archives/804.html"},"publisher":{"@type":"Organization","name":"友邻君","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png","logo":{"@type":"ImageObject","url":"http://cdn.yiyouls.com/profile.png"}},"url":"http://yoursite.com/archives/804.html","keywords":"深度学习, ANNs, 人工神经网络, supervised learning, 监督学习","thumbnailUrl":"http://cdn.yiyouls.com/supervise.png"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"亦友拾光","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"articleBody":"有监督的机器学习这篇文章中讨论有监督学习。到目前为止，在本系列中，每当我们提到模型训练过程或模型经历的学习过程时，我们实际上所指的都是有监督的学习。\n\n标记数据(labeled data)当我们给训练集中的数据加标签(label)时，我们所做的就是有监督的学习。\n\n标签(label)用于监督或指导学习过程。\n\n我们在训练集，验证集和测试集的文章中解释过，在向模型传递数据的时候，不管是训练数据还是验证数据都是标记过的。这是发生在监督学习中的情况。\n在监督学习中，在训练期间传递给模型的每条数据都是由输入对象（样本）以及相应的标签（输出值）组成的对。\n通过监督学习，模型根据从标记的训练数据中学习知识，建立给定输入到特定输出创建映射。\n例如，假设我们正在训练一个根据爬行动物的图像对不同类型的爬行动物进行分类的模型。训练中我们向模型传递蜥蜴的图像 。\n由于我们进行的是有监督的学习，我们需要为模型提供此图像的标签，也就是说蜥蜴。\n根据如何训练人工神经网络一文中的介绍，该模型会对图像进行分类输出，然后通过查看该图像的预测值与图像的实际标签之间的差异来确定分类误差．\n标签以数字形式表示我们需要将标签编码为数字。例如，蜥蜴的标签可以编码为0，而乌龟的标签可以编码为1。\n然后我们将训练集经历完所有epoch，确定它们的损失和误差 。在训练中模型的目标是最大限度地减少损失，因此当我们部署模型并使用它来预测未经训练的数据时，它基于的是训练期间标记过的数据．\n但是，如果我们没有为模型提供相应的标签，那么替代方案是什么？嗯，与监督学习相反，我们可以使用一种称为无监督学习的方法 ，以及另一种称为半监督学习的技术。我们将在以后的文章中介绍这些方面。\n现在，我们通过一些Keras代码，向大家展示怎样向模型传递标记样本。\n在Keras框架下处理标记数据首先导入相应的库：\n123456import kerasfrom keras import backend as Kfrom keras.models import Sequentialfrom keras.layers import Activationfrom keras.layers.core import Densefrom keras.optimizers import Adam\n假设我们使用的是一个简单的Sequential模型，它有两个隐藏的dense层和一个具有两个输出类别的输出层。\n12345model = Sequential([    Dense(16, input_shape=(2,), activation=&apos;relu&apos;),    Dense(32, activation=&apos;relu&apos;),    Dense(2, activation=&apos;sigmoid&apos;)])\n在本系列早期文章中已经介绍了这些所导入的库，模型的体系结构以及我们如何编译模型等内容 。\n我们假设这个模型的任务是根据身高和体重两个特征来为男性和女性分类。\n12345model.compile(    Adam(lr=0.0001),     loss=&apos;sparse_categorical_crossentropy&apos;,     metrics=[&apos;accuracy&apos;])\n在模型编译之后，我们先给大家一些训练数据的示例。\n123456789# 体重, 身高train_samples = [    [150, 67],     [130, 60],     [200, 65],     [125, 52],     [230, 72],     [181, 70]]\n实际训练数据存储在train_samples变量中。我们用列表来储存这些体重－身高对，每对是一个单独的样本．\n每对中的一个元素是以英镑为单位的体重，第二个元素是以英寸为单位的高度 。\n接下来，我们将标签存储在此train_labels变量中，0代表男性，1代表女性。\n123＃0：男性＃1：女性train_labels = [ 1 ，1 ，0 ，1 ，0 ，0 ]\n每个标签的位置对应于train_samples变量中每个样本的位置。例如，这里的第一个1代表一个女性，是train_samples数组中第一个元素的标签。第二个train_labels元素对应于第二个train_samples元素，以此类推。\n12345678model.fit(    x=train_samples,     y=train_labels,    batch_size=3,    epochs=10,    shuffle=True,    verbose=2)\n我们通过调用model.fit()来训练模型，这在之前的文章中讲过，这里指定的第一个参数x是train_samples 变量，而第二个参数y是相应的train_labels。\n希望您现在能够理解监督学习是什么以及如何做监督学习。在后面的文章中，我们将这个方法与其他学习方法进行对比。下篇文章见！\n","dateCreated":"2019-02-22T21:26:39+08:00","dateModified":"2019-02-24T14:23:54+08:00","datePublished":"2019-02-22T21:26:39+08:00","description":"有监督的机器学习这篇文章中讨论有监督学习。到目前为止，在本系列中，每当我们提到模型训练过程或模型经历的学习过程时，我们实际上所指的都是有监督的学习。","headline":"监督学习(supervised learning)","image":["http://cdn.yiyouls.com/supervise.png","http://cdn.yiyouls.com/ai.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/archives/804.html"},"publisher":{"@type":"Organization","name":"亦友拾光","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png","logo":{"@type":"ImageObject","url":"http://cdn.yiyouls.com/profile.png"}},"url":"http://yoursite.com/archives/804.html","keywords":"深度学习, ANNs, 人工神经网络, supervised learning, 监督学习","thumbnailUrl":"http://cdn.yiyouls.com/supervise.png"}</script>
     <meta name="description" content="有监督的机器学习这篇文章中讨论有监督学习。到目前为止，在本系列中，每当我们提到模型训练过程或模型经历的学习过程时，我们实际上所指的都是有监督的学习。">
 <meta name="keywords" content="深度学习,ANNs,人工神经网络,supervised learning,监督学习">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="监督学习(supervised learning)">
 <meta property="og:url" content="http://yoursite.com/archives/804.html">
-<meta property="og:site_name" content="Deep Learning">
+<meta property="og:site_name" content="天津亦友拾光文化传播有限公司">
 <meta property="og:description" content="有监督的机器学习这篇文章中讨论有监督学习。到目前为止，在本系列中，每当我们提到模型训练过程或模型经历的学习过程时，我们实际上所指的都是有监督的学习。">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:updated_time" content="2019-02-24T06:23:54.098Z">
@@ -71,7 +71,7 @@
 <header id="header" data-behavior="4">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
-        <a class="header-title-link" href="/ ">Deep Learning</a>
+        <a class="header-title-link" href="/ ">天津亦友拾光文化传播有限公司</a>
     </div>
     
         
@@ -98,7 +98,7 @@
                 <a href="/#about">
                     <img class="sidebar-profile-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
                 </a>
-                <h4 class="sidebar-profile-name">友邻君</h4>
+                <h4 class="sidebar-profile-name">亦友拾光</h4>
                 
                     <h5 class="sidebar-profile-bio"><p>浙江大学在读</p>
 </h5>
@@ -488,7 +488,7 @@
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
-        Copyrights &copy; 2019 友邻君. 津ICP备18005385号.
+        Copyrights &copy; 2019 亦友拾光. 津ICP备18005385号.
     </span>
 </footer>
 
@@ -678,7 +678,7 @@
         
             <img id="about-card-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
         
-            <h4 id="about-card-name">友邻君</h4>
+            <h4 id="about-card-name">亦友拾光</h4>
         
             <div id="about-card-bio"><p>浙江大学在读</p>
 </div>
@@ -1017,20 +1017,5 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
     </script>
 
 
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+    <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
 </html>
