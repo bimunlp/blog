@@ -5,9 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="天津亦友拾光文化传播有限公司">
-    <title>什么是卷积神经网络(convolutional neural network)深度学习？ - 天津亦友拾光文化传播有限公司</title>
-    <meta name="author" content="亦友拾光">
+    <meta name="generator" content="机器学习">
+    <title>什么是卷积神经网络(convolutional neural network)深度学习？ - 机器学习</title>
+    <meta name="author" content="天津亦友拾光文化传播有限公司">
     
         <meta name="keywords" content="deep learning,neural network,mechine learning,ANN,AI,深度学习,机器学习,">
     
@@ -17,13 +17,13 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"亦友拾光","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"articleBody":"什么是卷积神经网络(convolutional neural network)深度学习？这篇文章我们来了解卷积神经网络的概念。卷积神经网络，也称为 CNN或ConvNet，是一种人工神经网络，迄今为止最常用的计算机视觉领域神经网络。\n虽然图像分析是CNNS最广泛应用的领域，不过这种神经网络也可以用于其他数据分析或数据分类任务。让我们具体来看一看吧．\n\n什么是CNN？从本质上讲，CNN也是一种人工神经网络，它拥有能够检测并分离模式(pattern)的能力。这种对模式的识别能力使CNN在图像分析中非常有用。\nCNN并不简简单单只是一个人工神经网络，它与标准的多层感知机（MLP）有着明显的区别．\nCNN有被称作卷积层(convolutional layer)的隐藏层，这些层是构成CNN网络的关键所在，即卷积神经网络．\n\nCNN网络的隐藏层中包含卷积层。\n\nCNN网络中还有很多非卷积层，　但卷积层是CNN网络的基础。\n那么卷积层的作用是什么？\n卷积层与任何其他层一样，卷积层接收输入，以某种方式转换输入，然后将转换后的输入输出到下一层。卷积层的输入称为输入通道，输出称为输出通道。\n数据在卷积层中发生的变换称为卷积运算(convolution operation)。这个是深度学习从业者经常使用的名词，不过从数学上讲，卷积层执行的卷积运算实际应该被叫做互相关(cross-correlations)。\n我们稍后会对这种运算作介绍。现在，让我们首先了解一下卷积层所做的变换背后所蕴含的深层思想。\n滤波器(filter)和卷积运算如前所述，卷积神经网络能够检测图像的模式。\n对于每个卷积层，我们需要指定图层包含的滤波器的数量 。这些过滤器用来检测图像的模式。\n模式(pattern)我们所说的滤波器能够检测模式到底指的是什么？一张图片中包含了很多的元素，不同的边缘，形状，纹理，物体等。这就是我们所说的模式。\n\n边缘\n形状\n纹理\n曲线\n物体\n颜色\n\n滤波器在图像中可以检测到的一种模式是边缘，因此滤波器又被称为边缘检测器。\n除了边缘，一些滤波器可能会检测边角。有的可以检测圆弧，有的可以检测方形。这些简单的几何滤波器就是我们在卷积神经网络前端所看到的。\n网络越深，滤波器就越复杂。在后面的层中，滤波器可以检测特定的物体，如眼睛，耳朵，头发或毛发，羽毛，鳞片或喙，而不是只是边缘和简单的形状。\n在更深的层中，滤波器能够检测更复杂的物体，如犬，猫，蜥蜴和鸟类的整体。\n为了理解这些卷积层及其各自滤波器是如何工作的，让我们看一个例子。\n滤波器（模式检测器）假设我们有一个卷积神经网络，向它传递手写体数字的图像（如MNIST数据集中的），训练的目标是人网络识别这些书写体各自代表的数值1， 2，3等。\n\n假设模型中的第一个隐藏层是卷积层。如前所述，在向模型添加卷积层时，我们还必须指定卷积层的滤波器个数。\n滤波器的数量决定了输出通道的数量。\n从技术上讲，滤波器可以被认为是一个相对较小的矩阵（ 张量），我们需要选择该矩阵具有的行数和列数，并将矩阵内的值用随机数初始化。\n对于第一个卷积层，我们给它指定一个大小为3 x 3的过滤器。\n卷积层让我们看一下卷积操作的示例动画：\n\n此动画展示了以非数字呈现的卷积过程。底部是一个蓝色的输入通道，卷积滤波器在底部的输入通道依次投影到绿色的输出通道：\n\n蓝色（底部） - 输入通道\n阴影（蓝色上面） - 3 x 3卷积滤波器\n绿色（顶部） - 输出通道\n\n对于蓝色输入通道上的每个位置，3 x 3滤波器进行匹配计算，将蓝色输入通道的阴影部分映射到绿色输出通道的相应阴影部分。\n输入通道被卷积层接收之后，滤波器在输入的每组3 x 3像素上＂滑动＂，直到它从整个图像每个3 x 3像素块滑过。\n卷积操作这种滑动被称为卷积(convolving)，所以正确的说法是这个滤波器将在输入的每个3 x 3像素块上进行卷积。\n蓝色输入通道是用矩阵表示的MNIST数据集中的图像。此矩阵中的值是图像中的各个像素。这些图像是灰度图像，所以我们只有一个输入通道。\n\n灰度图像具有单个颜色通道\nRGB图像具有三个颜色通道\n\n将此输入传递到卷积层。\n我们指定第一个卷积层只有一个滤波器，这个滤波器在输入的每个3 x 3像素块上进行卷积。当滤波器落在第一个3 x 3像素块上时，会计算并存储滤波器本身与输入的3 x 3像素块的点积。对于每个3 x 3像素块滤波器都会执行这个操作。\n例如，我们计算滤波器与第一个3 x 3像素块的点积，然后将结果存储在输出通道中。接下来滤波器滑动到下一个3 x 3 像素块，计算点积，并将该值存储为输出通道中的下一个像素。\n在此过滤器对整个输入进行卷积之后，会形成对输入的新表示，现在将其存储在输出通道中。此输出通道称为特征映射(feature map)。\n这个绿色输出通道成为下一层输入通道的输入，然后重复滤波器在上层的步骤，形成新的输出通道。\n这只是一个非常简单的例子，这样的滤波器被视为模式检测器。\n输入和输出通道假设我们的输入是MNIST数据集中具有七个灰度图像（单色通道）：\n\n假设第一个卷积层有四个3 x 3滤波器，这些滤波器用下面的值填充。通过使-1s对应于黑色，1s对应于白色，并且0s对应于灰色，可以在视觉上表示这些值。\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n如果我们将这四个滤波器中的每个滤波器分别与原始图像进行卷积，每个滤波器的输出结果如下：\n\n\n\n\n\n\n\n\n\n\n\n\n卷积层输出通道\n\n\n\n\n\n\n可以看到所有这四个滤波器检测的都是边缘。在输出通道中，亮部的像素是滤波器检测到的像素。在第一张图中，亮部的像素（白色）检测到的是数字７顶部的水平边缘．\n第二张图检测到左侧垂直边缘，同样是以高亮的像素展示。第三张图检测底部水平边缘，第四张图检测右侧垂直边缘。\n正如我们之前提到的，这些滤波器的功能非常基础，能够检测边缘。这些是在卷积神经网络前端最有可能看到的滤波器。更复杂的滤波器位于网络的更深处，逐渐能够检测到更复杂的模式，如下所示：\n\n上图中左侧的形状是滤波器从右侧图像中获得的。我们可以从左侧分辨出圆圈，曲线和边角。在更深的层中滤波器可以检测到更复杂的图案，如狗的面部或鸟类的足，如下所示：\n\n要知道，这些模式检测器都是由神经网络自动生成的。滤波器的值通过随机初始化，网络在训练中通过学习来的知识对这些值做更改。滤波器对模式的检测能力是由网络自身所自动习得的。\n\n模式识别器是在学习中出现的。\n\n过去的计算机视觉科学家是通过手动建立滤波器（模式检测器）。其中一个例子是Sobel滤波器，它是一种边缘检测器。随着深度学习技术的发展，我们开始能够使用神经网络自动习得这些过滤器．\n如果您有兴趣了解如何在代码中使用CNN，那么请查看CNN和Keras系列中关于微调的文章 ，或者在本系列中使用PyTorch从头开始构建神经网络 。\n相信你现在应该对卷积神经网络有了一个基本的了解，我们下次再见！\n","dateCreated":"2019-02-27T13:36:22+08:00","dateModified":"2019-02-27T13:42:27+08:00","datePublished":"2019-02-27T13:36:22+08:00","description":"什么是卷积神经网络(convolutional neural network)深度学习？这篇文章我们来了解卷积神经网络的概念。卷积神经网络，也称为 CNN或ConvNet，是一种人工神经网络，迄今为止最常用的计算机视觉领域神经网络。\n虽然图像分析是CNNS最广泛应用的领域，不过这种神经网络也可以用于其他数据分析或数据分类任务。让我们具体来看一看吧．","headline":"什么是卷积神经网络(convolutional neural network)深度学习？","image":["http://cdn.yiyouls.com/convolution.png","http://cdn.yiyouls.com/ai.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/archives/0.html"},"publisher":{"@type":"Organization","name":"亦友拾光","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png","logo":{"@type":"ImageObject","url":"http://cdn.yiyouls.com/profile.png"}},"url":"http://yoursite.com/archives/0.html","keywords":"深度学习, ANNs, 人工神经网络, 卷积神经网络, CNN","thumbnailUrl":"http://cdn.yiyouls.com/convolution.png"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"天津亦友拾光文化传播有限公司","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"articleBody":"什么是卷积神经网络(convolutional neural network)深度学习？这篇文章我们来了解卷积神经网络的概念。卷积神经网络，也称为 CNN或ConvNet，是一种人工神经网络，迄今为止最常用的计算机视觉领域神经网络。\n虽然图像分析是CNNS最广泛应用的领域，不过这种神经网络也可以用于其他数据分析或数据分类任务。让我们具体来看一看吧．\n\n什么是CNN？从本质上讲，CNN也是一种人工神经网络，它拥有能够检测并分离模式(pattern)的能力。这种对模式的识别能力使CNN在图像分析中非常有用。\nCNN并不简简单单只是一个人工神经网络，它与标准的多层感知机（MLP）有着明显的区别．\nCNN有被称作卷积层(convolutional layer)的隐藏层，这些层是构成CNN网络的关键所在，即卷积神经网络．\n\nCNN网络的隐藏层中包含卷积层。\n\nCNN网络中还有很多非卷积层，　但卷积层是CNN网络的基础。\n那么卷积层的作用是什么？\n卷积层与任何其他层一样，卷积层接收输入，以某种方式转换输入，然后将转换后的输入输出到下一层。卷积层的输入称为输入通道，输出称为输出通道。\n数据在卷积层中发生的变换称为卷积运算(convolution operation)。这个是深度学习从业者经常使用的名词，不过从数学上讲，卷积层执行的卷积运算实际应该被叫做互相关(cross-correlations)。\n我们稍后会对这种运算作介绍。现在，让我们首先了解一下卷积层所做的变换背后所蕴含的深层思想。\n滤波器(filter)和卷积运算如前所述，卷积神经网络能够检测图像的模式。\n对于每个卷积层，我们需要指定图层包含的滤波器的数量 。这些过滤器用来检测图像的模式。\n模式(pattern)我们所说的滤波器能够检测模式到底指的是什么？一张图片中包含了很多的元素，不同的边缘，形状，纹理，物体等。这就是我们所说的模式。\n\n边缘\n形状\n纹理\n曲线\n物体\n颜色\n\n滤波器在图像中可以检测到的一种模式是边缘，因此滤波器又被称为边缘检测器。\n除了边缘，一些滤波器可能会检测边角。有的可以检测圆弧，有的可以检测方形。这些简单的几何滤波器就是我们在卷积神经网络前端所看到的。\n网络越深，滤波器就越复杂。在后面的层中，滤波器可以检测特定的物体，如眼睛，耳朵，头发或毛发，羽毛，鳞片或喙，而不是只是边缘和简单的形状。\n在更深的层中，滤波器能够检测更复杂的物体，如犬，猫，蜥蜴和鸟类的整体。\n为了理解这些卷积层及其各自滤波器是如何工作的，让我们看一个例子。\n滤波器（模式检测器）假设我们有一个卷积神经网络，向它传递手写体数字的图像（如MNIST数据集中的），训练的目标是人网络识别这些书写体各自代表的数值1， 2，3等。\n\n假设模型中的第一个隐藏层是卷积层。如前所述，在向模型添加卷积层时，我们还必须指定卷积层的滤波器个数。\n滤波器的数量决定了输出通道的数量。\n从技术上讲，滤波器可以被认为是一个相对较小的矩阵（ 张量），我们需要选择该矩阵具有的行数和列数，并将矩阵内的值用随机数初始化。\n对于第一个卷积层，我们给它指定一个大小为3 x 3的过滤器。\n卷积层让我们看一下卷积操作的示例动画：\n\n此动画展示了以非数字呈现的卷积过程。底部是一个蓝色的输入通道，卷积滤波器在底部的输入通道依次投影到绿色的输出通道：\n\n蓝色（底部） - 输入通道\n阴影（蓝色上面） - 3 x 3卷积滤波器\n绿色（顶部） - 输出通道\n\n对于蓝色输入通道上的每个位置，3 x 3滤波器进行匹配计算，将蓝色输入通道的阴影部分映射到绿色输出通道的相应阴影部分。\n输入通道被卷积层接收之后，滤波器在输入的每组3 x 3像素上＂滑动＂，直到它从整个图像每个3 x 3像素块滑过。\n卷积操作这种滑动被称为卷积(convolving)，所以正确的说法是这个滤波器将在输入的每个3 x 3像素块上进行卷积。\n蓝色输入通道是用矩阵表示的MNIST数据集中的图像。此矩阵中的值是图像中的各个像素。这些图像是灰度图像，所以我们只有一个输入通道。\n\n灰度图像具有单个颜色通道\nRGB图像具有三个颜色通道\n\n将此输入传递到卷积层。\n我们指定第一个卷积层只有一个滤波器，这个滤波器在输入的每个3 x 3像素块上进行卷积。当滤波器落在第一个3 x 3像素块上时，会计算并存储滤波器本身与输入的3 x 3像素块的点积。对于每个3 x 3像素块滤波器都会执行这个操作。\n例如，我们计算滤波器与第一个3 x 3像素块的点积，然后将结果存储在输出通道中。接下来滤波器滑动到下一个3 x 3 像素块，计算点积，并将该值存储为输出通道中的下一个像素。\n在此过滤器对整个输入进行卷积之后，会形成对输入的新表示，现在将其存储在输出通道中。此输出通道称为特征映射(feature map)。\n这个绿色输出通道成为下一层输入通道的输入，然后重复滤波器在上层的步骤，形成新的输出通道。\n这只是一个非常简单的例子，这样的滤波器被视为模式检测器。\n输入和输出通道假设我们的输入是MNIST数据集中具有七个灰度图像（单色通道）：\n\n假设第一个卷积层有四个3 x 3滤波器，这些滤波器用下面的值填充。通过使-1s对应于黑色，1s对应于白色，并且0s对应于灰色，可以在视觉上表示这些值。\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n如果我们将这四个滤波器中的每个滤波器分别与原始图像进行卷积，每个滤波器的输出结果如下：\n\n\n\n\n\n\n\n\n\n\n\n\n卷积层输出通道\n\n\n\n\n\n\n可以看到所有这四个滤波器检测的都是边缘。在输出通道中，亮部的像素是滤波器检测到的像素。在第一张图中，亮部的像素（白色）检测到的是数字７顶部的水平边缘．\n第二张图检测到左侧垂直边缘，同样是以高亮的像素展示。第三张图检测底部水平边缘，第四张图检测右侧垂直边缘。\n正如我们之前提到的，这些滤波器的功能非常基础，能够检测边缘。这些是在卷积神经网络前端最有可能看到的滤波器。更复杂的滤波器位于网络的更深处，逐渐能够检测到更复杂的模式，如下所示：\n\n上图中左侧的形状是滤波器从右侧图像中获得的。我们可以从左侧分辨出圆圈，曲线和边角。在更深的层中滤波器可以检测到更复杂的图案，如狗的面部或鸟类的足，如下所示：\n\n要知道，这些模式检测器都是由神经网络自动生成的。滤波器的值通过随机初始化，网络在训练中通过学习来的知识对这些值做更改。滤波器对模式的检测能力是由网络自身所自动习得的。\n\n模式识别器是在学习中出现的。\n\n过去的计算机视觉科学家是通过手动建立滤波器（模式检测器）。其中一个例子是Sobel滤波器，它是一种边缘检测器。随着深度学习技术的发展，我们开始能够使用神经网络自动习得这些过滤器．\n如果您有兴趣了解如何在代码中使用CNN，那么请查看CNN和Keras系列中关于微调的文章 ，或者在本系列中使用PyTorch从头开始构建神经网络 。\n相信你现在应该对卷积神经网络有了一个基本的了解，我们下次再见！\n","dateCreated":"2019-02-27T13:36:22+08:00","dateModified":"2019-02-27T13:42:27+08:00","datePublished":"2019-02-27T13:36:22+08:00","description":"什么是卷积神经网络(convolutional neural network)深度学习？这篇文章我们来了解卷积神经网络的概念。卷积神经网络，也称为 CNN或ConvNet，是一种人工神经网络，迄今为止最常用的计算机视觉领域神经网络。\n虽然图像分析是CNNS最广泛应用的领域，不过这种神经网络也可以用于其他数据分析或数据分类任务。让我们具体来看一看吧．","headline":"什么是卷积神经网络(convolutional neural network)深度学习？","image":["http://cdn.yiyouls.com/convolution.png","http://cdn.yiyouls.com/ai.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/archives/0.html"},"publisher":{"@type":"Organization","name":"天津亦友拾光文化传播有限公司","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png","logo":{"@type":"ImageObject","url":"http://cdn.yiyouls.com/profile.png"}},"url":"http://yoursite.com/archives/0.html","keywords":"深度学习, ANNs, 人工神经网络, 卷积神经网络, CNN","thumbnailUrl":"http://cdn.yiyouls.com/convolution.png"}</script>
     <meta name="description" content="什么是卷积神经网络(convolutional neural network)深度学习？这篇文章我们来了解卷积神经网络的概念。卷积神经网络，也称为 CNN或ConvNet，是一种人工神经网络，迄今为止最常用的计算机视觉领域神经网络。 虽然图像分析是CNNS最广泛应用的领域，不过这种神经网络也可以用于其他数据分析或数据分类任务。让我们具体来看一看吧．">
 <meta name="keywords" content="深度学习,ANNs,人工神经网络,卷积神经网络,CNN">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="什么是卷积神经网络(convolutional neural network)深度学习？">
 <meta property="og:url" content="http://yoursite.com/archives/0.html">
-<meta property="og:site_name" content="天津亦友拾光文化传播有限公司">
+<meta property="og:site_name" content="机器学习">
 <meta property="og:description" content="什么是卷积神经网络(convolutional neural network)深度学习？这篇文章我们来了解卷积神经网络的概念。卷积神经网络，也称为 CNN或ConvNet，是一种人工神经网络，迄今为止最常用的计算机视觉领域神经网络。 虽然图像分析是CNNS最广泛应用的领域，不过这种神经网络也可以用于其他数据分析或数据分类任务。让我们具体来看一看吧．">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="http://cdn.yiyouls.com/mnist-dataset.png">
@@ -89,7 +89,7 @@
 <header id="header" data-behavior="4">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
-        <a class="header-title-link" href="/ ">天津亦友拾光文化传播有限公司</a>
+        <a class="header-title-link" href="/ ">机器学习</a>
     </div>
     
         
@@ -116,7 +116,7 @@
                 <a href="/#about">
                     <img class="sidebar-profile-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
                 </a>
-                <h4 class="sidebar-profile-name">亦友拾光</h4>
+                <h4 class="sidebar-profile-name">天津亦友拾光文化传播有限公司</h4>
                 
                     <h5 class="sidebar-profile-bio"><p>浙江大学在读</p>
 </h5>
@@ -587,7 +587,7 @@
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
-        Copyrights &copy; 2019 亦友拾光. 津ICP备18005385号.
+        Copyrights &copy; 2019 天津亦友拾光文化传播有限公司. 津ICP备18005385号
     </span>
 </footer>
 
@@ -777,7 +777,7 @@
         
             <img id="about-card-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
         
-            <h4 id="about-card-name">亦友拾光</h4>
+            <h4 id="about-card-name">天津亦友拾光文化传播有限公司</h4>
         
             <div id="about-card-bio"><p>浙江大学在读</p>
 </div>
@@ -1116,5 +1116,20 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
     </script>
 
 
-    <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
 </html>

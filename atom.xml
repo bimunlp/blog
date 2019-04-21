@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>天津亦友拾光文化传播有限公司</title>
+  <title>机器学习</title>
   
   <subtitle>深度学习</subtitle>
   <link href="/atom.xml" rel="self"/>
@@ -10,7 +10,7 @@
   <id>http://yoursite.com/</id>
   
   <author>
-    <name>亦友拾光</name>
+    <name>天津亦友拾光文化传播有限公司</name>
     
   </author>
   

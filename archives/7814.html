@@ -5,9 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="天津亦友拾光文化传播有限公司">
-    <title>人工神经网络中的批尺寸(batch size)详解 - 天津亦友拾光文化传播有限公司</title>
-    <meta name="author" content="亦友拾光">
+    <meta name="generator" content="机器学习">
+    <title>人工神经网络中的批尺寸(batch size)详解 - 机器学习</title>
+    <meta name="author" content="天津亦友拾光文化传播有限公司">
     
         <meta name="keywords" content="deep learning,neural network,mechine learning,ANN,AI,深度学习,机器学习,">
     
@@ -17,13 +17,13 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"亦友拾光","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"articleBody":"人工神经网络中的批尺寸这篇文章向大家介绍在训练人工神经网络的过程中指定批尺寸的意思是什么，以及如何在Keras中为模型定义一个批尺寸．\n\n在之前关于神经网络如何学习的文章中，我们已经了解了在我们训练模型的时候，我们需要指定一个批尺寸，我们这篇文章将要详细介绍这一点．\n什么是批尺寸简单来说，批尺寸的意思是每次训练我们给模型传递多少数据，一个批(batch)也被称作一个mini-batch.\n\n批尺寸指的是一次性向网络传递多少样本\n\n我们知道一个epoch指的是把训练集所有数据在网络中传递一遍，因此批尺寸和epoch不是一个东西．我们通过一个例子来比较它们之间的关系．\n一个epoch中可以有很多批假设我们有1000张犬类照片，希望通过一个神经网络区分出它们的不同种类，如果我们把批尺寸定义为10，那么一组10张的图片会被一起传递给网络，每十张作为一个批次．\n1一个epoch中的批数＝训练集大小／批尺寸\n我们现在明白了批尺寸的概念，但是分批的意义是什么？为什么不把数据中的所有元素一个接一个地传递给网络呢？为什么要把数据分成不同的批次？\n为什么要分批在目前的计算能力下，计算机能够一次处理很多个数据．一般来讲，批尺寸越大，模型训练中就能够更快地完成一次epoch.\n但是这种方式也有确定，因为即使机器能够处理一些尺寸很大的批，当我们把批尺寸设的过大的时候，会降低模型的质量，这会导致模型的泛化能力降低．\n所以，批尺寸是另外一个我们需要考虑的超参数，这个超参的调整不仅仅与我们的模型要求有关，也与我们所能够利用的计算资源有关．\n举例来说，如果我们给批尺寸指定了一个相对较大的数值，例如100，这时机器可能没有能力通过并行的方式一次性处理这１００张图片，这个时候我们就需要把批尺寸降低一些．\n到目前为止相信大家对批尺寸已经有了大致的了解，我们来看一看如何在Keras框架中指定这个参数．\n在Keras中用代码指定批尺寸依然使用我们在之前文章中使用过的顺序模型\n12345model = Sequential([    Dense(16, input_shape=(1,), activation=&apos;relu&apos;),    Dense(32, activation=&apos;relu&apos;, kernel_regularizer=regularizers.l2(0.01)),    Dense(2, activation=&apos;sigmoid&apos;)])\n 我们这里重点关注在哪里调用model.fit()方法，这是我们在训练模型时候用到的函数，我们在之前介绍神经网络如何学习的文章中使用过它．\n123456789model.fit(    scaled_train_samples,     train_labels,     validation_data=valid_set,     batch_size=10,    epochs=20,     shuffle=True,     verbose=2)\n在这里fit()函数接受一个batch_size的参数，我们就是在这里指定训练的批尺寸的．在这个例子里我们给他随意指定了一个值10．\n这样我们在训练中每次向模型传递１０个样本，在一个epoch结束时把所有的样本都传递一遍，在下一关epoch中再次循环一遍．\n希望你现在对批尺寸这个概念有了一个清晰的认识，并且学会在Keras中指定批尺寸．我们下篇文章见．\n","dateCreated":"2019-02-15T16:47:02+08:00","dateModified":"2019-02-24T14:28:23+08:00","datePublished":"2019-02-15T16:47:02+08:00","description":"人工神经网络中的批尺寸这篇文章向大家介绍在训练人工神经网络的过程中指定批尺寸的意思是什么，以及如何在Keras中为模型定义一个批尺寸．","headline":"人工神经网络中的批尺寸(batch size)详解","image":["http://cdn.yiyouls.com/batch.png","http://cdn.yiyouls.com/ai.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/archives/7814.html"},"publisher":{"@type":"Organization","name":"亦友拾光","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png","logo":{"@type":"ImageObject","url":"http://cdn.yiyouls.com/profile.png"}},"url":"http://yoursite.com/archives/7814.html","keywords":"深度学习, ANNs, 人工神经网络, 批尺寸, batch size","thumbnailUrl":"http://cdn.yiyouls.com/batch.png"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"天津亦友拾光文化传播有限公司","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"articleBody":"人工神经网络中的批尺寸这篇文章向大家介绍在训练人工神经网络的过程中指定批尺寸的意思是什么，以及如何在Keras中为模型定义一个批尺寸．\n\n在之前关于神经网络如何学习的文章中，我们已经了解了在我们训练模型的时候，我们需要指定一个批尺寸，我们这篇文章将要详细介绍这一点．\n什么是批尺寸简单来说，批尺寸的意思是每次训练我们给模型传递多少数据，一个批(batch)也被称作一个mini-batch.\n\n批尺寸指的是一次性向网络传递多少样本\n\n我们知道一个epoch指的是把训练集所有数据在网络中传递一遍，因此批尺寸和epoch不是一个东西．我们通过一个例子来比较它们之间的关系．\n一个epoch中可以有很多批假设我们有1000张犬类照片，希望通过一个神经网络区分出它们的不同种类，如果我们把批尺寸定义为10，那么一组10张的图片会被一起传递给网络，每十张作为一个批次．\n1一个epoch中的批数＝训练集大小／批尺寸\n我们现在明白了批尺寸的概念，但是分批的意义是什么？为什么不把数据中的所有元素一个接一个地传递给网络呢？为什么要把数据分成不同的批次？\n为什么要分批在目前的计算能力下，计算机能够一次处理很多个数据．一般来讲，批尺寸越大，模型训练中就能够更快地完成一次epoch.\n但是这种方式也有确定，因为即使机器能够处理一些尺寸很大的批，当我们把批尺寸设的过大的时候，会降低模型的质量，这会导致模型的泛化能力降低．\n所以，批尺寸是另外一个我们需要考虑的超参数，这个超参的调整不仅仅与我们的模型要求有关，也与我们所能够利用的计算资源有关．\n举例来说，如果我们给批尺寸指定了一个相对较大的数值，例如100，这时机器可能没有能力通过并行的方式一次性处理这１００张图片，这个时候我们就需要把批尺寸降低一些．\n到目前为止相信大家对批尺寸已经有了大致的了解，我们来看一看如何在Keras框架中指定这个参数．\n在Keras中用代码指定批尺寸依然使用我们在之前文章中使用过的顺序模型\n12345model = Sequential([    Dense(16, input_shape=(1,), activation=&apos;relu&apos;),    Dense(32, activation=&apos;relu&apos;, kernel_regularizer=regularizers.l2(0.01)),    Dense(2, activation=&apos;sigmoid&apos;)])\n 我们这里重点关注在哪里调用model.fit()方法，这是我们在训练模型时候用到的函数，我们在之前介绍神经网络如何学习的文章中使用过它．\n123456789model.fit(    scaled_train_samples,     train_labels,     validation_data=valid_set,     batch_size=10,    epochs=20,     shuffle=True,     verbose=2)\n在这里fit()函数接受一个batch_size的参数，我们就是在这里指定训练的批尺寸的．在这个例子里我们给他随意指定了一个值10．\n这样我们在训练中每次向模型传递１０个样本，在一个epoch结束时把所有的样本都传递一遍，在下一关epoch中再次循环一遍．\n希望你现在对批尺寸这个概念有了一个清晰的认识，并且学会在Keras中指定批尺寸．我们下篇文章见．\n","dateCreated":"2019-02-15T16:47:02+08:00","dateModified":"2019-02-24T14:28:23+08:00","datePublished":"2019-02-15T16:47:02+08:00","description":"人工神经网络中的批尺寸这篇文章向大家介绍在训练人工神经网络的过程中指定批尺寸的意思是什么，以及如何在Keras中为模型定义一个批尺寸．","headline":"人工神经网络中的批尺寸(batch size)详解","image":["http://cdn.yiyouls.com/batch.png","http://cdn.yiyouls.com/ai.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/archives/7814.html"},"publisher":{"@type":"Organization","name":"天津亦友拾光文化传播有限公司","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png","logo":{"@type":"ImageObject","url":"http://cdn.yiyouls.com/profile.png"}},"url":"http://yoursite.com/archives/7814.html","keywords":"深度学习, ANNs, 人工神经网络, 批尺寸, batch size","thumbnailUrl":"http://cdn.yiyouls.com/batch.png"}</script>
     <meta name="description" content="人工神经网络中的批尺寸这篇文章向大家介绍在训练人工神经网络的过程中指定批尺寸的意思是什么，以及如何在Keras中为模型定义一个批尺寸．">
 <meta name="keywords" content="深度学习,ANNs,人工神经网络,批尺寸,batch size">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="人工神经网络中的批尺寸(batch size)详解">
 <meta property="og:url" content="http://yoursite.com/archives/7814.html">
-<meta property="og:site_name" content="天津亦友拾光文化传播有限公司">
+<meta property="og:site_name" content="机器学习">
 <meta property="og:description" content="人工神经网络中的批尺寸这篇文章向大家介绍在训练人工神经网络的过程中指定批尺寸的意思是什么，以及如何在Keras中为模型定义一个批尺寸．">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:updated_time" content="2019-02-24T06:28:23.131Z">
@@ -71,7 +71,7 @@
 <header id="header" data-behavior="4">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
-        <a class="header-title-link" href="/ ">天津亦友拾光文化传播有限公司</a>
+        <a class="header-title-link" href="/ ">机器学习</a>
     </div>
     
         
@@ -98,7 +98,7 @@
                 <a href="/#about">
                     <img class="sidebar-profile-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
                 </a>
-                <h4 class="sidebar-profile-name">亦友拾光</h4>
+                <h4 class="sidebar-profile-name">天津亦友拾光文化传播有限公司</h4>
                 
                     <h5 class="sidebar-profile-bio"><p>浙江大学在读</p>
 </h5>
@@ -478,7 +478,7 @@
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
-        Copyrights &copy; 2019 亦友拾光. 津ICP备18005385号.
+        Copyrights &copy; 2019 天津亦友拾光文化传播有限公司. 津ICP备18005385号
     </span>
 </footer>
 
@@ -668,7 +668,7 @@
         
             <img id="about-card-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
         
-            <h4 id="about-card-name">亦友拾光</h4>
+            <h4 id="about-card-name">天津亦友拾光文化传播有限公司</h4>
         
             <div id="about-card-bio"><p>浙江大学在读</p>
 </div>
@@ -1007,5 +1007,20 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
     </script>
 
 
-    <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
 </html>

@@ -5,9 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="天津亦友拾光文化传播有限公司">
-    <title>深入认识神经网络中的损失函数(loss function) - 天津亦友拾光文化传播有限公司</title>
-    <meta name="author" content="亦友拾光">
+    <meta name="generator" content="机器学习">
+    <title>深入认识神经网络中的损失函数(loss function) - 机器学习</title>
+    <meta name="author" content="天津亦友拾光文化传播有限公司">
     
         <meta name="keywords" content="deep learning,neural network,mechine learning,ANN,AI,深度学习,机器学习,">
     
@@ -17,13 +17,13 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"亦友拾光","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"articleBody":"神经网络损失函数详解\n这篇文章带大家细致探讨什么是损失函数，以及它在人工神经网络中的应用．\n我们在讲神经网络的训练的那篇文章已经见过损失函数的概念，随机梯度下降(SGD)通过迭代更新网络中的权重来最小化损失函数．\n\n训练中在每个epoch结束的时候，在训练过程中的每个时期结束时，将使用网络的输出预测和相应输入的真实标签来计算损失。\n 假设我们的模型需要对猫和狗的图像进行分类，并假定猫的标签为0而狗的标签为1。\n\n猫：0\n狗：1\n\n现在假设我们将猫的图像传递给模型，并且提供的输出为0.25。在这种情况下，模型的预测和真实标签之间的差异是 0.25 - 0.00 = 0.25。这种差异也称为误差(error)。\n1误差= 0.25 - 0.00 = 0.25\n对每个输出执行该过程。对于每个epoch，误差在所有输出个体上累积。\n现在让我们考察一个在实践中常用的损失函数－均方误差（MSE）。\n均方误差（MSE）对于单个样本，均方误差首先计算输出预测值与标签值之间的差异（误差），然后对误差进行平方，这就是MSE对单个输入的操作，就这么简单．\n1MSE（输入）=（输出 - 标签）*（输出 - 标签）\n如果一次将多个样本传递给模型（一批样本），需要对所有这些样本的平方误差取均值。\n这里只是对误差函数中的一种－均方误差MSE背后的数学方程做了介绍，我们能够使用的损失函数还有很多．\n我们刚才用于计算单个样本误差的一般方法同样适用于所有不同类型的损失函数。不同的函数有不同的算法，它们对误差的计算过程也不尽相同．我们通过给平方误差取均值来计算MSE，但是其他的损失函数使用不同的算法来决定取什么值．\n如果我们将整个训练集一次性传递给模型（batch_size=1），那么我们需要在每次epoch结束的时候计算损失．\n如果将训练集分成批次(batches)，并且一次一批地传递给模型，这样要在每批次上计算损失。无论采用哪种方法，由于损失的大小取决于权重值，我们希望每次更新权重时都能看到损失的下降。鉴于SGD的目标是最小化损失，我们需要很多次epoch来使损失降到最低。 \n\n用Keras代码表示损失函数我们还使用上篇文章定义的模型：\n12345model = Sequential([    Dense(16, input_shape=(1,), activation=&apos;relu&apos;),    Dense(32, activation=&apos;relu&apos;),    Dense(2, activation=&apos;sigmoid&apos;)])\n有了模型之后，我们这样编译它：\n12345model.compile(    Adam(lr=.0001),     loss=&apos;sparse_categorical_crossentropy&apos;,     metrics=[&apos;accuracy&apos;])\n通过观察compile函数的第二个参数，我们可以看到指定的损失函为loss=&#39;sparse_categorical_crossentropy&#39;。\n在这个例子中，我们使用了称为稀疏分类交叉熵（sparse categorical crossentropy）的损失函数 ，当然我们可以选择别的损失函数，例如MSE。\n目前Keras中可用的损失函数如下：\n1234567891011121314mean_squared_errormean_absolute_errormean_absolute_percentage_errormean_squared_logarithmic_errorsquared_hingehingecategorical_hingelogcoshcategorical_crossentropysparse_categorical_crossentropybinary_crossentropykullback_leibler_divergencepoissoncosine_proximity\n希望你现在能对损失函数有一个大致的了解，明白它在神经网络中的工作原理，并且能够在Keras中指定一个损失函数．我们下篇文章再见！\n","dateCreated":"2019-01-27T18:05:23+08:00","dateModified":"2019-02-24T13:52:34+08:00","datePublished":"2019-01-27T18:05:23+08:00","description":"神经网络损失函数详解\n这篇文章带大家细致探讨什么是损失函数，以及它在人工神经网络中的应用．\n我们在讲神经网络的训练的那篇文章已经见过损失函数的概念，随机梯度下降(SGD)通过迭代更新网络中的权重来最小化损失函数．","headline":"深入认识神经网络中的损失函数(loss function)","image":["http://cdn.yiyouls.com/lossf.png","http://cdn.yiyouls.com/ai.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/archives/3b9f.html"},"publisher":{"@type":"Organization","name":"亦友拾光","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png","logo":{"@type":"ImageObject","url":"http://cdn.yiyouls.com/profile.png"}},"url":"http://yoursite.com/archives/3b9f.html","keywords":"深度学习, ANNs, 人工神经网络, 损失函数, loss function","thumbnailUrl":"http://cdn.yiyouls.com/lossf.png"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"天津亦友拾光文化传播有限公司","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"articleBody":"神经网络损失函数详解\n这篇文章带大家细致探讨什么是损失函数，以及它在人工神经网络中的应用．\n我们在讲神经网络的训练的那篇文章已经见过损失函数的概念，随机梯度下降(SGD)通过迭代更新网络中的权重来最小化损失函数．\n\n训练中在每个epoch结束的时候，在训练过程中的每个时期结束时，将使用网络的输出预测和相应输入的真实标签来计算损失。\n 假设我们的模型需要对猫和狗的图像进行分类，并假定猫的标签为0而狗的标签为1。\n\n猫：0\n狗：1\n\n现在假设我们将猫的图像传递给模型，并且提供的输出为0.25。在这种情况下，模型的预测和真实标签之间的差异是 0.25 - 0.00 = 0.25。这种差异也称为误差(error)。\n1误差= 0.25 - 0.00 = 0.25\n对每个输出执行该过程。对于每个epoch，误差在所有输出个体上累积。\n现在让我们考察一个在实践中常用的损失函数－均方误差（MSE）。\n均方误差（MSE）对于单个样本，均方误差首先计算输出预测值与标签值之间的差异（误差），然后对误差进行平方，这就是MSE对单个输入的操作，就这么简单．\n1MSE（输入）=（输出 - 标签）*（输出 - 标签）\n如果一次将多个样本传递给模型（一批样本），需要对所有这些样本的平方误差取均值。\n这里只是对误差函数中的一种－均方误差MSE背后的数学方程做了介绍，我们能够使用的损失函数还有很多．\n我们刚才用于计算单个样本误差的一般方法同样适用于所有不同类型的损失函数。不同的函数有不同的算法，它们对误差的计算过程也不尽相同．我们通过给平方误差取均值来计算MSE，但是其他的损失函数使用不同的算法来决定取什么值．\n如果我们将整个训练集一次性传递给模型（batch_size=1），那么我们需要在每次epoch结束的时候计算损失．\n如果将训练集分成批次(batches)，并且一次一批地传递给模型，这样要在每批次上计算损失。无论采用哪种方法，由于损失的大小取决于权重值，我们希望每次更新权重时都能看到损失的下降。鉴于SGD的目标是最小化损失，我们需要很多次epoch来使损失降到最低。 \n\n用Keras代码表示损失函数我们还使用上篇文章定义的模型：\n12345model = Sequential([    Dense(16, input_shape=(1,), activation=&apos;relu&apos;),    Dense(32, activation=&apos;relu&apos;),    Dense(2, activation=&apos;sigmoid&apos;)])\n有了模型之后，我们这样编译它：\n12345model.compile(    Adam(lr=.0001),     loss=&apos;sparse_categorical_crossentropy&apos;,     metrics=[&apos;accuracy&apos;])\n通过观察compile函数的第二个参数，我们可以看到指定的损失函为loss=&#39;sparse_categorical_crossentropy&#39;。\n在这个例子中，我们使用了称为稀疏分类交叉熵（sparse categorical crossentropy）的损失函数 ，当然我们可以选择别的损失函数，例如MSE。\n目前Keras中可用的损失函数如下：\n1234567891011121314mean_squared_errormean_absolute_errormean_absolute_percentage_errormean_squared_logarithmic_errorsquared_hingehingecategorical_hingelogcoshcategorical_crossentropysparse_categorical_crossentropybinary_crossentropykullback_leibler_divergencepoissoncosine_proximity\n希望你现在能对损失函数有一个大致的了解，明白它在神经网络中的工作原理，并且能够在Keras中指定一个损失函数．我们下篇文章再见！\n","dateCreated":"2019-01-27T18:05:23+08:00","dateModified":"2019-02-24T13:52:34+08:00","datePublished":"2019-01-27T18:05:23+08:00","description":"神经网络损失函数详解\n这篇文章带大家细致探讨什么是损失函数，以及它在人工神经网络中的应用．\n我们在讲神经网络的训练的那篇文章已经见过损失函数的概念，随机梯度下降(SGD)通过迭代更新网络中的权重来最小化损失函数．","headline":"深入认识神经网络中的损失函数(loss function)","image":["http://cdn.yiyouls.com/lossf.png","http://cdn.yiyouls.com/ai.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/archives/3b9f.html"},"publisher":{"@type":"Organization","name":"天津亦友拾光文化传播有限公司","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png","logo":{"@type":"ImageObject","url":"http://cdn.yiyouls.com/profile.png"}},"url":"http://yoursite.com/archives/3b9f.html","keywords":"深度学习, ANNs, 人工神经网络, 损失函数, loss function","thumbnailUrl":"http://cdn.yiyouls.com/lossf.png"}</script>
     <meta name="description" content="神经网络损失函数详解 这篇文章带大家细致探讨什么是损失函数，以及它在人工神经网络中的应用． 我们在讲神经网络的训练的那篇文章已经见过损失函数的概念，随机梯度下降(SGD)通过迭代更新网络中的权重来最小化损失函数．">
 <meta name="keywords" content="深度学习,ANNs,人工神经网络,损失函数,loss function">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="深入认识神经网络中的损失函数(loss function)">
 <meta property="og:url" content="http://yoursite.com/archives/3b9f.html">
-<meta property="og:site_name" content="天津亦友拾光文化传播有限公司">
+<meta property="og:site_name" content="机器学习">
 <meta property="og:description" content="神经网络损失函数详解 这篇文章带大家细致探讨什么是损失函数，以及它在人工神经网络中的应用． 我们在讲神经网络的训练的那篇文章已经见过损失函数的概念，随机梯度下降(SGD)通过迭代更新网络中的权重来最小化损失函数．">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="http://cdn.yiyouls.com/losshead.jpg">
@@ -73,7 +73,7 @@
 <header id="header" data-behavior="4">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
-        <a class="header-title-link" href="/ ">天津亦友拾光文化传播有限公司</a>
+        <a class="header-title-link" href="/ ">机器学习</a>
     </div>
     
         
@@ -100,7 +100,7 @@
                 <a href="/#about">
                     <img class="sidebar-profile-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
                 </a>
-                <h4 class="sidebar-profile-name">亦友拾光</h4>
+                <h4 class="sidebar-profile-name">天津亦友拾光文化传播有限公司</h4>
                 
                     <h5 class="sidebar-profile-bio"><p>浙江大学在读</p>
 </h5>
@@ -488,7 +488,7 @@
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
-        Copyrights &copy; 2019 亦友拾光. 津ICP备18005385号.
+        Copyrights &copy; 2019 天津亦友拾光文化传播有限公司. 津ICP备18005385号
     </span>
 </footer>
 
@@ -678,7 +678,7 @@
         
             <img id="about-card-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
         
-            <h4 id="about-card-name">亦友拾光</h4>
+            <h4 id="about-card-name">天津亦友拾光文化传播有限公司</h4>
         
             <div id="about-card-bio"><p>浙江大学在读</p>
 </div>
@@ -1017,5 +1017,20 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
     </script>
 
 
-    <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
 </html>

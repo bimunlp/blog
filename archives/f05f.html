@@ -5,9 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="天津亦友拾光文化传播有限公司">
-    <title>如何理解数据集中的训练集(training set)，验证集(validation set)以及测试集(test set)? - 天津亦友拾光文化传播有限公司</title>
-    <meta name="author" content="亦友拾光">
+    <meta name="generator" content="机器学习">
+    <title>如何理解数据集中的训练集(training set)，验证集(validation set)以及测试集(test set)? - 机器学习</title>
+    <meta name="author" content="天津亦友拾光文化传播有限公司">
     
         <meta name="keywords" content="deep learning,neural network,mechine learning,ANN,AI,深度学习,机器学习,">
     
@@ -17,13 +17,13 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"亦友拾光","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"articleBody":"这篇文章带大家了解神经网络训练和测试中用到的不同种类的数据集．\n为了训练和测试神经网络，我们需要将数据集划分为三个独立的数据集，这些数据集将包含以下内容：\n\n训练集 training set\n验证集 validation set\n测试集 test set\n\n\n 首先说说训练集.\n训练集顾名思义，训练集是用来训练模型的数据集合，通过每一次epoch，模型对训练集中的数据一遍又一遍反复训练，不断学习数据的特征．\n这么做的目的是，当模型遇到从没有见到过的新数据时，能够对它做出准确的预测．那么什么是验证集呢？\n验证集验证集是一组与训练集分开的数据，用于在训练期间验证我们的模型。此验证过程有助于提供可帮助我们调整超参数的信息。\n在每个epoch中，模型不只是在训练集中的数据上进行训练，同时也在验证集中的数据上进行验证。\n我们之前在关于模型训练的文章中讲过，在训练过程中，模型将对培训集中每个输入的输出进行分类。在进行该分类之后，计算出损失，并且调整模型中的权重。然后，在下个epoch期间，模型再次对相同的输入进行分类。\n而现在我们需要知道，在训练期间，模型也会对验证集中的每个输入进行分类。这种分类仅基于模型在训练集中训练得到的关于数据的知识。通过验证数据计算的损失，但模型中的权重不会因此更新。\n请记住，验证集中的数据与训练集中的数据是分开的。因此，当模型验证时的数据并不在之前的训练中出现．\n验证集存在的一个主要原因是确保我们的模型不会过度拟合(overfitting)训练集中的数据。我们会在之后详细讨论过度拟合和欠拟合(underfitting)。现在大家只需要知道过度拟合是指模型非常善于对训练集中的数据进行分类，但却无法对未经过训练的数据进行概括和精确分类。\n如果我们在训练过程中同时使用验证集来验证模型，并且发现模型对验证集的预测结果跟对训练集的预测结果一样好，我们就能自信说模型没有过度拟合．\n\n验证集帮助我们在训练期间了解模型的泛化能力．\n\n相反地，如果模型在训练数据上的结果很好，在验证数据上的结果却不尽人意，这就说明模型已经过拟合了．\n现在我们再来说一说测试集．\n测试集测试集是一组数据，用于模型训练结束之后对模型的测试。测试集与训练集以及验证集相互独立。\n在我们用训练集训练数据同时用验证集验证过数据之后，我们用模型预测测试集中未标记的数据的输出．\n测试集和另外两个数据集之间的一个主要区别是测试集是不被标记的数据。训练集和验证集是需要进行标记的，我们需要这些标签计算一些训练指标，例如每个epoch的损失和准确度。\n当模型在我们的测试集中预测未标记的数据时，就相当于模型在实际应用中所面临的情形．\n\n 测试集是模型在产品化之前的最后一关，用来测试模型的泛化能力．\n\n我们不给模型提供测试集中数据的标签，目的是模拟在真实情况下，我们并不知道那些需要预测的数据的标签，对这些数据的分类并无先验知识．\n使模型能够完成分类任务，最终的目标是在数据标签未知的情况下能够对数据正确分类．\n\n机器学习和深度学习的最终目标是打造具有泛化能力的模型\n\n深度学习所用到的数据集总结下表总结了深度学习中所用的数据集：\n\n\n\n\n数据集\n更新权重\n描述\n\n\n\n\n训练集\n是\n用于训练模型。训练的目标是使模型适应训练集，同时保证对新数据的泛化能力。\n\n\n验证集\n否\n在训练期间使用，以检查模型的繁华能力。\n\n\n测试集\n否\n在模型产品化之前，评估模型最终的泛化能力。\n\n\n\n\n希望大家能够了解不同数据集是如何分配数据的，以及如何使用不同类型的数据集。\n划分出三个相互独立的数据集的主要原因是确保模型能够准确预测未见数据，保持良好的泛化能力。当模型不能很好地泛化时，通常是由于过度拟合或欠拟合。我们将[在下一篇文章中介绍这些内容 。下次见！\n","dateCreated":"2019-01-27T19:27:23+08:00","dateModified":"2019-02-24T13:52:34+08:00","datePublished":"2019-01-27T19:27:23+08:00","description":"这篇文章带大家了解神经网络训练和测试中用到的不同种类的数据集．\n为了训练和测试神经网络，我们需要将数据集划分为三个独立的数据集，这些数据集将包含以下内容：\n\n训练集 training set\n验证集 validation set\n测试集 test set\n","headline":"如何理解数据集中的训练集(training set)，验证集(validation set)以及测试集(test set)?","image":["http://cdn.yiyouls.com/dataset.png","http://cdn.yiyouls.com/ai.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/archives/f05f.html"},"publisher":{"@type":"Organization","name":"亦友拾光","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png","logo":{"@type":"ImageObject","url":"http://cdn.yiyouls.com/profile.png"}},"url":"http://yoursite.com/archives/f05f.html","keywords":"深度学习, ANNs, 人工神经网络, 数据集","thumbnailUrl":"http://cdn.yiyouls.com/dataset.png"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"天津亦友拾光文化传播有限公司","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"articleBody":"这篇文章带大家了解神经网络训练和测试中用到的不同种类的数据集．\n为了训练和测试神经网络，我们需要将数据集划分为三个独立的数据集，这些数据集将包含以下内容：\n\n训练集 training set\n验证集 validation set\n测试集 test set\n\n\n 首先说说训练集.\n训练集顾名思义，训练集是用来训练模型的数据集合，通过每一次epoch，模型对训练集中的数据一遍又一遍反复训练，不断学习数据的特征．\n这么做的目的是，当模型遇到从没有见到过的新数据时，能够对它做出准确的预测．那么什么是验证集呢？\n验证集验证集是一组与训练集分开的数据，用于在训练期间验证我们的模型。此验证过程有助于提供可帮助我们调整超参数的信息。\n在每个epoch中，模型不只是在训练集中的数据上进行训练，同时也在验证集中的数据上进行验证。\n我们之前在关于模型训练的文章中讲过，在训练过程中，模型将对培训集中每个输入的输出进行分类。在进行该分类之后，计算出损失，并且调整模型中的权重。然后，在下个epoch期间，模型再次对相同的输入进行分类。\n而现在我们需要知道，在训练期间，模型也会对验证集中的每个输入进行分类。这种分类仅基于模型在训练集中训练得到的关于数据的知识。通过验证数据计算的损失，但模型中的权重不会因此更新。\n请记住，验证集中的数据与训练集中的数据是分开的。因此，当模型验证时的数据并不在之前的训练中出现．\n验证集存在的一个主要原因是确保我们的模型不会过度拟合(overfitting)训练集中的数据。我们会在之后详细讨论过度拟合和欠拟合(underfitting)。现在大家只需要知道过度拟合是指模型非常善于对训练集中的数据进行分类，但却无法对未经过训练的数据进行概括和精确分类。\n如果我们在训练过程中同时使用验证集来验证模型，并且发现模型对验证集的预测结果跟对训练集的预测结果一样好，我们就能自信说模型没有过度拟合．\n\n验证集帮助我们在训练期间了解模型的泛化能力．\n\n相反地，如果模型在训练数据上的结果很好，在验证数据上的结果却不尽人意，这就说明模型已经过拟合了．\n现在我们再来说一说测试集．\n测试集测试集是一组数据，用于模型训练结束之后对模型的测试。测试集与训练集以及验证集相互独立。\n在我们用训练集训练数据同时用验证集验证过数据之后，我们用模型预测测试集中未标记的数据的输出．\n测试集和另外两个数据集之间的一个主要区别是测试集是不被标记的数据。训练集和验证集是需要进行标记的，我们需要这些标签计算一些训练指标，例如每个epoch的损失和准确度。\n当模型在我们的测试集中预测未标记的数据时，就相当于模型在实际应用中所面临的情形．\n\n 测试集是模型在产品化之前的最后一关，用来测试模型的泛化能力．\n\n我们不给模型提供测试集中数据的标签，目的是模拟在真实情况下，我们并不知道那些需要预测的数据的标签，对这些数据的分类并无先验知识．\n使模型能够完成分类任务，最终的目标是在数据标签未知的情况下能够对数据正确分类．\n\n机器学习和深度学习的最终目标是打造具有泛化能力的模型\n\n深度学习所用到的数据集总结下表总结了深度学习中所用的数据集：\n\n\n\n\n数据集\n更新权重\n描述\n\n\n\n\n训练集\n是\n用于训练模型。训练的目标是使模型适应训练集，同时保证对新数据的泛化能力。\n\n\n验证集\n否\n在训练期间使用，以检查模型的繁华能力。\n\n\n测试集\n否\n在模型产品化之前，评估模型最终的泛化能力。\n\n\n\n\n希望大家能够了解不同数据集是如何分配数据的，以及如何使用不同类型的数据集。\n划分出三个相互独立的数据集的主要原因是确保模型能够准确预测未见数据，保持良好的泛化能力。当模型不能很好地泛化时，通常是由于过度拟合或欠拟合。我们将[在下一篇文章中介绍这些内容 。下次见！\n","dateCreated":"2019-01-27T19:27:23+08:00","dateModified":"2019-02-24T13:52:34+08:00","datePublished":"2019-01-27T19:27:23+08:00","description":"这篇文章带大家了解神经网络训练和测试中用到的不同种类的数据集．\n为了训练和测试神经网络，我们需要将数据集划分为三个独立的数据集，这些数据集将包含以下内容：\n\n训练集 training set\n验证集 validation set\n测试集 test set\n","headline":"如何理解数据集中的训练集(training set)，验证集(validation set)以及测试集(test set)?","image":["http://cdn.yiyouls.com/dataset.png","http://cdn.yiyouls.com/ai.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/archives/f05f.html"},"publisher":{"@type":"Organization","name":"天津亦友拾光文化传播有限公司","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png","logo":{"@type":"ImageObject","url":"http://cdn.yiyouls.com/profile.png"}},"url":"http://yoursite.com/archives/f05f.html","keywords":"深度学习, ANNs, 人工神经网络, 数据集","thumbnailUrl":"http://cdn.yiyouls.com/dataset.png"}</script>
     <meta name="description" content="这篇文章带大家了解神经网络训练和测试中用到的不同种类的数据集． 为了训练和测试神经网络，我们需要将数据集划分为三个独立的数据集，这些数据集将包含以下内容：  训练集 training set 验证集 validation set 测试集 test set">
 <meta name="keywords" content="深度学习,ANNs,人工神经网络,数据集">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="如何理解数据集中的训练集(training set)，验证集(validation set)以及测试集(test set)?">
 <meta property="og:url" content="http://yoursite.com/archives/f05f.html">
-<meta property="og:site_name" content="天津亦友拾光文化传播有限公司">
+<meta property="og:site_name" content="机器学习">
 <meta property="og:description" content="这篇文章带大家了解神经网络训练和测试中用到的不同种类的数据集． 为了训练和测试神经网络，我们需要将数据集划分为三个独立的数据集，这些数据集将包含以下内容：  训练集 training set 验证集 validation set 测试集 test set">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:updated_time" content="2019-02-24T05:52:34.468Z">
@@ -71,7 +71,7 @@
 <header id="header" data-behavior="4">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
-        <a class="header-title-link" href="/ ">天津亦友拾光文化传播有限公司</a>
+        <a class="header-title-link" href="/ ">机器学习</a>
     </div>
     
         
@@ -98,7 +98,7 @@
                 <a href="/#about">
                     <img class="sidebar-profile-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
                 </a>
-                <h4 class="sidebar-profile-name">亦友拾光</h4>
+                <h4 class="sidebar-profile-name">天津亦友拾光文化传播有限公司</h4>
                 
                     <h5 class="sidebar-profile-bio"><p>浙江大学在读</p>
 </h5>
@@ -521,7 +521,7 @@
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
-        Copyrights &copy; 2019 亦友拾光. 津ICP备18005385号.
+        Copyrights &copy; 2019 天津亦友拾光文化传播有限公司. 津ICP备18005385号
     </span>
 </footer>
 
@@ -711,7 +711,7 @@
         
             <img id="about-card-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
         
-            <h4 id="about-card-name">亦友拾光</h4>
+            <h4 id="about-card-name">天津亦友拾光文化传播有限公司</h4>
         
             <div id="about-card-bio"><p>浙江大学在读</p>
 </div>
@@ -1050,5 +1050,20 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
     </script>
 
 
-    <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
 </html>
